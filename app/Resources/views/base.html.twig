@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ app.request.getLocale() }}"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}Grzegorz 'Uirapuru' Kaszuba - web developer, martial artist | php, javascript, capoeira, brazilian jiu jitsu{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% block stylesheets %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/vendors.css') }}"/>
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/project.css') }}"/>
+        {% endblock %}
+    </head>
+    <body ng-app>
+    {% block body %}{% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset('js/vendors.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/project.js') }}" type="text/javascript"></script>
+        {% include '::analytics.html.twig' %}
+    {% endblock javascripts %}
+    <footer>
+        <div id="mailer">
+            <div  class="container">
+                <div class="col-md-12">
+                    <div class="fa fa-envelope-o" id="openMailer" ng-click="showMailer = ! showMailer"></div>
+                    <div ng-show="showMailer">
+                        {{ render(controller('FrontBundle:Default:embeddedContact')) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="contactInfo">
+            <div  class="container">
+                <div class="row">
+                <div class="col-md-offset-1 col-md-5">
+                    <h3>{{ 'footer.contact.header'|trans }}</h3>
+                    <ul>
+                        <li>{{ 'footer.contact.gsm.caption'|trans }}: +48 604 411 089</li>
+                        <li>{{ 'footer.contact.email.caption'|trans }}: uirapuru@tlen.pl</li>
+                    </ul>
+                </div>
+                <div class="col-md-offset-1 col-md-5">
+                    <h3>
+                        <a href="{{ path("download_pdf") }}">{{ 'footer.download.pdf'|trans }}</a>
+                    </h3>
+                </div>
+                </div>
+                </div>
+        </div>
+    </footer>
+</body>
+</html>

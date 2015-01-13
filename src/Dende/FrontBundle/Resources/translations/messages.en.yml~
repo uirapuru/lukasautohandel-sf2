@@ -1,0 +1,16 @@
+contact.thank_you_message: 'Thank you! Your message was succesfuly sent and will be answered as soon as possible'
+contact.form.header: 'Write your message'
+contact.form.labels.email: 'E-mail address'
+contact.form.labels.message: 'Message body'
+contact.form.labels.submit: Send
+contact.form.required_field: 'field is required'
+common.successful: Success!
+common.there_were_errors: 'There were errors'
+menu.main.cv: CV
+menu.main.projects: Projects
+menu.main.contact: Contact
+work_experience: Work Experience
+read_more: show more
+running_own_business: Running own business
+education: Education
+free_time_activities: Hobby

@@ -1,0 +1,5 @@
+contact.too_short_message: 'Wiadomość jest zbyt krótka, powinna zawierać conajmniej {{ limit }} znaków'
+contact.too_long_message: 'Wiadomość jest zbyt długa, powinna zawierać maksymalnie {{ limit }} znaków'
+contact.empty_message: 'Musisz podać treść wiadomości!'
+contact.empty_email: 'Musisz podać email!'
+contact.wrong_email: 'Nieprawidłowy adres email.'

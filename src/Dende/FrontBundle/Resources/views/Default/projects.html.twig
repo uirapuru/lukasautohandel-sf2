@@ -1,0 +1,83 @@
+{% extends "FrontBundle::layout.html.twig" %}
+
+{% macro picture(project) %}
+    {% if project.pictures[0] is defined %}
+        {% if 'http://' in project.pictures[0] or 'https://' in project.pictures[0] %}
+           {% set image = project.pictures[0] %}
+        {% else %}
+           {% set image = asset('/bundles/front/images/projects/'~project.pictures[0]) %}
+        {% endif %}
+    {% else %}
+        {% set image = null %}
+    {% endif %}
+
+    <a href="{{ image }}" {% if image is not null %}rel="prettyPhoto[project]"{% endif %}><img src="{{ image }}" /></a>
+{% endmacro %}
+
+{% macro project(project) %}
+
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ">
+    <div class="panel panel-default">
+        <div class="row padall">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                {{ _self.picture(project) }}
+
+                {% if project.company is defined %}
+                <div class="label label-danger">{{ project.company }}</div>
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <span class="icon">{{ project.name }}</span>
+                    </div>
+                    {%  if project.tags is defined %}
+                    <div class="pull-right">
+                        <ul>
+                            {% for tag in project.tags  if project.tags is defined %}
+                                <li class="label label-default">{{ tag }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                <div>{{ project.description }}
+                    {%  if project.features is defined %}
+                        <ul>
+                        {% for feature in project.features %}
+                            <li class="">{{ feature }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="projects">
+                <h3>Prace i projekty, przy których pracowałem</h3>
+                <div class="row">
+                    {% for project in projects %}
+                        {{ _self.project(project) }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+            $('[rel="prettyPhoto\\\[project\\\]"]').prettyPhoto();
+        });
+    </script>
+{% endblock javascripts %}

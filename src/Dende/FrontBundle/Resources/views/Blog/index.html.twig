@@ -1,0 +1,20 @@
+{% extends "FrontBundle::layout.html.twig" %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" >
+                <ul>
+                    {% for article in articles %}
+                        <li>
+                            <a href="{{ url('show_article', {slug: article.slug}) }}">
+                                {{ article.getTitle(app.request.locale) }}</li>
+                            </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

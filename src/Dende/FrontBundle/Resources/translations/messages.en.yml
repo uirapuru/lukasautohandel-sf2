@@ -1,0 +1,31 @@
+contact.thank_you_message: 'Thank you! Your message was succesfuly sent and will be answered as soon as possible'
+contact.form.header: 'Write your message'
+contact.form.labels.email: 'E-mail address'
+contact.form.labels.message: 'Message body'
+contact.form.labels.submit: Send
+contact.form.required_field: 'field is required'
+common.successful: Success!
+common.there_were_errors: 'There were errors'
+menu.main.blog: Blog
+menu.main.cv: CV
+menu.main.projects: Projects
+menu.main.contact: Contact
+work_experience: 'Work Experience'
+read_more: 'show more'
+running_own_business: 'Running own business'
+education: Education
+free_time_activities: Hobby
+language.english: english
+proficiency.english: intermediate (B2/B1 in CEF)
+language.portuguese: portuguese (brazilian version)
+proficiency.portuguese: elementary (A2/A1 in CEF)
+foreign_languages: Foreign languages
+duration.years: "{0}|{1} %count% year|[2,Inf] %count% years"
+duration.months: "{0}|{1} %count% month|[2,Inf] %count% months"
+duration.and: "and"
+duration.from: from
+duration.till: till
+duration.till_now: now
+position.in: in
+footer.download.pdf: Download in PDF format
+skills: skills
