@@ -1,0 +1,77 @@
+<project name="gyman.tests" default="test">
+    <target name="reset-db-test">
+        <phingcall target="reset-db">
+            <property name="env" value="test" />
+        </phingcall>
+    </target>
+
+    <target name="clear-build">
+        <delete dir="build"></delete>
+        <mkdir dir="build" />
+        <mkdir dir="build/logs" />
+        <mkdir dir="build/api" />
+        <mkdir dir="build/code-browser" />
+        <mkdir dir="build/coverage" />
+        <mkdir dir="build/pdepend" />
+    </target>
+
+    <target name="phplint">
+        <exec command="${php_bin} -l ${php-file}" checkreturn="true" passthru="true" />
+    </target>
+
+    <target name="test-phplint" description="linting phpfiles">
+        <foreach param="fname" absparam="php-file" target="phplint">
+            <fileset dir="${project.basedir}">
+                <include name="app/**/*.php" />
+                <include name="src/**/*.php" />
+                <exclude name="app/cache/**/*.php" />
+            </fileset>
+        </foreach>
+    </target>
+
+    <target name="test-twiglint">
+        <exec command="${php_bin} ${symfony_console} twig:lint app/Resources" checkreturn="true" passthru="true" />
+        <exec command="${php_bin} ${symfony_console} twig:lint src" checkreturn="true" passthru="true" />
+    </target>
+
+    <target name="test-phpunit" depends="reset-db-test">
+        <echo>Running phpunit tests</echo>
+        <exec command="bin/phpunit -c app" checkreturn="true" passthru="true" />
+    </target>
+
+    <target name="test-security">
+        <exec command="bin/security-checker security:check --quiet" checkreturn="true" passthru="true" />
+    </target>
+
+    <target name="test" depends="clear-build">
+        <phingcall target="test-phplint" />
+        <phingcall target="test-twiglint" />
+        <phingcall target="test-security" />
+        <phingcall target="phpcs" />
+        <phingcall target="phpcb" />
+        <phingcall target="phpcpd" />
+        <phingcall target="phpmd" />
+        <phingcall target="pdepend" />
+        <phingcall target="test-phpunit" />
+    </target>
+
+    <target name="phpcs" description="php code sniffer">
+        <exec command="bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --standard=app/phpcs.xml --extensions=php src/" checkreturn="true" passthru="true" />
+    </target>
+
+    <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
+        <exec command="bin/phpcb --log build/logs --source src --output build/code-browser" checkreturn="true" passthru="true" />
+    </target>
+
+    <target name="phpcpd" description="Find duplicate code using PHPCPD">
+        <exec command="bin/phpcpd --log-pmd build/logs/pmd-cpd.xml src" checkreturn="true" passthru="true" />
+    </target>
+
+    <target name="phpmd" description="php mess detector">
+        <exec command="bin/phpmd src/ xml app/phpmd.xml --reportfile build/logs/pmd.xml" checkreturn="true" passthru="true" />
+    </target>
+
+    <target name="pdepend" description="Calculate software metrics using PHP_Depend">
+        <exec command="bin/pdepend --jdepend-xml=build/logs/jdepend.xml --overview-pyramid=build/pdepend/overview-pyramid.svg --jdepend-chart=build/pdepend/dependencies.svg src/" checkreturn="true" passthru="true" />
+    </target>
+</project>

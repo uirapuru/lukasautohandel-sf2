@@ -1,0 +1,5 @@
+contact.too_short_message: 'Message body is too short, must be at least {{ limit }} chars'
+contact.too_long_message: 'Message body is too long, must be {{ limit }} chars in maximum'
+contact.empty_message: 'You have to fill message body!'
+contact.empty_email: 'You have to enter your email address'
+contact.wrong_email: 'This email does not seem to be correct'

@@ -1,0 +1,58 @@
+{{ form_start(form, {
+    'method' : 'POST',
+    'action' : path("contact"),
+    'attr' : {
+        "class" : "form-box register-form contact-form",
+        "id"    : "contactForm",
+        "novalidate" : true
+    }
+}) }}
+
+<h3 class="title">{{ 'contact.form.header'|trans }}</h3>
+
+{% set notice = app.session.flashbag.get('notice') %}
+
+{% if notice|length %}
+    <div class="alert alert-success fade in ">
+        <i class="fa fa-exclamation-circle alert-icon"></i>
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong>{{ "common.successful"|trans }}</strong>
+        {% for flashMessage in notice %}
+            <p>{{ flashMessage }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if form.vars.errors|length %}
+    <div class="alert alert-danger fade in ">
+        <i class="fa fa-envelope alert-icon"></i>
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong>{{ "common.there_were_errors"|trans }}</strong>
+        <ul>
+            {% for error in form.vars.errors %}
+            <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% for field in form|slice(0, 2) %}
+    <div class="form-group{% if field.vars.errors|length %} has-error{% endif %}">
+        <label>{{ form_label(field) }}: <span class="required">*</span></label>
+        {{ form_widget(field,{
+            "attr" : {"class":"form-control"}
+        }) }}
+    </div>
+{% endfor %}
+
+<div class="clearfix"></div>
+
+<div class="buttons-box clearfix">
+    {{ form_widget(form.submit,{
+        "attr" : {"class":"btn btn-default"},
+    }) }}
+    <span class="required"><b>*</b> {{ 'contact.form.required_field'|trans }}</span>
+</div><!-- .buttons-box -->
+
+{{ form_rest(form) }}
+</form>

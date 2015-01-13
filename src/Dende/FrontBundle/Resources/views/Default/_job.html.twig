@@ -1,0 +1,46 @@
+<li class="job">
+    <h4>
+        <span class="position">
+            {{ job.position }}
+        </span>
+
+        {{ "position.in"|trans }}
+
+        <strong>{{ job.name }}</strong>
+
+        {%  if job.link is not null %}
+            <a href="{{ job.link }}"><i class="glyphicon glyphicon-link"></i></a>
+        {% endif %}
+
+        (<span class="address" title="{{ job.address }}">{{ job.country }} / {{ job.city }}</span>)
+    </h4>
+
+    <span class="date">
+        {{ "duration.from"|trans }}
+        {{ job.from|date("Y-m-d") }}
+        {{ "duration.till"|trans }}
+
+        {% if job.to is not null %}
+            {{ job.to|date("Y-m-d") }}
+        {% else %}
+            {{ 'duration.till_now'|trans }}
+        {% endif %}
+
+        (
+        {% if job.getDuration().y > 0 %}
+            {{ "duration.years"|transchoice(job.getDuration().y) }}
+            {{ "duration.and"|trans }}
+        {% endif %}
+        {{  "duration.months"|transchoice(job.getDuration().m) }}
+        )
+
+    </span>
+
+    <div class="clearfix"></div>
+
+    <ol class="description">
+        {%  for desc in job.getDescription(app.request.locale) %}
+            <li>{{ desc }}</li>
+        {% endfor %}
+    </ol>
+</li>

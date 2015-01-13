@@ -1,0 +1,95 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enabled: true, enable_annotations: true }
+    templating:
+        engines: ['twig']
+#        assets_base_urls:
+#            http:   ["%base_url%"]
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        # path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+        filters:
+          softdeleteable:
+            class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+            enabled: true
+        mappings:
+          StofDoctrineExtensionsBundle: ~
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: smtp
+    host:      smtp.gmail.com
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    delivery_address: "%delivery_address%"
+    port:                 465
+    encryption:           ssl
+    auth_mode:            ~
+    
+    logging:        true
+    
+#    spool:
+#        type: file
+#        path: "%kernel.root_dir%/spool"
+
+knp_menu:
+    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
+        template: knp_menu.html.twig
+    templating: false # if true, enables the helper for PHP templates
+    default_renderer: twig # The renderer to use, list is also available by default
+
+stof_doctrine_extensions:
+  default_locale: en_US
+  orm:
+    default:
+      timestampable: true
+      sluggable: true
+
+front:
+    links:
+        contact_mail:   ~
+        facebook:       ~
+        linkedin:       ~
+        goldenline:     ~
+        github:         ~
+        youtube:        ~

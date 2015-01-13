@@ -1,0 +1,126 @@
+job_yourvine:
+  name:     Yourvine sp. z o.o.
+  address:  Jedności Narodowej 95/1D
+  city:     Wrocław
+  country:  Poland
+  link:     http://yourvine.com
+  from:     "2014-10-01"
+  to:       ~
+  position: php developer
+  descriptionPl:
+    - "Pracuję jako członek zespołu dostarczającego narzędzie marketingowe dla branży muzycznej: thephysicalnetwork.com"
+    - "Wykonuję zadania jako programista php a także zajmuję się prostymi zadaniami administratorskimi"
+    - "Obsługa wirtualnych serwerów Amazon AWS oraz organizacja automatycznego deploymentu za pomocą narzędzi jak capistrano"
+    - "Udział w projektowaniu i tworzeniu podstawowych założeń i funcjonalności systemu wykorzystującego m.in. nodejs, RabbitMQ, php, mysql, memcache, oauth, api REST"
+  descriptionEn:
+    - "I'm a part of a team that delivers a web-based marketing tool for music industry: thephysicalnetwork.com"
+    - "Working mostly as a php developer with a lot of linux administration tasks"
+    - "Managing Amazon AWS servers and automatic deployments using capistrano etc."
+    - "Taking a part in designing of main concepts and functionality of system that uses technologies including node.js, Rabbit, php, mysql, memcache, oauth and REST api's."
+  tags:
+    - Symfony 2
+  projects:
+    - tpn
+
+job_clearcode:
+    name:     Digimedia d/b/a Clearcode
+    address:  ul. Św. Antoniego 2/4
+    city:     Wrocław
+    country:  Poland
+    link:     http://clearcode.cc
+    from:     "2012-02-01"
+    to:       "2014-09-31"
+    position: php and javascript developer
+    descriptionPl:
+      - "Udział w tworzeniu wielu projektów dla klientów firmy, m.in. MovableMedia, Pennysaver USA, Piwik, PiwikPRO, Remedy Systems, Clarivoy"
+      - "Praca głównie z wykorzystaniem php 5.3+ oraz javascript oraz frameworkami Symfony1 i Symfony2, biblioteką jQuery, extJS"
+      - "Praca w środowiskach typu linux, z wykorzystaniem baz danych typu SQL oraz NOSQL, a także systemami kontroli wersji (Git i Subversion)"
+      - "Praca z wykorzystaniem narzędzi do testów jednostkowych i funkcjonalnych (PHPUnit, Behat, Selenium), QA (phpcs, phpmd) i CI (jenkins, bamboo)"
+    descriptionEn:
+      - "Developing several projects for our clients around the world, i.e. MovableMedia, Pennysaver USA, Piwik, PiwikPro, Remedy Systems, Clarivoy and others"
+      - "Working mostly with php 5.3+ and javascript using tools such as: Symfony1 and Symfony2 frameworks, jQuery library, extJS frameworks."
+      - "Also work on linux systems, SQL and NOSQL databases, vcs systems (Git and Subversion)"
+      - "Utilizing unit and functional testing tools (PHPUnit, Behat, Selenium) and QA (phpcs, phpmd etc) and CI (jenkins, bamboo) tools."
+    tags:
+      - Symfony 2
+      - Symfony 1
+      - jQuery
+      - extJS
+      - PHPUnit
+      - Behat
+      - Selenium
+    projects:
+      - movablemedia
+      - clarivoy
+      - pennysaver
+      - piwikpro
+
+job_dende:
+  name:     Dende Grzegorz Kaszuba
+  address:  Poranna 41/10
+  city:     Wrocław
+  country:  Poland
+  link:     http://dende.com.pl
+  from:     "2011-05-01"
+  to:       ~
+  position: owner
+  descriptionPl:
+    - "Tworzenie własnych projektów, takich jak np. Gyman.pl - aplikacja menedżerska do klubów sportowych (obecnie używany w dwóch klubach we Wrocławiu)"
+    - "Projektowanie i implementacja projektów zleconych: sklepów, katalogów produktów, stron firmowych"
+    - "Mniejsze projekty dla klientów typu 'single page app' z wykorzystaniem narzędzi takich jak Silex, Zend Framework, Symfony, Wordpress, Joomla"
+    - "Migracja z hostingu na vps oraz zarządzanie serwisami mmanews.pl oraz takedown.pl"
+    - "Administracja własnymi serwerami developerskimi oraz narzędzami typu jenkins, wykorzystanie oprogramowania CI oraz QA"
+  descriptionEn:
+    - "Developing own projects like Gyman – fitness club management software based on Symfony2 (already used in two clubs in Wrocław)"
+    - "Developing whole projects for clients such as shops, product or fashion model catalogs"
+    - "Smaller projects like single-page apps using Silex, Zend Framework, Symfony or Wordpress and Joomla for various clients and companies"
+    - "Migration to VPS and administration of mmanews.pl and takedown.pl sites"
+    - "Administration of few own servers, own develpment server including jenkins, CI and QA and constant testing software"
+  projects:
+    - cookie.com.pl
+    - toromedia
+    - capoeiraapelido.com
+    - portuga.pl
+    - sallyyumeno
+    - thomascloud
+
+job_studdin:
+  name:     Studdin
+  address:  ~
+  city:     Poznań
+  country:  Poland
+  link:     ~
+  from:     "2012-09-01"
+  to:       "2014-06-30"
+  position: php and javascript developer, administrator
+  descriptionEn:
+    - "VPS installation and maintenance; development, staging and production environments, CI server, email server etc."
+    - "Created project, designs, specification and implemented Docloud.pl – symfony1 and jQuery based platform for document exchange between users"
+    - "Created demo application for new project – studdin.com, a symfony2 based application for students community"
+    - "Projects management using Redmine and Asana software, cooperation and organizing work for few other backend and frontend developers and a designer."
+  descriptionPl:
+    - "Stworzenie i zarządzanie wirtualnymi serwerami dla kilku środowisk pracy (development, staging, production), serwerem CI, serwerem poczty"
+    - "Zaprojektowanie, design, wyspecyfikowanie i implementacja projektu docloud.pl - opartego o symfony1 i jquery narzędzia do wymiany dokumentów"
+    - "Stworzenie dema aplikacji nowego projektu - studdin.com, platformy dla studentow i pracodawców opartej o Symfony2"
+    - "Zarządzanie wiedzą i zadaniami dot. projektów za pomocą narzędzi Redmine i Asana, koordynacja prac pomiędzy kilkoma developerami i designerem."
+  projects:
+    - docloud
+    - studdin
+
+job_redefine:
+  name:       Redefine
+  address:    ~
+  city:       Olsztyn
+  from:       "2010-04-01"
+  to:         "2011-09-31"
+  link:       http://redefine.pl
+  country:    Poland
+  position:   webdeveloper
+  descriptionEn:
+    - "Work on stat24.com project – web analytics project and few others"
+    - "Using Zend Framework 1 and jQuery, also MySQL and Subversion"
+  descriptionPl:
+    - "Praca nad projektem analizy odwiedzin stron internetowych - stat24.com oraz paroma mniejszymi"
+    - "Wykorzystywane były narzędzia takie jak Zend Framework 1, jQuery, MySQL oraz Subversion"
+  projects:
+    - stat24

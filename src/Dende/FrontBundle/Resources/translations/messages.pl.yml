@@ -1,0 +1,40 @@
+contact.thank_you_message: 'Dziękujemy! Twoja wiadomość zostanie zaraz przeczytana i odpiszemy tak szybko jak się nam uda :)'
+contact.captions.contact_us: 'Napisz do nas'
+contact.captions.use_the_form: 'Skorzystaj z formularza po prawej i napisz do nas wiadomość'
+contact.form.header: 'Napisz wiadomość'
+contact.form.labels.email: 'Adres email'
+contact.form.labels.message: Wiadomość
+contact.form.labels.submit: Wyślij
+contact.form.required_field: 'pole wymagane'
+user.form.label.firstname: Imię
+user.form.label.lastname: Nazwisko
+user.form.username: 'Nazwa użytkownika'
+user.form.email: 'Adres email'
+user.form.current_password: 'Aktualne hasło'
+compare.page.title: __compare.page.title
+common.successful: __common.successful
+common.there_were_errors: __common.there_were_errors
+index.page.title: __index.page.title
+menu.main.blog: Blog
+menu.main.cv: CV
+menu.main.projects: Projekty
+menu.main.contact: Kontakt
+work_experience: Doświadczenie
+read_more: rozwiń
+running_own_business: 'własna działalność'
+education: Edukacja
+free_time_activities: Zainteresowania
+language.english: język angielski
+proficiency.english: znajomość dobra (B2/B1 w skali CEF)
+language.portuguese: język portugalski (w. brazylijska)
+proficiency.portuguese: znajomość podstawowa (A2/A1 w skali CEF)
+foreign_languages: języki obce
+duration.years: "{0} |{1} %count% rok|[2,4] %count% lata|[5,Inf] %count% lat"
+duration.months: "{0} |{1} %count% miesiąc|[2,4] %count% miesiące|[5,Inf] %count% miesięcy"
+duration.and: "i"
+duration.from: od
+duration.till: do
+duration.till_now: teraz
+position.in: w
+footer.download.pdf: Pobierz CV w formacie PDF
+skills: Kwalifikacje

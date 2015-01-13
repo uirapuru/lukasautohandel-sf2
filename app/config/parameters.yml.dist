@@ -1,0 +1,31 @@
+parameters:
+    base_url:          http://lukas.local
+
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     lukas
+    database_user:     ~
+    database_password: ~
+
+    test_database_name:     lukas_test
+    test_database_user:     replace_this_test_user
+    test_database_password: replace_this_test_pass
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            pl
+    secret:            AMyNieChcemyUciekaćStąd
+
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: false
+
+    delivery_address: ~
+
+    sentry_backend_dsn:         ~
+    sentry_backend_dsn_dev:     ~
+    doctrine.server_version:    5.5
