@@ -14,18 +14,8 @@ module.exports = function (grunt) {
         'src/Dende/FrontBundle/Resources/less/main.less',
     ];
 
-    var cssVendorsCv = [
-        'bower_components/bootstrap/dist/css/bootstrap.min.css'
-    ];
-
-    var lessFilesCv = [
-        'src/Dende/FrontBundle/Resources/less/download.less',
-    ];
-
     var jsVendors = [
         'bower_components/jquery/dist/jquery.min.js',
-        'bower_components/angular/angular.min.js',
-        'bower_components/angular-animate/angular-animate.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'bower_components/modernizr/modernizr.js',
         'bower_components/prettyPhoto/js/jquery.prettyPhoto.js',

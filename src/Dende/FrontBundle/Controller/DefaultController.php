@@ -18,11 +18,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $jobs = $this->getDoctrine()->getRepository("FrontBundle:Job")->findAll();
 
-        return [
-            "jobs" => $jobs
-        ];
     }
     /**
      * @Route("/projects", name="projects")
@@ -73,18 +69,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Template()
-     */
-    public function embeddedContactAction()
-    {
-        $form = $this->createForm(new ContactType());
-
-        return array(
-            "form" => $form->createView(),
-        );
-    }
-
-    /**
      * @Route(
      *  "/language/{locale}",
      *  name="switch_language",
@@ -100,46 +84,6 @@ class DefaultController extends Controller
 
         return $this->redirect(
             $request->headers->get('referer')
-        );
-    }
-
-    /**
-     * @Route(
-     *  "/download/cv.html",
-     *  name="download_html",
-     * )
-     * @Template("FrontBundle::cv.html.twig")
-     */
-    public function getAsHtmlAction()
-    {
-        return array();
-    }
-    /**
-     * @Route(
-     *  "/download/cv.pdf",
-     *  name="download_pdf",
-     * )
-     * @Template()
-     */
-    public function getAsPdfAction()
-    {
-        $jobs = $this->getDoctrine()->getRepository("FrontBundle:Job")->findAll();
-        $html = $this->renderView('FrontBundle::cv.html.twig', [
-            "jobs" => $jobs
-        ]);
-
-        $filename = strtr(
-            $this->container->getParameter("pdf_file_name"),
-            ["%locale%" => $this->container->get("session")->get("_locale")]
-        );
-
-        return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="'.$filename.'"',
-            )
         );
     }
 }

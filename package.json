@@ -1,5 +1,5 @@
 {
-  "name": "uirapu.ru",
+  "name": "lukasautohandel",
   "version": "1.0.0",
   "description": "-",
   "main": "app.php",
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/uirapuru/portfolio.git"
+    "url": "git://github.com/uirapuru/lukasautohandel-sf2.git"
   },
   "keywords": [
     "uirapuru",
@@ -43,6 +43,6 @@
   "author": "Grzegorz 'Uirapuru' Kaszuba",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/uirapuru/portfolio/issues"
+    "url": "https://github.com/uirapuru/lukasautohandel-sf2/issues"
   }
 }

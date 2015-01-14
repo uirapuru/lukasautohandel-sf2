@@ -5,7 +5,7 @@ namespace Dende\FrontBundle\DataFixtures\ORM;
 use Dende\FrontBundle\DataFixtures\BaseFixture;
 use Dende\FrontBundle\Entity\Article;
 
-class ArticlesData extends BaseFixture
+class CarsData extends BaseFixture
 {
     public function getOrder()
     {
