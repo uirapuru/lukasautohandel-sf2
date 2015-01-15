@@ -1,42 +1,6 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <!--[if lt IE 7]>
-          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-      <![endif]-->
 
-    <div id="headerBg">
-        <div class="container">
-            <div id="topInfo" class="row">
-                <div id="logo" class="col-md-8">
-                    <h1 class="pull-left"><a href="{{ path("cv") }}">uirapu.ru</a></h1>
-                    {{ knp_menu_render('mainMenu', {
-                        'template': '::navigation.html.twig',
-                        'currentAsLink' : true,
-                        'depth' : 2,
-                        'currentClass' : 'active',
-                    }) }}
-                </div>
-                <div id="menuBar" class="col-md-4">
-                    {{ knp_menu_render('langMenu', {
-                        'template': '::navigation.html.twig',
-                        'currentAsLink' : true,
-                        'depth' : 2,
-                        'currentClass' : 'active',
-                    }) }}
-                    {{ knp_menu_render('socialMenu', {
-                        'template': '::navigation.html.twig',
-                        'currentAsLink' : true,
-                        'depth' : 2,
-                    }) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" id="mainFoto">
-                    <h1>Grzegorz Kaszuba</h1>
-                    <h3>full-stack webdeveloper & martial artist</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+layout file
 {% endblock %}

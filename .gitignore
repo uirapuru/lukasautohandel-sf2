@@ -6,6 +6,9 @@ web/flags
 web/images
 web/js
 web/fonts
+bower_components
+node_modules
+build
 
 # Cache and logs (Symfony2)
 /app/cache/*
@@ -34,10 +37,6 @@ web/fonts
 # Assets and user uploads
 /web/bundles/
 /web/uploads/
-
-# PHPUnit
-/app/phpunit.xml
-/phpunit.xml
 
 # Composer PHAR
 /composer.phar

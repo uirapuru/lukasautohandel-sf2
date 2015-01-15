@@ -13,24 +13,12 @@ use Dende\FrontBundle\Form\Type\ContactType;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="cv")
+     * @Route("/", name="main")
      * @Template()
      */
     public function indexAction()
     {
-
-    }
-    /**
-     * @Route("/projects", name="projects")
-     * @Template()
-     */
-    public function projectsAction()
-    {
-        $projects = $this->getDoctrine()->getManager()->getRepository("FrontBundle:Project")->findAll();
-
-        return array(
-            "projects" => $projects,
-        );
+        return [];
     }
 
     /**

@@ -9,11 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 class MenuBuilder extends ContainerAware
 {
     /**
-     * @var array $socialLinks
-     */
-    private $socialLinks;
-
-    /**
      * @var FactoryInterface
      */
     private $factory;
@@ -24,45 +19,6 @@ class MenuBuilder extends ContainerAware
     public function __construct(FactoryInterface $factory)
     {
         $this->factory = $factory;
-    }
-
-    /**
-     * @param array $links
-     */
-    public function setSocialLinks(array $links)
-    {
-        $this->socialLinks = $links;
-    }
-
-    public function createSocialMenu()
-    {
-        $menu = $this->factory->createItem('root');
-
-        $menu->setChildrenAttributes(array(
-            'class' => 'nav nav-pills pull-right',
-            'id' => 'socialMenu',
-        ));
-
-        $menu->addChild('mail', array('uri' => $this->socialLinks["contact_mail"]))
-            ->setLinkAttribute("class", "fa fa-envelope")
-            ->setLabel('');
-        $menu->addChild('fb', array('uri' => $this->socialLinks["facebook"]))
-            ->setLinkAttribute("class", "fa fa-facebook")
-            ->setLabel('');
-        $menu->addChild('li', array('uri' => $this->socialLinks["linkedin"]))
-            ->setLinkAttribute("class", "fa fa-linkedin")
-            ->setLabel('');
-        $menu->addChild('gl', array('uri' => $this->socialLinks["goldenline"]))
-            ->setLinkAttribute("class", "fa fa-compress")
-            ->setLabel('');
-        $menu->addChild('github', array('uri' => $this->socialLinks["github"]))
-            ->setLinkAttribute("class", "fa fa-github")
-            ->setLabel('');
-        $menu->addChild('yt', array('uri' => $this->socialLinks["youtube"]))
-            ->setLinkAttribute("class", "fa fa-youtube")
-            ->setLabel('');
-
-        return $menu;
     }
 
     public function createLangMenu(Request $request)
@@ -81,14 +37,6 @@ class MenuBuilder extends ContainerAware
         $menu->addChild('en', array('route' => 'switch_language', 'routeParameters' => array('locale' => 'en')))
             ->setLinkAttribute("class", "flag-icon flag-icon-gb")
             ->setLabel('');
-
-//        $menu->addChild('de', array('route' => 'switch_language', 'routeParameters' => array('locale' => 'de')))
-//            ->setLinkAttribute("class", "flag-icon flag-icon-de")
-//            ->setLabel('');
-//
-//        $menu->addChild('pt', array('route' => 'switch_language', 'routeParameters' => array('locale' => 'pt')))
-//            ->setLinkAttribute("class", "flag-icon flag-icon-br")
-//            ->setLabel('');
 
         $locale = $request->getLocale();
 

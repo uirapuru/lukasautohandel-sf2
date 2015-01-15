@@ -1,41 +1,41 @@
 services:
-    front_bundle.menu_builder:
-        class: Dende\FrontBundle\Menu\MenuBuilder
-        arguments:
-            - "@knp_menu.factory"
-        calls:
-            - [setSocialLinks, [%social_links%]]
-
-    front_bundle.menu.lang:
-        class: Knp\Menu\MenuItem
-        factory_service: front_bundle.menu_builder
-        factory_method: createLangMenu
-        arguments: ["@request"]
-        scope: request
-        tags:
-            - { name: knp_menu.menu, alias: langMenu }
-
-    front_bundle.menu.main:
-        class: Knp\Menu\MenuItem
-        factory_service: front_bundle.menu_builder
-        factory_method: createMainMenu
-        scope: request
-        tags:
-            - { name: knp_menu.menu, alias: mainMenu }
-
-    front_bundle.menu.social:
-        class: Knp\Menu\MenuItem
-        factory_service: front_bundle.menu_builder
-        factory_method: createSocialMenu
-        scope: request
-        tags:
-            - { name: knp_menu.menu, alias: socialMenu }
-
-    front_bundle.locale_listener:
-        class: Dende\FrontBundle\Service\Listener\LocaleListener
-        arguments: ["%kernel.default_locale%"]
-        tags:
-            - { name: kernel.event_subscriber }
+#    front_bundle.menu_builder:
+#        class: Dende\FrontBundle\Menu\MenuBuilder
+#        arguments:
+#            - "@knp_menu.factory"
+#        calls:
+#            - [setSocialLinks, [%social_links%]]
+#
+#    front_bundle.menu.lang:
+#        class: Knp\Menu\MenuItem
+#        factory_service: front_bundle.menu_builder
+#        factory_method: createLangMenu
+#        arguments: ["@request"]
+#        scope: request
+#        tags:
+#            - { name: knp_menu.menu, alias: langMenu }
+#
+#    front_bundle.menu.main:
+#        class: Knp\Menu\MenuItem
+#        factory_service: front_bundle.menu_builder
+#        factory_method: createMainMenu
+#        scope: request
+#        tags:
+#            - { name: knp_menu.menu, alias: mainMenu }
+#
+#    front_bundle.menu.social:
+#        class: Knp\Menu\MenuItem
+#        factory_service: front_bundle.menu_builder
+#        factory_method: createSocialMenu
+#        scope: request
+#        tags:
+#            - { name: knp_menu.menu, alias: socialMenu }
+#
+#    front_bundle.locale_listener:
+#        class: Dende\FrontBundle\Service\Listener\LocaleListener
+#        arguments: ["%kernel.default_locale%"]
+#        tags:
+#            - { name: kernel.event_subscriber }
 
     gedmo.listener.softdeleteable:
         class: Gedmo\SoftDeleteable\SoftDeleteableListener
