@@ -5,12 +5,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="images")
- * @codeCoverageIgnore
+ * @ORM\Table("prices")
+ * @Gedmo\SoftDeleteable(fieldName="deleted")
+ * @ORM\Entity()
  */
-class Image
-{
+class Price {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -19,17 +18,24 @@ class Image
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Car", inversedBy="images")
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Car", inversedBy="prices")
      * @ORM\JoinColumn(name="car_id", referencedColumnName="id")
      * @var Car $car
      */
     protected $car;
 
     /**
-     * @ORM\Column(type="boolean")
-     * @var boolean $hidden
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Currency")
+     * @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
+     * @var Currency $currency
      */
-    protected $hidden;
+    protected $currency;
+
+    /**
+     * @ORM\Column(type="decimal")
+     * @var string $amount
+     */
+    protected $amount;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -84,19 +90,35 @@ class Image
     }
 
     /**
-     * @return boolean
+     * @return Currency
      */
-    public function isHidden()
+    public function getCurrency()
     {
-        return $this->hidden;
+        return $this->currency;
     }
 
     /**
-     * @param boolean $hidden
+     * @param Currency $currency
      */
-    public function setHidden($hidden)
+    public function setCurrency($currency)
     {
-        $this->hidden = $hidden;
+        $this->currency = $currency;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param string $amount
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
     }
 
     /**

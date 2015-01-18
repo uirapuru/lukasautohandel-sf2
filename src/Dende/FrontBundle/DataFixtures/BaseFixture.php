@@ -46,4 +46,15 @@ class BaseFixture extends AbstractFixture implements OrderedFixtureInterface
 
         return $filename;
     }
+
+    protected function getArrayOfReferences(array $array)
+    {
+        $result = [];
+        foreach($array as $reference)
+        {
+            $result[] = $this->getReference($reference);
+        }
+
+        return $result;
+    }
 }

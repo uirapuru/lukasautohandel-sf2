@@ -1,0 +1,11 @@
+golf:
+  name: "Golf"
+  brand: volkswagen
+
+passat:
+  name: "Passat"
+  brand: volkswagen
+
+colt:
+  name: "Colt"
+  brand: volkswagen

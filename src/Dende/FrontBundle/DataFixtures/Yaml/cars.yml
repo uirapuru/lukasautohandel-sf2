@@ -1,11 +1,26 @@
-remove_assetic:
-  titleEn: "Get rid of assetic from Symfony2"
-  titlePl: "Jak się pozbyć assetica z Symfony2"
-  templatePl: "remove_assetic_pl.html.twig"
-  templateEn: "remove_assetic_en.html.twig"
-
-dynamic_database:
-  titleEn: "Dynamic databases with Symfony2 and Doctrine"
-  titlePl: "Dynamiczne bazy danych z Symfony2 i Doctrine"
-  templatePl: "dynamic_databases_pl.html.twig"
-  templateEn: "dynamic_databases_en.html.twig"
+car_001:
+  type: sedan
+  model: golf
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: pl
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: true
+  promoteFrontpage: true
+  title:
+    pl_PL: "Samochód testowy"
+    en_US: "Test car"
+  description:
+    pl_PL: "Opis samochodu testowego"
+    en_US: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false

@@ -1,0 +1,8 @@
+sedan:
+  name: "Sedan"
+
+coupe:
+  name: "Coupe"
+
+hatchback:
+  name: "Hatchback"

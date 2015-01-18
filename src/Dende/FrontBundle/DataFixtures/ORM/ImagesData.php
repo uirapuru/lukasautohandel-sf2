@@ -1,43 +1,25 @@
 <?php
-
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
-use Dende\FrontBundle\Entity\Project;
+use Dende\FrontBundle\Entity\Image;
+use Dende\FrontBundle\Entity\Type;
 
-class ProjectsData extends BaseFixture
+class ImagesData extends BaseFixture
 {
     public function getOrder()
     {
-        return 1;
+        return 20;
     }
 
     public function insert($params)
     {
-        $project = new Project();
+        $image = new Image();
+        $image->setHidden($params["hidden"]);
+        $image->setCar(
+            $this->getReference($params["car"])
+        );
 
-        $project->setName($params["name"]);
-
-        if (isset($params["features"])) {
-            $project->setFeatures($params["features"]);
-        }
-
-        if (isset($params["tags"])) {
-            $project->setTags($params["tags"]);
-        }
-
-        if (isset($params["pictures"])) {
-            $project->setPictures($params["pictures"]);
-        }
-
-        if (isset($params["company"])) {
-            $project->setCompany($params["company"]);
-        }
-
-        if (isset($params["description"])) {
-            $project->setDescription($params["description"]);
-        }
-
-        return $project;
+        return $image;
     }
 }

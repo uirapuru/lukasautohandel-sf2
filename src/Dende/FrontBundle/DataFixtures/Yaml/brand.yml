@@ -1,0 +1,11 @@
+opel:
+  name: "Opel"
+
+volkswagen:
+  name: "VolksWagen"
+
+nissan:
+  name: "Nissan"
+
+bmw:
+  name: "BMW"

@@ -1,0 +1,24 @@
+price_001:
+  amount: 10000
+  currency: euro
+  car: car_001
+
+price_002:
+  amount: 15000
+  currency: dollar
+  car: car_001
+
+price_002:
+  amount: 45000
+  currency: pln
+  car: car_001
+
+price_003:
+  amount: 3000
+  currency: euro
+  car: car_001
+
+price_005:
+  amount: 12000
+  currency: pln
+  car: car_001
