@@ -103,7 +103,7 @@ class Car implements Translatable
      * @ORM\Column(type="boolean")
      * @var boolean $promoteCarousel
      */
-    protected $promoteCorousel = false;
+    protected $promoteCarousel = false;
 
     /**
      * @ORM\Column(type="boolean")
@@ -376,7 +376,7 @@ class Car implements Translatable
      */
     public function isPromoteCorousel()
     {
-        return $this->promoteCorousel;
+        return $this->promoteCarousel;
     }
 
     /**
@@ -384,7 +384,7 @@ class Car implements Translatable
      */
     public function setPromoteCorousel($promoteCorousel)
     {
-        $this->promoteCorousel = $promoteCorousel;
+        $this->promoteCarousel = $promoteCorousel;
     }
 
     /**
@@ -521,5 +521,21 @@ class Car implements Translatable
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPromoteCarousel()
+    {
+        return $this->promoteCarousel;
+    }
+
+    /**
+     * @param boolean $promoteCarousel
+     */
+    public function setPromoteCarousel($promoteCarousel)
+    {
+        $this->promoteCarousel = $promoteCarousel;
     }
 }

@@ -15,6 +15,10 @@ services:
         calls:
             - [setRepositoryLocale, [@service_container]]
 
+    dende.front.form.type.car:
+        class: Dende\FrontBundle\Form\Type\CarType
+        tags:
+            - {name: form.type, alias: dende_form_add_car }
 
 #    front_bundle.menu_builder:
 #        class: Dende\FrontBundle\Menu\MenuBuilder
