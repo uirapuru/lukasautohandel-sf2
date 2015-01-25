@@ -20,6 +20,11 @@ services:
         tags:
             - {name: form.type, alias: dende_form_add_car }
 
+    dende.front.form.type.image:
+        class: Dende\FrontBundle\Form\Type\ImageType
+        tags:
+            - {name: form.type, alias: dende_form_add_image }
+
 #    front_bundle.menu_builder:
 #        class: Dende\FrontBundle\Menu\MenuBuilder
 #        arguments:

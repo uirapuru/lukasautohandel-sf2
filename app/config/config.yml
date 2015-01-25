@@ -80,10 +80,16 @@ knp_menu:
 
 stof_doctrine_extensions:
   default_locale: en_US
+  uploadable:
+    default_file_path:       %kernel.root_dir%/../web/uploads
+    mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
+    default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
+
   orm:
     default:
-      timestampable: true
-      sluggable: true
+      timestampable:    true
+      sluggable:        true
+      uploadable:       true
 
 front:
     links:

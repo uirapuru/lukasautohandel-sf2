@@ -1,0 +1,32 @@
+{% extends "FrontBundle::layout.html.twig" %}
+{% form_theme form 'FrontBundle::collection_theme.html.twig' %}
+
+{%  block body %}
+
+    {{ form_start(form, {
+        action: url('edit_car', {id : car.getId()}),
+        attr: {
+            'novalidate': 'novalidate',
+            'data-image-prototype': form_widget(form.images.vars.prototype)|e
+        }
+    }) }}
+
+    {% for widget in [form.type, form.model, form.color, form.year, form.distance, form.engine, form.fuel, form.gearbox, form.registrationCountry, form.promoteCarousel, form.promoteFrontpage, form.title, form.description, form.adminNotes, form.hidden] %}
+        {{ form_row(widget) }}
+    {% endfor %}
+
+    {{ form_row(form.images) }}
+
+    {#{% for image in form.images.children %}#}
+        {#{{ form_row(image) }}#}
+    {#{% endfor %}#}
+
+
+    <button>Prześlij</button>
+
+    {{ form_end(form) }}
+
+    {% for image in car.getImages() %}
+        <img src="/uploads/{{ image.getName() }}" width="200" />
+    {% endfor %}
+{%  endblock body %}

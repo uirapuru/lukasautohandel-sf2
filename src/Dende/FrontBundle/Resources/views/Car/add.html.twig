@@ -1,1 +1,11 @@
-{{ form(form, {action: url('add_car')}) }}
+{% extends "FrontBundle::layout.html.twig" %}
+
+{%  block body %}
+{{ form(form, {
+    action: url('add_car'),
+    attr: {
+        'novalidate': 'novalidate',
+        'data-image-prototype': form_widget(form.images.vars.prototype)|e
+    }
+}) }}
+{%  endblock body %}

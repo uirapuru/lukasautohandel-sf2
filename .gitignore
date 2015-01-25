@@ -37,6 +37,7 @@ build
 # Assets and user uploads
 /web/bundles/
 /web/uploads/
+!/web/uploads/.gitkeep
 
 # Composer PHAR
 /composer.phar

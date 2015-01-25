@@ -1,6 +1,7 @@
 <?php
 namespace Dende\FrontBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
@@ -88,14 +89,14 @@ class Car implements Translatable
 
     /**
      * @ORM\OneToOne(targetEntity="Dende\FrontBundle\Entity\Image")
-     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", onDelete="CASCADE")
      * @var Image $image
      */
     protected $image;
 
     /**
-     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Image", mappedBy="car")
-     * @var Image[] $images
+     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Image", mappedBy="car", cascade={"remove", "persist"})
+     * @var ArrayCollection<Image> $images
      */
     protected $images;
 
@@ -163,6 +164,11 @@ class Car implements Translatable
      */
     protected $locale;
 
+    function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
     /**
      * @return mixed
      */
@@ -180,7 +186,7 @@ class Car implements Translatable
     }
 
     /**
-     * @return string
+     * @return Type
      */
     public function getType()
     {
@@ -188,9 +194,9 @@ class Car implements Translatable
     }
 
     /**
-     * @param string $type
+     * @param Type $type
      */
-    public function setType($type)
+    public function setType(Type $type)
     {
         $this->type = $type;
     }
@@ -206,7 +212,7 @@ class Car implements Translatable
     /**
      * @param Model $model
      */
-    public function setModel($model)
+    public function setModel(Model $model)
     {
         $this->model = $model;
     }
@@ -222,7 +228,7 @@ class Car implements Translatable
     /**
      * @param Color $color
      */
-    public function setColor($color)
+    public function setColor(Color $color)
     {
         $this->color = $color;
     }
@@ -356,7 +362,7 @@ class Car implements Translatable
     }
 
     /**
-     * @return Image[]
+     * @return ArrayCollection<Image>
      */
     public function getImages()
     {
@@ -537,5 +543,19 @@ class Car implements Translatable
     public function setPromoteCarousel($promoteCarousel)
     {
         $this->promoteCarousel = $promoteCarousel;
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function addImage(Image $image)
+    {
+        $image->setCar($this);
+        $this->images->add($image);
+    }
+
+    public function removeImage(Image $image)
+    {
+        $this->images->removeElement($image);
     }
 }

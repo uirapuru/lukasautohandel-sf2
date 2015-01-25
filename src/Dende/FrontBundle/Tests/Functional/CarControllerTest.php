@@ -6,31 +6,11 @@ use Dende\FrontBundle\Dictionary\Engine;
 use Dende\FrontBundle\Dictionary\Fuel;
 use Dende\FrontBundle\Dictionary\Gearbox;
 use Dende\FrontBundle\Entity\Car;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\HttpKernel\Client;
+use Dende\FrontBundle\Tests\BaseFunctionalTest;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class CarControllerTest extends WebTestCase
+class CarControllerTest extends BaseFunctionalTest
 {
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * @var Container $container
-     */
-    private $container;
-
-    public function setUp()
-    {
-        $this->resetKernel();
-        $this->prepareClient([
-            'HTTP_HOST' => $this->container->getParameter('base_url'),
-        ]);
-    }
-
     /**
      * @test
      */
@@ -58,13 +38,13 @@ class CarControllerTest extends WebTestCase
         $this->assertCount(2, $form->filter('input[type=number]'));
         $this->assertCount(3, $form->filter('input[type=checkbox]'));
 
-        $this->assertCount(count($carTypes), $crawler->filter('select#dende_form_add_car_type option'));
-        $this->assertCount(count($carModels), $crawler->filter('select#dende_form_add_car_model option'));
-        $this->assertCount(count($carColors), $crawler->filter('select#dende_form_add_car_color option'));
-        $this->assertCount(count(Fuel::$choicesArray), $crawler->filter('select#dende_form_add_car_fuel option'));
-        $this->assertCount(count(Engine::$choicesArray), $crawler->filter('select#dende_form_add_car_engine option'));
-        $this->assertCount(count(Gearbox::$choicesArray), $crawler->filter('select#dende_form_add_car_gearbox option'));
-        $this->assertCount(count(Country::$choicesArray), $crawler->filter('select#dende_form_add_car_registrationCountry option'));
+        $this->assertCount(count($carTypes) + 1, $crawler->filter('select#dende_form_add_car_type option'));
+        $this->assertCount(count($carModels) + 1, $crawler->filter('select#dende_form_add_car_model option'));
+        $this->assertCount(count($carColors) + 1, $crawler->filter('select#dende_form_add_car_color option'));
+        $this->assertCount(count(Fuel::$choicesArray) + 1, $crawler->filter('select#dende_form_add_car_fuel option'));
+        $this->assertCount(count(Engine::$choicesArray) + 1, $crawler->filter('select#dende_form_add_car_engine option'));
+        $this->assertCount(count(Gearbox::$choicesArray) + 1, $crawler->filter('select#dende_form_add_car_gearbox option'));
+        $this->assertCount(count(Country::$choicesArray) + 1, $crawler->filter('select#dende_form_add_car_registrationCountry option'));
     }
 
     /**
@@ -77,7 +57,16 @@ class CarControllerTest extends WebTestCase
 
         $title = md5("some title" . microtime());
 
-        $form = $forms->first()->form([
+        $uploadedFile = new UploadedFile(
+            realpath(__DIR__."/../../Resources/tests/test_image.jpg"),
+            'someTestFile.jpg',
+            'image/jpeg',
+            123
+        );
+
+        $form = $forms->first()->form();
+
+        $form->setValues([
             "dende_form_add_car[type]" => 1,
             "dende_form_add_car[model]" => 1,
             "dende_form_add_car[color]" => 1,
@@ -95,7 +84,17 @@ class CarControllerTest extends WebTestCase
             "dende_form_add_car[hidden]" => false,
         ]);
 
-        $this->client->submit($form);
+        $files = [
+            "dende_form_add_car" => [
+                "images" => [
+                    ["file" => clone($uploadedFile)],
+                    ["file" => clone($uploadedFile)],
+                    ["file" => clone($uploadedFile)],
+                ]
+            ]
+        ];
+
+        $this->client->request($form->getMethod(), $form->getUri(), $form->getPhpValues(), $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -120,38 +119,52 @@ class CarControllerTest extends WebTestCase
         $this->assertEquals($entity->getDescription(), 'Some description');
         $this->assertEquals($entity->getAdminNotes(), 'Admin Notes');
         $this->assertEquals($entity->isHidden(), false);
-    }
+        $this->assertCount(3, $entity->getImages());
 
-    protected function prepareClient(array $server = array())
-    {
-        $this->client = $this->container->get('test.client');
-        $this->client->setServerParameters($server);
-        $this->client->followRedirects(true);
-    }
-
-    protected function resetKernel()
-    {
-        if (null !== static::$kernel) {
-            static::$kernel->shutdown();
+        foreach($entity->getImages() as $image) {
+            $this->assertFileExists($image->getPath());
+            unlink($image->getPath());
         }
-        static::$kernel = static::createKernel();
-        static::$kernel->boot();
-        $this->container = static::$kernel->getContainer();
     }
 
     /**
-     * @return mixed
+     * @test
+     * @dataProvider getErrorGeneratingForms
      */
-    protected function getContent()
+    public function car_form_is_posted_and_error_is_emitted($formData)
     {
-        return $this->client->getResponse()->getContent();
+        $crawler = $this->client->request('GET', '/car/add');
+        $forms = $crawler->filter('form[name="dende_form_add_car"]');
+
+        $form = $forms->first()->form($formData);
+
+        $this->client->submit($form);
+
+        $this->assertEquals(400, $this->getStatusCode());
     }
 
-    /**
-     * @return integer
-     */
-    protected function getStatusCode()
+    public function getErrorGeneratingForms()
     {
-        return $this->client->getResponse()->getStatusCode();
+        return [
+            "empty title and description" => [
+              "formData" => [
+                  "dende_form_add_car[type]" => 1,
+                  "dende_form_add_car[model]" => 1,
+                  "dende_form_add_car[color]" => 1,
+                  "dende_form_add_car[year]" => 1990,
+                  "dende_form_add_car[distance]" => 40000,
+                  "dende_form_add_car[fuel]" => Fuel::DIESEL,
+                  "dende_form_add_car[engine]" => Engine::DIESEL,
+                  "dende_form_add_car[gearbox]" => Gearbox::AUTOMATIC,
+                  "dende_form_add_car[registrationCountry]" => Country::POLAND,
+                  "dende_form_add_car[promoteCarousel]" => true,
+                  "dende_form_add_car[promoteFrontpage]" => false,
+                  "dende_form_add_car[title]" => null,
+                  "dende_form_add_car[description]" => null,
+                  "dende_form_add_car[adminNotes]" => 'Admin Notes',
+                  "dende_form_add_car[hidden]" => false,
+              ]
+            ],
+        ];
     }
 }

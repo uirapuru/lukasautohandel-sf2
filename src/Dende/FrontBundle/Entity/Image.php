@@ -3,13 +3,20 @@ namespace Dende\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Uploadable\Uploadable;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="images")
+ * @Gedmo\Uploadable(
+ *  allowOverwrite=false,
+ *  appendNumber=true,
+ *  filenameGenerator="SHA1",
+ * )
  * @codeCoverageIgnore
  */
-class Image
+class Image implements Uploadable
 {
     /**
      * @ORM\Id
@@ -19,17 +26,41 @@ class Image
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Car", inversedBy="images")
-     * @ORM\JoinColumn(name="car_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Car", inversedBy="images", cascade={"remove","persist"})
+     * @ORM\JoinColumn(name="car_id", referencedColumnName="id", onDelete="CASCADE")
      * @var Car $car
      */
     protected $car;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(name="path", type="string", nullable=true)
+     * @Gedmo\UploadableFilePath
+     */
+    private $path;
+
+    /**
+     * @ORM\Column(name="name", type="string", nullable=true)
+     * @Gedmo\UploadableFileName
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(name="mime_type", type="string", nullable=true)
+     * @Gedmo\UploadableFileMimeType
+     */
+    private $mimeType;
+
+    /**
+     * @ORM\Column(name="size", type="decimal", nullable=true)
+     * @Gedmo\UploadableFileSize
+     */
+    private $size;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
      * @var boolean $hidden
      */
-    protected $hidden;
+    protected $hidden = false;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -50,6 +81,11 @@ class Image
      * @var \DateTime $deletedAt
      */
     protected $deleted;
+
+    /**
+     * @var UploadedFile
+     */
+    protected $file;
 
     /**
      * @return mixed
@@ -81,6 +117,70 @@ class Image
     public function setCar($car)
     {
         $this->car = $car;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * @param mixed $path
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
+    }
+
+    /**
+     * @param mixed $mimeType
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param mixed $size
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
     }
 
     /**
@@ -146,4 +246,26 @@ class Image
     {
         $this->deleted = $deleted;
     }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param UploadedFile $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    public function generatePath($path)
+    {
+        return $path . "/" . date('Ymd') ;
+    }
+
 }
