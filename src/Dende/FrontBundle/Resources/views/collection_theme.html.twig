@@ -12,6 +12,8 @@
                             {% set fieldNum = 1 %}
                             {% for row in rows %}
                                 <div class="field{{ fieldNum }}">
+                                    {{ dump(row.vars.data) }}
+
                                     {{ form_label(row) }}
                                     {{ form_widget(row, { 'attr': { 'class': 'test' }}) }}
                                 </div>
@@ -37,12 +39,15 @@
 {% endblock collection_widget %}
 
 {% block collection_item_widget %}
+    {{ _self.test(prototype) }}
+{% endblock collection_item_widget %}
+
+{% macro test(prototype) %}
     {% spaceless %}
         <li>
             {% set fieldNum = 1 %}
             {% for row in prototype %}
                 <div class="field{{ fieldNum }}">
-                    {{ form_label(row) }}
                     {{ form_widget(row, { 'attr': { 'class': 'test' }}) }}
                 </div>
                 {% set fieldNum = fieldNum + 1 %}
@@ -53,4 +58,4 @@
             <div class="clear"></div>
         </li>
     {% endspaceless %}
-{% endblock collection_item_widget %}
+{% endmacro %}

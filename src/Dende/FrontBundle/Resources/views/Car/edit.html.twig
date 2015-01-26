@@ -1,4 +1,5 @@
 {% extends "FrontBundle::layout.html.twig" %}
+{% import "FrontBundle::collection_theme.html.twig" as _theme %}
 {% form_theme form 'FrontBundle::collection_theme.html.twig' %}
 
 {%  block body %}
@@ -7,7 +8,7 @@
         action: url('edit_car', {id : car.getId()}),
         attr: {
             'novalidate': 'novalidate',
-            'data-image-prototype': form_widget(form.images.vars.prototype)|e
+            'data-image-prototype': _theme.test(form.images.vars.prototype)|e
         }
     }) }}
 
