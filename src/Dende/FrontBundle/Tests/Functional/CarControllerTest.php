@@ -50,7 +50,51 @@ class CarControllerTest extends BaseFunctionalTest
     /**
      * @test
      */
-    public function car_form_is_posted_and_entity_is_added()
+    public function car_edit_form_renders_properly()
+    {
+        $em = $this->container->get("doctrine.orm.entity_manager");
+
+        $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
+        $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
+        /**
+         * @var Car $carEntity
+         */
+        $carEntity = $query->getQuery()->getOneOrNullResult();
+
+        $carTypes = $em->getRepository("FrontBundle:Type")->findAll();
+        $carModels = $em->getRepository("FrontBundle:Model")->findAll();
+        $carColors = $em->getRepository("FrontBundle:Color")->findAll();
+
+        $crawler = $this->client->request('GET', '/car/edit/'.$carEntity->getId());
+
+        $forms = $crawler->filter('form[name="dende_form_add_car"]');
+        $this->assertEquals(1, $forms->count());
+
+        $form = $forms->first();
+        $this->assertCount(28, $form->filter('input, textarea, button, select'));
+
+        $this->assertCount(2, $form->filter('textarea'));
+        $this->assertCount(11, $form->filter('select'));
+        $this->assertCount(1, $form->filter('button'));
+        $this->assertCount(14, $form->filter('input'));
+        $this->assertCount(1, $form->filter('input[type=text]'));
+        $this->assertCount(6, $form->filter('input[type=number]'));
+        $this->assertCount(3, $form->filter('input[type=checkbox]'));
+        $this->assertCount($carEntity->getImages()->count(), $form->filter('input[type=file]'));
+
+        $this->assertCount(count($carTypes) + 1, $crawler->filter('select#dende_form_add_car_type option'));
+        $this->assertCount(count($carModels) + 1, $crawler->filter('select#dende_form_add_car_model option'));
+        $this->assertCount(count($carColors) + 1, $crawler->filter('select#dende_form_add_car_color option'));
+        $this->assertCount(count(Fuel::$choicesArray) + 1, $crawler->filter('select#dende_form_add_car_fuel option'));
+        $this->assertCount(count(Engine::$choicesArray) + 1, $crawler->filter('select#dende_form_add_car_engine option'));
+        $this->assertCount(count(Gearbox::$choicesArray) + 1, $crawler->filter('select#dende_form_add_car_gearbox option'));
+        $this->assertCount(count(Country::$choicesArray) + 1, $crawler->filter('select#dende_form_add_car_registrationCountry option'));
+    }
+
+    /**
+     * @test
+     */
+    public function car_add_form_is_posted_and_entity_is_added()
     {
         $crawler = $this->client->request('GET', '/car/add');
         $forms = $crawler->filter('form[name="dende_form_add_car"]');
@@ -126,6 +170,59 @@ class CarControllerTest extends BaseFunctionalTest
             unlink($image->getPath());
         }
     }
+
+    /**
+     * @test
+     */
+    public function car_edit_form_is_posted_and_entity_is_changed()
+    {
+        $em = $this->container->get("doctrine.orm.entity_manager");
+
+        $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
+        $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
+        /**
+         * @var Car $carEntity
+         */
+        $carEntity = $query->getQuery()->getOneOrNullResult();
+
+        $url = '/car/edit/'.$carEntity->getId();
+
+        $crawler = $this->client->request('GET', $url);
+        $forms = $crawler->filter('form[name="dende_form_add_car"]');
+
+        $title = md5("some title" . microtime());
+
+        $uploadedFile = new UploadedFile(
+            realpath(__DIR__."/../../Resources/tests/test_image.jpg"),
+            'someTestFile.jpg',
+            'image/jpeg',
+            123
+        );
+
+        $form = $forms->first()->form();
+        $values = $form->getPhpValues();
+        $values["dende_form_add_car"]["title"] = $title;
+
+        $files = [
+            "dende_form_add_car" => [
+                "images" => [
+                    ["file" => clone($uploadedFile)],
+                    ["file" => clone($uploadedFile)],
+                ]
+            ]
+        ];
+
+        $this->client->request("POST", $url, $values, $files);
+
+        $this->assertEquals(200, $this->getStatusCode());
+
+        $em->refresh($carEntity);
+
+        $this->assertNotNull($carEntity, "Car entity can't be found");
+        $this->assertEquals($carEntity->getTitle(), $title, "Entity haven't been updated in db");
+        $this->assertCount(2, $carEntity->getImages());
+    }
+
 
     /**
      * @test

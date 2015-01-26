@@ -2,21 +2,12 @@
 
 namespace Dende\FrontBundle\Form\Type;
 
-use Dende\FrontBundle\Dictionary\Country;
-use Dende\FrontBundle\Dictionary\Engine;
-use Dende\FrontBundle\Dictionary\Fuel;
-use Dende\FrontBundle\Dictionary\Gearbox;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Validator\Constraints\EqualTo;
-use Symfony\Component\Validator\Constraints\Image;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotNull;
-use Symfony\Component\Validator\Constraints\Range;
-use Symfony\Component\Validator\Constraints\Regex;
 
-class ImageType extends AbstractType
+class PriceType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -26,15 +17,28 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
             ->add(
-                'file',
-                'file',
+                'amount',
+                'integer',
                 [
-                    "required" => false,
+                    "required" => true,
                     "constraints" => [
-                        new Image([])
-                    ]
+                        new NotNull()
+                    ],
+                    "label" => 'car.form.label.amount'
+                ]
+            )
+            ->add(
+                'currency',
+                'entity',
+                [
+                    "class" => "Dende\FrontBundle\Entity\Currency",
+                    "property" => "symbol",
+                    "required" => true,
+                    "constraints" => [
+                        new NotNull()
+                    ],
+                    "label" => 'car.form.label.currency'
                 ]
             )
         ;
@@ -42,13 +46,13 @@ class ImageType extends AbstractType
 
     public function getName()
     {
-        return 'dende_form_add_image';
+        return 'dende_form_price';
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Dende\FrontBundle\Entity\Image',
+            'data_class' => 'Dende\FrontBundle\Entity\Price',
             'csrf_protection' => false
         ));
     }

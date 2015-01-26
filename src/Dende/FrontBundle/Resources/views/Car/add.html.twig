@@ -1,11 +1,39 @@
 {% extends "FrontBundle::layout.html.twig" %}
 
+{% import "FrontBundle::collection_theme.html.twig" as _theme %}
+{% form_theme form 'FrontBundle::collection_theme.html.twig' %}
+
 {%  block body %}
-{{ form(form, {
-    action: url('add_car'),
-    attr: {
-        'novalidate': 'novalidate',
-        'data-image-prototype': form_widget(form.images.vars.prototype)|e
-    }
-}) }}
+
+    {{ form_start(form, {
+        action: url('add_car'),
+        attr: {
+            'id'        : 'addCar',
+            'novalidate': 'novalidate',
+            'data-image-prototype': form_widget(form.images.vars.prototype)|e,
+            'data-price-prototype': form_widget(form.prices.vars.prototype)|e
+        }
+    }) }}
+
+    {{ form_row(form.type) }}
+    {{ form_row(form.model) }}
+    {{ form_row(form.color) }}
+    {{ form_row(form.year) }}
+    {{ form_row(form.distance) }}
+    {{ form_row(form.engine) }}
+    {{ form_row(form.fuel) }}
+    {{ form_row(form.gearbox) }}
+    {{ form_row(form.registrationCountry) }}
+    {{ form_row(form.hidden) }}
+    {{ form_row(form.promoteCarousel) }}
+    {{ form_row(form.promoteFrontpage) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.adminNotes) }}
+    {{ form_row(form.images) }}
+    {{ form_row(form.prices) }}
+
+    <button class="btn btn-large btn-info">{{ "car.form.label.submit"|trans }}</button>
+
+    {{ form_end(form) }}
 {%  endblock body %}

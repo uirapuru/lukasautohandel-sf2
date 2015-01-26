@@ -25,6 +25,11 @@ services:
         tags:
             - {name: form.type, alias: dende_form_add_image }
 
+    dende.twig_extension.instance_of:
+        class: Dende\FrontBundle\Twig\InstanceOfExtension
+        tags:
+            - { name: twig.extension }
+
 #    front_bundle.menu_builder:
 #        class: Dende\FrontBundle\Menu\MenuBuilder
 #        arguments:

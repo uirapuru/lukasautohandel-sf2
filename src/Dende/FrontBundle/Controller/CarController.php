@@ -109,6 +109,7 @@ class CarController extends Controller
 
                     if ($image->getFile() !== null) {
                         $uploadableManager->markEntityToUpload($image, $image->getFile());
+                        $em->persist($image);
                     }
                 }
 

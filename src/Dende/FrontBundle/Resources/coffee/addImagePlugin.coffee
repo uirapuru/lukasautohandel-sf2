@@ -1,9 +1,10 @@
 #     $('.target').addImages({ paramA: 'not-foo' });
 #     $('.target').addImages('myMethod', 'Hello, world');
 (($, window) ->
-  class AddImages
+  class collection
 
     $container: null
+    $form: null
     prototype:  null
     defaults:
       container: null
@@ -11,32 +12,32 @@
 
     constructor: (el, options) ->
       @options = $.extend({}, @defaults, options)
-      @$el = $(el)
+      @$container = $(el)
+      @$form = $(@options.formSelector)
+      @prototype = @$form.data options.dataField
 
-      @$container = $(@options.container)
-      @prototype = @$el.data(options.dataField)
+      $("a.item_add", @$container.parent()).on "click.collection", (event) =>
+        event.preventDefault()
+        @addNewItem()
 
-      $('a.car_image_add').on "click", (e) =>
-        @addNewImage()
+      $("a.item_remove", @$container).on "click.collection", (event) =>
+        event.preventDefault()
+        $(event.target).parents("li").remove()
 
-      $("a.car_image_remove").on "click", (ev) =>
-        ev.preventDefault()
-        $(ev.target).parents("li").remove()
-
-    addNewImage: () ->
+    addNewItem: () =>
       index = @$container.find(':input').length
       $proto = $(_.unescape(@prototype.replace /__name__/g, index))
       $new = $("<li />").append $proto
 
-      @$container.append $new
+      $("ul", @$container).append $new
 
-  $.fn.extend addImages: (option, args...) ->
+  $.fn.extend collection: (option, args...) ->
     @each ->
       $this = $(this)
-      data = $this.data('addImages')
+      data = $this.data('collection')
 
       if !data
-        $this.data 'addImages', (data = new AddImages(this, option))
+        $this.data 'collection', (data = new collection(this, option))
       if typeof option == 'string'
         data[option].apply(data, args)
 

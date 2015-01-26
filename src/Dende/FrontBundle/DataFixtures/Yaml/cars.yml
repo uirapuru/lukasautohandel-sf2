@@ -7,7 +7,7 @@ car_001:
   fuel: diesel
   engine: diesel
   gearbox: manual
-  registrationCountry: pl
+  registrationCountry: poland
   image: image_001
   images:
     - image_001

@@ -1,4 +1,5 @@
 {% extends "FrontBundle::layout.html.twig" %}
+
 {% import "FrontBundle::collection_theme.html.twig" as _theme %}
 {% form_theme form 'FrontBundle::collection_theme.html.twig' %}
 
@@ -7,27 +8,30 @@
     {{ form_start(form, {
         action: url('edit_car', {id : car.getId()}),
         attr: {
+            'id'        : 'editCar',
             'novalidate': 'novalidate',
-            'data-image-prototype': _theme.test(form.images.vars.prototype)|e
+            'data-image-prototype': _theme.test(form.images.vars.prototype)|e,
         }
     }) }}
 
-    {% for widget in [form.type, form.model, form.color, form.year, form.distance, form.engine, form.fuel, form.gearbox, form.registrationCountry, form.promoteCarousel, form.promoteFrontpage, form.title, form.description, form.adminNotes, form.hidden] %}
-        {{ form_row(widget) }}
-    {% endfor %}
-
+    {{ form_row(form.type) }}
+    {{ form_row(form.model) }}
+    {{ form_row(form.color) }}
+    {{ form_row(form.year) }}
+    {{ form_row(form.distance) }}
+    {{ form_row(form.engine) }}
+    {{ form_row(form.fuel) }}
+    {{ form_row(form.gearbox) }}
+    {{ form_row(form.registrationCountry) }}
+    {{ form_row(form.hidden) }}
+    {{ form_row(form.promoteCarousel) }}
+    {{ form_row(form.promoteFrontpage) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.adminNotes) }}
     {{ form_row(form.images) }}
 
-    {#{% for image in form.images.children %}#}
-        {#{{ form_row(image) }}#}
-    {#{% endfor %}#}
-
-
-    <button>Prześlij</button>
+    <button class="btn btn-large btn-info">{{ "car.form.label.submit"|trans }}</button>
 
     {{ form_end(form) }}
-
-    {% for image in car.getImages() %}
-        <img src="/uploads/{{ image.getName() }}" width="200" />
-    {% endfor %}
 {%  endblock body %}
