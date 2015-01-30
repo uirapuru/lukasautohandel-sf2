@@ -23,7 +23,7 @@ class PriceType extends AbstractType
                 [
                     "required" => true,
                     "constraints" => [
-                        new NotNull()
+                        new NotNull(),
                     ],
                     "label" => 'car.form.label.amount'
                 ]
@@ -36,7 +36,7 @@ class PriceType extends AbstractType
                     "property" => "symbol",
                     "required" => true,
                     "constraints" => [
-                        new NotNull()
+                        new NotNull(),
                     ],
                     "label" => 'car.form.label.currency'
                 ]
@@ -53,7 +53,7 @@ class PriceType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Dende\FrontBundle\Entity\Price',
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ));
     }
 }

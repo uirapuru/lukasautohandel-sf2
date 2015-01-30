@@ -9,7 +9,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @Gedmo\SoftDeleteable(fieldName="deleted")
  * @ORM\Entity()
  */
-class Price {
+class Price
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -18,14 +19,14 @@ class Price {
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Car", inversedBy="prices")
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Car", inversedBy="prices", cascade={"remove","persist"})
      * @ORM\JoinColumn(name="car_id", referencedColumnName="id")
      * @var Car $car
      */
     protected $car;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Currency")
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Currency", cascade={"remove","persist"})
      * @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
      * @var Currency $currency
      */

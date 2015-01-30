@@ -2,7 +2,8 @@
 
 namespace Dende\FrontBundle\Dictionary;
 
-class Engine {
+class Engine
+{
     const DIESEL = "diesel";
     const PETROL = "petrol";
 

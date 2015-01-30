@@ -20,7 +20,7 @@
         event.preventDefault()
         @addNewItem()
 
-      $("a.item_remove", @$container).on "click.collection", (event) =>
+      @$container.on "click.collection", "a.item_remove", (event) =>
         event.preventDefault()
         $(event.target).parents("li").remove()
 

@@ -16,14 +16,13 @@
 >
     <testsuites>
         <testsuite name="all">
-            <directory>../src/Dende/**/Tests/**</directory>
+            <directory>../src/Dende/FrontBundle/Tests/**</directory>
         </testsuite>
     </testsuites>
 
-    <!--
-    <php>
-        <server name="KERNEL_DIR" value="/path/to/your/app/" />
-    </php>-->
+    <!--<php>-->
+        <!--<server name="KERNEL_DIR" value="app/" />-->
+    <!--</php>-->
 
     <!--<logging>-->
         <!--<log type="coverage-clover" target="../build/logs/clover.xml"/>-->
@@ -33,7 +32,7 @@
 
     <!--<filter>-->
         <!--<whitelist>-->
-            <!--<directory>../src</directory>-->
+            <!--<directory>../src/Dende/FrontBundle/Tests/Functional/*</directory>-->
             <!--<exclude>-->
                 <!--&lt;!&ndash;<directory>../src/*/*Bundle/Resources</directory>&ndash;&gt;-->
             <!--</exclude>-->

@@ -265,7 +265,6 @@ class Image implements Uploadable
 
     public function generatePath($path)
     {
-        return $path . "/" . date('Ymd') ;
+        return $path."/".date('Ymd');
     }
-
 }

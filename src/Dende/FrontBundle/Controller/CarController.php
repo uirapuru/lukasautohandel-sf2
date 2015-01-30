@@ -2,17 +2,17 @@
 
 namespace Dende\FrontBundle\Controller;
 
+use Dende\FrontBundle\Entity\Brand;
 use Dende\FrontBundle\Entity\Car;
 use Dende\FrontBundle\Entity\Image;
-use Doctrine\Common\Collections\ArrayCollection;
+use Dende\FrontBundle\Entity\Model;
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Dende\FrontBundle\Form\Type\ContactType;
 
 /**
  * Class CarController
@@ -29,34 +29,59 @@ class CarController extends Controller
      */
     public function addAction(Request $request)
     {
-        $form = $this->createForm('dende_form_add_car');
+        $form = $this->createForm('dende_form_car');
 
         $statusCode = 200;
 
         if ($request->isMethod("POST")) {
             $form->handleRequest($request);
+            $serializer = $this->get("jms_serializer");
 
             if ($form->isValid()) {
                 $car = $form->getData();
+
                 $em = $this->getDoctrine()->getManager();
-                $uploadableManager = $this->get("stof_doctrine_extensions.uploadable.manager");
 
-                /**
-                 * @var Image[] $images
-                 */
-                $images = $car->getImages();
+                $this->get("dende.front.form_handler.process_colors")->setForm($form)->addColor();
+                $this->get("dende.front.form_handler.process_types")->setForm($form)->addType();
+                $this->get("dende.front.form_handler.process_models")->setForm($form)->addModel();
 
-                foreach($images as $image) {
-                    /**
-                     * @var Image $image
-                     */
-                    $image->setCar($car);
-                    $uploadableManager->markEntityToUpload($image, $image->getFile());
-                }
+                $processImages = $this->get("dende.front.form_handler.process_images");
+                $processImages->setCar($car);
+                $processImages->processUploaded();
 
                 $em->persist($car);
                 $em->flush();
+
+                $request->getSession()->getFlashBag()->add(
+                    'success',
+                    'flash.car_add.success'
+                );
+
+                $this->get("logger")->addWarning(
+                    "Car added",
+                    [
+                        "formData" => $serializer->serialize($form->getData(), "json"),
+                    ]
+                );
+
+                return $this->redirect(
+                    $this->generateUrl("edit_car", ["id" => $car->getId()])
+                );
             } else {
+                $request->getSession()->getFlashBag()->add(
+                    'error',
+                    'flash.car_edit.errors'
+                );
+
+                $this->get("logger")->addWarning(
+                    "Car adding error",
+                    [
+                        "formData" => $serializer->serialize($form->getData(), "json"),
+                        "formError" => $serializer->serialize($form->getErrors(), "json"),
+                        "asString" => $form->getErrorsAsString()
+                    ]
+                );
                 $statusCode = 400;
             }
         }
@@ -74,48 +99,65 @@ class CarController extends Controller
      */
     public function editAction(Request $request, Car $car)
     {
+        $form = $this->createForm('dende_form_car', $car);
         $statusCode = 200;
-        $originalImages = clone($car->getImages());
-        $form = $this->createForm('dende_form_add_car', $car);
+        $serializer = $this->get("jms_serializer");
+
+        $processImages = $this->get("dende.front.form_handler.process_images");
+        $processImages->setOriginalImages($car->getImages());
+
+        $processPrices = $this->get("dende.front.form_handler.process_prices");
+        $processPrices->setOriginalPrices(clone($car->getPrices()));
 
         if ($request->isMethod("POST")) {
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-                $car = $form->getData();
+                $processImages->setCar($car);
+
                 $em = $this->getDoctrine()->getManager();
-                $uploadableManager = $this->get("stof_doctrine_extensions.uploadable.manager");
 
-                foreach ($originalImages as $image) {
-                    /**
-                     * @var Image $image
-                     */
-                    if (!$car->getImages()->contains($image)) {
-                        $image->setCar(null);
-                        $em->remove($image);
-                    }
-                }
+                $this->get("dende.front.form_handler.process_colors")->setForm($form)->addColor();
+                $this->get("dende.front.form_handler.process_types")->setForm($form)->addType();
+                $this->get("dende.front.form_handler.process_models")->setForm($form)->addModel();
 
-                /**
-                 * @var Image[] $images
-                 */
-                $images = $car->getImages();
+                $processImages->removeUnused();
+                $processImages->processUploaded();
 
-                foreach($images as $image) {
-                    /**
-                     * @var Image $image
-                     */
-                    $image->setCar($car);
-
-                    if ($image->getFile() !== null) {
-                        $uploadableManager->markEntityToUpload($image, $image->getFile());
-                        $em->persist($image);
-                    }
-                }
+                $processPrices->setCar($car)->removeUnused();
 
                 $em->persist($car);
                 $em->flush();
+
+                $request->getSession()->getFlashBag()->add(
+                    'success',
+                    'flash.car_edit.success'
+                );
+
+                $this->get("logger")->addWarning(
+                    "Car edited",
+                    [
+                        "formData" => $serializer->serialize($form->getData(), "json"),
+                    ]
+                );
+
+                return $this->redirect(
+                    $this->generateUrl("edit_car", ["id" => $car->getId()])
+                );
             } else {
+                $request->getSession()->getFlashBag()->add(
+                    'error',
+                    'flash.car_edit.errors'
+                );
+
+                $this->get("logger")->addWarning(
+                    "Car editing error",
+                    [
+                        "formData" => $serializer->serialize($form->getData(), "json"),
+                        "formError" => $serializer->serialize($form->getErrors(true), "json"),
+                    ]
+                );
+
                 $statusCode = 400;
             }
         }

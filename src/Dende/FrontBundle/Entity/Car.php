@@ -14,7 +14,6 @@ use Gedmo\Translatable\Translatable;
  * @Gedmo\TranslationEntity(class="Dende\FrontBundle\Entity\Translation\CarTranslation")
  * @SuppressWarnings(PHPMD.TooManyFields)
  */
-
 class Car implements Translatable
 {
     /**
@@ -82,7 +81,7 @@ class Car implements Translatable
     protected $registrationCountry;
 
     /**
-     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Price", mappedBy="car")
+     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Price", mappedBy="car", cascade={"remove", "persist"})
      * @var Price[] $prices
      */
     protected $prices;
@@ -127,7 +126,7 @@ class Car implements Translatable
     protected $description;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      * @var string $adminNotes
      */
     protected $adminNotes;
@@ -164,9 +163,10 @@ class Car implements Translatable
      */
     protected $locale;
 
-    function __construct()
+    public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->prices = new ArrayCollection();
     }
 
     /**
@@ -194,9 +194,9 @@ class Car implements Translatable
     }
 
     /**
-     * @param Type $type
+     * @param Type|null $type
      */
-    public function setType(Type $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -210,9 +210,9 @@ class Car implements Translatable
     }
 
     /**
-     * @param Model $model
+     * @param Model|null $model
      */
-    public function setModel(Model $model)
+    public function setModel($model)
     {
         $this->model = $model;
     }
@@ -226,9 +226,9 @@ class Car implements Translatable
     }
 
     /**
-     * @param Color $color
+     * @param Color|null $color
      */
-    public function setColor(Color $color)
+    public function setColor($color)
     {
         $this->color = $color;
     }
@@ -554,8 +554,28 @@ class Car implements Translatable
         $this->images->add($image);
     }
 
+    /**
+     * @param Image $image
+     */
     public function removeImage(Image $image)
     {
         $this->images->removeElement($image);
+    }
+
+    /**
+     * @param Price $price
+     */
+    public function addPrice(Price $price)
+    {
+        $price->setCar($this);
+        $this->prices->add($price);
+    }
+
+    /**
+     * @param Price $price
+     */
+    public function removePrice(Price $price)
+    {
+        $this->prices->removeElement($price);
     }
 }

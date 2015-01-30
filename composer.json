@@ -23,7 +23,9 @@
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "raven/raven": "0.8.*@dev",
         "stof/doctrine-extensions-bundle": "1.2.*@dev",
-        "phing/phing": "~2.9"
+        "phing/phing": "~2.9",
+        "jms/serializer-bundle": "0.13.*",
+        "mockery/mockery": "0.9.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

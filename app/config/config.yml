@@ -65,9 +65,9 @@ swiftmailer:
     port:                 465
     encryption:           ssl
     auth_mode:            ~
-    
+
     logging:        true
-    
+
 #    spool:
 #        type: file
 #        path: "%kernel.root_dir%/spool"

@@ -50,8 +50,7 @@ class BaseFixture extends AbstractFixture implements OrderedFixtureInterface
     protected function getArrayOfReferences(array $array)
     {
         $result = [];
-        foreach($array as $reference)
-        {
+        foreach ($array as $reference) {
             $result[] = $this->getReference($reference);
         }
 

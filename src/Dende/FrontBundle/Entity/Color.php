@@ -9,7 +9,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity(repositoryClass="Dende\FrontBundle\Repository\ColorRepository")
  * @Gedmo\TranslationEntity(class="Dende\FrontBundle\Entity\Translation\ColorTranslation")
  */
-class Color {
+class Color
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

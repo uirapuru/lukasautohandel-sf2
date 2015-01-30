@@ -8,7 +8,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table("models")
  * @ORM\Entity()
  */
-class Model {
+class Model
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -98,5 +99,10 @@ class Model {
     public function setSlug($slug)
     {
         $this->slug = $slug;
+    }
+
+    public function getFullName()
+    {
+        return sprintf("%s / %s", $this->getName(), $this->getBrand()->getName());
     }
 }

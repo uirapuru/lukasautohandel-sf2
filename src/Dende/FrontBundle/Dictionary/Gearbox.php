@@ -1,7 +1,8 @@
 <?php
 namespace Dende\FrontBundle\Dictionary;
 
-class Gearbox {
+class Gearbox
+{
     const AUTOMATIC = "automatic";
     const MANUAL = "manual";
     const SEMIAUTOMATIC = "semiautomatic";
@@ -9,6 +10,6 @@ class Gearbox {
     public static $choicesArray = [
         self::AUTOMATIC     => "transmission.automatic",
         self::MANUAL        => "transmission.manual",
-        self::SEMIAUTOMATIC => "transmission.semiautomatic"
+        self::SEMIAUTOMATIC => "transmission.semiautomatic",
     ];
 }

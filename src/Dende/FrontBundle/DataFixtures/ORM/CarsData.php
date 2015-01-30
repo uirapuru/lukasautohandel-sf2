@@ -31,13 +31,11 @@ class CarsData extends BaseFixture
 
             $carTranslations = $this->prepareTranslations($params, $car->getId());
 
-            foreach($carTranslations as $carTranslation)
-            {
+            foreach ($carTranslations as $carTranslation) {
                 $this->manager->persist($carTranslation);
             }
             $this->manager->flush();
         }
-
     }
 
     /**
@@ -64,7 +62,7 @@ class CarsData extends BaseFixture
             $description,
             $adminNotes,
             $hidden
-        )=array_values($params);
+        ) = array_values($params);
 
         $car = new Car();
         $car->setYear($year);
@@ -92,7 +90,7 @@ class CarsData extends BaseFixture
     }
 
     /**
-     * @param array $params
+     * @param array   $params
      * @param integer $getId
      */
     private function prepareTranslations($params, $getId)
@@ -103,8 +101,8 @@ class CarsData extends BaseFixture
         $tmpArray = ["title" => $titles, "description" => $descriptions];
         $result = [];
 
-        foreach($tmpArray as $fieldName => $field) {
-            foreach($field as $language => $value) {
+        foreach ($tmpArray as $fieldName => $field) {
+            foreach ($field as $language => $value) {
                 $carTranslation = new CarTranslation();
                 $carTranslation->setField($fieldName);
                 $carTranslation->setContent($value);

@@ -4,6 +4,7 @@
 {% form_theme form 'FrontBundle::collection_theme.html.twig' %}
 
 {%  block body %}
+    {% include "@Front/Car/_flash.html.twig" %}
 
     {{ form_start(form, {
         action: url('edit_car', {id : car.getId()}),
@@ -11,27 +12,10 @@
             'id'        : 'editCar',
             'novalidate': 'novalidate',
             'data-image-prototype': _theme.test(form.images.vars.prototype)|e,
+            'data-price-prototype': _theme.test(form.prices.vars.prototype)|e
         }
     }) }}
 
-    {{ form_row(form.type) }}
-    {{ form_row(form.model) }}
-    {{ form_row(form.color) }}
-    {{ form_row(form.year) }}
-    {{ form_row(form.distance) }}
-    {{ form_row(form.engine) }}
-    {{ form_row(form.fuel) }}
-    {{ form_row(form.gearbox) }}
-    {{ form_row(form.registrationCountry) }}
-    {{ form_row(form.hidden) }}
-    {{ form_row(form.promoteCarousel) }}
-    {{ form_row(form.promoteFrontpage) }}
-    {{ form_row(form.title) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.adminNotes) }}
-    {{ form_row(form.images) }}
+    {% include "@Front/Car/_form.html.twig" %}
 
-    <button class="btn btn-large btn-info">{{ "car.form.label.submit"|trans }}</button>
-
-    {{ form_end(form) }}
 {%  endblock body %}

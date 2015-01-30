@@ -3,7 +3,6 @@ namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
 use Dende\FrontBundle\Entity\Image;
-use Dende\FrontBundle\Entity\Type;
 
 class ImagesData extends BaseFixture
 {

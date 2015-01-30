@@ -12,5 +12,4 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractTranslation;
  */
 class CarTranslation extends AbstractTranslation
 {
-
 }

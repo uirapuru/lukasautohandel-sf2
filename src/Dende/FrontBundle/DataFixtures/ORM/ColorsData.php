@@ -31,13 +31,11 @@ class ColorsData extends BaseFixture
 
             $colorTranslations = $this->prepareTranslations($params, $color->getId());
 
-            foreach($colorTranslations as $colorTranslation)
-            {
+            foreach ($colorTranslations as $colorTranslation) {
                 $this->manager->persist($colorTranslation);
             }
             $this->manager->flush();
         }
-
     }
 
     /**
@@ -48,18 +46,19 @@ class ColorsData extends BaseFixture
     {
         $color = new Color();
         $color->setHex($params["hex"]);
+
         return $color;
     }
 
     /**
-     * @param array $params
+     * @param array   $params
      * @param integer $getId
      */
     private function prepareTranslations($params, $getId)
     {
         $result = [];
 
-        foreach($params["name"] as $language => $value) {
+        foreach ($params["name"] as $language => $value) {
             $carTranslation = new ColorTranslation();
             $carTranslation->setField("name");
             $carTranslation->setContent($value);

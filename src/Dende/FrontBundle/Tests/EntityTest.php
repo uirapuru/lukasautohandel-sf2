@@ -1,5 +1,6 @@
 <?php
 namespace Dende\FrontBundle\Tests;
+
 use Dende\FrontBundle\Entity\Car;
 use Dende\FrontBundle\Repository\CarRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -21,6 +22,7 @@ class EntityTest extends WebTestCase
 
     public function setUp()
     {
+        $this->markTestSkipped();
         $request = new Request();
         $request->setDefaultLocale("pl_pl");
 
@@ -31,6 +33,7 @@ class EntityTest extends WebTestCase
 
     public function testInsertEntity()
     {
+        $this->markTestSkipped();
         $car = $this->prepareCar();
         $entityManager = $this->container->get("doctrine.orm.default_entity_manager");
 
@@ -54,8 +57,6 @@ class EntityTest extends WebTestCase
         $entityManager->persist($car);
 
         $entityManager->flush();
-
-
     }
 
     private function prepareCar()
@@ -74,5 +75,4 @@ class EntityTest extends WebTestCase
 
         return $car;
     }
-
 }

@@ -9,10 +9,12 @@ use Dende\FrontBundle\Dictionary\Gearbox;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class CarType extends AbstractType
 {
@@ -34,9 +36,25 @@ class CarType extends AbstractType
                     'empty_data' => null,
                     'required' => true,
                     'constraints' => [
-                        new NotNull(['message' => 'validator.you_have_to_choose_car_type']),
+                        new Callback(function ($data, ExecutionContextInterface $context) {
+                            $form = $context->getRoot();
+
+                            if ($form["add_type"]["name"]->isEmpty() && $form["type"]->isEmpty()) {
+                                $context->buildViolation('validator.you_have_to_choose_car_type')
+                                    ->atPath('type')
+                                    ->addViolation();
+                            }
+                        }),
                     ],
                     "label" => 'car.form.label.type'
+                ]
+            )
+            ->add(
+                'add_type',
+                'dende_form_type',
+                [
+                    "label" => 'car.form.label.add_type',
+                    "mapped" => false
                 ]
             )
             ->add(
@@ -44,14 +62,30 @@ class CarType extends AbstractType
                 "entity",
                 [
                     "class" => "Dende\FrontBundle\Entity\Model",
-                    "property" => "name",
                     'empty_value' => 'car.form.choice.empty_car_model',
                     'empty_data' => null,
+                    "property" => 'getFullName',
                     'required' => true,
                     'constraints' => [
-                        new NotNull(['message' => 'validator.you_have_to_choose_car_model']),
+                        new Callback(function ($data, ExecutionContextInterface $context) {
+                            $form = $context->getRoot();
+
+                            if ($form["add_model"]["name"]->isEmpty() && $form["model"]->isEmpty()) {
+                                $context->buildViolation('validator.you_have_to_choose_car_model')
+                                    ->atPath('model')
+                                    ->addViolation();
+                            }
+                        }),
                     ],
                     "label" => 'car.form.label.model'
+                ]
+            )
+            ->add(
+                'add_model',
+                'dende_form_model',
+                [
+                    "label" => 'car.form.label.add_model',
+                    "mapped" => false
                 ]
             )
             ->add(
@@ -64,9 +98,25 @@ class CarType extends AbstractType
                     'empty_data' => null,
                     'required' => true,
                     'constraints' => [
-                        new NotNull(['message' => 'validator.you_have_to_choose_car_color']),
+                        new Callback(function ($data, ExecutionContextInterface $context) {
+                            $form = $context->getRoot();
+
+                            if ($form["add_color"]["name"]->isEmpty() && $form["color"]->isEmpty()) {
+                                $context->buildViolation('validator.you_have_to_choose_car_color')
+                                    ->atPath('color')
+                                    ->addViolation();
+                            }
+                        }),
                     ],
                     "label" => 'car.form.label.color'
+                ]
+            )
+            ->add(
+                'add_color',
+                'dende_form_color',
+                [
+                    "label" => 'car.form.label.add_color',
+                    "mapped" => false
                 ]
             )
             ->add(
@@ -80,9 +130,9 @@ class CarType extends AbstractType
                             "max" => (int) date("Y"),
                             "maxMessage" => "validator.production_year_too_big_",
                             "min" => 1900,
-                            "minMessage" => "validator.production_year_too_small"
+                            "minMessage" => "validator.production_year_too_small",
                         ]),
-                        new Regex(["pattern" => "/\d\d\d\d/", "message" => "validator.production_year_format"])
+                        new Regex(["pattern" => "/\d\d\d\d/", "message" => "validator.production_year_format"]),
                     ],
                     "label" => 'car.form.label.year'
                 ]
@@ -96,7 +146,7 @@ class CarType extends AbstractType
                         new NotNull(['message' => 'validator.you_have_to_enter_distance']),
                         new Range([
                             "min" => 0,
-                            "minMessage" => "validator.distance_too_small"
+                            "minMessage" => "validator.distance_too_small",
                         ]),
                     ],
                     "label" => 'car.form.label.distance'
@@ -214,7 +264,7 @@ class CarType extends AbstractType
                     'required' => true,
                     'constraints' => [
                         new NotNull(["message" => "validator.title_cannot_be_empty"]),
-                        new Length(["max" => 4096, "maxMessage" => "validator.title_max_length"])
+                        new Length(["max" => 4096, "maxMessage" => "validator.title_max_length"]),
                     ],
                     "label" => 'car.form.label.title'
                 ]
@@ -245,18 +295,42 @@ class CarType extends AbstractType
                 ]
             )
         ;
+
+//        $this->addEvents($builder);
     }
 
     public function getName()
     {
-        return 'dende_form_add_car';
+        return 'dende_form_car';
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Dende\FrontBundle\Entity\Car',
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ));
     }
+
+//    private function addEvents(FormBuilderInterface $builder)
+//    {
+//        $builder->addEventListener(
+//            FormEvents::POST_SET_DATA,
+//            function (FormEvent $event) {
+//                $form = $event->getForm();
+//                $data = $event->getData();
+//
+//                if ($form["add_model"]["name"]->getData()) {
+//                    $constraints = [
+//                        ,
+//                    ];
+//                } else {
+//                    $constraints = [];
+//                }
+//
+//                $form;
+//            }
+//        );
+//
+//    }
 }

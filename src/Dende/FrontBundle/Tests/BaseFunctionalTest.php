@@ -57,7 +57,7 @@ class BaseFunctionalTest extends WebTestCase
         return $this->client->getResponse()->getStatusCode();
     }
 
-    private function resetDb()
+    protected function resetDb()
     {
         $em = $this->container->get('doctrine.orm.default_entity_manager');
 
