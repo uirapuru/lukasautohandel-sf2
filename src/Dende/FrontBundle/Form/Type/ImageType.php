@@ -25,7 +25,7 @@ class ImageType extends AbstractType
                     "required" => false,
                     "constraints" => [
                         new Image([]),
-                    ]
+                    ],
                 ]
             )
         ;

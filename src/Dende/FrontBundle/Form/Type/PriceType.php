@@ -25,7 +25,7 @@ class PriceType extends AbstractType
                     "constraints" => [
                         new NotNull(),
                     ],
-                    "label" => 'car.form.label.amount'
+                    "label" => 'car.form.label.amount',
                 ]
             )
             ->add(
@@ -38,7 +38,7 @@ class PriceType extends AbstractType
                     "constraints" => [
                         new NotNull(),
                     ],
-                    "label" => 'car.form.label.currency'
+                    "label" => 'car.form.label.currency',
                 ]
             )
         ;

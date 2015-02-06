@@ -22,7 +22,7 @@ class TypeType extends AbstractType
                 [
                     "required" => true,
                     "constraints" => [],
-                    "label" => 'car.form.label.add_type.name'
+                    "label" => 'car.form.label.add_type.name',
                 ]
             )
         ;

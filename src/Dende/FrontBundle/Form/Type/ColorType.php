@@ -22,7 +22,7 @@ class ColorType extends AbstractType
                 [
                     "required" => true,
                     "constraints" => [],
-                    "label" => 'car.form.label.add_color.name'
+                    "label" => 'car.form.label.add_color.name',
                 ]
             )
             ->add(

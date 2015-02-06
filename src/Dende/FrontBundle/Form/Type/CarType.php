@@ -46,7 +46,7 @@ class CarType extends AbstractType
                             }
                         }),
                     ],
-                    "label" => 'car.form.label.type'
+                    "label" => 'car.form.label.type',
                 ]
             )
             ->add(
@@ -54,7 +54,7 @@ class CarType extends AbstractType
                 'dende_form_type',
                 [
                     "label" => 'car.form.label.add_type',
-                    "mapped" => false
+                    "mapped" => false,
                 ]
             )
             ->add(
@@ -77,7 +77,7 @@ class CarType extends AbstractType
                             }
                         }),
                     ],
-                    "label" => 'car.form.label.model'
+                    "label" => 'car.form.label.model',
                 ]
             )
             ->add(
@@ -85,7 +85,7 @@ class CarType extends AbstractType
                 'dende_form_model',
                 [
                     "label" => 'car.form.label.add_model',
-                    "mapped" => false
+                    "mapped" => false,
                 ]
             )
             ->add(
@@ -108,7 +108,7 @@ class CarType extends AbstractType
                             }
                         }),
                     ],
-                    "label" => 'car.form.label.color'
+                    "label" => 'car.form.label.color',
                 ]
             )
             ->add(
@@ -116,7 +116,7 @@ class CarType extends AbstractType
                 'dende_form_color',
                 [
                     "label" => 'car.form.label.add_color',
-                    "mapped" => false
+                    "mapped" => false,
                 ]
             )
             ->add(
@@ -134,7 +134,7 @@ class CarType extends AbstractType
                         ]),
                         new Regex(["pattern" => "/\d\d\d\d/", "message" => "validator.production_year_format"]),
                     ],
-                    "label" => 'car.form.label.year'
+                    "label" => 'car.form.label.year',
                 ]
             )
             ->add(
@@ -149,7 +149,7 @@ class CarType extends AbstractType
                             "minMessage" => "validator.distance_too_small",
                         ]),
                     ],
-                    "label" => 'car.form.label.distance'
+                    "label" => 'car.form.label.distance',
                 ]
             )
             ->add(
@@ -163,7 +163,7 @@ class CarType extends AbstractType
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_fuel_type']),
                     ],
-                    "label" => 'car.form.label.fuel'
+                    "label" => 'car.form.label.fuel',
                 ]
             )
             ->add(
@@ -177,7 +177,7 @@ class CarType extends AbstractType
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_engine_type']),
                     ],
-                    "label" => 'car.form.label.engine'
+                    "label" => 'car.form.label.engine',
                 ]
             )
             ->add(
@@ -191,7 +191,7 @@ class CarType extends AbstractType
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_gearbox_type']),
                     ],
-                    "label" => 'car.form.label.gearbox'
+                    "label" => 'car.form.label.gearbox',
                 ]
             )
             ->add(
@@ -205,7 +205,7 @@ class CarType extends AbstractType
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_registration_country']),
                     ],
-                    "label" => 'car.form.label.registrationCountry'
+                    "label" => 'car.form.label.registrationCountry',
                 ]
             )
             ->add(
@@ -218,7 +218,7 @@ class CarType extends AbstractType
                     "by_reference" => false,
                     "prototype" => true,
                     "prototype_name" => "__name__",
-                    "label" => 'car.form.label.prices'
+                    "label" => 'car.form.label.prices',
                 ]
             )
             ->add(
@@ -231,7 +231,7 @@ class CarType extends AbstractType
                     "by_reference" => false,
                     "prototype" => true,
                     "prototype_name" => "__name__",
-                    "label" => 'car.form.label.images'
+                    "label" => 'car.form.label.images',
                 ]
             )
 //            ->add(
@@ -247,14 +247,14 @@ class CarType extends AbstractType
                 'promoteCarousel',
                 "checkbox",
                 [
-                    "label" => 'car.form.label.promoteCarousel'
+                    "label" => 'car.form.label.promoteCarousel',
                 ]
             )
             ->add(
                 'promoteFrontpage',
                 "checkbox",
                 [
-                    "label" => 'car.form.label.promoteFrontpage'
+                    "label" => 'car.form.label.promoteFrontpage',
                 ]
             )
             ->add(
@@ -266,7 +266,7 @@ class CarType extends AbstractType
                         new NotNull(["message" => "validator.title_cannot_be_empty"]),
                         new Length(["max" => 4096, "maxMessage" => "validator.title_max_length"]),
                     ],
-                    "label" => 'car.form.label.title'
+                    "label" => 'car.form.label.title',
                 ]
             )
             ->add(
@@ -277,21 +277,21 @@ class CarType extends AbstractType
                     'constraints' => [
                         new NotNull(["message" => "validator.description_cannot_be_empty"]),
                     ],
-                    "label" => 'car.form.label.description'
+                    "label" => 'car.form.label.description',
                 ]
             )
             ->add(
                 'adminNotes',
                 "textarea",
                 [
-                    "label" => 'car.form.label.adminNotes'
+                    "label" => 'car.form.label.adminNotes',
                 ]
             )
             ->add(
                 'hidden',
                 "checkbox",
                 [
-                    "label" => 'car.form.label.hidden'
+                    "label" => 'car.form.label.hidden',
                 ]
             )
         ;

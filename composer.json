@@ -37,7 +37,16 @@
         "phploc/phploc" : "*",
         "phpmd/phpmd" : "*",
         "pdepend/pdepend" : "*",
-        "fabpot/php-cs-fixer": "~1.3"
+        "fabpot/php-cs-fixer": "~1.3",
+        "behat/behat": "~3.0",
+        "behat/mink-extension": "~2.0",
+        "behat/symfony2-extension": "2.0.*@dev",
+        "behat/mink-zombie-driver": "~1.2",
+        "behat/mink-selenium2-driver": "~1.2",
+        "vipsoft/doctrine-data-fixtures-extension": "3.0.*@dev",
+        "behat/common-formatters": "~1.2",
+        "webignition/json-pretty-print": "dev-master",
+        "hasbridge/json-schema-validator": "dev-master"
     },
     "scripts": {
         "post-root-package-install": [

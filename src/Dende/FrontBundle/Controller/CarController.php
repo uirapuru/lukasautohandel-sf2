@@ -2,11 +2,7 @@
 
 namespace Dende\FrontBundle\Controller;
 
-use Dende\FrontBundle\Entity\Brand;
 use Dende\FrontBundle\Entity\Car;
-use Dende\FrontBundle\Entity\Image;
-use Dende\FrontBundle\Entity\Model;
-use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -79,7 +75,7 @@ class CarController extends Controller
                     [
                         "formData" => $serializer->serialize($form->getData(), "json"),
                         "formError" => $serializer->serialize($form->getErrors(), "json"),
-                        "asString" => $form->getErrorsAsString()
+                        "asString" => $form->getErrorsAsString(),
                     ]
                 );
                 $statusCode = 400;

@@ -4,7 +4,8 @@ namespace Dende\FrontBundle\Form\Handler;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\Form;
 
-class ProcessColor {
+class ProcessColor
+{
     /**
      * @var Form
      */
@@ -33,7 +34,8 @@ class ProcessColor {
         $this->entityManager = $entityManager;
     }
 
-    public function addColor() {
+    public function addColor()
+    {
         $car = $this->form->getData();
 
         $newColorName = $this->form->get("add_color")->get("name")->getData();
@@ -49,5 +51,4 @@ class ProcessColor {
             $this->entityManager->persist($color);
         }
     }
-
 }

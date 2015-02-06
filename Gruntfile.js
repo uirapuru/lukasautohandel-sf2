@@ -24,6 +24,7 @@ module.exports = function (grunt) {
 
     var coffeeFiles = [
         'src/Dende/FrontBundle/Resources/coffee/addImagePlugin.coffee',
+        'src/Dende/FrontBundle/Resources/coffee/toggleWidgets.coffee',
         'src/Dende/FrontBundle/Resources/coffee/main.coffee',
     ];
 

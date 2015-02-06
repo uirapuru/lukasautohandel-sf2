@@ -2,13 +2,11 @@
 namespace Dende\FrontBundle\Form\Handler;
 
 use Dende\FrontBundle\Entity\Car;
-use Dende\FrontBundle\Entity\Image;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
-use Stof\DoctrineExtensionsBundle\Uploadable\UploadableManager;
 
-class ProcessPrices {
+class ProcessPrices
+{
 
     /**
      * @var EntityManager

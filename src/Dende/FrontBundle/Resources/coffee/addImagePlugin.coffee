@@ -27,9 +27,7 @@
     addNewItem: () =>
       index = @$container.find(':input').length
       $proto = $(_.unescape(@prototype.replace /__name__/g, index))
-      $new = $("<li />").append $proto
-
-      $("ul", @$container).append $new
+      $("ul", @$container).append $proto
 
   $.fn.extend collection: (option, args...) ->
     @each ->

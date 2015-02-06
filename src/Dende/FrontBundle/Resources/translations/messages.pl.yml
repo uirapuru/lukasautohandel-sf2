@@ -41,3 +41,8 @@ car.form.choice.empty_car_registration_country:         "wybierz kraj rejestracj
 
 car.form.add_item:                                      "Dodaj"
 car.form.remove_item:                                   "Usuń"
+
+click_here_to_add_new_car_type: 'kliknij, aby dodać nowy typ samochodu'
+click_here_to_add_new_car_model: 'kliknij, aby dodać nowy model samochodu'
+click_here_to_add_new_car_color: 'kliknij, aby dodać nowy kolor samochodu'
+toggle_widgets_close: 'zamknij'

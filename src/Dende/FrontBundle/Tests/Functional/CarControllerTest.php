@@ -267,7 +267,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $form = $forms->first()->form($formData);
 
-        $crawler= $this->client->submit($form);
+        $crawler = $this->client->submit($form);
 
         $this->assertEquals(400, $this->getStatusCode());
 
@@ -288,7 +288,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $form = $forms->first()->form($formData);
 
-        $crawler= $this->client->submit($form);
+        $crawler = $this->client->submit($form);
 
         $this->assertEquals(400, $this->getStatusCode());
 
@@ -363,6 +363,26 @@ class CarControllerTest extends BaseFunctionalTest
                     ]
                 ),
                 "error" => 'validator.you_have_to_choose_car_color',
+            ],
+            "empty brand" => [
+                "formData" => array_merge(
+                    $correctData,
+                    [
+                        "dende_form_car[add_model][name]" => "someName",
+                        "dende_form_car[add_model][brand]" => null,
+                    ]
+                ),
+                "error" => 'validator.you_have_to_add_car_brand',
+            ],
+            "empty model, filled brand" => [
+                "formData" => array_merge(
+                    $correctData,
+                    [
+                        "dende_form_car[add_model][name]" => null,
+                        "dende_form_car[add_model][brand]" => "brand",
+                    ]
+                ),
+                "error" => 'validator.you_have_to_add_car_model_name',
             ],
         ];
     }

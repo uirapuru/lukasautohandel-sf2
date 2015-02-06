@@ -5,7 +5,8 @@ use Dende\FrontBundle\Entity\Brand;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\Form;
 
-class ProcessModel {
+class ProcessModel
+{
     /**
      * @var Form
      */
@@ -34,7 +35,8 @@ class ProcessModel {
         $this->entityManager = $entityManager;
     }
 
-    public function addModel() {
+    public function addModel()
+    {
         $car = $this->form->getData();
         $newModelName = $this->form->get("add_model")->get("name")->getData();
 

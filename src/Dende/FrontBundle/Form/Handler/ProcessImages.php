@@ -7,7 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
 use Stof\DoctrineExtensionsBundle\Uploadable\UploadableManager;
 
-class ProcessImages {
+class ProcessImages
+{
 
     /**
      * @var UploadableManager

@@ -5,7 +5,8 @@ use Dende\FrontBundle\Entity\Car;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\Form;
 
-class ProcessType {
+class ProcessType
+{
     /**
      * @var Form
      */
@@ -34,7 +35,8 @@ class ProcessType {
         $this->entityManager = $entityManager;
     }
 
-    public function addType() {
+    public function addType()
+    {
         $car = $this->form->getData();
 
         $newTypeName = $this->form->get("add_type")->get("name")->getData();
@@ -50,5 +52,4 @@ class ProcessType {
             $this->entityManager->persist($type);
         }
     }
-
 }

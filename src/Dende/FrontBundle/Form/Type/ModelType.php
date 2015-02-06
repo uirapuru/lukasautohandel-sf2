@@ -23,8 +23,18 @@ class ModelType extends AbstractType
                 'text',
                 [
                     "required" => true,
-                    "constraints" => [],
-                    "label" => 'car.form.label.add_model.name'
+                    "constraints" => [
+                        new Callback(function ($data, ExecutionContextInterface $context) {
+                            $form = $context->getRoot();
+
+                            if (!$form["add_model"]["brand"]->isEmpty() && $form["add_model"]["name"]->isEmpty()) {
+                                $context->buildViolation('validator.you_have_to_add_car_model_name')
+                                    ->atPath('add_model.name')
+                                    ->addViolation();
+                            }
+                        }),
+                    ],
+                    "label" => 'car.form.label.add_model.name',
                 ]
             )
             ->add(

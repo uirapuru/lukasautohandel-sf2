@@ -46,3 +46,56 @@
         </li>
     {% endspaceless %}
 {% endmacro %}
+
+{% block _dende_form_car_type_widget %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+        <a href="#" class="pull-right" id="add-new-car-type">{{ "click_here_to_add_new_car_type"|trans }}</a>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _dende_form_car_add_type_widget %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+        <a href="#" class="pull-right" id="add-new-car-type-close">{{ "toggle_widgets_close"|trans }}</a>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _dende_form_car_model_widget %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+        <a href="#" class="pull-right" id="add-new-car-model">{{ "click_here_to_add_new_car_model"|trans }}</a>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _dende_form_car_add_model_widget %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+        <a href="#" class="pull-right" id="add-new-car-model-close">{{ "toggle_widgets_close"|trans }}</a>
+    {% endspaceless %}
+{% endblock %}
+
+{% block _dende_form_car_color_widget %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+        <a href="#" class="pull-right" id="add-new-car-color">{{ "click_here_to_add_new_car_color"|trans }}</a>
+    {% endspaceless %}
+{% endblock %}
+{% block _dende_form_car_add_color_widget %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+        <a href="#" class="pull-right" id="add-new-car-color-close">{{ "toggle_widgets_close"|trans }}</a>
+    {% endspaceless %}
+{% endblock %}
+
+{% block form_row -%}
+    {% spaceless %}
+        <div{% if attr.id is defined %} id="{{ attr.id }}"{% endif %} class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+            {{ form_label(form) }}
+            <div class="{{ block('form_group_class') }}">
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{%- endblock form_row %}

@@ -53,10 +53,15 @@
         <phingcall target="phpmd" />
         <phingcall target="pdepend" />
         <phingcall target="test-phpunit" />
+        <phingcall target="behat" />
     </target>
 
     <target name="phpcs" description="php code sniffer">
-        <exec command="bin/phpcs --report=checkstyle --report-file=build/logs/checkstyle.xml --standard=app/phpcs.xml --extensions=php src/" checkreturn="true" passthru="true" />
+        <exec command="bin/phpcs -p -s --report-summary --report-source --report-checkstyle=build/logs/checkstyle.xml --ignore=**/Tests/** --standard=app/phpcs.xml --extensions=php src/" checkreturn="true" passthru="true" />
+    </target>
+
+    <target name="php-cs-fixer" description="php cs fixer">
+        <exec command="bin/php-cs-fixer fix ./ --config=sf23 --verbose" checkreturn="true" passthru="true" />
     </target>
 
     <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
@@ -64,14 +69,28 @@
     </target>
 
     <target name="phpcpd" description="Find duplicate code using PHPCPD">
-        <exec command="bin/phpcpd --log-pmd build/logs/pmd-cpd.xml src" checkreturn="true" passthru="true" />
+        <exec command="bin/phpcpd --log-pmd build/logs/pmd-cpd.xml src" checkreturn="false" passthru="true" />
     </target>
 
     <target name="phpmd" description="php mess detector">
-        <exec command="bin/phpmd src/ xml app/phpmd.xml --reportfile build/logs/pmd.xml" checkreturn="true" passthru="true" />
+        <exec command="bin/phpmd src/ xml app/phpmd.xml --reportfile build/logs/pmd.xml" checkreturn="false" passthru="true" />
     </target>
 
     <target name="pdepend" description="Calculate software metrics using PHP_Depend">
         <exec command="bin/pdepend --jdepend-xml=build/logs/jdepend.xml --overview-pyramid=build/pdepend/overview-pyramid.svg --jdepend-chart=build/pdepend/dependencies.svg src/" checkreturn="true" passthru="true" />
     </target>
+
+    <target name="phantomjs-start" description="Starts phantomjs">
+        <exec command="./node_modules/.bin/phantomjs --webdriver=8643" checkreturn="true" passthru="true" spawn="true" />
+    </target>
+
+    <target name="phantomjs-stop" description="Stops phantomjs">
+        <exec command="pkill -f 'node ./node_modules/.bin/phantomjs --webdriver=8643'" checkreturn="false" passthru="true" />
+    </target>
+
+    <target name="behat" description="Starts phantomjs" depends="phantomjs-start">
+        <exec command="./bin/behat" checkreturn="true" passthru="true" />
+        <phingcall target="phantomjs-stop" />
+    </target>
+
 </project>
