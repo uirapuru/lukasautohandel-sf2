@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -14,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class CarController
  * @package Dende\FrontBundle\Controller
  *
- * @Route("/car")
+ * @Route("/cars")
  */
 class CarController extends Controller
 {
@@ -165,5 +166,55 @@ class CarController extends Controller
             ),
             $statusCode
         );
+    }
+
+    /**
+     * Lists all Car entities.
+     *
+     * @Route("/", name="car")
+     * @Method("GET")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('FrontBundle:Car')->findAll();
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
+    /**
+     * Finds and displays a Car entity.
+     *
+     * @Route("/{id}", name="car_show")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('FrontBundle:Car')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Car entity.');
+        }
+
+        return array(
+            'entity'      => $entity,
+        );
+    }
+
+    /**
+     * @Route("/delete/{id}",name="delete_car")
+     * @ParamConverter("car", class="FrontBundle:Car")
+     * @Method({"GET"})
+     */
+    public function deleteAction(Request $request, Car $car)
+    {
+        $this->getDoctrine()->getEntityManager()->remove($car);
     }
 }

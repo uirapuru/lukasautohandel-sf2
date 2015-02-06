@@ -52,15 +52,18 @@ class MenuBuilder extends ContainerAware
         $menu = $this->factory->createItem('root');
 
         $menu->setChildrenAttributes(array(
-            'class' => 'nav nav-pills pull-left',
+            'class' => 'nav navbar-nav pull-left',
             'id' => 'mainMenu',
         ));
 
-        $menu->addChild('menu.main.blog', array('route' => 'blog'));
-        $menu->addChild('menu.main.cv', array('route' => 'cv'));
-        $menu->addChild('menu.main.projects', array('route' => 'projects'));
-        $menu->addChild('menu.main.contact', array('route' => 'contact'));
+        $menu->addChild('menu.main.dashboard', array('route' => 'car'));
+        $menu->addChild('menu.main.cars', array('route' => 'car'));
+//        $menu->addChild('menu.main.blog', array('route' => 'blog'));
+//        $menu->addChild('menu.main.cv', array('route' => 'cv'));
+//        $menu->addChild('menu.main.projects', array('route' => 'projects'));
+//        $menu->addChild('menu.main.contact', array('route' => 'contact'));
 
         return $menu;
     }
+
 }

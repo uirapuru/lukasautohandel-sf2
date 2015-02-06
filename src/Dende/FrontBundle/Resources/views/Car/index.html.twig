@@ -1,0 +1,56 @@
+{% extends '@Front/layout.html.twig' %}
+
+{% block body -%}
+    <div class="table-responsive">
+        <table id="carsTable" class="table table-striped table-hover table-bordered records_list">
+            <thead>
+                <tr>
+                    <th><i class="glyphicon glyphicon-record"></i> Id</th>
+                    <th><i class="glyphicon glyphicon-home"></i> {{ 'crud.header.title'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-heart"></i> {{ 'crud.header.model'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-film"></i> {{ 'crud.header.promote_carousel'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-list-alt"></i> {{ 'crud.header.promote_frontpage'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-off"></i> {{ 'crud.header.hidden'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-th"></i> {{ 'crud.header.created_at'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-th-list"></i> {{ 'crud.header.modified_at'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-pencil"></i> {{ 'crud.header.actions'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td class="column-id">{{ entity.id }}.</td>
+                    <td>
+                        <a href="{{ path('car_show', { 'id': entity.id }) }}">
+                            {{ entity.title }}
+                            ({{ entity.description|slice(0, 100) }})
+                        </a>
+                    </td>
+                    <td>{{ entity.model.name }} - {{ entity.model.brand.name }} ({{ entity.year }})</td>
+                    <td class="column-thick">{% if entity.promoteCarousel == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+                    <td class="column-thick">{% if entity.promoteFrontpage == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+                    <td class="column-thick">{% if entity.hidden == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+                    <td class="small">{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td class="small">{% if entity.modified %}{{ entity.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                        <span class="btn-group">
+                            <a href="{{ path('car_show', { 'id': entity.id }) }}" title="{{ "crud.action.show"|trans }}" class="xcrud-action btn btn-info btn-sm">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </a>
+
+                            <a href="{{ path('edit_car', { 'id': entity.id }) }}" title="{{ "crud.action.edit"|trans }}" class="xcrud-action btn btn-warning btn-sm">
+                                <i class="glyphicon glyphicon-edit "></i>
+                            </a>
+
+                            <a href="{{ path('delete_car', { 'id': entity.id }) }}" title="{{ "crud.action.delete"|trans }}" class="btn btn-danger btn-sm">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% endblock %}

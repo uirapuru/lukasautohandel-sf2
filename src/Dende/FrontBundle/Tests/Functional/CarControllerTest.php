@@ -26,7 +26,8 @@ class CarControllerTest extends BaseFunctionalTest
         $carModels = $em->getRepository("FrontBundle:Model")->findAll();
         $carColors = $em->getRepository("FrontBundle:Color")->findAll();
 
-        $crawler = $this->client->request('GET', '/car/add');
+        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
+        $this->assertEquals(200, $this->getStatusCode());
 
         $forms = $crawler->filter('form[name="dende_form_car"]');
         $this->assertEquals(1, $forms->count());
@@ -69,7 +70,8 @@ class CarControllerTest extends BaseFunctionalTest
         $carModels = $em->getRepository("FrontBundle:Model")->findAll();
         $carColors = $em->getRepository("FrontBundle:Color")->findAll();
 
-        $crawler = $this->client->request('GET', '/car/edit/'.$carEntity->getId());
+        $crawler = $this->client->request('GET', $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]));
+        $this->assertEquals(200, $this->getStatusCode());
 
         $forms = $crawler->filter('form[name="dende_form_car"]');
         $this->assertEquals(1, $forms->count());
@@ -100,7 +102,7 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function car_add_form_is_posted_and_entity_is_added()
     {
-        $crawler = $this->client->request('GET', '/car/add');
+        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $title = md5("some title".microtime());
@@ -160,7 +162,7 @@ class CarControllerTest extends BaseFunctionalTest
          */
         $entity = $em->getRepository("FrontBundle:Car")->findOneByTitle($title);
 
-        $this->assertEquals("/car/edit/".$entity->getId(), $this->client->getRequest()->getRequestUri());
+        $this->assertEquals($this->container->get("router")->generate("edit_car", ["id" => $entity->getId()]), $this->client->getRequest()->getRequestUri());
         $this->assertEquals("GET", $this->client->getRequest()->getMethod());
 
         $this->assertEquals($entity->getType()->getId(), 1);
@@ -202,7 +204,7 @@ class CarControllerTest extends BaseFunctionalTest
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = '/car/edit/'.$carEntity->getId();
+        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');
@@ -243,7 +245,7 @@ class CarControllerTest extends BaseFunctionalTest
         $alert = $crawler->filter('div.alert.alert-success');
         $this->assertEquals('flash.car_edit.success', trim($alert->text()));
 
-        $this->assertEquals("/car/edit/".$carEntity->getId(), $this->client->getRequest()->getRequestUri());
+        $this->assertEquals($this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]), $this->client->getRequest()->getRequestUri());
         $this->assertEquals("GET", $this->client->getRequest()->getMethod());
 
         $em->refresh($carEntity);
@@ -262,7 +264,7 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function car_add_form_is_posted_and_error_is_emitted($formData, $error)
     {
-        $crawler = $this->client->request('GET', '/car/add');
+        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $form = $forms->first()->form($formData);
@@ -283,7 +285,7 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function car_edit_form_is_posted_and_error_is_emitted($formData, $error)
     {
-        $crawler = $this->client->request('GET', '/car/edit/1');
+        $crawler = $this->client->request('GET', $this->container->get("router")->generate("edit_car", ["id" => 1]));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $form = $forms->first()->form($formData);
@@ -401,7 +403,7 @@ class CarControllerTest extends BaseFunctionalTest
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = '/car/edit/'.$carEntity->getId();
+        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');
@@ -427,7 +429,7 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function new_color_is_being_created_while_adding_new_car()
     {
-        $crawler = $this->client->request('GET', '/car/add');
+        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $title = md5("some title".microtime());
@@ -486,7 +488,7 @@ class CarControllerTest extends BaseFunctionalTest
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = '/car/edit/'.$carEntity->getId();
+        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');
@@ -524,7 +526,7 @@ class CarControllerTest extends BaseFunctionalTest
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = '/car/edit/'.$carEntity->getId();
+        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');
@@ -553,7 +555,7 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function new_model_is_being_created_while_adding_new_car()
     {
-        $crawler = $this->client->request('GET', '/car/add');
+        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $title = md5("some title".microtime());
@@ -628,7 +630,7 @@ class CarControllerTest extends BaseFunctionalTest
          */
         $type = $typeQuery->getQuery()->getOneOrNullResult();
 
-        $crawler = $this->client->request('GET', '/car/add');
+        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $title = md5("some title".microtime());
@@ -720,7 +722,7 @@ class CarControllerTest extends BaseFunctionalTest
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = '/car/edit/'.$carEntity->getId();
+        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');

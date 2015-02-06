@@ -6,3 +6,6 @@ coupe:
 
 hatchback:
   name: "Hatchback"
+
+combi:
+  name: "Combi"

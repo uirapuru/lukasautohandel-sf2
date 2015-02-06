@@ -46,3 +46,19 @@ click_here_to_add_new_car_type: 'kliknij, aby dodać nowy typ samochodu'
 click_here_to_add_new_car_model: 'kliknij, aby dodać nowy model samochodu'
 click_here_to_add_new_car_color: 'kliknij, aby dodać nowy kolor samochodu'
 toggle_widgets_close: 'zamknij'
+
+crud:
+    action:
+        show: 'pokaż'
+        edit: 'zmień'
+        delete: 'skasuj'
+    header:
+        title: 'tytuł'
+        model: 'model'
+        promote_carousel: 'promój zdjęcie'
+        promote_frontpage: 'na głównej'
+        hidden: 'ukryty'
+        created_at: 'stworzony'
+        modified_at: 'zmieniony'
+        actions: 'akcje'
+

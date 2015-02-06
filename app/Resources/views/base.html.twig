@@ -17,6 +17,22 @@
         {% endblock %}
     </head>
     <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="">
+                        <img alt="Lukas Autohandel" src="">
+
+                        {{ knp_menu_render('mainMenu', {
+                            'template': '::navigation.html.twig',
+                            'currentAsLink' : true,
+                            'depth' : 1,
+                            'currentClass' : 'active',
+                        }) }}
+                    </a>
+                </div>
+            </div>
+        </nav>
         <div class="container">
             <div class="row">
                 {% block body %}{% endblock %}

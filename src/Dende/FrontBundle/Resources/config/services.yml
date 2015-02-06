@@ -79,12 +79,11 @@ services:
         calls:
             - [setEntityManager, ["@doctrine.orm.entity_manager"]]
 
-#    front_bundle.menu_builder:
-#        class: Dende\FrontBundle\Menu\MenuBuilder
-#        arguments:
-#            - "@knp_menu.factory"
-#        calls:
-#            - [setSocialLinks, [%social_links%]]
+    front_bundle.menu_builder:
+        class: Dende\FrontBundle\Menu\MenuBuilder
+        arguments:
+            - "@knp_menu.factory"
+
 #
 #    front_bundle.menu.lang:
 #        class: Knp\Menu\MenuItem
@@ -95,13 +94,13 @@ services:
 #        tags:
 #            - { name: knp_menu.menu, alias: langMenu }
 #
-#    front_bundle.menu.main:
-#        class: Knp\Menu\MenuItem
-#        factory_service: front_bundle.menu_builder
-#        factory_method: createMainMenu
-#        scope: request
-#        tags:
-#            - { name: knp_menu.menu, alias: mainMenu }
+    front_bundle.menu.main:
+        class: Knp\Menu\MenuItem
+        factory_service: front_bundle.menu_builder
+        factory_method: createMainMenu
+        scope: request
+        tags:
+            - { name: knp_menu.menu, alias: mainMenu }
 #
 #    front_bundle.menu.social:
 #        class: Knp\Menu\MenuItem

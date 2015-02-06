@@ -9,3 +9,15 @@ passat:
 colt:
   name: "Colt"
   brand: volkswagen
+
+a3:
+  name: "A3"
+  brand: audi
+
+a4:
+  name: "A4"
+  brand: audi
+
+r6:
+  name: "R6"
+  brand: audi
