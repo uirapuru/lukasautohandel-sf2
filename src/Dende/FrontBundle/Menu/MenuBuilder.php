@@ -58,12 +58,7 @@ class MenuBuilder extends ContainerAware
 
         $menu->addChild('menu.main.dashboard', array('route' => 'car'));
         $menu->addChild('menu.main.cars', array('route' => 'car'));
-//        $menu->addChild('menu.main.blog', array('route' => 'blog'));
-//        $menu->addChild('menu.main.cv', array('route' => 'cv'));
-//        $menu->addChild('menu.main.projects', array('route' => 'projects'));
-//        $menu->addChild('menu.main.contact', array('route' => 'contact'));
 
         return $menu;
     }
-
 }

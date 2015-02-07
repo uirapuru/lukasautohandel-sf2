@@ -65,7 +65,13 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     {
         $amount = $this->fixStepArgument($amount);
         $page = $this->getSession()->getPage();
-        $row = $page->find("css", "div#dende_form_car_images")->getParent();
+        $button = $page->find("css", "div#dende_form_car_images");
+
+        if (count($button) == 0) {
+            throw new Exception("Element div#dende_form_car_images not found!");
+        }
+
+        $row = $button->getParent();
         $link = $row->find("css", "a.item_add");
 
         for ($a = 0; $a < $amount; $a++) {
@@ -121,7 +127,15 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     {
         $amount = $this->fixStepArgument($amount);
         $page = $this->getSession()->getPage();
-        $row = $page->find("css", "div#dende_form_car_prices")->getParent();
+
+        $button = $page->find("css", "div#dende_form_car_prices");
+
+        if (count($button) == 0) {
+            throw new Exception("Element div#dende_form_car_prices not found!");
+        }
+
+        $row = $button->getParent();
+
         $link = $row->find("css", "a.item_add");
 
         for ($a = 0; $a < $amount; $a++) {

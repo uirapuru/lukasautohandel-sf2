@@ -47,6 +47,35 @@ click_here_to_add_new_car_model: 'kliknij, aby dodać nowy model samochodu'
 click_here_to_add_new_car_color: 'kliknij, aby dodać nowy kolor samochodu'
 toggle_widgets_close: 'zamknij'
 
+flash.car_edit.errors: "Formularz zawiera błędy"
+
+validator.you_have_to_choose_car_type: "Musisz wybrać typ samochodu"
+validator.you_have_to_choose_car_model: "Musisz wybrać model samochodu"
+validator.you_have_to_choose_car_color: "Musisz wybrać kolor samochodu"
+validator.you_have_to_enter_production_year: "Musisz wybrać rok produkcji"
+validator.you_have_to_enter_distance: "Musisz podać przejechany dystans"
+validator.you_have_to_choose_car_engine_type: "Musisz wybrać typ silnika"
+validator.you_have_to_choose_car_fuel_type: "Musisz wybrać rodzaj paliwa"
+validator.you_have_to_choose_car_gearbox_type: "Musisz wybrać typ skrzyni biegów"
+validator.you_have_to_choose_car_registration_country: "Musisz wybrać kraj rejestracji"
+validator.title_cannot_be_empty: "Tytuł nie może być pusty"
+validator.description_cannot_be_empty: "Opis nie może być pusty"
+
+country.poland: "Polska"
+country.germany: "Niemcy"
+
+transmission.automatic: "Automatyczna"
+transmission.manual: "Manualna"
+transmission.semiautomatic: "Półautomat"
+
+fuel.lpg: "LPG"
+fuel.biodiesel: "Biodiesel"
+fuel.diesel: "Diesel"
+fuel.petrol: "Benzyna"
+
+engine.diesel: "Diesel"
+engine.petrol: "Benzyna"
+
 crud:
     action:
         show: 'pokaż'
@@ -62,3 +91,7 @@ crud:
         modified_at: 'zmieniony'
         actions: 'akcje'
 
+menu:
+    main:
+        dashboard: "Pulpit"
+        cars:      "Samochody"

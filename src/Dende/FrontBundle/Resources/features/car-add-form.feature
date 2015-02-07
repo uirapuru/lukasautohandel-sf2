@@ -1,6 +1,6 @@
 Feature: I can add cars using form
   Background:
-    Given I am on "/car/add"
+    Given I am on "/cars/add"
 
   Scenario: Add 5 images and remove 3 of them
     Given images list is empty

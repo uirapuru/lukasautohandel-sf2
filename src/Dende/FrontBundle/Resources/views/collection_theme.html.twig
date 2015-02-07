@@ -9,7 +9,7 @@
                     {% for rows in form %}
                         <li>
                             {% for row in rows %}
-                                    {%  if rows.vars.value is CarImage %}
+                                    {%  if rows.vars.value is CarImage and rows.vars.value.id is not null %}
                                         <img src="/uploads/{{ rows.vars.value.name }}" width="200" />
                                     {% endif %}
                                     {{ form_widget(row) }}
@@ -35,6 +35,8 @@
 {% endblock collection_item_widget %}
 
 {% macro test(prototype) %}
+    {{  dump(prototype) }}
+
     {% spaceless %}
         <li>
             {% for row in prototype %}
@@ -99,3 +101,15 @@
         </div>
     {% endspaceless %}
 {%- endblock form_row %}
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+    {% if form.parent %}<span class="help-block">{% else %}<div class="alert alert-danger">{% endif %}
+    <ul class="list-unstyled">
+        {%- for error in errors -%}
+    <li><span class="glyphicon glyphicon-exclamation-sign"></span> {{ error.message|trans }}</li>
+{%- endfor -%}
+    </ul>
+    {% if form.parent %}</span>{% else %}</div>{% endif %}
+    {%- endif %}
+{%- endblock form_errors %}
