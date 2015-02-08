@@ -1,6 +1,7 @@
 <?php
 namespace Dende\FrontBundle\Features;
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
@@ -142,7 +143,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
             $link->click();
         }
 
-        $this->assertNumElements(5, "div#dende_form_car_prices > ul > li");
+        $this->assertNumElements($amount, "div#dende_form_car_prices > ul > li");
     }
 
     /**
@@ -237,5 +238,56 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         foreach ($elements as $element) {
             $element->click();
         }
+    }
+
+    /**
+     * @Given /^I set (\d+) price currency to "([^"]*)"$/
+     */
+    public function iSetPriceCurrencyTo($number, $value)
+    {
+        $page = $this->getSession()->getPage();
+        $button = $page->find('css', sprintf('div#dende_form_car_prices_%d button.dropdown-toggle', $number-1));
+
+        $button->press();
+
+        $link = $page->find(
+            'css',
+            sprintf(
+                'div#dende_form_car_prices_%d ul.dropdown-menu a.changeCurrencyLink[data-code="%s"]',
+                $number-1,
+                $value
+            )
+        );
+
+        $link->click();
+    }
+
+    /**
+     * @Then /^I can see (\d+) price currency set to "([^"]*)"$/
+     */
+    public function iCanSeePriceCurrencySetTo($number, $value)
+    {
+        $page = $this->getSession()->getPage();
+        $button = $page->find('css', sprintf('div#dende_form_car_prices_%d button.currencySymbol', $number-1));
+
+        $val = $button->getText();
+
+        if ($val !== $value) {
+            throw new Exception("Currency button $number has value $val and it's other than '$value'");
+        }
+    }
+
+    /**
+     * @Given /^I submit form "([^"]*)"$/
+     */
+    public function iSubmitForm($arg1)
+    {
+        $form = $this->getSession()->getPage()->find('css', "form#".$arg1);
+
+        if (!$form) {
+            throw new Exception("Form #$arg1 not found");
+        }
+
+        $form->submit();
     }
 }

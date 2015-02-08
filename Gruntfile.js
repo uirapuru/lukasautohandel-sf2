@@ -1,7 +1,7 @@
 
 module.exports = function (grunt) {
-    require('time-grunt')(grunt);
-    require('quiet-grunt');
+    //require('time-grunt')(grunt);
+    //require('quiet-grunt');
 
     var cssVendors = [
         'bower_components/bootstrap/dist/css/bootstrap.css',
@@ -25,6 +25,7 @@ module.exports = function (grunt) {
     var coffeeFiles = [
         'src/Dende/FrontBundle/Resources/coffee/addImagePlugin.coffee',
         'src/Dende/FrontBundle/Resources/coffee/toggleWidgets.coffee',
+        'src/Dende/FrontBundle/Resources/coffee/updatePriceSelect.coffee',
         'src/Dende/FrontBundle/Resources/coffee/main.coffee',
     ];
 

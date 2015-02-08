@@ -1,53 +1,6 @@
 {% extends "bootstrap_3_horizontal_layout.html.twig" %}
 
-{% block collection_widget %}
-    {% spaceless %}
-        <div class="collection">
-            <div {{ block('widget_container_attributes') }}>
-                {{ form_errors(form) }}
-                <ul>
-                    {% for rows in form %}
-                        <li>
-                            {% for row in rows %}
-                                    {%  if rows.vars.value is CarImage and rows.vars.value.id is not null %}
-                                        <img src="/uploads/{{ rows.vars.value.name }}" width="200" />
-                                    {% endif %}
-                                    {{ form_widget(row) }}
-                            {% endfor %}
-                            <a class="item_remove" href="#">
-                                <span>{{ "car.form.remove_item"|trans }}</span>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-                {{ form_rest(form) }}
-            </div>
-            <a class="item_add" href="#">
-                <span>{{ "car.form.add_item"|trans }}</span>
-            </a>
-        </div>
-        <div class="clear"></div>
-    {% endspaceless %}
-{% endblock collection_widget %}
-
-{% block collection_item_widget %}
-    {{ _self.test(prototype) }}
-{% endblock collection_item_widget %}
-
-{% macro test(prototype) %}
-    {{  dump(prototype) }}
-
-    {% spaceless %}
-        <li>
-            {% for row in prototype %}
-                {{ form_widget(row) }}
-            {% endfor %}
-            <a class="item_remove" title="Remove" href="#">
-                <span>{{ "car.form.remove_item"|trans }}</span>
-            </a>
-        </li>
-    {% endspaceless %}
-{% endmacro %}
+{# INDIVIDUAL WIDGETS  #}
 
 {% block _dende_form_car_type_widget %}
     {% spaceless %}
@@ -90,6 +43,47 @@
     {% endspaceless %}
 {% endblock %}
 
+{# COLLECTION INDIVIDUAL ITEMS #}
+{% block _dende_form_car_images_entry_file_row %}
+<div{% if attr.id is defined %} id="{{ attr.id }}"{% endif %} class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+    {{ _self.item_remove() }}
+</div>
+{% endblock %}
+
+{% block _dende_form_car_prices_entry_amount_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _dende_form_car_prices_entry_currency_row %}
+<div class="input-group-btn">
+    <button class="currencySymbol btn btn-default disabled" type="button">
+        {% if form.vars.data is not null %}
+            {{ form.vars.data.symbol }}
+        {% else %}
+            {% set default_item = form.vars.choices|first %}
+            {{ default_item.data.symbol }}
+        {% endif %}
+    </button>
+    <button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+        <span class="caret"></span>
+    </button>
+    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+        {% for item in form.vars.choices %}
+            {% set currency = item.data %}
+            <li><a class="changeCurrencyLink" href="javascript:;" data-symbol="{{ currency.symbol }}" data-code="{{ currency.code }}" data-id="{{ currency.id }}">{{ currency.code }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{{ _self.item_remove() }}
+
+{{ form_widget(form, {attr: {class: "hidden"}}) }}
+{% endblock %}
+
+{#  SOME GLOBAL THEMES  #}
+
 {% block form_row -%}
     {% spaceless %}
         <div{% if attr.id is defined %} id="{{ attr.id }}"{% endif %} class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
@@ -107,9 +101,73 @@
     {% if form.parent %}<span class="help-block">{% else %}<div class="alert alert-danger">{% endif %}
     <ul class="list-unstyled">
         {%- for error in errors -%}
-    <li><span class="glyphicon glyphicon-exclamation-sign"></span> {{ error.message|trans }}</li>
-{%- endfor -%}
+            <li><span class="glyphicon glyphicon-exclamation-sign"></span> {{ error.message|trans }}</li>
+        {%- endfor -%}
     </ul>
     {% if form.parent %}</span>{% else %}</div>{% endif %}
     {%- endif %}
 {%- endblock form_errors %}
+
+{# collection widgets #}
+
+{% block collection_row %}
+    {% spaceless %}
+        <div{% if attr.id is defined %} id="{{ attr.id }}"{% endif %} class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+            {{ form_label(form) }}
+            {{ form_widget(form, {attr: {class: block('form_group_class')}}) }}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block collection_widget %}
+    <div class="collection">
+        <div {{ block('widget_container_attributes') }}>
+            <ul class="collection-container">
+                {% for row in form %}
+                    {% if row.vars.attr.collection_type is defined %}
+                        {% if row.vars.attr.collection_type == 'image' %}
+                            {{ _self.image_item(row) }}
+                        {%  endif %}
+                        {% if row.vars.attr.collection_type == 'price' %}
+                            {{ _self.price_item(row) }}
+                        {%  endif %}
+                    {% else %}
+                        {{ form_widget(row) }}
+                        {{ _self.item_remove() }}
+                    {%  endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {{ _self.item_add() }}
+    </div>
+{% endblock collection_widget %}
+
+{# MACROS #}
+
+{% macro item_remove() %}
+    <a class="item_remove btn btn-info pull-right" href="javascript:;">{{ "car.form.remove_item"|trans }}</a>
+{% endmacro %}
+
+{% macro item_add() %}
+    <a class="item_add btn btn-info pull-right" href="javascript:;">{{ "car.form.add_item"|trans }}</a>
+{% endmacro %}
+
+{% macro price_item(form) %}
+    <li>
+        <div class="form-group{% if (force_error|default(false)) or form.amount.vars.errors|length > 0 %} has-error{% endif %}">
+            {{ form_widget(form, {attr: {class: "input-group col-sm-10"}}) }}
+            {{ form_errors(form.amount) }}
+        </div>
+    </li>
+{% endmacro %}
+
+{% macro image_item(form) %}
+    <li>
+        <div class="form-group{% if (force_error|default(false)) or form.vars.errors|length > 0 %} has-error{% endif %}">
+            {% if form.vars.value is CarImage and form.vars.value.id is not null %}
+                <img src="/uploads/{{ form.vars.value.name }}" width="200" class="image-collection-item"/>
+            {% endif %}
+            {{ form_widget(form) }}
+        </div>
+    </li>
+{% endmacro %}

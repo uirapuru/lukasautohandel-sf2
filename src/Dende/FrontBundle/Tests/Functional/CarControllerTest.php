@@ -77,11 +77,11 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
-        $this->assertCount(33, $form->filter('input, textarea, button, select'));
+        $this->assertCount(41, $form->filter('input, textarea, button, select'));
 
         $this->assertCount(2, $form->filter('textarea'));
         $this->assertCount(11, $form->filter('select'));
-        $this->assertCount(1, $form->filter('button'));
+        $this->assertCount(9, $form->filter('button'));
         $this->assertCount(19, $form->filter('input'));
         $this->assertCount(6, $form->filter('input[type=text]'));
         $this->assertCount(6, $form->filter('input[type=number]'));

@@ -47,7 +47,8 @@ click_here_to_add_new_car_model: 'kliknij, aby dodać nowy model samochodu'
 click_here_to_add_new_car_color: 'kliknij, aby dodać nowy kolor samochodu'
 toggle_widgets_close: 'zamknij'
 
-flash.car_edit.errors: "Formularz zawiera błędy"
+flash.car_edit.errors:  "Formularz zawiera błędy"
+flash.car_edit.success: "Formularz zapisano z powodzeniem!"
 
 validator.you_have_to_choose_car_type: "Musisz wybrać typ samochodu"
 validator.you_have_to_choose_car_model: "Musisz wybrać model samochodu"
@@ -76,8 +77,10 @@ fuel.petrol: "Benzyna"
 engine.diesel: "Diesel"
 engine.petrol: "Benzyna"
 
+
 crud:
     action:
+        add: "Dodaj nowy samochód"
         show: 'pokaż'
         edit: 'zmień'
         delete: 'skasuj'

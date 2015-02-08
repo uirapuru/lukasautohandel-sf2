@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class CarType extends AbstractType
@@ -217,8 +218,12 @@ class CarType extends AbstractType
                     "allow_delete" => true,
                     "by_reference" => false,
                     "prototype" => true,
-                    "prototype_name" => "__name__",
+                    "prototype_name" => "__price_name__",
                     "label" => 'car.form.label.prices',
+                    'error_bubbling' => false,
+                    "constraints" => [
+                        new Valid()
+                    ]
                 ]
             )
             ->add(
@@ -230,19 +235,14 @@ class CarType extends AbstractType
                     "allow_delete" => true,
                     "by_reference" => false,
                     "prototype" => true,
-                    "prototype_name" => "__name__",
+                    "prototype_name" => "__image_name__",
                     "label" => 'car.form.label.images',
+                    'error_bubbling' => false,
+                    "constraints" => [
+                        new Valid()
+                    ]
                 ]
             )
-//            ->add(
-//                'images',
-//                "entity",
-//                [
-//                    "class" => "Dende\FrontBundle\Entity\Image",
-//                    "multiple" => true,
-//                    "expanded" => true
-//                ]
-//            )
             ->add(
                 'promoteCarousel',
                 "checkbox",
@@ -295,8 +295,6 @@ class CarType extends AbstractType
                 ]
             )
         ;
-
-//        $this->addEvents($builder);
     }
 
     public function getName()
@@ -311,26 +309,4 @@ class CarType extends AbstractType
             'csrf_protection' => false,
         ));
     }
-
-//    private function addEvents(FormBuilderInterface $builder)
-//    {
-//        $builder->addEventListener(
-//            FormEvents::POST_SET_DATA,
-//            function (FormEvent $event) {
-//                $form = $event->getForm();
-//                $data = $event->getData();
-//
-//                if ($form["add_model"]["name"]->getData()) {
-//                    $constraints = [
-//                        ,
-//                    ];
-//                } else {
-//                    $constraints = [];
-//                }
-//
-//                $form;
-//            }
-//        );
-//
-//    }
 }

@@ -1,11 +1,11 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\Range;
 
 class PriceType extends AbstractType
 {
@@ -23,9 +23,14 @@ class PriceType extends AbstractType
                 [
                     "required" => true,
                     "constraints" => [
-                        new NotNull(),
+                        new NotNull(["message" => 'validator.you_have_to_enter_price_amount']),
+                        new Range(["min" => '1', 'minMessage' => 'validator.minimal_price_must_be_over_0'])
                     ],
                     "label" => 'car.form.label.amount',
+                    "error_bubbling" => false,
+                    "attr" => [
+                        "class" => "col-sm-10"
+                    ]
                 ]
             )
             ->add(
@@ -39,6 +44,7 @@ class PriceType extends AbstractType
                         new NotNull(),
                     ],
                     "label" => 'car.form.label.currency',
+                    "error_bubbling" => false
                 ]
             )
         ;
@@ -54,6 +60,10 @@ class PriceType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Dende\FrontBundle\Entity\Price',
             'csrf_protection' => false,
+            'error_bubbling' => false,
+            'attr' => [
+                'collection_type' => 'price'
+            ]
         ));
     }
 }

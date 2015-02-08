@@ -6,9 +6,11 @@
     $container: null
     $form: null
     prototype:  null
+
     defaults:
       container: null
       dataField: 'prototype'
+      regex: /__name__/g
 
     constructor: (el, options) ->
       @options = $.extend({}, @defaults, options)
@@ -25,9 +27,9 @@
         $(event.target).parents("li").remove()
 
     addNewItem: () =>
-      index = @$container.find(':input').length
-      $proto = $(_.unescape(@prototype.replace /__name__/g, index))
-      $("ul", @$container).append $proto
+      index = @$container.find("ul.collection-container").children().length
+      $proto = $(_.unescape(@prototype.replace @options.regex, index))
+      $("ul.collection-container", @$container).append $proto
 
   $.fn.extend collection: (option, args...) ->
     @each ->

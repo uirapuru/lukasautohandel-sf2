@@ -1,6 +1,15 @@
 {% extends '@Front/layout.html.twig' %}
 
 {% block body -%}
+    <div class="container-fluid">
+        <div class="row vertical-bottom-margin">
+            <div class="col-md-12">
+                <a href="{{ url("add_car") }}" class="btn btn-danger pull-right">{{ "crud.action.add"|trans }}</a>
+            </div>
+        </div>
+    </div>
+
+
     <div class="table-responsive">
         <table id="carsTable" class="table table-striped table-hover table-bordered records_list">
             <thead>

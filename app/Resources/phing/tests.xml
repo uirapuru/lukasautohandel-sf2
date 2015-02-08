@@ -88,7 +88,11 @@
         <exec command="pkill -f 'node ./node_modules/.bin/phantomjs --webdriver=8643'" checkreturn="false" passthru="true" />
     </target>
 
-    <target name="behat" description="Starts phantomjs" depends="phantomjs-start">
+    <target name="phantomjs-restart" description="Restart phantomjs" depends="phantomjs-stop,phantomjs-start">
+
+    </target>
+
+    <target name="behat" description="Starts phantomjs" depends="phantomjs-start, reset-db-test">
         <exec command="./bin/behat" checkreturn="true" passthru="true" />
         <phingcall target="phantomjs-stop" />
     </target>

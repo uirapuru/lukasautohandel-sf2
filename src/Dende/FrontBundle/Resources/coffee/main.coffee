@@ -1,11 +1,23 @@
 $ ->
+
+# UPDATE PRICE SELECT
+
+  $('div#dende_form_car_prices').updatePriceSelect()
+
+
+# COLLECTIONS
+
   $("div#dende_form_car_images").collection
     dataField : "image-prototype"
     formSelector : "form[name='dende_form_car']"
+    regex: /__image_name__/g
 
   $("div#dende_form_car_prices").collection
     dataField : "price-prototype"
     formSelector : "form[name='dende_form_car']"
+    regex: /__price_name__/g
+
+# TOGGLE WIDGETS
 
   $("a#add-new-car-type").toggleWidgets
     normal : "div#car_type_row"
