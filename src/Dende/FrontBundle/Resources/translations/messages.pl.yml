@@ -16,6 +16,10 @@ car.form.label.hidden:                                  "Ukryj całkowicie samoc
 car.form.label.images:                                  "Zdjęcia"
 car.form.label.prices:                                  "Dostępne ceny i waluty"
 car.form.label.submit:                                  "Zapisz"
+car.form.label.created:                                 "Utworzony"
+car.form.label.modified:                                "Zmieniono"
+
+
 
 car.form.label.add_type:                                "Nowy typ"
 car.form.label.add_type.name:                           "Nazwa"
@@ -84,6 +88,7 @@ crud:
         show: 'pokaż'
         edit: 'zmień'
         delete: 'skasuj'
+        back_to_list: 'powrót do listy'
     header:
         title: 'tytuł'
         model: 'model'

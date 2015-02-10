@@ -20,17 +20,25 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">
+                    <a class="navbar-brand" href="{{ path("dashboard_index") }}">
                         <img alt="Lukas Autohandel" src="">
-
-                        {{ knp_menu_render('mainMenu', {
-                            'template': '::navigation.html.twig',
-                            'currentAsLink' : true,
-                            'depth' : 1,
-                            'currentClass' : 'active',
-                        }) }}
                     </a>
                 </div>
+
+                {{ knp_menu_render('mainMenu', {
+                    'template': '::navigation.html.twig',
+                    'currentAsLink' : true,
+                    'depth' : 1,
+                    'currentClass' : 'active',
+                }) }}
+
+                {{ knp_menu_render('langMenu', {
+                    'template': '::navigation.html.twig',
+                    'currentAsLink' : true,
+                    'depth' : 1,
+                    'currentClass' : 'active',
+                }) }}
+
             </div>
         </nav>
         <div class="container">

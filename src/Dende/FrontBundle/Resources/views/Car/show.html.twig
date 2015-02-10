@@ -1,82 +1,73 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Car</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <a href="{{ path('car') }}" class="btn btn-info">{{ "crud.action.back_to_list"|trans }}</a>
+                    <a href="{{ path('edit_car', {id: entity.id}) }}" class="btn btn-warning">{{ "crud.action.edit"|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table class="record_properties">
+    <h1>{{ entity.title }}</h1>
+
+    <table class="table table-bordered table-striped record_properties">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Year</th>
-                <td>{{ entity.year }}</td>
-            </tr>
-            <tr>
-                <th>Distance</th>
-                <td>{{ entity.distance }}</td>
-            </tr>
-            <tr>
-                <th>Fuel</th>
-                <td>{{ entity.fuel }}</td>
-            </tr>
-            <tr>
-                <th>Engine</th>
-                <td>{{ entity.engine }}</td>
-            </tr>
-            <tr>
-                <th>Gearbox</th>
-                <td>{{ entity.gearbox }}</td>
-            </tr>
-            <tr>
-                <th>Registrationcountry</th>
-                <td>{{ entity.registrationCountry }}</td>
-            </tr>
-            <tr>
-                <th>Promotecarousel</th>
-                <td>{{ entity.promoteCarousel }}</td>
-            </tr>
-            <tr>
-                <th>Promotefrontpage</th>
-                <td>{{ entity.promoteFrontpage }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ entity.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
+                <th>{{ "car.form.label.description"|trans }}</th>
                 <td>{{ entity.description }}</td>
             </tr>
             <tr>
-                <th>Adminnotes</th>
+                <th>{{ "car.form.label.year"|trans }}</th>
+                <td>{{ entity.year }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.distance"|trans }}</th>
+                <td>{{ entity.distance }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.fuel"|trans }}</th>
+                <td>{{ entity.fuel }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.engine"|trans }}</th>
+                <td>{{ entity.engine }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.gearbox"|trans }}</th>
+                <td>{{ entity.gearbox }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.registrationCountry"|trans }}</th>
+                <td>{{ entity.registrationCountry }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.promoteCarousel"|trans }}</th>
+                <td>{{ entity.promoteCarousel }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.promoteFrontpage"|trans }}</th>
+                <td>{{ entity.promoteFrontpage }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.adminNotes"|trans }}</th>
                 <td>{{ entity.adminNotes }}</td>
             </tr>
             <tr>
-                <th>Hidden</th>
+                <th>{{ "car.form.label.hidden"|trans }}</th>
                 <td>{{ entity.hidden }}</td>
             </tr>
             <tr>
-                <th>Created</th>
+                <th>{{ "car.form.label.created"|trans }}</th>
                 <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Modified</th>
+                <th>{{ "car.form.label.modified"|trans }}</th>
                 <td>{{ entity.modified|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Deleted</th>
-                <td>{{ entity.deleted|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>
     </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('car') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}
