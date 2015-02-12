@@ -5,7 +5,6 @@ namespace Dende\FrontBundle\DataFixtures\ORM;
 use Dende\FrontBundle\DataFixtures\BaseFixture;
 use Dende\FrontBundle\Entity\Car;
 use Dende\FrontBundle\Entity\Translation\CarTranslation;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Yaml\Yaml;
 

@@ -23,7 +23,7 @@ class TitleType extends AbstractType
                     "required" => true,
                     "constraints" => [],
                     "label" => '_pl',
-                    'mapped' => false
+                    'mapped' => false,
                 ]
             )->add(
                 'en',
@@ -32,7 +32,7 @@ class TitleType extends AbstractType
                     "required" => true,
                     "constraints" => [],
                     "label" => '_en',
-                    'mapped' => false
+                    'mapped' => false,
                 ]
             )->add(
                 'de',
@@ -41,7 +41,7 @@ class TitleType extends AbstractType
                     "required" => true,
                     "constraints" => [],
                     "label" => '_de',
-                    'mapped' => false
+                    'mapped' => false,
                 ]
             )
         ;

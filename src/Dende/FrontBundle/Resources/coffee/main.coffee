@@ -1,5 +1,9 @@
 $ ->
 
+  $("[rel^='prettyPhoto']").prettyPhoto
+    social_tools: null
+    show_title: false
+
 # UPDATE PRICE SELECT
 
   $('div#dende_form_car_prices').updatePriceSelect()

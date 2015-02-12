@@ -67,7 +67,6 @@ class MenuBuilder extends ContainerAware
             $menu->getChild('menu.main.cars')->setCurrent(true);
         }
 
-
         return $menu;
     }
 }

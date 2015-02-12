@@ -50,8 +50,8 @@ class ImageType extends AbstractType
             'error_bubbling' => false,
             'attr' => [
                 'collection_type' => 'image',
-                'class' => 'col-sm-10'
-            ]
+                'class' => 'col-sm-10',
+            ],
         ));
     }
 }

@@ -16,9 +16,10 @@ module.exports = function (grunt) {
 
     var jsVendors = [
         'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/jquery-migrate/jquery-migrate.js',
+        'bower_components/prettyPhoto/js/jquery.prettyPhoto.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'bower_components/modernizr/modernizr.js',
-        //'bower_components/prettyPhoto/js/jquery.prettyPhoto.js',
         'bower_components/underscore/underscore.js',
     ];
 
@@ -124,6 +125,15 @@ module.exports = function (grunt) {
                 ],
                 dest: "./web/images"
             },
+            prettyPhotoImages: {
+                expand: true,
+                flatten: false,
+                cwd: './bower_components/prettyPhoto/images/prettyPhoto/default',
+                src: [
+                    '*',
+                ],
+                dest: "./web/images/prettyPhoto/default"
+            },
             flags: {
                 expand: true,
                 flatten: false,
@@ -152,6 +162,7 @@ module.exports = function (grunt) {
         "css:development",
         "js:development",
         "copy:images",
+        "copy:prettyPhotoImages",
         "copy:fonts",
         "copy:flags",
     ]);

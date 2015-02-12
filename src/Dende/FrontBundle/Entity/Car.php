@@ -3,6 +3,7 @@ namespace Dende\FrontBundle\Entity;
 
 use Dende\FrontBundle\Entity\Translation\CarTranslation;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
@@ -589,6 +590,9 @@ class Car implements Translatable
         $this->translations = $translations;
     }
 
+    /**
+     * @return ArrayCollection
+     */
     public function getTranslations()
     {
         return $this->translations;
@@ -608,5 +612,26 @@ class Car implements Translatable
     public function removeTranslation(CarTranslation $translation)
     {
         $this->translations->removeElement($translation);
+    }
+
+    /**
+     * @param  string $field
+     * @param  string $lang
+     * @return string
+     */
+    public function getTranslated($field, $lang = 'pl')
+    {
+        $expr = Criteria::expr();
+        $criteria = Criteria::create();
+        $criteria->where($expr->andX(
+            $expr->eq("field", $field),
+            $expr->eq("locale", $lang)
+        ));
+        $collection = $this->getTranslations();
+        $translation = $collection->matching($criteria)->first();
+
+        if ($translation) {
+            return $translation->getContent();
+        }
     }
 }

@@ -24,13 +24,13 @@ class PriceType extends AbstractType
                     "required" => true,
                     "constraints" => [
                         new NotNull(["message" => 'validator.you_have_to_enter_price_amount']),
-                        new Range(["min" => '1', 'minMessage' => 'validator.minimal_price_must_be_over_0'])
+                        new Range(["min" => '1', 'minMessage' => 'validator.minimal_price_must_be_over_0']),
                     ],
                     "label" => 'car.form.label.amount',
                     "error_bubbling" => false,
                     "attr" => [
-                        "class" => "col-sm-10"
-                    ]
+                        "class" => "col-sm-10",
+                    ],
                 ]
             )
             ->add(
@@ -44,7 +44,7 @@ class PriceType extends AbstractType
                         new NotNull(),
                     ],
                     "label" => 'car.form.label.currency',
-                    "error_bubbling" => false
+                    "error_bubbling" => false,
                 ]
             )
         ;
@@ -62,8 +62,8 @@ class PriceType extends AbstractType
             'csrf_protection' => false,
             'error_bubbling' => false,
             'attr' => [
-                'collection_type' => 'price'
-            ]
+                'collection_type' => 'price',
+            ],
         ));
     }
 }

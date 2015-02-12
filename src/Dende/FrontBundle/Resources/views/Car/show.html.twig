@@ -18,11 +18,11 @@
         <tbody>
             <tr>
                 <th>{{ "car.form.label.title"|trans }}</th>
-                <td>{{ entity.title }}</td>
+                <td>{{ entity.getTranslated("title", app.request.locale) }}</td>
             </tr>
             <tr>
                 <th>{{ "car.form.label.description"|trans }}</th>
-                <td>{{ entity.description }}</td>
+                <td>{{ entity.getTranslated("description", app.request.locale) }}</td>
             </tr>
             <tr>
                 <th>{{ "car.form.label.year"|trans }}</th>
@@ -50,19 +50,19 @@
             </tr>
             <tr>
                 <th>{{ "car.form.label.promoteCarousel"|trans }}</th>
-                <td>{{ entity.promoteCarousel }}</td>
+                <td>{% if entity.promoteCarousel == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
             </tr>
             <tr>
                 <th>{{ "car.form.label.promoteFrontpage"|trans }}</th>
-                <td>{{ entity.promoteFrontpage }}</td>
+                <td>{% if entity.promoteFrontpage == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.hidden"|trans }}</th>
+                <td>{% if entity.hidden == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
             </tr>
             <tr>
                 <th>{{ "car.form.label.adminNotes"|trans }}</th>
                 <td>{{ entity.adminNotes }}</td>
-            </tr>
-            <tr>
-                <th>{{ "car.form.label.hidden"|trans }}</th>
-                <td>{{ entity.hidden }}</td>
             </tr>
             <tr>
                 <th>{{ "car.form.label.created"|trans }}</th>
@@ -74,4 +74,16 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="container-fluid">
+        <div class="row">
+            <h1>{{ "car_images_headline"|trans }}</h1>
+            {% for image in entity.images %}
+                <a href="/uploads/{{ image.name }}" rel="prettyPhoto[car]" title="{{ entity.description }}">
+                    <img src="/uploads/{{ image.name }}" class="img-thumbnail col-xs-2" />
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}

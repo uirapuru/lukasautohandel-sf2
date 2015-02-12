@@ -20,8 +20,8 @@
                     <th><i class="glyphicon glyphicon-film"></i> {{ 'crud.header.promote_carousel'|trans }}</th>
                     <th><i class="glyphicon glyphicon-list-alt"></i> {{ 'crud.header.promote_frontpage'|trans }}</th>
                     <th><i class="glyphicon glyphicon-off"></i> {{ 'crud.header.hidden'|trans }}</th>
-                    <th><i class="glyphicon glyphicon-th"></i> {{ 'crud.header.created_at'|trans }}</th>
-                    <th><i class="glyphicon glyphicon-th-list"></i> {{ 'crud.header.modified_at'|trans }}</th>
+                    {#<th><i class="glyphicon glyphicon-th"></i> {{ 'crud.header.created_at'|trans }}</th>#}
+                    {#<th><i class="glyphicon glyphicon-th-list"></i> {{ 'crud.header.modified_at'|trans }}</th>#}
                     <th><i class="glyphicon glyphicon-pencil"></i> {{ 'crud.header.actions'|trans }}</th>
                 </tr>
             </thead>
@@ -31,16 +31,18 @@
                     <td class="column-id">{{ entity.id }}.</td>
                     <td>
                         <a href="{{ path('car_show', { 'id': entity.id }) }}">
-                            {{ entity.title }}
-                            ({{ entity.description|slice(0, 100) }})
+                            <small>
+                                {{ entity.getTranslated("title") }}
+                            ({{ entity.getTranslated("description")|slice(0, 100) }})
+                                </small>
                         </a>
                     </td>
-                    <td>{{ entity.model.name }} - {{ entity.model.brand.name }} ({{ entity.year }})</td>
+                    <td><small>{{ entity.model.name }} - {{ entity.model.brand.name }} ({{ entity.year }})</small></td>
                     <td class="column-thick">{% if entity.promoteCarousel == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
                     <td class="column-thick">{% if entity.promoteFrontpage == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
                     <td class="column-thick">{% if entity.hidden == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
-                    <td class="small">{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td class="small">{% if entity.modified %}{{ entity.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    {#<td class="small">{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                    {#<td class="small">{% if entity.modified %}{{ entity.modified|date('Y-m-d H:i:s') }}{% endif %}</td>#}
                     <td>
                         <span class="btn-group">
                             <a href="{{ path('car_show', { 'id': entity.id }) }}" title="{{ "crud.action.show"|trans }}" class="xcrud-action btn btn-info btn-sm">

@@ -6,12 +6,10 @@ use Dende\FrontBundle\Dictionary\Country;
 use Dende\FrontBundle\Dictionary\Engine;
 use Dende\FrontBundle\Dictionary\Fuel;
 use Dende\FrontBundle\Dictionary\Gearbox;
-use Dende\FrontBundle\Form\DataTransformer\TitleTranslationTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\Callback;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Regex;
@@ -223,8 +221,8 @@ class CarType extends AbstractType
                     "label" => 'car.form.label.prices',
                     'error_bubbling' => false,
                     "constraints" => [
-                        new Valid()
-                    ]
+                        new Valid(),
+                    ],
                 ]
             )
             ->add(
@@ -240,8 +238,8 @@ class CarType extends AbstractType
                     "label" => 'car.form.label.images',
                     'error_bubbling' => false,
                     "constraints" => [
-                        new Valid()
-                    ]
+                        new Valid(),
+                    ],
                 ]
             )
             ->add(

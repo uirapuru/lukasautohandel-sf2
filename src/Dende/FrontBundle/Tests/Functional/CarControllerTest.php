@@ -33,13 +33,13 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
-        $this->assertCount(21, $form->filter('input, textarea, button, select'));
+        $this->assertCount(25, $form->filter('input, textarea, button, select'));
 
-        $this->assertCount(2, $form->filter('textarea'));
+        $this->assertCount(4, $form->filter('textarea'));
         $this->assertCount(7, $form->filter('select'));
         $this->assertCount(1, $form->filter('button'));
-        $this->assertCount(11, $form->filter('input'));
-        $this->assertCount(6, $form->filter('input[type=text]'));
+        $this->assertCount(13, $form->filter('input'));
+        $this->assertCount(8, $form->filter('input[type=text]'));
         $this->assertCount(2, $form->filter('input[type=number]'));
         $this->assertCount(3, $form->filter('input[type=checkbox]'));
 
@@ -77,13 +77,13 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
-        $this->assertCount(41, $form->filter('input, textarea, button, select'));
+        $this->assertCount(45, $form->filter('input, textarea, button, select'));
 
-        $this->assertCount(2, $form->filter('textarea'));
+        $this->assertCount(4, $form->filter('textarea'));
         $this->assertCount(11, $form->filter('select'));
         $this->assertCount(9, $form->filter('button'));
-        $this->assertCount(19, $form->filter('input'));
-        $this->assertCount(6, $form->filter('input[type=text]'));
+        $this->assertCount(21, $form->filter('input'));
+        $this->assertCount(8, $form->filter('input[type=text]'));
         $this->assertCount(6, $form->filter('input[type=number]'));
         $this->assertCount(3, $form->filter('input[type=checkbox]'));
         $this->assertCount($carEntity->getImages()->count(), $form->filter('input[type=file]'));
@@ -128,8 +128,8 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[registrationCountry]" => Country::POLAND,
             "dende_form_car[promoteCarousel]" => true,
             "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[title]" => $title,
-            "dende_form_car[description]" => 'Some description',
+            "dende_form_car[translations][pl][title]" => $title,
+            "dende_form_car[translations][pl][description]" => 'Some description',
             "dende_form_car[adminNotes]" => 'Admin Notes',
             "dende_form_car[hidden]" => false,
         ]);
@@ -220,7 +220,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["title"] = $title;
+        $values["dende_form_car"]["translations"]["pl"]["title"] = $title;
         $values["dende_form_car"]["prices"] = [
             ["amount" => 30, "currency" => 2],
             ["amount" => 40, "currency" => 2],
@@ -251,7 +251,7 @@ class CarControllerTest extends BaseFunctionalTest
         $em->refresh($carEntity);
 
         $this->assertNotNull($carEntity, "Car entity can't be found");
-        $this->assertEquals($carEntity->getTitle(), $title, "Entity haven't been updated in db");
+        $this->assertEquals($carEntity->getTranslated("title", "pl"), $title, "Entity haven't been updated in db");
         $this->assertCount(2, $carEntity->getImages());
         $this->assertCount(2, $carEntity->getPrices());
         $this->assertEquals($carEntity->getModel()->getName(), $newModelName, "Entity Model haven't been created in db");
@@ -314,31 +314,13 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[registrationCountry]" => Country::POLAND,
             "dende_form_car[promoteCarousel]" => true,
             "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[title]" => "Some title",
-            "dende_form_car[description]" => 'Some description',
+            "dende_form_car[translations][pl][title]" => "Some title",
+            "dende_form_car[translations][pl][description]" => 'Some description',
             "dende_form_car[adminNotes]" => 'Admin Notes',
             "dende_form_car[hidden]" => false,
         ];
 
         return [
-            "empty title" => [
-                "formData" => array_merge(
-                    $correctData,
-                    [
-                        "dende_form_car[title]" => null,
-                    ]
-                ),
-                "error" => 'validator.title_cannot_be_empty',
-            ],
-            "empty description" => [
-                "formData" => array_merge(
-                    $correctData,
-                    [
-                        "dende_form_car[description]" => null,
-                    ]
-                ),
-                "error" => 'validator.description_cannot_be_empty',
-            ],
             "empty type" => [
                 "formData" => array_merge(
                     $correctData,
@@ -450,8 +432,8 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[registrationCountry]" => Country::POLAND,
             "dende_form_car[promoteCarousel]" => true,
             "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[title]" => $title,
-            "dende_form_car[description]" => 'Some description',
+            "dende_form_car[translations][pl][title]" => $title,
+            "dende_form_car[translations][pl][description]" => 'Some description',
             "dende_form_car[hidden]" => false,
             "dende_form_car[adminNotes]" => "notes",
             "dende_form_car[add_color][name]" => $newColorName,
@@ -576,8 +558,8 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[registrationCountry]" => Country::POLAND,
             "dende_form_car[promoteCarousel]" => true,
             "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[title]" => $title,
-            "dende_form_car[description]" => 'Some description',
+            "dende_form_car[translations][pl][title]" => $title,
+            "dende_form_car[translations][pl][description]" => 'Some description',
             "dende_form_car[hidden]" => false,
             "dende_form_car[adminNotes]" => "notes",
             "dende_form_car[add_model][name]" => $newModelName,
@@ -649,8 +631,8 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[registrationCountry]" => Country::POLAND,
             "dende_form_car[promoteCarousel]" => true,
             "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[title]" => $title,
-            "dende_form_car[description]" => 'Some description',
+            "dende_form_car[translations][pl][title]" => $title,
+            "dende_form_car[translations][pl][description]" => 'Some description',
             "dende_form_car[hidden]" => false,
             "dende_form_car[adminNotes]" => "notes",
             "dende_form_car[add_model][name]" => $model->getName(),
@@ -733,7 +715,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $values = $form->getPhpValues();
 
-        $values["dende_form_car"]["title"] = $title;
+        $values["dende_form_car"]["translations"]["pl"]["title"] = $title;
         $values["dende_form_car"]["add_model"]["name"] = $model->getName();
         $values["dende_form_car"]["add_model"]["brand"] = $brand->getName();
         $values["dende_form_car"]["add_color"]["name"] = $color->getName();
@@ -756,7 +738,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $this->assertNotNull($carEntity);
 
-        $this->assertEquals($title, $carEntity->getTitle());
+        $this->assertEquals($title, $carEntity->getTranslated("title", "pl"));
         $this->assertEquals($color->getId(), $carEntity->getColor()->getId());
         $this->assertEquals($type->getId(), $carEntity->getType()->getId());
         $this->assertEquals($brand->getId(), $carEntity->getModel()->getBrand()->getId());

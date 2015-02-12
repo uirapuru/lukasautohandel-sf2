@@ -103,3 +103,5 @@ menu:
     main:
         dashboard: "Pulpit"
         cars:      "Samochody"
+
+car_images_headline: 'Galeria'
