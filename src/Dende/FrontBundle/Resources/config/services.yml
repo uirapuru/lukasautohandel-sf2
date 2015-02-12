@@ -1,3 +1,6 @@
+imports:
+    - { resource: forms.yml }
+
 services:
     dende.front.manager.car:
         class: Dende\FrontBundle\Manager\CarManager
@@ -15,36 +18,6 @@ services:
         calls:
             - [setRepositoryLocale, [@service_container]]
 
-    dende.front.form.type.car:
-        class: Dende\FrontBundle\Form\Type\CarType
-        tags:
-            - {name: form.type, alias: dende_form_car }
-
-    dende.front.form.type.image:
-        class: Dende\FrontBundle\Form\Type\ImageType
-        tags:
-            - {name: form.type, alias: dende_form_image }
-
-    dende.front.form.type.color:
-        class: Dende\FrontBundle\Form\Type\ColorType
-        tags:
-            - {name: form.type, alias: dende_form_color }
-
-    dende.front.form.type.model:
-        class: Dende\FrontBundle\Form\Type\ModelType
-        tags:
-            - {name: form.type, alias: dende_form_model }
-
-    dende.front.form.type.price:
-        class: Dende\FrontBundle\Form\Type\PriceType
-        tags:
-            - {name: form.type, alias: dende_form_price }
-
-    dende.front.form.type.type:
-        class: Dende\FrontBundle\Form\Type\TypeType
-        tags:
-            - {name: form.type, alias: dende_form_type }
-
     dende.twig_extension.instance_of:
         class: Dende\FrontBundle\Twig\InstanceOfExtension
         tags:
@@ -53,37 +26,10 @@ services:
     dende.front.factory.type:
         class: Dende\FrontBundle\Entity\Factory\TypeFactory
 
-    dende.front.form_handler.process_images:
-        class: Dende\FrontBundle\Form\Handler\ProcessImages
-        calls:
-            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
-            - [setUploadableManager, ["@stof_doctrine_extensions.uploadable.manager"]]
-
-    dende.front.form_handler.process_types:
-        class: Dende\FrontBundle\Form\Handler\ProcessType
-        calls:
-            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
-
-    dende.front.form_handler.process_colors:
-        class: Dende\FrontBundle\Form\Handler\ProcessColor
-        calls:
-            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
-
-    dende.front.form_handler.process_models:
-        class: Dende\FrontBundle\Form\Handler\ProcessModel
-        calls:
-            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
-
-    dende.front.form_handler.process_prices:
-        class: Dende\FrontBundle\Form\Handler\ProcessPrices
-        calls:
-            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
-
     front_bundle.menu_builder:
         class: Dende\FrontBundle\Menu\MenuBuilder
         arguments:
             - "@knp_menu.factory"
-
 
     front_bundle.menu.lang:
         class: Knp\Menu\MenuItem
@@ -102,17 +48,9 @@ services:
         scope: request
         tags:
             - { name: knp_menu.menu, alias: mainMenu }
-#
-#    front_bundle.menu.social:
-#        class: Knp\Menu\MenuItem
-#        factory_service: front_bundle.menu_builder
-#        factory_method: createSocialMenu
-#        scope: request
-#        tags:
-#            - { name: knp_menu.menu, alias: socialMenu }
-#
-#    front_bundle.locale_listener:
-#        class: Dende\FrontBundle\Service\Listener\LocaleListener
-#        arguments: ["%kernel.default_locale%"]
-#        tags:
-#            - { name: kernel.event_subscriber }
+
+    front_bundle.locale_listener:
+        class: Dende\FrontBundle\Service\Listener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }

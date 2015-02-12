@@ -1,6 +1,7 @@
 <?php
 namespace Dende\FrontBundle\Entity;
 
+use Dende\FrontBundle\Entity\Translation\CarTranslation;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -158,15 +159,19 @@ class Car implements Translatable
     protected $deleted;
 
     /**
-     * @Gedmo\Locale
-     * @var string $locale
+     * @ORM\OneToMany(
+     *   targetEntity="Dende\FrontBundle\Entity\Translation\CarTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
      */
-    protected $locale;
+    private $translations;
 
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->prices = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -577,5 +582,31 @@ class Car implements Translatable
     public function removePrice(Price $price)
     {
         $this->prices->removeElement($price);
+    }
+
+    public function setTranslations(ArrayCollection $translations)
+    {
+        $this->translations = $translations;
+    }
+
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    public function addTranslation(CarTranslation $translation)
+    {
+        if (!$this->translations->contains($translation)) {
+            $this->translations[] = $translation;
+            $translation->setObject($this);
+        }
+    }
+
+    /**
+     * @param Price $translation
+     */
+    public function removeTranslation(CarTranslation $translation)
+    {
+        $this->translations->removeElement($translation);
     }
 }

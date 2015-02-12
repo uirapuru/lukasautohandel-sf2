@@ -19,13 +19,14 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "knplabs/knp-menu": "2.0.*@dev",
         "knplabs/knp-menu-bundle": "2.0.*@dev",
-        "gedmo/doctrine-extensions" : "2.3.9",
+        "gedmo/doctrine-extensions": "2.3.*@dev",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "raven/raven": "0.8.*@dev",
         "stof/doctrine-extensions-bundle": "1.2.*@dev",
         "phing/phing": "~2.9",
         "jms/serializer-bundle": "0.13.*",
-        "mockery/mockery": "0.9.*"
+        "mockery/mockery": "0.9.*",
+        "a2lix/translation-form-bundle": "1.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

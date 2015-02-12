@@ -5,6 +5,7 @@ namespace Dende\FrontBundle\DataFixtures\ORM;
 use Dende\FrontBundle\DataFixtures\BaseFixture;
 use Dende\FrontBundle\Entity\Car;
 use Dende\FrontBundle\Entity\Translation\CarTranslation;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Yaml\Yaml;
 
@@ -26,14 +27,10 @@ class CarsData extends BaseFixture
         foreach ($value as $key => $params) {
             $car = $this->insert($params);
             $this->addReference($key, $car);
+
+            $carTranslations = $this->prepareTranslations($params, $car);
+
             $this->manager->persist($car);
-            $this->manager->flush();
-
-            $carTranslations = $this->prepareTranslations($params, $car->getId());
-
-            foreach ($carTranslations as $carTranslation) {
-                $this->manager->persist($carTranslation);
-            }
             $this->manager->flush();
         }
     }
@@ -93,7 +90,7 @@ class CarsData extends BaseFixture
      * @param array   $params
      * @param integer $getId
      */
-    private function prepareTranslations($params, $getId)
+    private function prepareTranslations($params, Car $car)
     {
         $titles = $params["title"];
         $descriptions = $params["description"];
@@ -103,12 +100,10 @@ class CarsData extends BaseFixture
 
         foreach ($tmpArray as $fieldName => $field) {
             foreach ($field as $language => $value) {
-                $carTranslation = new CarTranslation();
-                $carTranslation->setField($fieldName);
-                $carTranslation->setContent($value);
-                $carTranslation->setLocale($language);
-                $carTranslation->setObjectClass("Dende\FrontBundle\Entity\Car");
-                $carTranslation->setForeignKey($getId);
+                $carTranslation = new CarTranslation($language, $fieldName, $value);
+                $carTranslation->setObject($car);
+
+                $this->manager->persist($carTranslation);
                 $result[] = $carTranslation;
             }
         }

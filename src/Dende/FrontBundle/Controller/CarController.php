@@ -2,6 +2,7 @@
 
 namespace Dende\FrontBundle\Controller;
 
+use A2lix\TranslationFormBundle\Annotation\GedmoTranslation;
 use Dende\FrontBundle\Entity\Car;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -93,6 +94,7 @@ class CarController extends Controller
      * @Route("/edit/{id}",name="edit_car")
      * @ParamConverter("car", class="FrontBundle:Car")
      * @Method({"GET","POST"})
+     * @GedmoTranslation()
      */
     public function editAction(Request $request, Car $car)
     {

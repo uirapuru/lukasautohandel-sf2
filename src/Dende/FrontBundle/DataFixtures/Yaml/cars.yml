@@ -16,11 +16,13 @@ car_001:
   promoteCarousel: true
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+    de: "Niemieckie auto description"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -43,11 +45,13 @@ car_002:
   promoteCarousel: false
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+    de: "Niemieckie auto dwa"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -70,11 +74,12 @@ car_003:
   promoteCarousel: false
   promoteFrontpage: false
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -97,11 +102,12 @@ car_004:
   promoteCarousel: false
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -124,11 +130,12 @@ car_005:
   promoteCarousel: true
   promoteFrontpage: false
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -151,11 +158,12 @@ car_006:
   promoteCarousel: true
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -178,11 +186,12 @@ car_007:
   promoteCarousel: false
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -205,11 +214,12 @@ car_008:
   promoteCarousel: false
   promoteFrontpage: false
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -232,11 +242,12 @@ car_009:
   promoteCarousel: false
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -259,11 +270,12 @@ car_010:
   promoteCarousel: true
   promoteFrontpage: false
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -287,11 +299,12 @@ car_011:
   promoteCarousel: false
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -313,11 +326,12 @@ car_012:
   promoteCarousel: false
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -340,11 +354,12 @@ car_013:
   promoteCarousel: false
   promoteFrontpage: false
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -367,11 +382,12 @@ car_014:
   promoteCarousel: false
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -394,11 +410,12 @@ car_015:
   promoteCarousel: true
   promoteFrontpage: false
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -421,11 +438,12 @@ car_016:
   promoteCarousel: true
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -448,11 +466,12 @@ car_017:
   promoteCarousel: false
   promoteFrontpage: true
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -475,11 +494,12 @@ car_018:
   promoteCarousel: false
   promoteFrontpage: false
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -504,11 +524,12 @@ car_019:
   promoteCarousel: false
   promoteFrontpage: false
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false
@@ -531,11 +552,12 @@ car_020:
   promoteCarousel: true
   promoteFrontpage: false
   title:
-    pl_PL: "Samochód testowy"
-    en_US: "Test car"
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
   description:
-    pl_PL: "Opis samochodu testowego"
-    en_US: "Description of the test car"
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
   adminNotes: |
     Jakaś notatka adminstratora z uwagami apropos auta
   hidden: false

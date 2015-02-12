@@ -6,6 +6,7 @@ use Dende\FrontBundle\Dictionary\Country;
 use Dende\FrontBundle\Dictionary\Engine;
 use Dende\FrontBundle\Dictionary\Fuel;
 use Dende\FrontBundle\Dictionary\Gearbox;
+use Dende\FrontBundle\Form\DataTransformer\TitleTranslationTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -258,26 +259,10 @@ class CarType extends AbstractType
                 ]
             )
             ->add(
-                'title',
-                "text",
+                'translations',
+                "a2lix_translations_gedmo",
                 [
-                    'required' => true,
-                    'constraints' => [
-                        new NotNull(["message" => "validator.title_cannot_be_empty"]),
-                        new Length(["max" => 4096, "maxMessage" => "validator.title_max_length"]),
-                    ],
-                    "label" => 'car.form.label.title',
-                ]
-            )
-            ->add(
-                'description',
-                "textarea",
-                [
-                    'required' => true,
-                    'constraints' => [
-                        new NotNull(["message" => "validator.description_cannot_be_empty"]),
-                    ],
-                    "label" => 'car.form.label.description',
+                    'translatable_class' => 'FrontBundle:Car',
                 ]
             )
             ->add(

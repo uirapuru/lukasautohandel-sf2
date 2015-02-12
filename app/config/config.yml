@@ -100,6 +100,12 @@ front:
         github:         ~
         youtube:        ~
 
+a2lix_translation_form:
+    locales: [pl, en, de]
+    default_required: true      # [2]
+    manager_registry: doctrine      # [3]
+    templating: "A2lixTranslationFormBundle::default.html.twig"      # [4]
+
 services:
     # Doctrine Extension listeners to handle behaviors
     gedmo.listener.translatable:
