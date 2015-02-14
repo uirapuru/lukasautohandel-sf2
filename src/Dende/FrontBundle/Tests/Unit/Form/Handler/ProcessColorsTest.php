@@ -9,8 +9,8 @@ class ProcessColorsTest extends \PHPUnit_Framework_TestCase
 {
     public function testRemoveUnusedWithFoundColor()
     {
-        $colorMock = new Color();
-        $colorMock->setName("test");
+        $colorMock = m::mock("Dende\FrontBundle\Entity\Color");
+        $colorMock->shouldReceive("getName")->andReturn("test");
 
         $carMock = m::mock("Dende\FrontBundle\Entity\Car");
         $carMock->shouldReceive("setColor")->once();
@@ -20,7 +20,7 @@ class ProcessColorsTest extends \PHPUnit_Framework_TestCase
         $entityManagerMock->shouldReceive("getRepository->findOneByName")->once()->andReturn($colorMock);
 
         $formMock = m::mock("Symfony\Component\Form\Form");
-        $formMock->shouldReceive("get->get->getData")->once()->andReturn("newTestType");
+        $formMock->shouldReceive("get->get->get->get->getData")->once()->andReturn("newTestType");
         $formMock->shouldReceive("getData")->once()->andReturn($carMock);
 
         $processType = new ProcessColor();
@@ -31,8 +31,8 @@ class ProcessColorsTest extends \PHPUnit_Framework_TestCase
 
     public function testRemoveUnusedWithColorNotFound()
     {
-        $colorMock = new Color();
-        $colorMock->setName("test");
+        $colorMock = m::mock("Dende\FrontBundle\Entity\Color");
+        $colorMock->shouldReceive("getName")->andReturn("test");
 
         $carMock = m::mock("Dende\FrontBundle\Entity\Car");
         $carMock->shouldReceive("setColor")->once();
@@ -42,7 +42,7 @@ class ProcessColorsTest extends \PHPUnit_Framework_TestCase
         $entityManagerMock->shouldReceive("getRepository->findOneByName")->once()->andReturnNull();
 
         $formMock = m::mock("Symfony\Component\Form\Form");
-        $formMock->shouldReceive("get->get->getData")->once()->andReturn("newTestType");
+        $formMock->shouldReceive("get->get->get->get->getData")->once()->andReturn("newTestType");
         $formMock->shouldReceive("get->getData")->once()->andReturn($colorMock);
         $formMock->shouldReceive("getData")->once()->andReturn($carMock);
 

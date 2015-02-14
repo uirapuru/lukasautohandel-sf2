@@ -205,7 +205,9 @@
     <li>
         <div class="form-group{% if (force_error|default(false)) or form.vars.errors|length > 0 %} has-error{% endif %}">
             {% if form.vars.value is CarImage and form.vars.value.id is not null %}
-                <img src="/uploads/{{ form.vars.value.name }}" width="200" class="image-collection-item"/>
+                <a href="/uploads/{{ form.vars.value.name }}" rel="prettyPhoto[car]" title="{{ form.vars.value.name }}">
+                    <img src="{{ asset("/uploads/thumbnails/"~ form.vars.value.name) }}" width="200" class="image-collection-item img-thumbnail col-xs-2" />
+                </a>
             {% endif %}
             {{ form_widget(form) }}
         </div>

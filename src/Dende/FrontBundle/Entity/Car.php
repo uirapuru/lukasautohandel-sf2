@@ -2,8 +2,8 @@
 namespace Dende\FrontBundle\Entity;
 
 use Dende\FrontBundle\Entity\Translation\CarTranslation;
+use Dende\FrontBundle\Entity\Translation\TranslatedTrait;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
@@ -18,6 +18,8 @@ use Gedmo\Translatable\Translatable;
  */
 class Car implements Translatable
 {
+    use TranslatedTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -583,55 +585,5 @@ class Car implements Translatable
     public function removePrice(Price $price)
     {
         $this->prices->removeElement($price);
-    }
-
-    public function setTranslations(ArrayCollection $translations)
-    {
-        $this->translations = $translations;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getTranslations()
-    {
-        return $this->translations;
-    }
-
-    public function addTranslation(CarTranslation $translation)
-    {
-        if (!$this->translations->contains($translation)) {
-            $this->translations[] = $translation;
-            $translation->setObject($this);
-        }
-    }
-
-    /**
-     * @param Price $translation
-     */
-    public function removeTranslation(CarTranslation $translation)
-    {
-        $this->translations->removeElement($translation);
-    }
-
-    /**
-     * @param  string $field
-     * @param  string $lang
-     * @return string
-     */
-    public function getTranslated($field, $lang = 'pl')
-    {
-        $expr = Criteria::expr();
-        $criteria = Criteria::create();
-        $criteria->where($expr->andX(
-            $expr->eq("field", $field),
-            $expr->eq("locale", $lang)
-        ));
-        $collection = $this->getTranslations();
-        $translation = $collection->matching($criteria)->first();
-
-        if ($translation) {
-            return $translation->getContent();
-        }
     }
 }

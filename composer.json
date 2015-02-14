@@ -26,7 +26,8 @@
         "phing/phing": "~2.9",
         "jms/serializer-bundle": "0.13.*",
         "mockery/mockery": "0.9.*",
-        "a2lix/translation-form-bundle": "1.*@dev"
+        "a2lix/translation-form-bundle": "1.*@dev",
+        "imagine/imagine": "0.6.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

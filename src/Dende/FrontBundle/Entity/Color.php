@@ -1,6 +1,9 @@
 <?php
 namespace Dende\FrontBundle\Entity;
 
+use Dende\FrontBundle\Entity\Translation\ColorTranslation;
+use Dende\FrontBundle\Entity\Translation\TranslatedTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -11,6 +14,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Color
 {
+    use TranslatedTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -19,17 +24,26 @@ class Color
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=8, nullable=false)
-     * @var string $hex
-     */
-    protected $hex;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Gedmo\Translatable
      * @var string $name
      */
     protected $name;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="Dende\FrontBundle\Entity\Translation\ColorTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
+
     /**
      * @return mixed
      */
@@ -51,30 +65,24 @@ class Color
      */
     public function getName()
     {
-        return $this->name;
+        return $this->getTranslated("name", "pl");
     }
 
     /**
-     * @param string $name
+     * @param Price $translation
      */
-    public function setName($name)
+    public function removeTranslation(ColorTranslation $translation)
     {
-        $this->name = $name;
+        $this->translations->removeElement($translation);
     }
 
-    /**
-     * @return string
-     */
-    public function getHex()
+    public function getFullname()
     {
-        return $this->hex;
-    }
-
-    /**
-     * @param string $hex
-     */
-    public function setHex($hex)
-    {
-        $this->hex = $hex;
+        return sprintf(
+            "%s (en: %s, de: %s)",
+            $this->getTranslated("name", "pl"),
+            $this->getTranslated("name", "en"),
+            $this->getTranslated("name", "de")
+        );
     }
 }

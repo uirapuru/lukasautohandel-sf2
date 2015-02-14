@@ -17,23 +17,27 @@ class ColorType extends AbstractType
     {
         $builder
             ->add(
-                'name',
-                'text',
+                'translations',
+                "a2lix_translations_gedmo",
                 [
-                    "required" => true,
-                    "constraints" => [],
-                    "label" => 'car.form.label.add_color.name',
+                    'translatable_class' => 'FrontBundle:Color',
+                    'fields' => [
+                            'name' => [
+                                'label' => 'car.form.label.add_color.name',
+                            ],
+                        ],
+                    'label' => ' ',
                 ]
             )
-            ->add(
-                'hex',
-                'text',
-                [
-                    "required" => true,
-                    "constraints" => [],
-                    "label" => 'car.form.label.add_color.hex',
-                ]
-            )
+//            ->add(
+//                'name',
+//                'text',
+//                [
+//                    "required" => true,
+//                    "constraints" => [],
+//                    "label" => 'car.form.label.add_color.name',
+//                ]
+//            )
         ;
     }
 

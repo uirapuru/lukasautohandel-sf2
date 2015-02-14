@@ -33,13 +33,13 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
-        $this->assertCount(25, $form->filter('input, textarea, button, select'));
+        $this->assertCount(26, $form->filter('input, textarea, button, select'));
 
         $this->assertCount(4, $form->filter('textarea'));
         $this->assertCount(7, $form->filter('select'));
         $this->assertCount(1, $form->filter('button'));
-        $this->assertCount(13, $form->filter('input'));
-        $this->assertCount(8, $form->filter('input[type=text]'));
+        $this->assertCount(14, $form->filter('input'));
+        $this->assertCount(9, $form->filter('input[type=text]'));
         $this->assertCount(2, $form->filter('input[type=number]'));
         $this->assertCount(3, $form->filter('input[type=checkbox]'));
 
@@ -77,13 +77,13 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
-        $this->assertCount(45, $form->filter('input, textarea, button, select'));
+        $this->assertCount(46, $form->filter('input, textarea, button, select'));
 
         $this->assertCount(4, $form->filter('textarea'));
         $this->assertCount(11, $form->filter('select'));
         $this->assertCount(9, $form->filter('button'));
-        $this->assertCount(21, $form->filter('input'));
-        $this->assertCount(8, $form->filter('input[type=text]'));
+        $this->assertCount(22, $form->filter('input'));
+        $this->assertCount(9, $form->filter('input[type=text]'));
         $this->assertCount(6, $form->filter('input[type=number]'));
         $this->assertCount(3, $form->filter('input[type=checkbox]'));
         $this->assertCount($carEntity->getImages()->count(), $form->filter('input[type=file]'));
@@ -249,9 +249,11 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals("GET", $this->client->getRequest()->getMethod());
 
         $em->refresh($carEntity);
+        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage("title", "pl")->first();
+        $em->refresh($titleTranslationEntity);
 
         $this->assertNotNull($carEntity, "Car entity can't be found");
-        $this->assertEquals($carEntity->getTranslated("title", "pl"), $title, "Entity haven't been updated in db");
+        $this->assertEquals($title, $titleTranslationEntity->getContent(), "Entity haven't been updated in db");
         $this->assertCount(2, $carEntity->getImages());
         $this->assertCount(2, $carEntity->getPrices());
         $this->assertEquals($carEntity->getModel()->getName(), $newModelName, "Entity Model haven't been created in db");
@@ -436,8 +438,7 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[translations][pl][description]" => 'Some description',
             "dende_form_car[hidden]" => false,
             "dende_form_car[adminNotes]" => "notes",
-            "dende_form_car[add_color][name]" => $newColorName,
-            "dende_form_car[add_color][hex]" => "#ff00ff",
+            "dende_form_car[add_color][translations][pl][name]" => $newColorName,
         ]);
 
         $this->client->request($form->getMethod(), $form->getUri(), $form->getPhpValues(), []);
@@ -453,7 +454,6 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertNotNull($carEntity, "Car entity not found");
 
         $this->assertEquals($carEntity->getColor()->getName(), $newColorName, "Entity Model haven't been created in db");
-        $this->assertEquals($carEntity->getColor()->getHex(), "#ff00ff", "Entity Brand haven't been created in db");
     }
 
     /**
@@ -479,8 +479,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["add_color"]["name"] = $newColorName;
-        $values["dende_form_car"]["add_color"]["hex"] = "#ff00ff";
+        $values["dende_form_car"]["add_color"]["translations"]["pl"]["name"] = $newColorName;
 
         $this->client->request("POST", $url, $values, $form->getFiles());
 
@@ -490,7 +489,6 @@ class CarControllerTest extends BaseFunctionalTest
 
         $this->assertNotNull($carEntity, "Car entity can't be found");
         $this->assertEquals($carEntity->getColor()->getName(), $newColorName, "Entity Model haven't been created in db");
-        $this->assertEquals($carEntity->getColor()->getHex(), "#ff00ff", "Entity Brand haven't been created in db");
     }
 
     /**
@@ -637,8 +635,7 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[adminNotes]" => "notes",
             "dende_form_car[add_model][name]" => $model->getName(),
             "dende_form_car[add_model][brand]" => $brand->getName(),
-            "dende_form_car[add_color][name]" => $color->getName(),
-            "dende_form_car[add_color][hex]" => $color->getHex(),
+            "dende_form_car[add_color][translations][pl][name]" => $color->getName(),
             "dende_form_car[add_type][name]" => $type->getName(),
         ]);
 
@@ -718,8 +715,7 @@ class CarControllerTest extends BaseFunctionalTest
         $values["dende_form_car"]["translations"]["pl"]["title"] = $title;
         $values["dende_form_car"]["add_model"]["name"] = $model->getName();
         $values["dende_form_car"]["add_model"]["brand"] = $brand->getName();
-        $values["dende_form_car"]["add_color"]["name"] = $color->getName();
-        $values["dende_form_car"]["add_color"]["hex"] = $color->getHex();
+        $values["dende_form_car"]["add_color"]["translations"]["pl"]["name"] = $color->getName();
         $values["dende_form_car"]["add_type"]["name"] = $type->getName();
 
         $this->client->request($form->getMethod(), $form->getUri(), $values, []);
@@ -727,10 +723,14 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(200, $this->getStatusCode());
 
         $em = $this->container->get("doctrine.orm.entity_manager");
+
         /**
          * @var Car $carEntity
          */
         $em->refresh($carEntity);
+
+        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage("title", "pl")->first();
+        $em->refresh($titleTranslationEntity);
         $em->refresh($color);
         $em->refresh($type);
         $em->refresh($brand);
@@ -738,7 +738,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $this->assertNotNull($carEntity);
 
-        $this->assertEquals($title, $carEntity->getTranslated("title", "pl"));
+        $this->assertEquals($title, $titleTranslationEntity->getContent());
         $this->assertEquals($color->getId(), $carEntity->getColor()->getId());
         $this->assertEquals($type->getId(), $carEntity->getType()->getId());
         $this->assertEquals($brand->getId(), $carEntity->getModel()->getBrand()->getId());

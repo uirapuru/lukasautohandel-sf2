@@ -21,8 +21,7 @@ Feature: I can add cars using form
     When I click "a#add-new-car-color"
     Then I can't see "Kolor" row
     And I can see "Nowy kolor" row
-    And I fill in "dende_form_car_add_color_name" with "some color"
-    And I fill in "dende_form_car_add_color_hex" with "#ff0000"
+    And I fill in "dende_form_car_add_color_translations_pl_name" with "some color"
 
     When I click "a#add-new-car-color-close"
     Then I can't see "Nowy kolor" row
@@ -31,8 +30,7 @@ Feature: I can add cars using form
     When I click "a#add-new-car-color"
     Then I can't see "Kolor" row
     And I can see "Nowy kolor" row
-    And the "input#dende_form_car_add_color_name" element should contain ""
-    And the "input#dende_form_car_add_color_hex" element should contain ""
+    And the "input#dende_form_car_add_color_translations_pl_name" element should contain ""
 
   Scenario: I can add a new model and a brand of a car
     When I click "a#add-new-car-model"

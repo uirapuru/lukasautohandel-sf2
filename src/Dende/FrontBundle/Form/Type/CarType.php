@@ -96,12 +96,17 @@ class CarType extends AbstractType
                     "property" => "name",
                     'empty_value' => 'car.form.choice.empty_car_color',
                     'empty_data' => null,
+                    'property' => 'getFullName',
                     'required' => true,
                     'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) {
                             $form = $context->getRoot();
 
-                            if ($form["add_color"]["name"]->isEmpty() && $form["color"]->isEmpty()) {
+                            $translationEmpty = $form["add_color"]["translations"]["pl"]["name"]->isEmpty() ||
+                                $form["add_color"]["translations"]["en"]["name"]->isEmpty() ||
+                                $form["add_color"]["translations"]["de"]["name"]->isEmpty();
+
+                            if ($translationEmpty && $form["color"]->isEmpty()) {
                                 $context->buildViolation('validator.you_have_to_choose_car_color')
                                     ->atPath('color')
                                     ->addViolation();
@@ -261,6 +266,15 @@ class CarType extends AbstractType
                 "a2lix_translations_gedmo",
                 [
                     'translatable_class' => 'FrontBundle:Car',
+                    'fields' => [
+                        'title' => [
+                            'label' => 'car.form.label.title',
+                        ],
+                        'description' => [
+                            'label' => 'car.form.label.description',
+                        ],
+                    ],
+                    'label' => ' ',
                 ]
             )
             ->add(

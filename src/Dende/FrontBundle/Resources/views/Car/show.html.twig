@@ -80,7 +80,7 @@
             <h1>{{ "car_images_headline"|trans }}</h1>
             {% for image in entity.images %}
                 <a href="/uploads/{{ image.name }}" rel="prettyPhoto[car]" title="{{ entity.description }}">
-                    <img src="/uploads/{{ image.name }}" class="img-thumbnail col-xs-2" />
+                    <img src="{{ asset("/uploads/thumbnails/"~image.name) }}" class="img-thumbnail col-xs-2" />
                 </a>
             {% endfor %}
         </div>

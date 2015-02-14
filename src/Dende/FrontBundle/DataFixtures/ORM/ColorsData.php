@@ -24,47 +24,35 @@ class ColorsData extends BaseFixture
         $value = Yaml::parse(file_get_contents(__DIR__."/../Yaml/".$file));
 
         foreach ($value as $key => $params) {
-            $color = $this->insert($params);
-            $this->addReference($key, $color);
-            $this->manager->persist($color);
-            $this->manager->flush();
+            $color = new Color();
+            $colorTranslations = $this->prepareTranslations($params, $color);
 
-            $colorTranslations = $this->prepareTranslations($params, $color->getId());
+            $this->addReference($key, $color);
 
             foreach ($colorTranslations as $colorTranslation) {
+                $color->addTranslation($colorTranslation);
                 $this->manager->persist($colorTranslation);
             }
+
+            $this->manager->persist($color);
             $this->manager->flush();
         }
-    }
-
-    /**
-     * @param $params
-     * @return Car
-     */
-    public function insert($params)
-    {
-        $color = new Color();
-        $color->setHex($params["hex"]);
-
-        return $color;
     }
 
     /**
      * @param array   $params
      * @param integer $getId
      */
-    private function prepareTranslations($params, $getId)
+    private function prepareTranslations($params, Color $color)
     {
         $result = [];
 
         foreach ($params["name"] as $language => $value) {
             $carTranslation = new ColorTranslation();
+            $carTranslation->setObject($color);
             $carTranslation->setField("name");
             $carTranslation->setContent($value);
             $carTranslation->setLocale($language);
-            $carTranslation->setObjectClass("Dende\FrontBundle\Entity\Color");
-            $carTranslation->setForeignKey($getId);
             $result[] = $carTranslation;
         }
 

@@ -1,5 +1,6 @@
 imports:
     - { resource: forms.yml }
+    - { resource: menus.yml }
 
 services:
     dende.front.manager.car:
@@ -26,31 +27,13 @@ services:
     dende.front.factory.type:
         class: Dende\FrontBundle\Entity\Factory\TypeFactory
 
-    front_bundle.menu_builder:
-        class: Dende\FrontBundle\Menu\MenuBuilder
-        arguments:
-            - "@knp_menu.factory"
-
-    front_bundle.menu.lang:
-        class: Knp\Menu\MenuItem
-        factory_service: front_bundle.menu_builder
-        factory_method: createLangMenu
-        arguments: ["@request"]
-        scope: request
-        tags:
-            - { name: knp_menu.menu, alias: langMenu }
-
-    front_bundle.menu.main:
-        class: Knp\Menu\MenuItem
-        factory_service: front_bundle.menu_builder
-        factory_method: createMainMenu
-        arguments: ["@request"]
-        scope: request
-        tags:
-            - { name: knp_menu.menu, alias: mainMenu }
-
     front_bundle.locale_listener:
         class: Dende\FrontBundle\Service\Listener\LocaleListener
         arguments: ["%kernel.default_locale%"]
         tags:
             - { name: kernel.event_subscriber }
+
+    front_bundle.listener.generate_thumbnail:
+      class: Dende\FrontBundle\Event\Listener\GenerateThumbnailListener
+      tags:
+        - { name: doctrine.event_listener, event: uploadablePostFileProcess, method: onUploadPostFile }

@@ -1,29 +1,29 @@
 metalic:
-  hex:  "#dddddd"
   name:
-    en_US: metalic
-    pl_PL: metalic
+    en: metalic
+    pl: metalic
+    de: metalic
 
 silver:
-  hex:  "#eeeeee"
   name:
-    en_US: silver
-    pl_PL: srebrny
+    en: silver
+    pl: srebrny
+    de: silvernich
 
 red:
-  hex:  "#ff0000"
   name:
-    en_US: red
-    pl_PL: czerwony
+    en: red
+    pl: czerwony
+    de: redichs
 
 white:
-  hex:  "#ffffff"
   name:
-    en_US: white
-    pl_PL: biały
+    en: white
+    pl: biały
+    de: weiss
 
 black:
-  hex:  "#000000"
   name:
-    en_US: black
-    pl_PL: czarny
+    en: black
+    pl: czarny
+    de: shwartz
