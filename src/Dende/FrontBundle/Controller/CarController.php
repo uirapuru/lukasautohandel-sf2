@@ -222,7 +222,7 @@ class CarController extends Controller
         $em->flush();
 
         return $this->redirect(
-            $request->get("referer")
+            $request->headers->get("referer")
         );
     }
 }

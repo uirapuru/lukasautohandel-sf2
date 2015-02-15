@@ -19,7 +19,7 @@
             <exclude name="**/.gitkeep" />
         </fileset>
 
-        <delete>
+        <delete includeemptydirs="true">
             <fileset refid="deleteFiles" />
         </delete>
 
