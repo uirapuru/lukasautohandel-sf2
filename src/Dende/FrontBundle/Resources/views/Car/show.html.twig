@@ -5,8 +5,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="pull-right">
-                    <a href="{{ path('car') }}" class="btn btn-info">{{ "crud.action.back_to_list"|trans }}</a>
+                    <a href="{{ path('delete_car', {id: entity.id}) }}" onclick="return confirm('{{ 'crud.action.are_you_sure'|trans }}')" class="btn btn-danger">{{ "crud.action.delete"|trans }}</a>
                     <a href="{{ path('edit_car', {id: entity.id}) }}" class="btn btn-warning">{{ "crud.action.edit"|trans }}</a>
+                    <a href="{{ path('car') }}" class="btn btn-info">{{ "crud.action.back_to_list"|trans }}</a>
                 </div>
             </div>
         </div>
@@ -75,6 +76,7 @@
         </tbody>
     </table>
 
+    {% if entity.images|length > 0 %}
     <div class="container-fluid">
         <div class="row">
             <h1>{{ "car_images_headline"|trans }}</h1>
@@ -85,5 +87,6 @@
             {% endfor %}
         </div>
     </div>
+    {% endif %}
 
 {% endblock %}

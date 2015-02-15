@@ -211,12 +211,18 @@ class CarController extends Controller
     }
 
     /**
-     * @Route("/delete/{id}",name="delete_car")
+     * @Route("/{id}/delete",name="delete_car")
      * @ParamConverter("car", class="FrontBundle:Car")
      * @Method({"GET"})
      */
     public function deleteAction(Request $request, Car $car)
     {
-        $this->getDoctrine()->getEntityManager()->remove($car);
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($car);
+        $em->flush();
+
+        return $this->redirect(
+            $request->get("referer")
+        );
     }
 }

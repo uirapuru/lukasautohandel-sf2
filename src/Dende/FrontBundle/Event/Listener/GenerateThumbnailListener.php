@@ -21,6 +21,14 @@ class GenerateThumbnailListener
         $image = $args->getEntity();
         $defaultPath = $listener->getDefaultPath();
 
+        $this->processImage($image, $defaultPath);
+    }
+
+    public function processImage(Image $image, $defaultPath = '') {
+        if ($defaultPath == null) {
+           throw new \Exception("No default path");
+        }
+
         $imagine = new Imagine();
 
         $size = new Box(200, 200);

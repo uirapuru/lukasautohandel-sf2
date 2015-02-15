@@ -89,6 +89,7 @@ crud:
         edit: 'zmień'
         delete: 'skasuj'
         back_to_list: 'powrót do listy'
+        are_you_sure: 'Czy jesteś pewien?'
     header:
         title: 'tytuł'
         model: 'model'

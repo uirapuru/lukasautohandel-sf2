@@ -53,7 +53,7 @@
                                 <i class="glyphicon glyphicon-edit "></i>
                             </a>
 
-                            <a href="{{ path('delete_car', { 'id': entity.id }) }}" title="{{ "crud.action.delete"|trans }}" class="btn btn-danger btn-sm">
+                            <a href="{{ path('delete_car', { 'id': entity.id }) }}"  onclick="return confirm('{{ 'crud.action.are_you_sure'|trans }}')" title="{{ "crud.action.delete"|trans }}" class="btn btn-danger btn-sm">
                                 <i class="glyphicon glyphicon-remove"></i>
                             </a>
                         </span>

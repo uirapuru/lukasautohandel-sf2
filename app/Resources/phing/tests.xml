@@ -6,7 +6,23 @@
     </target>
 
     <target name="clear-build">
-        <delete dir="build"></delete>
+        <fileset dir="./" id="deleteFiles">
+            <include name="web/uploads/*" />
+            <include name="web/uploads/thumbnails/*" />
+            <include name="build" />
+            <include name="web/css/**" />
+            <include name="web/bundles/**" />
+            <include name="web/flags/**" />
+            <include name="web/fonts/**" />
+            <include name="web/images/**" />
+            <include name="web/js/**" />
+            <exclude name="**/.gitkeep" />
+        </fileset>
+
+        <delete>
+            <fileset refid="deleteFiles" />
+        </delete>
+
         <mkdir dir="build" />
         <mkdir dir="build/logs" />
         <mkdir dir="build/api" />
