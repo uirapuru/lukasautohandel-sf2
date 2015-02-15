@@ -32,7 +32,7 @@ class Mailer
     /**
      * @var array
      */
-    private $parameters = array();
+    private $parameters = [];
 
     /**
      * @return Swift_Message
@@ -155,7 +155,7 @@ class Mailer
     {
         if (strstr($method, "set") && method_exists($this->getMessage(), $method)) {
             return call_user_func_array(
-                array($this->getMessage(), $method),
+                [$this->getMessage(), $method],
                 $arguments
             );
         }

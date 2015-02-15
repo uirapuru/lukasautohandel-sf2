@@ -1,7 +1,6 @@
 <?php
 namespace Dende\FrontBundle\Features;
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;

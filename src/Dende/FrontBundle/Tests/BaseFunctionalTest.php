@@ -30,7 +30,7 @@ class BaseFunctionalTest extends WebTestCase
         $this->resetDb();
     }
 
-    protected function prepareClient(array $server = array())
+    protected function prepareClient(array $server = [])
     {
         $this->client = $this->container->get('test.client');
         $this->client->setServerParameters($server);
@@ -79,10 +79,10 @@ class BaseFunctionalTest extends WebTestCase
     protected function login()
     {
         $crawler = $this->client->request('GET', '/login');
-        $form = $crawler->selectButton('_submit')->form(array(
+        $form = $crawler->selectButton('_submit')->form([
             '_username'  => 'admin',
             '_password'  => 'admin',
-        ));
+        ]);
         $resp = $this->client->submit($form);
         $this->assertEquals(200, $this->getStatusCode());
     }

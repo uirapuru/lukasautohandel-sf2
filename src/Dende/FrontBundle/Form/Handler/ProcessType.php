@@ -1,7 +1,6 @@
 <?php
 namespace Dende\FrontBundle\Form\Handler;
 
-use Dende\FrontBundle\Entity\Car;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\Form;
 

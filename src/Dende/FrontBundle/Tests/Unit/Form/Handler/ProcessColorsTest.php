@@ -1,7 +1,6 @@
 <?php
 namespace Dende\FrontBundle\Tests\Unit\Form\Handler;
 
-use Dende\FrontBundle\Entity\Color;
 use Dende\FrontBundle\Form\Handler\ProcessColor;
 use Mockery as m;
 

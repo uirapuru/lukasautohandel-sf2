@@ -57,13 +57,13 @@ class PriceType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Dende\FrontBundle\Entity\Price',
             'csrf_protection' => false,
             'error_bubbling' => false,
             'attr' => [
                 'collection_type' => 'price',
             ],
-        ));
+        ]);
     }
 }

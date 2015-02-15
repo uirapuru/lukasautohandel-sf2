@@ -93,7 +93,6 @@ class CarType extends AbstractType
                 "entity",
                 [
                     "class" => "Dende\FrontBundle\Entity\Color",
-                    "property" => "name",
                     'empty_value' => 'car.form.choice.empty_car_color',
                     'empty_data' => null,
                     'property' => 'getFullName',
@@ -301,9 +300,9 @@ class CarType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Dende\FrontBundle\Entity\Car',
             'csrf_protection' => false,
-        ));
+        ]);
     }
 }

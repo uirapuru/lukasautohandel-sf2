@@ -32,26 +32,26 @@ class MenuBuilder extends ContainerAware
     {
         $menu = $this->factory->createItem('root');
 
-        $menu->setChildrenAttributes(array(
+        $menu->setChildrenAttributes([
             'class' => 'nav navbar-nav pull-right',
             'id' => 'langMenu',
-        ));
+        ]);
 
-        $menu->addChild('pl', array('route' => 'switch_language', 'routeParameters' => array('locale' => 'pl')))
+        $menu->addChild('pl', ['route' => 'switch_language', 'routeParameters' => ['locale' => 'pl']])
             ->setLinkAttribute("class", "flag-icon flag-icon-pl")
             ->setLabel('');
 
-        $menu->addChild('en', array('route' => 'switch_language', 'routeParameters' => array('locale' => 'en')))
+        $menu->addChild('en', ['route' => 'switch_language', 'routeParameters' => ['locale' => 'en']])
             ->setLinkAttribute("class", "flag-icon flag-icon-gb")
             ->setLabel('');
 
-        $menu->addChild('de', array('route' => 'switch_language', 'routeParameters' => array('locale' => 'de')))
+        $menu->addChild('de', ['route' => 'switch_language', 'routeParameters' => ['locale' => 'de']])
             ->setLinkAttribute("class", "flag-icon flag-icon-de")
             ->setLabel('');
 
         $locale = $request->getLocale();
 
-        if (in_array($locale, array("pl", "en", "de", "pt"))) {
+        if (in_array($locale, ["pl", "en", "de", "pt"])) {
             $menu->getChild($locale)->setCurrent(true);
         }
 
@@ -66,14 +66,14 @@ class MenuBuilder extends ContainerAware
             return $menu;
         }
 
-        $menu->setChildrenAttributes(array(
+        $menu->setChildrenAttributes([
             'class' => 'nav navbar-nav pull-left',
             'id' => 'mainMenu',
-        ));
+        ]);
 
-        $menu->addChild('menu.main.dashboard', array('route' => 'dashboard_index'));
-        $menu->addChild('menu.main.cars', array('route' => 'car'));
-        $menu->addChild('menu.main.logout', array('route' => 'fos_user_security_logout'));
+        $menu->addChild('menu.main.dashboard', ['route' => 'dashboard_index']);
+        $menu->addChild('menu.main.cars', ['route' => 'car']);
+        $menu->addChild('menu.main.logout', ['route' => 'fos_user_security_logout']);
 
         if (preg_match("@\/cars@ui", $request->getRequestUri())) {
             $menu->getChild('menu.main.cars')->setCurrent(true);

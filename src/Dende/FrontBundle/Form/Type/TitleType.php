@@ -54,9 +54,9 @@ class TitleType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Dende\FrontBundle\Entity\Translation\CarTranslation',
             'csrf_protection' => false,
-        ));
+        ]);
     }
 }

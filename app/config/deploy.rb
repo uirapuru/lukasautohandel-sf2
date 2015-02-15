@@ -1,20 +1,22 @@
-set :application, "portfolio"
-set :domain,      "uirapu.ru"
-set :deploy_to,   "/var/www/uirapu.ru/"
+set :application, "lukas"
+set :domain,      "uirapuru.vot.pl"
+set :deploy_to,   "/home/uirapuru/domains/lukasautohandel.de"
 set :app_path,    "app"
+set :php_bin, '/usr/local/php5.4/bin/php'
 
 set :user, "uirapuru"
 
 set :ssh_options, {
     :forward_agent => true,
     :auth_methods => ["publickey"],
+    :port => 59184
 }
 
 default_run_options[:pty] = true
 
-set :repository,  "git@github.com:uirapuru/portfolio.git"
+set :repository,  "git@github.com:uirapuru/lukasautohandel-sf2.git"
 set :scm,         :git
-set :branch, 	   "master"
+set :branch, 	   "develop"
 set :deploy_via,   :remote_cache
 set :copy_via, :scp
 
@@ -44,11 +46,11 @@ set  :keep_releases,  3
 set :use_sudo,  false
 
 # Be more verbose by uncommenting the following line
-# logger.level = Logger::MAX_LEVEL
+logger.level = Logger::MAX_LEVEL
 
 # Run migrations before warming the cache
 after "deploy:restart", "assets"
-after "deploy:restart", "deploy:cleanup"
+# after "deploy:restart", "deploy:cleanup"
 
 # Custom(ised) tasks
 
@@ -81,16 +83,7 @@ task :assets, :except => { :no_release => true }, :roles => :app do
 	upload("web/flags",		current_path + "/web/flags", opt)
     capifony_puts_ok
 
-end
-
-task :overwrite_with_dev_controller do
-	upload("web/app_dev.php", current_path + "/web/app.php", opt)
-end
-
-task :develop do
-	set :deploy_to,   "/var/www/dev.uirapu.ru/"
-	set :branch, 	   "master"
-	set :composer_options,  "--no-progress --no-interaction --no-ansi --prefer-dist --optimize-autoloader"
-	after "deploy:restart", "overwrite_with_dev_controller"
-	logger.level = Logger::MAX_LEVEL
+    capifony_pretty_print "--> Copying web/bundles"
+	upload("web/bundles",	current_path + "/web/bundles", opt)
+    capifony_puts_ok
 end

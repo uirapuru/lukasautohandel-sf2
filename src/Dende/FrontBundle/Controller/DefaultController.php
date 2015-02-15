@@ -39,10 +39,10 @@ class DefaultController extends Controller
                 );
 
                 $mailer = $this->get("mailer.contact");
-                $mailer->setParameters(array(
+                $mailer->setParameters([
                     "message" => $form->get("message")->getData(),
                     "email" => $form->get("email")->getData(),
-                ));
+                ]);
                 $mailer->setFrom(
                     $form->get("email")->getData()
                 );
@@ -50,9 +50,9 @@ class DefaultController extends Controller
             }
         }
 
-        return array(
+        return [
             "form" => $form->createView(),
-        );
+        ];
     }
 
     /**

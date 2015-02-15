@@ -67,9 +67,9 @@ class ModelType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Dende\FrontBundle\Entity\Model',
             'csrf_protection' => false,
-        ));
+        ]);
     }
 }

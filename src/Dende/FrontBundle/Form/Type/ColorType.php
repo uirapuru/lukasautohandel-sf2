@@ -48,9 +48,9 @@ class ColorType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Dende\FrontBundle\Entity\Color',
             'csrf_protection' => false,
-        ));
+        ]);
     }
 }

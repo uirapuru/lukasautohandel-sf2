@@ -18,38 +18,38 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('email', "email", array(
+                ->add('email', "email", [
                     "label" => "contact.form.labels.email",
                     "required" => true,
-                    "constraints" => array(
-                        new Email(array(
+                    "constraints" => [
+                        new Email([
                            "message" => "contact.wrong_email",
-                        )),
-                        new NotBlank(array(
+                        ]),
+                        new NotBlank([
                             "message" => "contact.empty_email",
-                        )),
-                    ),
+                        ]),
+                    ],
                     "error_bubbling" => true,
-                ))
-                ->add('message', "textarea", array(
+                ])
+                ->add('message', "textarea", [
                     "label" => "contact.form.labels.message",
                     "required" => true,
-                    "constraints" => array(
-                        new NotBlank(array(
+                    "constraints" => [
+                        new NotBlank([
                             "message" => 'contact.empty_message',
-                        )),
-                        new Length(array(
+                        ]),
+                        new Length([
                             "min" => 10,
                             "minMessage" => 'contact.too_short_message',
                             "max" => 1000,
                             "maxMessage" => 'contact.too_long_message',
-                        )),
-                    ),
+                        ]),
+                    ],
                     "error_bubbling" => true,
-                ))
-                ->add('submit', "submit", array(
+                ])
+                ->add('submit', "submit", [
                     "label" => 'contact.form.labels.submit',
-                ))
+                ])
         ;
     }
 

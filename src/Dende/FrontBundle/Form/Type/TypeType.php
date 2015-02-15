@@ -35,9 +35,9 @@ class TypeType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Dende\FrontBundle\Entity\Type',
             'csrf_protection' => false,
-        ));
+        ]);
     }
 }

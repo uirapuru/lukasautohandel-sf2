@@ -4,7 +4,6 @@ namespace Dende\FrontBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Image;
 
 class ImageType extends AbstractType
@@ -44,7 +43,7 @@ class ImageType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Dende\FrontBundle\Entity\Image',
             'csrf_protection' => false,
             'error_bubbling' => false,
@@ -52,6 +51,6 @@ class ImageType extends AbstractType
                 'collection_type' => 'image',
                 'class' => 'col-sm-10',
             ],
-        ));
+        ]);
     }
 }
