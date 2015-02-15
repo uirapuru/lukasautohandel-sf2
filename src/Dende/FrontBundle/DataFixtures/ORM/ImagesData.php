@@ -1,43 +1,38 @@
 <?php
-
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
-use Dende\FrontBundle\Entity\Project;
+use Dende\FrontBundle\Entity\Image;
+use Dende\FrontBundle\Event\Listener\GenerateThumbnailListener;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ProjectsData extends BaseFixture
+class ImagesData extends BaseFixture
 {
     public function getOrder()
     {
-        return 1;
+        return 20;
     }
 
     public function insert($params)
     {
-        $project = new Project();
+        $image = new Image();
+        $image->setHidden($params["hidden"]);
+        $image->setCar(
+            $this->getReference($params["car"])
+        );
 
-        $project->setName($params["name"]);
+        $name = md5(microtime()) . ".jpg";
 
-        if (isset($params["features"])) {
-            $project->setFeatures($params["features"]);
-        }
+        $destination = realpath(__DIR__."/../../../../../web/uploads/")."/";
 
-        if (isset($params["tags"])) {
-            $project->setTags($params["tags"]);
-        }
+        copy(realpath(__DIR__."/../../Resources/tests/test_image.jpg"), $destination.$name);
 
-        if (isset($params["pictures"])) {
-            $project->setPictures($params["pictures"]);
-        }
+        $image->setPath($name);
+        $image->setName($name);
 
-        if (isset($params["company"])) {
-            $project->setCompany($params["company"]);
-        }
+        $listener = new GenerateThumbnailListener();
+        $listener->processImage($image, $destination);
 
-        if (isset($params["description"])) {
-            $project->setDescription($params["description"]);
-        }
-
-        return $project;
+        return $image;
     }
 }

@@ -1,0 +1,14 @@
+euro:
+  symbol: €
+  type:   symbol.suffix
+  code:   EUR
+
+dollar:
+  symbol: $
+  type:   symbol.prefix
+  code:   USD
+
+pln:
+  symbol: PLN
+  type:   symbol.suffix
+  code:   PLN

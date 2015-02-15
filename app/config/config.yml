@@ -65,9 +65,9 @@ swiftmailer:
     port:                 465
     encryption:           ssl
     auth_mode:            ~
-    
+
     logging:        true
-    
+
 #    spool:
 #        type: file
 #        path: "%kernel.root_dir%/spool"
@@ -80,10 +80,16 @@ knp_menu:
 
 stof_doctrine_extensions:
   default_locale: en_US
+  uploadable:
+    default_file_path:       %kernel.root_dir%/../web/uploads
+    mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
+    default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
+
   orm:
     default:
-      timestampable: true
-      sluggable: true
+      timestampable:    true
+      sluggable:        true
+      uploadable:       true
 
 front:
     links:
@@ -93,3 +99,27 @@ front:
         goldenline:     ~
         github:         ~
         youtube:        ~
+
+a2lix_translation_form:
+    locales: [pl, en, de]
+    default_required: true      # [2]
+    manager_registry: doctrine      # [3]
+    templating: "A2lixTranslationFormBundle::default.html.twig"      # [4]
+
+services:
+    # Doctrine Extension listeners to handle behaviors
+    gedmo.listener.translatable:
+        class: Gedmo\Translatable\TranslatableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]
+            - [ setDefaultLocale, [ pl ] ]
+            - [ setTranslationFallback, [ true ] ]
+
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]

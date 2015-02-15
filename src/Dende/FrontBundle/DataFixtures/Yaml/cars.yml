@@ -1,11 +1,563 @@
-remove_assetic:
-  titleEn: "Get rid of assetic from Symfony2"
-  titlePl: "Jak się pozbyć assetica z Symfony2"
-  templatePl: "remove_assetic_pl.html.twig"
-  templateEn: "remove_assetic_en.html.twig"
+car_001:
+  type: sedan
+  model: golf
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: true
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+    de: "Niemieckie auto description"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
 
-dynamic_database:
-  titleEn: "Dynamic databases with Symfony2 and Doctrine"
-  titlePl: "Dynamiczne bazy danych z Symfony2 i Doctrine"
-  templatePl: "dynamic_databases_pl.html.twig"
-  templateEn: "dynamic_databases_en.html.twig"
+car_002:
+  type: combi
+  model: audi
+  color: silver
+  year: 2001
+  distance: 80000
+  fuel: petrol
+  engine: petrol
+  gearbox: semi
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+    de: "Niemieckie auto dwa"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_003:
+  type: sedan
+  model: colt
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: false
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_004:
+  type: coupe
+  model: passat
+  color: black
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_005:
+  type: sedan
+  model: r6
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: true
+  promoteFrontpage: false
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_006:
+  type: sedan
+  model: golf
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: true
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_007:
+  type: combi
+  model: audi
+  color: silver
+  year: 2001
+  distance: 80000
+  fuel: petrol
+  engine: petrol
+  gearbox: semi
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_008:
+  type: sedan
+  model: colt
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: false
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_009:
+  type: coupe
+  model: passat
+  color: black
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_010:
+  type: sedan
+  model: r6
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: true
+  promoteFrontpage: false
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+
+car_011:
+  type: coupe
+  model: passat
+  color: black
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+car_012:
+  type: combi
+  model: audi
+  color: silver
+  year: 2001
+  distance: 80000
+  fuel: petrol
+  engine: petrol
+  gearbox: semi
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_013:
+  type: sedan
+  model: colt
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: false
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_014:
+  type: coupe
+  model: passat
+  color: black
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_015:
+  type: sedan
+  model: r6
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: true
+  promoteFrontpage: false
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_016:
+  type: sedan
+  model: golf
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: true
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_017:
+  type: combi
+  model: audi
+  color: silver
+  year: 2001
+  distance: 80000
+  fuel: petrol
+  engine: petrol
+  gearbox: semi
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: true
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_018:
+  type: sedan
+  model: colt
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: false
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+
+
+car_019:
+  type: coupe
+  model: passat
+  color: black
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: false
+  promoteFrontpage: false
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false
+
+car_020:
+  type: sedan
+  model: r6
+  color: red
+  year: 1999
+  distance: 40000
+  fuel: diesel
+  engine: diesel
+  gearbox: manual
+  registrationCountry: poland
+  image: image_001
+  images:
+    - image_001
+    - image_002
+    - image_003
+  promoteCarousel: true
+  promoteFrontpage: false
+  title:
+    pl: "Samochód testowy"
+    en: "Test car"
+    de: "De test car"
+  description:
+    pl: "Opis samochodu testowego"
+    en: "Description of the test car"
+  adminNotes: |
+    Jakaś notatka adminstratora z uwagami apropos auta
+  hidden: false

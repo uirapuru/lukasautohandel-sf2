@@ -1,0 +1,27 @@
+{{ form_row(form.translations) }}
+
+{{ form_row(form.type, {attr: {id: "car_type_row"}}) }}
+{{ form_row(form.add_type, {attr: {id: "car_add_type_row"}}) }}
+
+{{ form_row(form.model, {attr: {id: "car_model_row"}}) }}
+{{ form_row(form.add_model, {attr: {id: "car_add_model_row"}}) }}
+
+{{ form_row(form.color, {attr: {id: "car_color_row"}}) }}
+{{ form_row(form.add_color, {attr: {id: "car_add_color_row"}}) }}
+
+{{ form_row(form.year) }}
+{{ form_row(form.distance) }}
+{{ form_row(form.engine) }}
+{{ form_row(form.fuel) }}
+{{ form_row(form.gearbox) }}
+{{ form_row(form.registrationCountry) }}
+{{ form_row(form.hidden) }}
+{{ form_row(form.promoteCarousel) }}
+{{ form_row(form.promoteFrontpage) }}
+{{ form_row(form.adminNotes) }}
+{{ form_row(form.images) }}
+{{ form_row(form.prices, {attr: {class: "inline"}}) }}
+
+<button class="btn btn-large btn-info">{{ "car.form.label.submit"|trans }}</button>
+
+{{ form_end(form) }}

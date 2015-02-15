@@ -1,31 +1,105 @@
-contact.thank_you_message: 'Thank you! Your message was succesfuly sent and will be answered as soon as possible'
-contact.form.header: 'Write your message'
-contact.form.labels.email: 'E-mail address'
-contact.form.labels.message: 'Message body'
-contact.form.labels.submit: Send
-contact.form.required_field: 'field is required'
-common.successful: Success!
-common.there_were_errors: 'There were errors'
-menu.main.blog: Blog
-menu.main.cv: CV
-menu.main.projects: Projects
-menu.main.contact: Contact
-work_experience: 'Work Experience'
-read_more: 'show more'
-running_own_business: 'Running own business'
-education: Education
-free_time_activities: Hobby
-language.english: english
-proficiency.english: intermediate (B2/B1 in CEF)
-language.portuguese: portuguese (brazilian version)
-proficiency.portuguese: elementary (A2/A1 in CEF)
-foreign_languages: Foreign languages
-duration.years: "{0}|{1} %count% year|[2,Inf] %count% years"
-duration.months: "{0}|{1} %count% month|[2,Inf] %count% months"
-duration.and: "and"
-duration.from: from
-duration.till: till
-duration.till_now: now
-position.in: in
-footer.download.pdf: Download in PDF format
-skills: skills
+car.form.label.type:                                    "Typ"
+car.form.label.model:                                   "Model"
+car.form.label.color:                                   "Kolor"
+car.form.label.year:                                    "Rok produkcji"
+car.form.label.distance:                                "Przejechany dystans"
+car.form.label.engine:                                  "Typ silnika"
+car.form.label.fuel:                                    "Rodzaj paliwa"
+car.form.label.gearbox:                                 "Typ skrzyni biegów"
+car.form.label.registrationCountry:                     "Kraj rejestracji"
+car.form.label.promoteCarousel:                         "Promuj zdjęcie na głównej"
+car.form.label.promoteFrontpage:                        "Promuj na głównej"
+car.form.label.title:                                   "Nazwa"
+car.form.label.description:                             "Opis"
+car.form.label.adminNotes:                              "Notatki administratora (niewidoczne dla użytkowników)"
+car.form.label.hidden:                                  "Ukryj całkowicie samochód z systemu"
+car.form.label.images:                                  "Zdjęcia"
+car.form.label.prices:                                  "Dostępne ceny i waluty"
+car.form.label.submit:                                  "Zapisz"
+car.form.label.created:                                 "Utworzony"
+car.form.label.modified:                                "Zmieniono"
+
+
+
+car.form.label.add_type:                                "Nowy typ"
+car.form.label.add_type.name:                           "Nazwa"
+
+car.form.label.add_color:                               "Nowy kolor"
+car.form.label.add_color.name:                          "Nazwa"
+car.form.label.add_color.hex:                           "Hex"
+
+car.form.label.add_model:                               "Nowy model"
+car.form.label.add_model.name:                          "Nazwa"
+car.form.label.add_model.brand:                         "Marka"
+
+car.form.label.amount:                                  "Kwota"
+car.form.label.currency:                                "Waluta"
+
+car.form.choice.empty_car_type:                         "wybierz typ"
+car.form.choice.empty_car_model:                        "wybierz model"
+car.form.choice.empty_car_color:                        "wybierz kolor"
+car.form.choice.empty_car_engine_type:                  "wybierz typ silnika"
+car.form.choice.empty_car_fuel_type:                    "wybierz typ paliwa"
+car.form.choice.empty_car_gearbox_type:                 "wybierz typ skrzyni biegów"
+car.form.choice.empty_car_registration_country:         "wybierz kraj rejestracji pojazdu"
+
+car.form.add_item:                                      "Dodaj"
+car.form.remove_item:                                   "Usuń"
+
+click_here_to_add_new_car_type: 'kliknij, aby dodać nowy typ samochodu'
+click_here_to_add_new_car_model: 'kliknij, aby dodać nowy model samochodu'
+click_here_to_add_new_car_color: 'kliknij, aby dodać nowy kolor samochodu'
+toggle_widgets_close: 'zamknij'
+
+flash.car_edit.errors:  "Formularz zawiera błędy"
+flash.car_edit.success: "Formularz zapisano z powodzeniem!"
+
+validator.you_have_to_choose_car_type: "Musisz wybrać typ samochodu"
+validator.you_have_to_choose_car_model: "Musisz wybrać model samochodu"
+validator.you_have_to_choose_car_color: "Musisz wybrać kolor samochodu"
+validator.you_have_to_enter_production_year: "Musisz wybrać rok produkcji"
+validator.you_have_to_enter_distance: "Musisz podać przejechany dystans"
+validator.you_have_to_choose_car_engine_type: "Musisz wybrać typ silnika"
+validator.you_have_to_choose_car_fuel_type: "Musisz wybrać rodzaj paliwa"
+validator.you_have_to_choose_car_gearbox_type: "Musisz wybrać typ skrzyni biegów"
+validator.you_have_to_choose_car_registration_country: "Musisz wybrać kraj rejestracji"
+validator.title_cannot_be_empty: "Tytuł nie może być pusty"
+validator.description_cannot_be_empty: "Opis nie może być pusty"
+
+country.poland: "Polska"
+country.germany: "Niemcy"
+
+transmission.automatic: "Automatyczna"
+transmission.manual: "Manualna"
+transmission.semiautomatic: "Półautomat"
+
+fuel.lpg: "LPG"
+fuel.biodiesel: "Biodiesel"
+fuel.diesel: "Diesel"
+fuel.petrol: "Benzyna"
+
+engine.diesel: "Diesel"
+engine.petrol: "Benzyna"
+
+
+crud:
+    action:
+        add: "Dodaj nowy samochód"
+        show: 'pokaż'
+        edit: 'zmień'
+        delete: 'skasuj'
+        back_to_list: 'powrót do listy'
+    header:
+        title: 'tytuł'
+        model: 'model'
+        promote_carousel: 'promój zdjęcie'
+        promote_frontpage: 'na głównej'
+        hidden: 'ukryty'
+        created_at: 'stworzony'
+        modified_at: 'zmieniony'
+        actions: 'akcje'
+
+menu:
+    main:
+        dashboard: "Pulpit"
+        cars:      "Samochody"

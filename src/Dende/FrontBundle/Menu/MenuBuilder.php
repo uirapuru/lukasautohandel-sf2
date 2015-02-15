@@ -26,7 +26,7 @@ class MenuBuilder extends ContainerAware
         $menu = $this->factory->createItem('root');
 
         $menu->setChildrenAttributes(array(
-            'class' => 'nav nav-pills pull-right',
+            'class' => 'nav navbar-nav pull-right',
             'id' => 'langMenu',
         ));
 
@@ -38,6 +38,10 @@ class MenuBuilder extends ContainerAware
             ->setLinkAttribute("class", "flag-icon flag-icon-gb")
             ->setLabel('');
 
+        $menu->addChild('de', array('route' => 'switch_language', 'routeParameters' => array('locale' => 'de')))
+            ->setLinkAttribute("class", "flag-icon flag-icon-de")
+            ->setLabel('');
+
         $locale = $request->getLocale();
 
         if (in_array($locale, array("pl", "en", "de", "pt"))) {
@@ -47,19 +51,21 @@ class MenuBuilder extends ContainerAware
         return $menu;
     }
 
-    public function createMainMenu()
+    public function createMainMenu(Request $request)
     {
         $menu = $this->factory->createItem('root');
 
         $menu->setChildrenAttributes(array(
-            'class' => 'nav nav-pills pull-left',
+            'class' => 'nav navbar-nav pull-left',
             'id' => 'mainMenu',
         ));
 
-        $menu->addChild('menu.main.blog', array('route' => 'blog'));
-        $menu->addChild('menu.main.cv', array('route' => 'cv'));
-        $menu->addChild('menu.main.projects', array('route' => 'projects'));
-        $menu->addChild('menu.main.contact', array('route' => 'contact'));
+        $menu->addChild('menu.main.dashboard', array('route' => 'dashboard_index'));
+        $menu->addChild('menu.main.cars', array('route' => 'car'));
+
+        if (preg_match("@\/cars@ui", $request->getRequestUri())) {
+            $menu->getChild('menu.main.cars')->setCurrent(true);
+        }
 
         return $menu;
     }

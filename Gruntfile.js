@@ -1,7 +1,7 @@
 
 module.exports = function (grunt) {
-    require('time-grunt')(grunt);
-    require('quiet-grunt');
+    //require('time-grunt')(grunt);
+    //require('quiet-grunt');
 
     var cssVendors = [
         'bower_components/bootstrap/dist/css/bootstrap.css',
@@ -16,13 +16,18 @@ module.exports = function (grunt) {
 
     var jsVendors = [
         'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/jquery-migrate/jquery-migrate.js',
+        'bower_components/prettyPhoto/js/jquery.prettyPhoto.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'bower_components/modernizr/modernizr.js',
-        'bower_components/prettyPhoto/js/jquery.prettyPhoto.js',
+        'bower_components/underscore/underscore.js',
     ];
 
     var coffeeFiles = [
-        'src/Dende/FrontBundle/Resources/coffee/main.coffee'
+        'src/Dende/FrontBundle/Resources/coffee/addImagePlugin.coffee',
+        'src/Dende/FrontBundle/Resources/coffee/toggleWidgets.coffee',
+        'src/Dende/FrontBundle/Resources/coffee/updatePriceSelect.coffee',
+        'src/Dende/FrontBundle/Resources/coffee/main.coffee',
     ];
 
     grunt.initConfig({
@@ -120,6 +125,15 @@ module.exports = function (grunt) {
                 ],
                 dest: "./web/images"
             },
+            prettyPhotoImages: {
+                expand: true,
+                flatten: false,
+                cwd: './bower_components/prettyPhoto/images/prettyPhoto/default',
+                src: [
+                    '*',
+                ],
+                dest: "./web/images/prettyPhoto/default"
+            },
             flags: {
                 expand: true,
                 flatten: false,
@@ -143,11 +157,12 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('development', [
-        "clean:build",
-        "clean:web",
+        //"clean:build",
+        //"clean:web",
         "css:development",
         "js:development",
         "copy:images",
+        "copy:prettyPhotoImages",
         "copy:fonts",
         "copy:flags",
     ]);

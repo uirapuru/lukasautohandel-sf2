@@ -6,22 +6,52 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{% block title %}{% endblock %}</title>
+        <title>LukasAutohandel.de {% block title %}{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {% block stylesheets %}
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-            <link rel="stylesheet" type="text/css" href="{{ asset('css/vendors.css') }}"/>
-            <link rel="stylesheet" type="text/css" href="{{ asset('css/project.css') }}"/>
+
+            <link rel="stylesheet" type="text/css" href="{% if app.environment == 'prod' %}{{ asset('css/vendors.min.css') }}{% else %}{{ asset('css/vendors.css') }}{% endif %}"/>
+            <link rel="stylesheet" type="text/css" href="{% if app.environment == 'prod' %}{{ asset('css/project.min.css') }}{% else %}{{ asset('css/project.css') }}{% endif %}"/>
         {% endblock %}
     </head>
     <body>
-    {% block body %}{% endblock %}
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ path("dashboard_index") }}">
+                        <img alt="Lukas Autohandel" src="">
+                    </a>
+                </div>
+
+                {{ knp_menu_render('mainMenu', {
+                    'template': '::navigation.html.twig',
+                    'currentAsLink' : true,
+                    'depth' : 1,
+                    'currentClass' : 'active',
+                }) }}
+
+                {{ knp_menu_render('langMenu', {
+                    'template': '::navigation.html.twig',
+                    'currentAsLink' : true,
+                    'depth' : 1,
+                    'currentClass' : 'active',
+                }) }}
+
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+
     {% block javascripts %}
-        <script src="{{ asset('js/vendors.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('js/project.js') }}" type="text/javascript"></script>
-        {% include '::analytics.html.twig' %}
+        <script src="{% if app.environment == 'prod' %}{{ asset('js/vendors.min.js') }}{% else %}{{ asset('js/vendors.js') }}{% endif %}" type="text/javascript"></script>
+        <script src="{% if app.environment == 'prod' %}{{ asset('js/project.min.js') }}{% else %}{{ asset('js/project.js') }}{% endif %}" type="text/javascript"></script>
+        {#{% include '::analytics.html.twig' %}#}
     {% endblock javascripts %}
 </body>
 </html>

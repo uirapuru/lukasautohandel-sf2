@@ -1,0 +1,29 @@
+metalic:
+  name:
+    en: metalic
+    pl: metalic
+    de: metalic
+
+silver:
+  name:
+    en: silver
+    pl: srebrny
+    de: silvernich
+
+red:
+  name:
+    en: red
+    pl: czerwony
+    de: redichs
+
+white:
+  name:
+    en: white
+    pl: biały
+    de: weiss
+
+black:
+  name:
+    en: black
+    pl: czarny
+    de: shwartz

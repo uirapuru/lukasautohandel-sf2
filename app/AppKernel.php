@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new Dende\FrontBundle\FrontBundle(),
             new Dende\MailerBundle\MailerBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

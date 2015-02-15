@@ -9,7 +9,7 @@
             </not>
             <then>
                 <echo>Setting to default environment (dev) because you didn't use -Denv parameter</echo>
-                <property name="env" value="dev" />
+                <property name="env" value="test" />
             </then>
         </if>
 

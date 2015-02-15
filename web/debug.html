@@ -1,0 +1,162 @@
+PHPUnit 4.5.0 by Sebastian Bergmann and contributors.
+
+Configuration read from /var/www/lukasautohandel-sf2/app/phpunit.xml
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pl"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>LukasAutohandel.de </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+                    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+            <link rel="stylesheet" type="text/css" href="/css/vendors.css"/>
+            <link rel="stylesheet" type="text/css" href="/css/project.css"/>
+            </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/dashboard/">
+                        <img alt="Lukas Autohandel" src="">
+                    </a>
+                </div>
+
+                        <ul class="nav navbar-nav pull-left" id="mainMenu">
+            
+                <li class="first">        <a href="/dashboard/">menu.main.dashboard</a>        
+    </li>
+
+    
+                <li class="active last">        <a href="/cars/">menu.main.cars</a>        
+    </li>
+
+
+    </ul>
+
+
+                        <ul class="nav navbar-nav pull-right" id="langMenu">
+            
+                <li class="active first">        <a href="/language" class="flag-icon flag-icon-pl"></a>        
+    </li>
+
+    
+                <li>        <a href="/language/en" class="flag-icon flag-icon-gb"></a>        
+    </li>
+
+    
+                <li class="last">        <a href="/language/de" class="flag-icon flag-icon-de"></a>        
+    </li>
+
+
+    </ul>
+
+
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                        <div class="alert alert-success flash-notice">
+        flash.car_add.success
+    </div>
+
+
+    <form name="dende_form_car" method="post" action="http://lukas.local/cars/edit/21" id="editCar" novalidate="novalidate" data-image-prototype="    &amp;lt;li&amp;gt;
+        &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+                        &amp;lt;div id=&amp;quot;dende_form_car_images___image_name__&amp;quot; collection_type=&amp;quot;image&amp;quot; class=&amp;quot;col-sm-10&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+    &amp;lt;input type=&amp;quot;file&amp;quot; id=&amp;quot;dende_form_car_images___image_name___file&amp;quot; name=&amp;quot;dende_form_car[images][__image_name__][file]&amp;quot; required=&amp;quot;required&amp;quot; /&amp;gt;
+    
+        &amp;lt;a class=&amp;quot;item_remove btn btn-info pull-right&amp;quot; href=&amp;quot;javascript:;&amp;quot;&amp;gt;car.form.remove_item&amp;lt;/a&amp;gt;
+
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/li&amp;gt;
+" data-price-prototype="    &amp;lt;li&amp;gt;
+        &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt;
+            &amp;lt;div id=&amp;quot;dende_form_car_prices___price_name__&amp;quot; collection_type=&amp;quot;price&amp;quot; class=&amp;quot;input-group col-sm-10&amp;quot;&amp;gt;                &amp;lt;input type=&amp;quot;number&amp;quot; id=&amp;quot;dende_form_car_prices___price_name___amount&amp;quot; name=&amp;quot;dende_form_car[prices][__price_name__][amount]&amp;quot; required=&amp;quot;required&amp;quot; class=&amp;quot;col-sm-10 form-control&amp;quot; /&amp;gt;
+&amp;lt;div class=&amp;quot;input-group-btn&amp;quot;&amp;gt;
+    &amp;lt;button class=&amp;quot;currencySymbol btn btn-default disabled&amp;quot; type=&amp;quot;button&amp;quot;&amp;gt;
+                                €
+            &amp;lt;/button&amp;gt;
+    &amp;lt;button aria-expanded=&amp;quot;false&amp;quot; data-toggle=&amp;quot;dropdown&amp;quot; class=&amp;quot;btn btn-default dropdown-toggle&amp;quot; type=&amp;quot;button&amp;quot;&amp;gt;
+        &amp;lt;span class=&amp;quot;caret&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;/button&amp;gt;
+    &amp;lt;ul role=&amp;quot;menu&amp;quot; class=&amp;quot;dropdown-menu dropdown-menu-right&amp;quot;&amp;gt;
+                                &amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;changeCurrencyLink&amp;quot; href=&amp;quot;javascript:;&amp;quot; data-symbol=&amp;quot;€&amp;quot; data-code=&amp;quot;EUR&amp;quot; data-id=&amp;quot;1&amp;quot;&amp;gt;EUR&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+                                &amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;changeCurrencyLink&amp;quot; href=&amp;quot;javascript:;&amp;quot; data-symbol=&amp;quot;$&amp;quot; data-code=&amp;quot;USD&amp;quot; data-id=&amp;quot;2&amp;quot;&amp;gt;USD&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+                                &amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;changeCurrencyLink&amp;quot; href=&amp;quot;javascript:;&amp;quot; data-symbol=&amp;quot;PLN&amp;quot; data-code=&amp;quot;PLN&amp;quot; data-id=&amp;quot;3&amp;quot;&amp;gt;PLN&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+            &amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+
+    &amp;lt;a class=&amp;quot;item_remove btn btn-info pull-right&amp;quot; href=&amp;quot;javascript:;&amp;quot;&amp;gt;car.form.remove_item&amp;lt;/a&amp;gt;
+
+
+&amp;lt;select id=&amp;quot;dende_form_car_prices___price_name___currency&amp;quot; name=&amp;quot;dende_form_car[prices][__price_name__][currency]&amp;quot; class=&amp;quot;hidden form-control&amp;quot;&amp;gt;&amp;lt;option value=&amp;quot;1&amp;quot;&amp;gt;€&amp;lt;/option&amp;gt;&amp;lt;option value=&amp;quot;2&amp;quot;&amp;gt;$&amp;lt;/option&amp;gt;&amp;lt;option value=&amp;quot;3&amp;quot;&amp;gt;PLN&amp;lt;/option&amp;gt;&amp;lt;/select&amp;gt;
+&amp;lt;/div&amp;gt;
+            
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/li&amp;gt;
+" class="form-horizontal" enctype="multipart/form-data">
+
+    <div class="form-group"><label class="col-sm-2 control-label required"></label><div class="col-sm-10"><div class="a2lix_translations tabbable"><ul class="a2lix_translationsLocales nav nav-tabs"><li class="active"><a href="javascript:void(0)" data-toggle="tab" data-target=".a2lix_translationsFields-pl">
+                   Pl
+                </a></li><li ><a href="javascript:void(0)" data-toggle="tab" data-target=".a2lix_translationsFields-en">
+                   En
+                </a></li><li ><a href="javascript:void(0)" data-toggle="tab" data-target=".a2lix_translationsFields-de">
+                   De
+                </a></li></ul><div class="a2lix_translationsFields tab-content"><div class="a2lix_translationsFields-pl tab-pane active"><div id="dende_form_car_translations_pl"><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_translations_pl_title">car.form.label.title</label><div class="col-sm-10"><input type="text" id="dende_form_car_translations_pl_title" name="dende_form_car[translations][pl][title]" required="required" maxlength="4096" class="form-control" value="0f150ec703c0ef5c4129fffb2e47f244" /></div></div><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_translations_pl_description">car.form.label.description</label><div class="col-sm-10"><textarea id="dende_form_car_translations_pl_description" name="dende_form_car[translations][pl][description]" required="required" class="form-control">Some description</textarea></div></div></div></div><div class="a2lix_translationsFields-en tab-pane "><div id="dende_form_car_translations_en"><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_translations_en_title">car.form.label.title</label><div class="col-sm-10"><input type="text" id="dende_form_car_translations_en_title" name="dende_form_car[translations][en][title]" required="required" maxlength="4096" class="form-control" /></div></div><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_translations_en_description">car.form.label.description</label><div class="col-sm-10"><textarea id="dende_form_car_translations_en_description" name="dende_form_car[translations][en][description]" required="required" class="form-control"></textarea></div></div></div></div><div class="a2lix_translationsFields-de tab-pane "><div id="dende_form_car_translations_de"><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_translations_de_title">car.form.label.title</label><div class="col-sm-10"><input type="text" id="dende_form_car_translations_de_title" name="dende_form_car[translations][de][title]" required="required" maxlength="4096" class="form-control" /></div></div><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_translations_de_description">car.form.label.description</label><div class="col-sm-10"><textarea id="dende_form_car_translations_de_description" name="dende_form_car[translations][de][description]" required="required" class="form-control"></textarea></div></div></div></div></div></div></div></div>
+
+    <div id="car_type_row" class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_type">car.form.label.type</label><div class="col-sm-10"><select id="dende_form_car_type" name="dende_form_car[type]" required="required" id="car_type_row" class="form-control"><option value="">car.form.choice.empty_car_type</option><option value="1" selected="selected">Sedan</option><option value="2">Coupe</option><option value="3">Hatchback</option><option value="4">Combi</option></select><a href="#" class="pull-right" id="add-new-car-type">click_here_to_add_new_car_type</a></div></div>
+<div id="car_add_type_row" class="form-group"><label class="col-sm-2 control-label required">car.form.label.add_type</label><div class="col-sm-10"><div id="dende_form_car_add_type" id="car_add_type_row"><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_add_type_name">car.form.label.add_type.name</label><div class="col-sm-10"><input type="text" id="dende_form_car_add_type_name" name="dende_form_car[add_type][name]" required="required" class="form-control" /></div></div></div><a href="#" class="pull-right" id="add-new-car-type-close">toggle_widgets_close</a></div></div>
+
+    <div id="car_model_row" class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_model">car.form.label.model</label><div class="col-sm-10"><select id="dende_form_car_model" name="dende_form_car[model]" required="required" id="car_model_row" class="form-control"><option value="">car.form.choice.empty_car_model</option><option value="1" selected="selected">Golf / VolksWagen</option><option value="2">Passat / VolksWagen</option><option value="3">Colt / VolksWagen</option><option value="4">A3 / Audi</option><option value="5">A4 / Audi</option><option value="6">R6 / Audi</option></select><a href="#" class="pull-right" id="add-new-car-model">click_here_to_add_new_car_model</a></div></div>
+<div id="car_add_model_row" class="form-group"><label class="col-sm-2 control-label required">car.form.label.add_model</label><div class="col-sm-10"><div id="dende_form_car_add_model" id="car_add_model_row"><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_add_model_name">car.form.label.add_model.name</label><div class="col-sm-10"><input type="text" id="dende_form_car_add_model_name" name="dende_form_car[add_model][name]" required="required" class="form-control" /></div></div><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_add_model_brand">car.form.label.add_model.brand</label><div class="col-sm-10"><input type="text" id="dende_form_car_add_model_brand" name="dende_form_car[add_model][brand]" required="required" class="form-control" /></div></div></div><a href="#" class="pull-right" id="add-new-car-model-close">toggle_widgets_close</a></div></div>
+
+    <div id="car_color_row" class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_color">car.form.label.color</label><div class="col-sm-10"><select id="dende_form_car_color" name="dende_form_car[color]" required="required" id="car_color_row" class="form-control"><option value="">car.form.choice.empty_car_color</option><option value="1" selected="selected">metalic (en: metalic, de: metalic)</option><option value="2">srebrny (en: silver, de: silvernich)</option><option value="3">czerwony (en: red, de: redichs)</option><option value="4">biały (en: white, de: weiss)</option><option value="5">czarny (en: black, de: shwartz)</option></select><a href="#" class="pull-right" id="add-new-car-color">click_here_to_add_new_car_color</a></div></div>
+<div id="car_add_color_row" class="form-group"><label class="col-sm-2 control-label required">car.form.label.add_color</label><div class="col-sm-10"><div id="dende_form_car_add_color" id="car_add_color_row"><div class="form-group"><label class="col-sm-2 control-label required"></label><div class="col-sm-10"><div class="a2lix_translations tabbable"><ul class="a2lix_translationsLocales nav nav-tabs"><li class="active"><a href="javascript:void(0)" data-toggle="tab" data-target=".a2lix_translationsFields-pl">
+                   Pl
+                </a></li><li ><a href="javascript:void(0)" data-toggle="tab" data-target=".a2lix_translationsFields-en">
+                   En
+                </a></li><li ><a href="javascript:void(0)" data-toggle="tab" data-target=".a2lix_translationsFields-de">
+                   De
+                </a></li></ul><div class="a2lix_translationsFields tab-content"><div class="a2lix_translationsFields-pl tab-pane active"><div id="dende_form_car_add_color_translations_pl"><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_add_color_translations_pl_name">car.form.label.add_color.name</label><div class="col-sm-10"><input type="text" id="dende_form_car_add_color_translations_pl_name" name="dende_form_car[add_color][translations][pl][name]" required="required" maxlength="255" class="form-control" /></div></div></div></div><div class="a2lix_translationsFields-en tab-pane "><div id="dende_form_car_add_color_translations_en"><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_add_color_translations_en_name">car.form.label.add_color.name</label><div class="col-sm-10"><input type="text" id="dende_form_car_add_color_translations_en_name" name="dende_form_car[add_color][translations][en][name]" required="required" maxlength="255" class="form-control" /></div></div></div></div><div class="a2lix_translationsFields-de tab-pane "><div id="dende_form_car_add_color_translations_de"><div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_add_color_translations_de_name">car.form.label.add_color.name</label><div class="col-sm-10"><input type="text" id="dende_form_car_add_color_translations_de_name" name="dende_form_car[add_color][translations][de][name]" required="required" maxlength="255" class="form-control" /></div></div></div></div></div></div></div></div></div><a href="#" class="pull-right" id="add-new-car-color-close">toggle_widgets_close</a></div></div>
+
+<div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_year">car.form.label.year</label><div class="col-sm-10"><input type="number" id="dende_form_car_year" name="dende_form_car[year]" required="required" class="form-control" value="1990" /></div></div>
+<div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_distance">car.form.label.distance</label><div class="col-sm-10"><input type="number" id="dende_form_car_distance" name="dende_form_car[distance]" required="required" class="form-control" value="40000" /></div></div>
+    <div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_engine">car.form.label.engine</label><div class="col-sm-10"><select id="dende_form_car_engine" name="dende_form_car[engine]" required="required" class="form-control"><option value="">car.form.choice.empty_car_engine_type</option><option value="diesel" selected="selected">engine.diesel</option><option value="petrol">engine.petrol</option></select></div></div>
+    <div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_fuel">car.form.label.fuel</label><div class="col-sm-10"><select id="dende_form_car_fuel" name="dende_form_car[fuel]" required="required" class="form-control"><option value="">car.form.choice.empty_car_fuel_type</option><option value="diesel" selected="selected">fuel.diesel</option><option value="lpg">fuel.lpg</option><option value="biodiesel">fuel.biodiesel</option><option value="petrol">fuel.petrol</option></select></div></div>
+    <div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_gearbox">car.form.label.gearbox</label><div class="col-sm-10"><select id="dende_form_car_gearbox" name="dende_form_car[gearbox]" required="required" class="form-control"><option value="">car.form.choice.empty_car_gearbox_type</option><option value="automatic" selected="selected">transmission.automatic</option><option value="manual">transmission.manual</option><option value="semiautomatic">transmission.semiautomatic</option></select></div></div>
+    <div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_registrationCountry">car.form.label.registrationCountry</label><div class="col-sm-10"><select id="dende_form_car_registrationCountry" name="dende_form_car[registrationCountry]" required="required" class="form-control"><option value="">car.form.choice.empty_car_registration_country</option><option value="poland" selected="selected">country.poland</option><option value="germany">country.germany</option></select></div></div>
+<div class="form-group"><div class="col-sm-2"></div><div class="col-sm-10"><div class="checkbox"><label class="required"><input type="checkbox" id="dende_form_car_hidden" name="dende_form_car[hidden]" required="required" value="1" />
+                car.form.label.hidden
+        </label></div></div></div>
+<div class="form-group"><div class="col-sm-2"></div><div class="col-sm-10"><div class="checkbox"><label class="required"><input type="checkbox" id="dende_form_car_promoteCarousel" name="dende_form_car[promoteCarousel]" required="required" value="1" checked="checked" />
+                car.form.label.promoteCarousel
+        </label></div></div></div>
+<div class="form-group"><div class="col-sm-2"></div><div class="col-sm-10"><div class="checkbox"><label class="required"><input type="checkbox" id="dende_form_car_promoteFrontpage" name="dende_form_car[promoteFrontpage]" required="required" value="1" />
+                car.form.label.promoteFrontpage
+        </label></div></div></div>
+<div class="form-group"><label class="col-sm-2 control-label required" for="dende_form_car_adminNotes">car.form.label.adminNotes</label><div class="col-sm-10"><textarea id="dende_form_car_adminNotes" name="dende_form_car[adminNotes]" required="required" class="form-control">Admin Notes</textarea></div></div>
+    <div class="form-group"><label class="col-sm-2 control-label required">car.form.label.images</label><div class="collection"><div id="dende_form_car_images" class="col-sm-10"><ul class="collection-container"><li><div class="form-group"><a href="/uploads/8189143bb54ca9ca969fde2194c143bb810a6def.jpg" rel="prettyPhoto[car]" title="8189143bb54ca9ca969fde2194c143bb810a6def.jpg"><img src="/uploads/thumbnails/8189143bb54ca9ca969fde2194c143bb810a6def.jpg" width="200" class="image-collection-item img-thumbnail col-xs-2" /></a><div id="dende_form_car_images_0" collection_type="image" class="col-sm-10"><div class="form-group"><input type="file" id="dende_form_car_images_0_file" name="dende_form_car[images][0][file]" required="required" /><a class="item_remove btn btn-info pull-right" href="javascript:;">car.form.remove_item</a></div></div></div></li><li><div class="form-group"><a href="/uploads/6e30b8fe88f84b8b834036db4c28c6b0fe45e6a8.jpg" rel="prettyPhoto[car]" title="6e30b8fe88f84b8b834036db4c28c6b0fe45e6a8.jpg"><img src="/uploads/thumbnails/6e30b8fe88f84b8b834036db4c28c6b0fe45e6a8.jpg" width="200" class="image-collection-item img-thumbnail col-xs-2" /></a><div id="dende_form_car_images_1" collection_type="image" class="col-sm-10"><div class="form-group"><input type="file" id="dende_form_car_images_1_file" name="dende_form_car[images][1][file]" required="required" /><a class="item_remove btn btn-info pull-right" href="javascript:;">car.form.remove_item</a></div></div></div></li><li><div class="form-group"><a href="/uploads/c91e90f0be56251e3462a2ba2542945edc29945f.jpg" rel="prettyPhoto[car]" title="c91e90f0be56251e3462a2ba2542945edc29945f.jpg"><img src="/uploads/thumbnails/c91e90f0be56251e3462a2ba2542945edc29945f.jpg" width="200" class="image-collection-item img-thumbnail col-xs-2" /></a><div id="dende_form_car_images_2" collection_type="image" class="col-sm-10"><div class="form-group"><input type="file" id="dende_form_car_images_2_file" name="dende_form_car[images][2][file]" required="required" /><a class="item_remove btn btn-info pull-right" href="javascript:;">car.form.remove_item</a></div></div></div></li></ul></div><a class="item_add btn btn-info pull-right" href="javascript:;">car.form.add_item</a></div></div>
+    <div class="form-group"><label class="col-sm-2 control-label required">car.form.label.prices</label><div class="collection"><div id="dende_form_car_prices" class="col-sm-10"><ul class="collection-container"><li><div class="form-group"><div id="dende_form_car_prices_0" collection_type="price" class="input-group col-sm-10"><input type="number" id="dende_form_car_prices_0_amount" name="dende_form_car[prices][0][amount]" required="required" class="col-sm-10 form-control" value="20" /><div class="input-group-btn"><button class="currencySymbol btn btn-default disabled" type="button">
+                    €
+            </button><button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button><ul role="menu" class="dropdown-menu dropdown-menu-right"><li><a class="changeCurrencyLink" href="javascript:;" data-symbol="€" data-code="EUR" data-id="1">EUR</a></li><li><a class="changeCurrencyLink" href="javascript:;" data-symbol="$" data-code="USD" data-id="2">USD</a></li><li><a class="changeCurrencyLink" href="javascript:;" data-symbol="PLN" data-code="PLN" data-id="3">PLN</a></li></ul></div><a class="item_remove btn btn-info pull-right" href="javascript:;">car.form.remove_item</a><select id="dende_form_car_prices_0_currency" name="dende_form_car[prices][0][currency]" class="hidden form-control"><option value="1" selected="selected">€</option><option value="2">$</option><option value="3">PLN</option></select></div></div></li></ul></div><a class="item_add btn btn-info pull-right" href="javascript:;">car.form.add_item</a></div></div>
+
+<button class="btn btn-large btn-info">car.form.label.submit</button>
+
+</form>
+
+            </div>
+        </div>
+
+            <script src="/js/vendors.js" type="text/javascript"></script>
+        <script src="/js/project.js" type="text/javascript"></script>
+            </body>
+</html>

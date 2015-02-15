@@ -1,18 +1,25 @@
 <?php
 namespace Dende\FrontBundle\Entity;
 
+use Dende\FrontBundle\Entity\Translation\CarTranslation;
+use Dende\FrontBundle\Entity\Translation\TranslatedTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="jobs")
+ * @ORM\Entity(repositoryClass="Dende\FrontBundle\Repository\CarRepository")
+ * @ORM\Table(name="cars")
  * @codeCoverageIgnore
- *
+ * @Gedmo\SoftDeleteable(fieldName="deleted")
+ * @Gedmo\TranslationEntity(class="Dende\FrontBundle\Entity\Translation\CarTranslation")
  * @SuppressWarnings(PHPMD.TooManyFields)
  */
-
-class Job
+class Car implements Translatable
 {
+    use TranslatedTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -21,246 +28,562 @@ class Job
     protected $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     * @var string $name
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Type")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
+     * @var string $type
      */
-    protected $name;
+    protected $type;
 
     /**
-     * @ORM\Column(name="address", type="string", length=255, nullable=true)
-     * @var string $address
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Model")
+     * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     * @var Model $model
      */
-    protected $address;
+    protected $model;
 
     /**
-     * @ORM\Column(name="city", type="string", length=255, nullable=true)
-     * @var string $city
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Color")
+     * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
+     * @var Color $color
      */
-    protected $city;
+    protected $color;
 
     /**
-     * @ORM\Column(name="country", type="string", length=255, nullable=true)
-     * @var string $country
+     * @ORM\Column(type="integer")
+     * @var integer $year
      */
-    protected $country;
+    protected $year;
 
     /**
-     * @ORM\Column(name="link", type="string", length=255, nullable=true)
-     * @var string $link
+     * @ORM\Column(type="integer")
+     * @var integer $distance
      */
-    protected $link;
+    protected $distance;
 
     /**
-     * @ORM\Column(name="date_from", type="date", nullable=false)
-     * @var DateTime $from
+     * @ORM\Column(type="string", length=255)
+     * @var string $fuel
      */
-    protected $from;
-    /**
-     * @ORM\Column(name="date_to", type="date", nullable=true)
-     * @var DateTime $to
-     */
-    protected $to;
+    protected $fuel;
 
     /**
-     * @ORM\Column(name="position", type="string", length=255, nullable=false)
-     * @var string $position
+     * @ORM\Column(type="string", length=255)
+     * @var string $engine
      */
-    protected $position;
+    protected $engine;
 
     /**
-     * @ORM\Column(name="description_en", type="array", nullable=false)
-     * @var string $position
+     * @ORM\Column(type="string", length=255)
+     * @var string $gearbox
      */
-    protected $descriptionEn;
+    protected $gearbox;
 
     /**
-     * @ORM\Column(name="description_pl", type="array", nullable=false)
-     * @var string $position
+     * @ORM\Column(type="string", length=255)
+     * @var string $registrationCountry
      */
-    protected $descriptionPl;
+    protected $registrationCountry;
 
     /**
-     * @return mixed
+     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Price", mappedBy="car", cascade={"remove", "persist"})
+     * @var Price[] $prices
      */
-    public function getAddress()
+    protected $prices;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Dende\FrontBundle\Entity\Image")
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", onDelete="CASCADE")
+     * @var Image $image
+     */
+    protected $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Image", mappedBy="car", cascade={"remove", "persist"})
+     * @var ArrayCollection<Image> $images
+     */
+    protected $images;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @var boolean $promoteCarousel
+     */
+    protected $promoteCarousel = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @var boolean $promoteFrontpage
+     */
+    protected $promoteFrontpage = false;
+
+    /**
+     * @ORM\Column(type="string", length=4096, nullable=true)
+     * @Gedmo\Translatable
+     * @var string $title
+     */
+    protected $title;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @Gedmo\Translatable
+     * @var string $description
+     */
+    protected $description;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @var string $adminNotes
+     */
+    protected $adminNotes;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @var boolean $hidden
+     */
+    protected $hidden = false;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     * @var \DateTime $createdAt
+     */
+    protected $created;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     * @var \DateTime $modifiedAt
+     */
+    protected $modified;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime $deletedAt
+     */
+    protected $deleted;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="Dende\FrontBundle\Entity\Translation\CarTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    public function __construct()
     {
-        return $this->address;
-    }
-
-    /**
-     * @param mixed $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param mixed $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * @param mixed $country
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescriptionEn()
-    {
-        return $this->descriptionEn;
-    }
-
-    /**
-     * @param string $descriptionEn
-     */
-    public function setDescriptionEn($descriptionEn)
-    {
-        $this->descriptionEn = $descriptionEn;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescriptionPl()
-    {
-        return $this->descriptionPl;
-    }
-
-    /**
-     * @param string $descriptionPl
-     */
-    public function setDescriptionPl($descriptionPl)
-    {
-        $this->descriptionPl = $descriptionPl;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getFrom()
-    {
-        return $this->from;
-    }
-
-    /**
-     * @param DateTime $from
-     */
-    public function setFrom($from)
-    {
-        $this->from = $from;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param string $link
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
+        $this->images = new ArrayCollection();
+        $this->prices = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     /**
      * @return mixed
      */
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $id
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = $id;
+    }
+
+    /**
+     * @return Type
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param Type|null $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return Model
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * @param Model|null $model
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+    }
+
+    /**
+     * @return Color
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param Color|null $color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return int
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * @param int $year
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDistance()
+    {
+        return $this->distance;
+    }
+
+    /**
+     * @param int $distance
+     */
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
     }
 
     /**
      * @return string
      */
-    public function getPosition()
+    public function getFuel()
     {
-        return $this->position;
+        return $this->fuel;
     }
 
     /**
-     * @param string $position
+     * @param string $fuel
      */
-    public function setPosition($position)
+    public function setFuel($fuel)
     {
-        $this->position = $position;
+        $this->fuel = $fuel;
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getTo()
+    public function getEngine()
     {
-        return $this->to;
+        return $this->engine;
     }
 
     /**
-     * @param DateTime $to
+     * @param string $engine
      */
-    public function setTo($to)
+    public function setEngine($engine)
     {
-        $this->to = $to;
-    }
-
-    public function getDescription($culture = "en")
-    {
-        if ($culture === "pl") {
-            return $this->getDescriptionPl();
-        }
-
-        return $this->getDescriptionEn();
+        $this->engine = $engine;
     }
 
     /**
-     * @return \DateInterval
+     * @return string
      */
-    public function getDuration()
+    public function getGearbox()
     {
-        $to = $this->getTo();
+        return $this->gearbox;
+    }
 
-        if ($to === null) {
-            $to = new \DateTime();
-        }
+    /**
+     * @param string $gearbox
+     */
+    public function setGearbox($gearbox)
+    {
+        $this->gearbox = $gearbox;
+    }
 
-        $diff = $this->getFrom()->diff($to);
+    /**
+     * @return string
+     */
+    public function getRegistrationCountry()
+    {
+        return $this->registrationCountry;
+    }
 
-        return $diff;
+    /**
+     * @param string $registrationCountry
+     */
+    public function setRegistrationCountry($registrationCountry)
+    {
+        $this->registrationCountry = $registrationCountry;
+    }
+
+    /**
+     * @return Price[]
+     */
+    public function getPrices()
+    {
+        return $this->prices;
+    }
+
+    /**
+     * @param Price[] $prices
+     */
+    public function setPrices($prices)
+    {
+        $this->prices = $prices;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return ArrayCollection<Image>
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Image[] $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPromoteCorousel()
+    {
+        return $this->promoteCarousel;
+    }
+
+    /**
+     * @param boolean $promoteCorousel
+     */
+    public function setPromoteCorousel($promoteCorousel)
+    {
+        $this->promoteCarousel = $promoteCorousel;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPromoteFrontpage()
+    {
+        return $this->promoteFrontpage;
+    }
+
+    /**
+     * @param boolean $promoteFrontpage
+     */
+    public function setPromoteFrontpage($promoteFrontpage)
+    {
+        $this->promoteFrontpage = $promoteFrontpage;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdminNotes()
+    {
+        return $this->adminNotes;
+    }
+
+    /**
+     * @param string $adminNotes
+     */
+    public function setAdminNotes($adminNotes)
+    {
+        $this->adminNotes = $adminNotes;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @param boolean $hidden
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
+
+    /**
+     * @param \DateTime $modified
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * @param \DateTime $deleted
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+    }
+
+    /**
+     * @param string $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPromoteCarousel()
+    {
+        return $this->promoteCarousel;
+    }
+
+    /**
+     * @param boolean $promoteCarousel
+     */
+    public function setPromoteCarousel($promoteCarousel)
+    {
+        $this->promoteCarousel = $promoteCarousel;
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function addImage(Image $image)
+    {
+        $image->setCar($this);
+        $this->images->add($image);
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function removeImage(Image $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * @param Price $price
+     */
+    public function addPrice(Price $price)
+    {
+        $price->setCar($this);
+        $this->prices->add($price);
+    }
+
+    /**
+     * @param Price $price
+     */
+    public function removePrice(Price $price)
+    {
+        $this->prices->removeElement($price);
     }
 }
