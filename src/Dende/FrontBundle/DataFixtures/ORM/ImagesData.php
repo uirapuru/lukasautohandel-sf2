@@ -4,7 +4,6 @@ namespace Dende\FrontBundle\DataFixtures\ORM;
 use Dende\FrontBundle\DataFixtures\BaseFixture;
 use Dende\FrontBundle\Entity\Image;
 use Dende\FrontBundle\Event\Listener\GenerateThumbnailListener;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImagesData extends BaseFixture
 {
@@ -21,7 +20,7 @@ class ImagesData extends BaseFixture
             $this->getReference($params["car"])
         );
 
-        $name = md5(microtime()) . ".jpg";
+        $name = md5(microtime()).".jpg";
 
         $destination = realpath(__DIR__."/../../../../../web/uploads/")."/";
 

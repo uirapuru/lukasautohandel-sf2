@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class CarController
  * @package Dende\FrontBundle\Controller
  *
- * @Route("/cars")
+ * @Route("/admin/cars")
  */
 class CarController extends Controller
 {
@@ -192,21 +192,14 @@ class CarController extends Controller
      * Finds and displays a Car entity.
      *
      * @Route("/{id}", name="car_show")
+     * @ParamConverter("car", class="FrontBundle:Car")
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction(Car $car)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('FrontBundle:Car')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Car entity.');
-        }
-
         return array(
-            'entity'      => $entity,
+            'entity'      => $car,
         );
     }
 

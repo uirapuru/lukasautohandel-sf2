@@ -27,7 +27,8 @@
         "jms/serializer-bundle": "0.13.*",
         "mockery/mockery": "0.9.*",
         "a2lix/translation-form-bundle": "1.*@dev",
-        "imagine/imagine": "0.6.*"
+        "imagine/imagine": "0.6.*",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

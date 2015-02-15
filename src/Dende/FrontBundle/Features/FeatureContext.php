@@ -1,6 +1,7 @@
 <?php
 namespace Dende\FrontBundle\Features;
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
@@ -288,5 +289,29 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         }
 
         $form->submit();
+    }
+
+    /**
+     * @Given /^I am logged in as "([^"]*)" using "([^"]*)"$/
+     */
+    public function iAmLoggedInAsUsing($username, $password)
+    {
+        $username = $this->fixStepArgument($username);
+        $password = $this->fixStepArgument($password);
+
+        $this->visitPath("/login");
+        $this->fillField("_username", $username);
+        $this->fillField("_password", $password);
+        $this->iSubmitForm("loginForm");
+    }
+
+    public function assertElementContains($element, $value)
+    {
+        $value = $this->fixStepArgument($value);
+        $el = $this->getSession()->getPage()->find("css", $element);
+
+        if ($el->getText() !== $value) {
+            throw new Exception(sprintf("Element %s should have '%s' value, has '%s'", $element, $value, $el->getText()));
+        }
     }
 }

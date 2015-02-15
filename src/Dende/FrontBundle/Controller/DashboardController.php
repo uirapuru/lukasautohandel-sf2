@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class CarController
  * @package Dende\FrontBundle\Controller
  *
- * @Route("/dashboard")
+ * @Route("/admin/")
  */
 class DashboardController extends Controller
 {

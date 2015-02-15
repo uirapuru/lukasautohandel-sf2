@@ -24,9 +24,10 @@ class GenerateThumbnailListener
         $this->processImage($image, $defaultPath);
     }
 
-    public function processImage(Image $image, $defaultPath = '') {
+    public function processImage(Image $image, $defaultPath = '')
+    {
         if ($defaultPath == null) {
-           throw new \Exception("No default path");
+            throw new \Exception("No default path");
         }
 
         $imagine = new Imagine();

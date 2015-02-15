@@ -3,6 +3,7 @@ services:
       class: Dende\FrontBundle\Menu\MenuBuilder
       arguments:
           - "@knp_menu.factory"
+          - "@security.context"
 
   front_bundle.menu.lang:
       class: Knp\Menu\MenuItem

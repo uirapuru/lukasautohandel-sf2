@@ -28,4 +28,13 @@
         </exec>
     </target>
 
+    <target name="assets">
+        <exec executable="./node_modules/.bin/grunt" passthru="true" checkreturn="true" />
+
+        <exec executable="./app/console" passthru="true" checkreturn="true">
+            <arg value="assets:install" />
+        </exec>
+    </target>
+
+
 </project>

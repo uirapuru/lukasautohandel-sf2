@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="page-box">
+
+        <header class="header header-three">
+            <div class="container">
+                <div class="row">
+                    <div class="logo-box col-sm-12 col-md-12">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="/assets/images/gyman_logo.png" class="logo-img" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div><!--.row -->
+            </div>
+        </header><!-- .header -->
+
+        <div class="container-fluid">
+
+            <div class="loginContainer">
+                {% block fos_user_content %}{% endblock fos_user_content %}
+            </div>
+
+        </div>
+{% endblock %}

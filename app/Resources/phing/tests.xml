@@ -7,6 +7,19 @@
 
     <target name="clear-build">
         <fileset dir="./" id="deleteFiles">
+            <include name="build" />
+            <exclude name="**/.gitkeep" />
+        </fileset>
+
+        <delete includeemptydirs="true">
+            <fileset refid="deleteFiles" />
+        </delete>
+
+        <phingcall target="create-build-dirs" />
+    </target>
+
+    <target name="clear-all">
+        <fileset dir="./" id="deleteFiles">
             <include name="web/uploads/*" />
             <include name="web/uploads/thumbnails/*" />
             <include name="build" />
@@ -23,6 +36,10 @@
             <fileset refid="deleteFiles" />
         </delete>
 
+        <phingcall target="create-build-dirs" />
+    </target>
+
+    <target name="create-build-dirs">
         <mkdir dir="build" />
         <mkdir dir="build/logs" />
         <mkdir dir="build/api" />

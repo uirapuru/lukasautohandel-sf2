@@ -5,6 +5,7 @@ namespace Dende\FrontBundle\Menu;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class MenuBuilder extends ContainerAware
 {
@@ -14,11 +15,17 @@ class MenuBuilder extends ContainerAware
     private $factory;
 
     /**
+     * @var SecurityContext
+     */
+    private $context;
+
+    /**
      * @param FactoryInterface $factory
      */
-    public function __construct(FactoryInterface $factory)
+    public function __construct(FactoryInterface $factory, SecurityContext $context)
     {
         $this->factory = $factory;
+        $this->context = $context;
     }
 
     public function createLangMenu(Request $request)
@@ -55,6 +62,10 @@ class MenuBuilder extends ContainerAware
     {
         $menu = $this->factory->createItem('root');
 
+        if (!$this->context->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
+            return $menu;
+        }
+
         $menu->setChildrenAttributes(array(
             'class' => 'nav navbar-nav pull-left',
             'id' => 'mainMenu',
@@ -62,6 +73,7 @@ class MenuBuilder extends ContainerAware
 
         $menu->addChild('menu.main.dashboard', array('route' => 'dashboard_index'));
         $menu->addChild('menu.main.cars', array('route' => 'car'));
+        $menu->addChild('menu.main.logout', array('route' => 'fos_user_security_logout'));
 
         if (preg_match("@\/cars@ui", $request->getRequestUri())) {
             $menu->getChild('menu.main.cars')->setCurrent(true);

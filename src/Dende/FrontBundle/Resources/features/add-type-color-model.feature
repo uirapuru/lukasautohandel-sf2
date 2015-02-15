@@ -1,16 +1,17 @@
 Feature: I can add cars using form
   Background:
-    Given I am on "/cars/add"
+    Given I am logged in as "admin" using "admin"
+    And I am on "/admin/cars/add"
 
   Scenario: I can add a new type of a car
     When I click "a#add-new-car-type"
-    Then I can't see "Typ" row
-    And I can see "Nowy typ" row
+    Then I can't see "car.form.label.type" row
+    And I can see "car.form.label.type" row
     And I fill in "dende_form_car_add_type_name" with "some test"
 
     When I click "a#add-new-car-type-close"
-    Then I can't see "Nowy typ" row
-    And I can see "Typ" row
+    Then I can't see "car.form.label.add_type.name" row
+    And I can see "car.form.label.add_type" row
 
     When I click "a#add-new-car-type"
     Then I can't see "Typ" row

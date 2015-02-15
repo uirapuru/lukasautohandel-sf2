@@ -104,5 +104,16 @@ menu:
     main:
         dashboard: "Pulpit"
         cars:      "Samochody"
+        logout:    "Wyloguj się"
 
 car_images_headline: 'Galeria'
+
+account:
+  login:
+    label:
+      username: 'Nazwa użytkownika'
+      password: Hasło
+      submit: 'Zaloguj się'
+    required_info: 'pole jest wymagane'
+    remember_me: 'Zapamiętaj mnie'
+    password_recovery:  "Przypomnienie hasła"

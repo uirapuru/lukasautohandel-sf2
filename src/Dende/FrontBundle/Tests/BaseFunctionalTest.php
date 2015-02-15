@@ -52,6 +52,12 @@ class BaseFunctionalTest extends WebTestCase
         return $this->client->getResponse()->getContent();
     }
 
+    public function dumpContent()
+    {
+        print($this->getContent());
+        die;
+    }
+
     protected function getStatusCode()
     {
         return $this->client->getResponse()->getStatusCode();
@@ -68,5 +74,16 @@ class BaseFunctionalTest extends WebTestCase
         $purger->setPurgeMode(ORMPurger::PURGE_MODE_TRUNCATE);
         $executor = new ORMExecutor($em, $purger);
         $executor->execute($loader->getFixtures());
+    }
+
+    protected function login()
+    {
+        $crawler = $this->client->request('GET', '/login');
+        $form = $crawler->selectButton('_submit')->form(array(
+            '_username'  => 'admin',
+            '_password'  => 'admin',
+        ));
+        $resp = $this->client->submit($form);
+        $this->assertEquals(200, $this->getStatusCode());
     }
 }

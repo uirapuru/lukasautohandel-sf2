@@ -1,6 +1,7 @@
 Feature: I can add cars using form
   Background:
-    Given I am on "/cars/add"
+    Given I am logged in as "admin" using "admin"
+    And I am on "/admin/cars/add"
 
   Scenario: Add 5 images and remove 3 of them
     Given images list is empty

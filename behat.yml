@@ -18,3 +18,21 @@ default:
 
     formatters:
         progress: true
+
+firefox:
+    suites:
+        default:
+            paths:
+                - %paths.base%/src/Dende/FrontBundle/Resources/features
+            contexts:
+                - Dende\FrontBundle\Features\FeatureContext:
+                    -  %mink.base_url%
+                    -  '@session'
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            base_url: 'http://lukas.local/app_test.php/'
+            javascript_session:  'selenium2'
+            browser_name: firefox
+            selenium2:
+              wd_host: "http://127.0.0.1:4444/wd/hub"

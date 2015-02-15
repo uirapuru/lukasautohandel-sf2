@@ -15,6 +15,18 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CarControllerTest extends BaseFunctionalTest
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->login();
+    }
+
+    public function tearDown()
+    {
+        $crawler = $this->client->request('GET', '/logout');
+    }
+
     /**
      * @test
      */

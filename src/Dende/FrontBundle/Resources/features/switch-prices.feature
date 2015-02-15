@@ -1,6 +1,7 @@
 Feature: I can add cars using form
   Background:
-    Given I am on "/cars/add"
+    Given I am logged in as "admin" using "admin"
+    And I am on "/admin/cars/add"
 
   Scenario: Add price and change it's currency
     Given prices list is empty
