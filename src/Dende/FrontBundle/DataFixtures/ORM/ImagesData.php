@@ -22,7 +22,7 @@ class ImagesData extends BaseFixture
 
         $name = md5(microtime()).".jpg";
 
-        $destination = realpath(__DIR__."/../../../../../web/uploads/")."/";
+        $destination = realpath(__DIR__."/../../../../../web/uploads")."/";
 
         copy(realpath(__DIR__."/../../Resources/tests/test_image.jpg"), $destination.$name);
 

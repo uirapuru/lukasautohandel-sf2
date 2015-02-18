@@ -1,15 +1,13 @@
 set :application, "lukas"
-set :domain,      "uirapuru.vot.pl"
-set :deploy_to,   "/home/uirapuru/domains/lukasautohandel.de"
+set :domain,      "176.58.117.164"
+set :deploy_to,   "/home/lukas/lukasautohandel.de"
 set :app_path,    "app"
-set :php_bin, '/usr/local/php5.4/bin/php'
 
-set :user, "uirapuru"
+set :user, "lukas"
 
 set :ssh_options, {
     :forward_agent => true,
     :auth_methods => ["publickey"],
-    :port => 59184
 }
 
 default_run_options[:pty] = true

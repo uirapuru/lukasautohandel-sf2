@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="<?= $sf_user->getCulture(); ?>">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name = "format-detection" content = "telephone=no" />
+    <meta name="description" content="Lukas Authohandel">
+    <meta name="keywords" content="auto">
+    <meta name="author" content="Grzegorz 'Uirapuru' Kaszuba <uirapuruadg@gmail.com> dende.com.pl">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/slider.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/jqtransform.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/prettyPhoto.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/style.css" />
+
+    <link rel="icon" href="{{ asset("/images/favicon.ico") }}" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery-1.10.2.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/jquery-migrate-1.2.1.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/bootstrap.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/modernizr-2.5.3.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.mobile.customized.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.easing.1.3.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/camera.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/superfish.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.jqtransform.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.hoverIntent.minified.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.mobilemenu.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.ui.totop.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.prettyPhoto.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/script.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/main.js") }}"></script>
+
+
+    <!--[if (gt IE 9)|!(IE)]><!-->
+    <!-- script type="text/javascript" src="/js/jquery.mobile.customized.min.js"></script -->
+    <!--<![endif]-->
+
+    <script>
+        jQuery(document).ready(function() {
+//                $('.form-style').jqTransform();
+        });
+        $(window).load(function() {
+            $().UItoTop({easingType: 'easeOutQuart'});
+        });
+        jQuery
+        $(window).load(function() {
+            jQuery('#slide').camera({
+                pagination: false,
+                navigation: false,
+                transPeriod: 2000,
+                fx: 'simpleFade',
+                time: 7000
+            });
+        });
+    </script>
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+            <img src="http://storage.ie6countdown.com/assets/100/bundles/front/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+        </a>
+    </div>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <link href='http://fonts.googleapis.com/css?family=Orbitron:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Orbitron:700' rel='stylesheet' type='text/css'>
+    <script src="/js/html5.js"></script>
+    <link rel="stylesheet" href="css/ie.css">
+
+    <![endif]-->
+</head>
+<body>
+<div class="main">
+
+
+
+    <!-- Header -->
+    <div class="container_12">
+    <span class="fright langs">
+        <a href="/language/pl">pl</a> |
+        <a href="/language/en">en</a> |
+        <a href="/language/de">de</a>
+    </span>
+        <article class="grid_12">
+            <div class="inner-block">
+                <header>
+                    <div class="header-block">
+                        <span class="fleft"><!-- address --></span>
+                    <span class="fright">
+                        +48 00 000 000 000
+                    </span>
+                    </div>
+
+                    <a class='txtlogo' href="/">Lukas <span>Autohandel</span></a>
+
+                    <nav>
+                        <ul class="sf-menu responsive-menu">
+                            <li class="current">
+                                <a href="/"><strong>Start</strong></a>
+                            </li>
+                            <li><a href="/search"><strong>Szukaj</strong></a></li>
+                            <li><a href="/contact"><strong>Kontakt</strong></a></li>
+                        </ul>
+                        <div class="clear"></div>
+                    </nav>
+                    <div class="clear"></div>
+                </header>
+            </div>
+        </article>
+        <div class="clear"></div>
+    </div>
+
+    <!-- Content -->
+    <section id="content" class="main-content">
+        <div class="container_12">
+            <div class="grid_8">
+                <div class="inner-block">
+                    <div id="slide" class="camera_wrap camera_azure_skin">
+                        <div data-src="/uploads/page1-img2.jpg">
+                            <div class="banner camera_caption fadeFromBottom">
+                                <p><strong>Audi 80</strong>
+                                    <a href="/1/first-auction-audi-80-coupe">Pierwsza aukcja Audi 80 Coupe</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div data-src="/uploads/page1-img1.jpg">
+                            <div class="banner camera_caption fadeFromBottom">
+                                <p><strong>Mercedes-Benz R Class</strong>
+                                    <a href="/3/first-auction-mercedes-benz-r-class-coupe">Pierwsza aukcja Mercedes-Benz-R Class Coupe</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>    </div>
+            </div>
+
+            <div class="grid_4 bg-white">
+                <div class="inner-block">
+                    <div class="pad-1">
+                        <div class="form-title">Szukaj<span>wśród ofert</span></div>
+                        <form id="form1" method="post" action="/search">
+                            <label>
+                                <span>rodzaj</span>
+                                <strong class="select1">
+                                    <select name="car_filters[variant]" id="car_filters_variant">
+                                        <option value="" selected="selected">WSZYSTKIE TYPY</option>
+                                        <option value="coupe">coupe</option>
+                                    </select>                    </strong>
+                            </label>
+                            <label>
+                                <span>marka</span>
+                                <strong class="select1">
+                                    <select name="car_filters[brand]" data-models-url="/modelsForBrand" id="car_filters_brand">
+                                        <option value="" selected="selected">WSZYSTKIE MARKI</option>
+                                        <option value="Audi">Audi</option>
+                                        <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                        <option value="BMW">BMW</option>
+                                    </select>                    </strong>
+                            </label>
+                            <label><span>model</span>
+                                <strong class="select1">
+                                    <select name="car_filters[model]" id="car_filters_model">
+                                        <option value="" selected="selected">WSZYSTKIE MODELE</option>
+                                        <option value="80">80</option>
+                                        <option value="380">380</option>
+                                        <option value="R Class">R Class</option>
+                                        <option value="Z1">Z1</option>
+                                    </select>                    </strong>
+                            </label>
+                            <a onClick="document.getElementById('form1').submit()" href="#" class="button">szukaj</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                $(function() {
+                    var $brandSelect = $("select[name=car_filters\\[brand\\]]");
+                    var $modelSelect = $("select[name=car_filters\\[model\\]]");
+                    var emptyModelOption = '<option value="">Wszystkie modele</option>';
+
+                    $modelSelect.html(emptyModelOption);
+
+                    $brandSelect.change(function(e) {
+                        if ($(this).val() == "") {
+                            return false;
+                        }
+
+                        $brandSelect.data("lastModelOption", $(":selected", $modelSelect));
+
+                        $.get(
+                                $(this).attr("data-models-url"),
+                                {
+                                    brand: $(this).val()
+                                },
+                                function(data) {
+                                    $modelSelect.html(emptyModelOption);
+                                    $.each(data, function(key, val) {
+                                        var $option = $("<option />").text(key).val(val);
+                                        if (val == $brandSelect.attr("data-models-selected"))
+                                        {
+                                            $option.attr("selected", "SELECTED");
+                                        }
+
+                                        $modelSelect.append($option);
+                                    });
+                                }
+                        );
+                    });
+
+                    $brandSelect.trigger("change");
+                });
+            </script>
+            <div class="clear p2"></div>
+            <div class="grid_8">
+                <div class="inner-block">
+                    <h2 class="h2-border">Najciekawsze oferty <a href="/search/reset" class="link">wszystkie</a></h2>
+                    <div class="box-1">
+                        <ul >
+                            <li>
+                                <img src="/uploads/page1-img1.jpg" alt="">
+                                <h3>Mercedes-Benz 380</h3>
+                                <p>Pierwsza aukcja Mercedes-Benz-380 Coupe</p>
+                                <p class="price">10 000 PLN<span>other info</span></p>
+                                <a href="/2/first-auction-mercedes-benz-380-coupe" class="button">Szczegóły</a>
+                            </li>
+                        </ul>
+                        <ul  class="last">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="inner-block">
+                    <h2 class="h2-border p3">About us</h2>
+                    <p class="p1">Lorem ipsum dolor sit amet conse ctetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci tation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe nderit in voluptate velit esse cillum dolore.</p>
+                    <p class="p4">sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+
+                </div>
+            </div>                    <div class="clear"></div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container_12">
+            <article class="grid_12">
+                <div class="inner-block">Lucas Autohandel  &copy; <?= date("Y"); ?></div>
+            </article>
+            <div class="clear"></div>
+        </div>
+    </footer>
+    <!-- Footer -->
+</div>
+</body>
+</html>
