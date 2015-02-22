@@ -1,7 +1,37 @@
 {% extends "FrontBundle::frontendLayout.html.twig" %}
 
 {% block body %}
-    {{ parent() }}
+<div class="grid_8">
+    <div class="inner-block">
+        {{ render(controller("FrontBundle:Default:carousel")) }}
+    </div>
+</div>
 
-    main page
+<div class="grid_4 bg-white">
+    <div class="inner-block">
+        <div class="pad-1">
+            <div class="form-title">Szukaj<span>wśród ofert</span></div>
+            {{ render(controller("FrontBundle:Default:search")) }}
+        </div>
+    </div>
+</div>
+
+<div class="clear p2"></div>
+<div class="grid_8">
+    <div class="inner-block">
+        <h2 class="h2-border">Najciekawsze oferty <a href="/search/reset" class="link">wszystkie</a></h2>
+        <div class="box-1">
+            {{ render(controller("FrontBundle:Default:promoted")) }}
+        </div>
+    </div>
+</div>
+<div class="grid_4">
+    <div class="inner-block">
+        <h2 class="h2-border p3">About us</h2>
+        <p class="p1">Lorem ipsum dolor sit amet conse ctetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci tation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe nderit in voluptate velit esse cillum dolore.</p>
+        <p class="p4">sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+
+    </div>
+</div>
+<div class="clear"></div>
 {% endblock body %}

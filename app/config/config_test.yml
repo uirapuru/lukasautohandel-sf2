@@ -21,5 +21,14 @@ doctrine:
         user:     "%test_database_user%"
         password: "%test_database_password%"
 
+#        driver:   pdo_sqlite
+#        host:     ~
+#        port:     ~
+#        dbname:   "lukas"
+#        path:     file.sqlite
+#        user:     ~
+#        password: ~
+#        charset:  UTF8
+
 parameters:
     translator.class: Dende\FrontBundle\Translator\NoTranslator

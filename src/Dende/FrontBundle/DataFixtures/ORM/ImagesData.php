@@ -24,7 +24,16 @@ class ImagesData extends BaseFixture
 
         $destination = realpath(__DIR__."/../../../../../web/uploads")."/";
 
-        copy(realpath(__DIR__."/../../Resources/tests/test_image.jpg"), $destination.$name);
+        $images = [
+            "test_image.jpg",
+            "test_image_02.jpg",
+            "test_image_03.jpg",
+            "test_image_04.jpg",
+            "test_image_05.jpg",
+            "test_image_06.jpg",
+        ];
+
+        copy(realpath(__DIR__."/../../Resources/tests/".$images[rand(0, count($images) - 1)]), $destination.$name);
 
         $image->setPath($name);
         $image->setName($name);

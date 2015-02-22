@@ -20,7 +20,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CarController extends Controller
 {
-
     /**
      * @Route("/add",name="add_car")
      * @Method({"GET","POST"})

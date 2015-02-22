@@ -264,7 +264,7 @@ class CarType extends AbstractType
                 'translations',
                 "a2lix_translations_gedmo",
                 [
-                    'translatable_class' => 'FrontBundle:Car',
+                    'translatable_class' => 'Dende\\FrontBundle\\Entity\\Car',
                     'fields' => [
                         'title' => [
                             'label' => 'car.form.label.title',

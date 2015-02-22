@@ -20,7 +20,7 @@ class ColorType extends AbstractType
                 'translations',
                 "a2lix_translations_gedmo",
                 [
-                    'translatable_class' => 'FrontBundle:Color',
+                    'translatable_class' => 'Dende\\FrontBundle\\Entity\\Color',
                     'fields' => [
                             'name' => [
                                 'label' => 'car.form.label.add_color.name',

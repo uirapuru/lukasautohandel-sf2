@@ -22,3 +22,12 @@ services:
       scope: request
       tags:
           - { name: knp_menu.menu, alias: mainMenu }
+
+  front_bundle.menu.front:
+      class: Knp\Menu\MenuItem
+      factory_service: front_bundle.menu_builder
+      factory_method: createFrontMenu
+      arguments: ["@request"]
+      scope: request
+      tags:
+          - { name: knp_menu.menu, alias: frontMenu }

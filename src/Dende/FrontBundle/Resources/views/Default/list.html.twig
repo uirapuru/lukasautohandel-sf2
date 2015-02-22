@@ -1,0 +1,82 @@
+{% extends 'FrontBundle::frontendLayout.html.twig' %}
+
+{% block body %}
+<div class="grid_8">
+    <div class="inner-block">
+        <h2 class="h2-border top-1">Wyniki wyszukiwania <a class="link" href="/">wszystkie</a></h2>
+        <div class="box-3">
+            <ul class="search-results">
+                {% for car in cars %}
+                    {% set link = path("show", {id: car.id, slug: car.slug}) %}
+
+                    <li>
+                        <a href="{{ link }}">
+                            <img style="width: 290px" alt="" src="{{ asset('/uploads/thumbnails/' ~ car.getFirstImage() ) }}">
+                        </a>
+                        <div class="extra-wrap">
+                            <h3><a href="{{ link }}">{{ car.getTranslated("title", app.request.locale) }}</a></h3>
+                            <p>{{ car.getTranslated("description", app.request.locale)|slice(0, 200) }}</p>
+                            <p class="price">
+                                {% for price in car.prices %}
+                                    {{ price.amount }} {{ price.currency.symbol }}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </p>
+                            <a class="button" href="{{ link }}">Szczegóły</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="grid_4 bg-white">
+    <div class="inner-block">
+        <div class="pad-1">
+            <div class="form-title">Szukaj<span>wśród ofert</span></div>
+            {{ render(controller("FrontBundle:Default:search")) }}
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        var $brandSelect = $("select[name=car_filters\\[brand\\]]");
+        var $modelSelect = $("select[name=car_filters\\[model\\]]");
+        var emptyModelOption = '&lt;option value=""&gt;Wszystkie modele&lt;/option&gt;';
+
+        $modelSelect.html(emptyModelOption);
+
+        $brandSelect.change(function(e) {
+            if ($(this).val() == "") {
+                return false;
+            }
+
+            $brandSelect.data("lastModelOption", $(":selected", $modelSelect));
+
+            $.get(
+                    $(this).attr("data-models-url"),
+                    {
+                        brand: $(this).val()
+                    },
+                    function(data) {
+                        $modelSelect.html(emptyModelOption);
+                        $.each(data, function(key, val) {
+                            var $option = $("&lt;option /&gt;").text(key).val(val);
+                            if (val == $brandSelect.attr("data-models-selected"))
+                            {
+                                $option.attr("selected", "SELECTED");
+                            }
+
+                            $modelSelect.append($option);
+                        });
+                    }
+            );
+        });
+
+        $brandSelect.trigger("change");
+    });
+</script><div class="clear"></div>
+<div class="clear"></div>
+{% endblock %}
+

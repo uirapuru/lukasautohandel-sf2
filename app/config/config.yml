@@ -30,6 +30,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+      contact_number: "+48 600 00 00 00"
+      email_address:  "lukas@lukasautohandel.de"
+      address:        "Piłsudskiego 1<br />Wrocław"
 
 # Doctrine Configuration
 doctrine:
@@ -41,9 +45,6 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver, add the path in parameters.yml
-        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        # path:     "%database_path%"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -102,12 +103,20 @@ front:
 
 a2lix_translation_form:
     locales: [pl, en, de]
-    default_required: true      # [2]
-    manager_registry: doctrine      # [3]
-    templating: "A2lixTranslationFormBundle::default.html.twig"      # [4]
+    default_required: true
+    manager_registry: doctrine
+    templating: "A2lixTranslationFormBundle::default.html.twig"
 
 services:
-    # Doctrine Extension listeners to handle behaviors
+#    # Doctrine Extension listeners to handle behaviors
+#    gedmo.listener.sluggable:
+#      class: Gedmo\Sluggable\SluggableListener
+#      tags:
+##            - { name: doctrine.event_subscriber, connection: default }
+#            - { name: doctrine.event_subscriber, connection: default, priority: 255 }
+#      calls:
+#            - [ setAnnotationReader, [ @annotation_reader ] ]
+
     gedmo.listener.translatable:
         class: Gedmo\Translatable\TranslatableListener
         tags:

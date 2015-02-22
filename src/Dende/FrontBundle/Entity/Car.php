@@ -116,7 +116,7 @@ class Car implements Translatable
     protected $promoteFrontpage = false;
 
     /**
-     * @ORM\Column(type="string", length=4096, nullable=true)
+     * @ORM\Column(type="string", length=4096, nullable=false)
      * @Gedmo\Translatable
      * @var string $title
      */
@@ -140,6 +140,13 @@ class Car implements Translatable
      * @var boolean $hidden
      */
     protected $hidden = false;
+
+    /**
+     * @ORM\Column(type="string", length=4096, nullable=false)
+     * @Gedmo\Slug(fields={"title"})
+     * @var string $slug
+     */
+    protected $slug;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -554,6 +561,22 @@ class Car implements Translatable
     }
 
     /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
      * @param Image $image
      */
     public function addImage(Image $image)
@@ -585,5 +608,10 @@ class Car implements Translatable
     public function removePrice(Price $price)
     {
         $this->prices->removeElement($price);
+    }
+
+    public function getFirstImage()
+    {
+        return $this->images->first()->getName();
     }
 }

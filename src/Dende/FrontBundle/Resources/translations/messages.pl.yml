@@ -19,8 +19,6 @@ car.form.label.submit:                                  "Zapisz"
 car.form.label.created:                                 "Utworzony"
 car.form.label.modified:                                "Zmieniono"
 
-
-
 car.form.label.add_type:                                "Nowy typ"
 car.form.label.add_type.name:                           "Nazwa"
 
@@ -81,7 +79,6 @@ fuel.petrol: "Benzyna"
 engine.diesel: "Diesel"
 engine.petrol: "Benzyna"
 
-
 crud:
     action:
         add: "Dodaj nowy samochód"
@@ -105,6 +102,10 @@ menu:
         dashboard: "Pulpit"
         cars:      "Samochody"
         logout:    "Wyloguj się"
+    front:
+      start:      "Start"
+      search:     "Szukaj"
+      contact:    "Kontakt"
 
 car_images_headline: 'Galeria'
 
@@ -117,3 +118,25 @@ account:
     required_info: 'pole jest wymagane'
     remember_me: 'Zapamiętaj mnie'
     password_recovery:  "Przypomnienie hasła"
+
+contact:
+  telephone: "Telefon"
+  message:
+    success: "Dziękujemy za wiadomość"
+    error: "Wystąpił błąd!"
+    about_car: "Zapytanie o '%title%' [%link%]"
+  form:
+    label: "Napisz do nas"
+    labels:
+      subject: "Temat wiadomości"
+      name: "Twoje imię"
+      email: "Twój email"
+      phone: "Twój numer telefonu"
+      message: "Treść wiadomości"
+      submit: "Wyślij wiadomość"
+    placeholder:
+      subject: "temat"
+      name: "podaj imię"
+      email: "podaj email"
+      phone: "podaj numer telefonu"
+      message: "podaj treść"

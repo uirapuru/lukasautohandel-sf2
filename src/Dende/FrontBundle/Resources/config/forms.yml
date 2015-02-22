@@ -1,4 +1,9 @@
 services:
+    dende.front.form.type.search:
+        class: Dende\FrontBundle\Form\Type\SearchType
+        tags:
+            - {name: form.type, alias: dende_form_search }
+
     dende.front.form.type.car:
         class: Dende\FrontBundle\Form\Type\CarType
         tags:
@@ -33,6 +38,12 @@ services:
         class: Dende\FrontBundle\Form\Type\TitleType
         tags:
             - {name: form.type, alias: dende_form_title }
+
+    dende.front.form.type.contact:
+        class: Dende\FrontBundle\Form\Type\ContactType
+        arguments: [@translator.default, @router]
+        tags:
+            - {name: form.type, alias: dende_form_contact }
 
 
     dende.front.form_handler.process_images:
