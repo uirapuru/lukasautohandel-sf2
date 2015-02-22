@@ -1,4 +1,9 @@
 services:
+    dende.front.form.type.search:
+        class: Dende\FrontBundle\Form\Type\SearchType
+        tags:
+            - {name: form.type, alias: dende_form_search }
+
     dende.front.form.type.car:
         class: Dende\FrontBundle\Form\Type\CarType
         tags:

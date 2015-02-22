@@ -105,6 +105,10 @@ menu:
         dashboard: "Pulpit"
         cars:      "Samochody"
         logout:    "Wyloguj się"
+    front:
+      start:      "Start"
+      search:     "Szukaj"
+      contact:    "Kontakt"
 
 car_images_headline: 'Galeria'
 

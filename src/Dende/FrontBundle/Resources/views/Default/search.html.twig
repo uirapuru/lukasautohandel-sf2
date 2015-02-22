@@ -1,0 +1,64 @@
+{{ form_start(form, {
+    action: url('search'),
+    attr: {
+        'id'        : 'form1',
+        'novalidate': 'novalidate',
+    }
+}) }}
+
+<label>
+<span>rodzaj</span>
+<strong class="select1">{{ form_widget(form.type, {id: "car_filters_variant"}) }}</strong>
+</label>
+
+<label>
+<span>marka</span>
+<strong class="select1">{{ form_widget(form.brand, {id: "car_filters_brand"}) }}</strong>
+</label>
+
+<label><span>model</span>
+<strong class="select1">{{ form_widget(form.model, {id: "car_filters_model"}) }}</strong>
+</label>
+
+<a onClick="document.getElementById('form1').submit()" href="#" class="button">szukaj</a>
+
+{{ form_end(form) }}
+
+<script>
+    $(function() {
+        var $brandSelect = $("select[name=car_filters\\[brand\\]]");
+        var $modelSelect = $("select[name=car_filters\\[model\\]]");
+        var emptyModelOption = '<option value="">Wszystkie modele</option>';
+
+        $modelSelect.html(emptyModelOption);
+
+        $brandSelect.change(function(e) {
+            if ($(this).val() == "") {
+                return false;
+            }
+
+            $brandSelect.data("lastModelOption", $(":selected", $modelSelect));
+
+            $.get(
+                    $(this).attr("data-models-url"),
+                    {
+                        brand: $(this).val()
+                    },
+                    function(data) {
+                        $modelSelect.html(emptyModelOption);
+                        $.each(data, function(key, val) {
+                            var $option = $("<option />").text(key).val(val);
+                            if (val == $brandSelect.attr("data-models-selected"))
+                            {
+                                $option.attr("selected", "SELECTED");
+                            }
+
+                            $modelSelect.append($option);
+                        });
+                    }
+            );
+        });
+
+        $brandSelect.trigger("change");
+    });
+</script>

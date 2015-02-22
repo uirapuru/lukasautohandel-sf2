@@ -38,21 +38,19 @@ class MenuBuilder extends ContainerAware
         ]);
 
         $menu->addChild('pl', ['route' => 'switch_language', 'routeParameters' => ['locale' => 'pl']])
-            ->setLinkAttribute("class", "flag-icon flag-icon-pl")
-            ->setLabel('');
+            ->setLabel('PL');
 
         $menu->addChild('en', ['route' => 'switch_language', 'routeParameters' => ['locale' => 'en']])
-            ->setLinkAttribute("class", "flag-icon flag-icon-gb")
-            ->setLabel('');
+            ->setLabel('EN');
 
         $menu->addChild('de', ['route' => 'switch_language', 'routeParameters' => ['locale' => 'de']])
-            ->setLinkAttribute("class", "flag-icon flag-icon-de")
-            ->setLabel('');
+            ->setLabel('DE');
 
         $locale = $request->getLocale();
 
-        if (in_array($locale, ["pl", "en", "de", "pt"])) {
+        if (in_array($locale, ["pl", "en", "de"])) {
             $menu->getChild($locale)->setCurrent(true);
+            $menu->getChild($locale)->setLinkAttribute("class", "active");
         }
 
         return $menu;
@@ -78,6 +76,22 @@ class MenuBuilder extends ContainerAware
         if (preg_match("@\/cars@ui", $request->getRequestUri())) {
             $menu->getChild('menu.main.cars')->setCurrent(true);
         }
+
+        return $menu;
+    }
+
+    public function createFrontMenu(Request $request)
+    {
+        $menu = $this->factory->createItem('root');
+
+        $menu->setChildrenAttributes([
+            'class' => 'sf-menu responsive-menu',
+            'id' => 'frontMenu',
+        ]);
+
+        $menu->addChild('menu.front.start', ['route' => 'main']);
+        $menu->addChild('menu.front.search', ['route' => 'list']);
+        $menu->addChild('menu.front.contact', ['route' => 'contact']);
 
         return $menu;
     }

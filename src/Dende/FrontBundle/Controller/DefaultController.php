@@ -2,6 +2,9 @@
 
 namespace Dende\FrontBundle\Controller;
 
+use Dende\FrontBundle\Entity\Car;
+use Doctrine\ORM\PersistentCollection;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -18,6 +21,64 @@ class DefaultController extends Controller
     public function indexAction()
     {
         return [];
+    }
+
+    /**
+     * @Route("/", name="search")
+     * @Template()
+     */
+    public function searchAction()
+    {
+        $form = $this->createForm("dende_form_search");
+
+        return ["form" => $form->createView()];
+    }
+
+    /**
+     * @Template()
+     */
+    public function promotedAction()
+    {
+        /**
+         * @var PersistentCollection $cars
+         */
+        $promoted = $this->getDoctrine()->getRepository("FrontBundle:Car")->findBy(["promoteFrontpage" => true]);
+        return ["cars" => $promoted];
+    }
+
+    /**
+     * @Template()
+     */
+    public function carouselAction()
+    {
+        /**
+         * @var PersistentCollection $cars
+         */
+        $promoted = $this->getDoctrine()->getRepository("FrontBundle:Car")->findBy(["promoteCarousel" => true]);
+        return ["cars" => $promoted];
+    }
+
+    /**
+     * @Route("/list", name="list")
+     * @Template()
+     */
+    public function listAction()
+    {
+        /**
+         * @var PersistentCollection $cars
+         */
+        $cars = $this->getDoctrine()->getRepository("FrontBundle:Car")->findAll();
+        return ["cars" => $cars];
+    }
+
+    /**
+     * @Route("/show/{id}/{slug}", name="show")
+     * @ParamConverter("car", class="FrontBundle:Car")
+     * @Template()
+     */
+    public function showAction(Car $car)
+    {
+        return ["car" => $car];
     }
 
     /**
