@@ -3,6 +3,7 @@
 namespace Dende\FrontBundle\Controller;
 
 use Dende\FrontBundle\Entity\Car;
+use Dende\FrontBundle\Model\SearchQuery;
 use Doctrine\ORM\PersistentCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,14 +25,35 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/", name="search")
      * @Template()
      */
     public function searchAction()
     {
-        $form = $this->createForm("dende_form_search");
-
+        $query = $this->getSearchQuery();
+        $form = $this->createForm("dende_form_search", $query);
         return ["form" => $form->createView()];
+    }
+
+    /**
+     * @Route("/set-search", name="set-search")
+     */
+    public function setSearchQueryAction(Request $request)
+    {
+        $query = $this->getSearchQuery();
+        $form = $this->createForm("dende_form_search", $query);
+
+        if ($request->isMethod("POST")) {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $this->get('session')->set('_search_query',
+                    $this->get("jms_serializer")->serialize($form->getData(), "json")
+                );
+                die("valid");
+            }
+        }
+
+        return $this->redirectToRoute("list");
     }
 
     /**
@@ -64,6 +86,8 @@ class DefaultController extends Controller
      */
     public function listAction()
     {
+        $query = $this->getSearchQuery();
+
         /**
          * @var PersistentCollection $cars
          */
@@ -133,5 +157,23 @@ class DefaultController extends Controller
         return $this->redirect(
             $request->headers->get('referer')
         );
+    }
+
+    /**
+     * @return SearchQuery
+     */
+    private function getSearchQuery()
+    {
+        if ($this->get('session')->has('_search_query')) {
+            $query = $this->get("jms_serializer")->deserialize(
+                $this->get('session')->get('_search_query'),
+                "Dende\FrontBundle\Model\SearchQuery",
+                "json"
+            );
+        } else {
+            $query = new SearchQuery();
+        }
+
+        return $query;
     }
 }
