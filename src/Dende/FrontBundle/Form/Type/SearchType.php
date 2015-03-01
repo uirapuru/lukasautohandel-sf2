@@ -106,7 +106,7 @@ class SearchType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => null,
+            'data_class' => 'Dende\FrontBundle\Model\SearchQuery',
             'csrf_protection' => true,
         ]);
     }
