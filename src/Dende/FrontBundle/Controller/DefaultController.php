@@ -2,6 +2,7 @@
 
 namespace Dende\FrontBundle\Controller;
 
+use Dende\FrontBundle\Entity\Brand;
 use Dende\FrontBundle\Entity\Car;
 use Doctrine\ORM\PersistentCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -26,34 +28,37 @@ class DefaultController extends Controller
     /**
      * @Template()
      */
-    public function searchAction()
+    public function searchAction($form = null)
     {
-        $query = $this->getSearchQuery();
-        $form = $this->createForm("dende_form_search", $query);
+        if (!$form) {
+            $form = $this->createForm("dende_form_search", new SearchQuery);
+        }
+
         return ["form" => $form->createView()];
     }
 
-    /**
-     * @Route("/set-search", name="set-search")
-     */
-    public function setSearchQueryAction(Request $request)
-    {
-        $query = $this->getSearchQuery();
-        $form = $this->createForm("dende_form_search", $query);
-
-        if ($request->isMethod("POST")) {
-            $form->handleRequest($request);
-
-            if ($form->isValid()) {
-                $this->get('session')->set('_search_query',
-                    $this->get("jms_serializer")->serialize($form->getData(), "json")
-                );
-                die("valid");
-            }
-        }
-
-        return $this->redirectToRoute("list");
-    }
+//    /**
+//     * @Route("/set-search", name="set-search")
+//     */
+//    public function setSearchQueryAction(Request $request)
+//    {
+//        $query = $this->getSearchQuery();
+//
+//        $form = $this->createForm("dende_form_search", $query);
+//
+//        if ($request->isMethod("POST")) {
+//            $form->handleRequest($request);
+//
+//            if ($form->isValid()) {
+//                $this->get('session')->set(
+//                    '_search_query',
+//                    $this->get("jms_serializer")->serialize($form->getData(), "json")
+//                );
+//            }
+//        }
+//
+//        return $this->redirectToRoute("list");
+//    }
 
     /**
      * @Template()
@@ -64,6 +69,7 @@ class DefaultController extends Controller
          * @var PersistentCollection $cars
          */
         $promoted = $this->getDoctrine()->getRepository("FrontBundle:Car")->findBy(["promoteFrontpage" => true]);
+
         return ["cars" => $promoted];
     }
 
@@ -76,6 +82,7 @@ class DefaultController extends Controller
          * @var PersistentCollection $cars
          */
         $promoted = $this->getDoctrine()->getRepository("FrontBundle:Car")->findBy(["promoteCarousel" => true]);
+
         return ["cars" => $promoted];
     }
 
@@ -83,15 +90,49 @@ class DefaultController extends Controller
      * @Route("/list", name="list")
      * @Template()
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        $query = $this->getSearchQuery();
+        $searchQuery = new SearchQuery();
+        $form = $this->createForm("dende_form_search", $searchQuery);
+        $qb = $this->getDoctrine()->getRepository("FrontBundle:Car")->createQueryBuilder("c");
+
+        if ($request->isMethod("POST")) {
+            $this->get("dende.front.search_query_entity_merge")->merge($searchQuery);
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                /**
+                 * @var SearchQuery $searchQuery
+                 */
+                $searchQuery = $form->getData();
+
+                if ($searchQuery->getType()) {
+                    $qb->andWhere("c.type = :type");
+                    $qb->setParameter("type", $searchQuery->getType());
+                }
+
+                if ($searchQuery->getBrand()) {
+                    $qb->innerJoin("c.model", "m");
+
+                    $qb->andWhere("m.brand = :brand");
+                    $qb->setParameter("brand", $searchQuery->getBrand());
+                }
+
+                if ($searchQuery->getModel()) {
+                    $qb->andWhere("c.model = :carModel");
+                    $qb->setParameter("carModel", $searchQuery->getModel());
+                }
+            }
+        }
 
         /**
          * @var PersistentCollection $cars
          */
-        $cars = $this->getDoctrine()->getRepository("FrontBundle:Car")->findAll();
-        return ["cars" => $cars];
+
+        return [
+            "cars" => $qb->getQuery()->execute(),
+            "searchForm" => $form
+        ];
     }
 
     /**
@@ -161,20 +202,49 @@ class DefaultController extends Controller
     }
 
     /**
-     * @return SearchQuery
+     * @Route(
+     *      "/api/models/brand/{id}",
+     *      name="models_for_brand",
+     * )
+     * @ParamConverter("brand", class="FrontBundle:Brand")
      */
-    private function getSearchQuery()
+    public function getModelsForBrand(Brand $brand)
     {
-        if ($this->get('session')->has('_search_query')) {
-            $query = $this->get("jms_serializer")->deserialize(
-                $this->get('session')->get('_search_query'),
-                "Dende\FrontBundle\Model\SearchQuery",
-                "json"
-            );
-        } else {
-            $query = new SearchQuery();
-        }
+        $models = $brand->getModels();
 
-        return $query;
+        return new Response($this->get("jms_serializer")->serialize($models, "json"));
     }
+
+    /**
+     * @Route(
+     *      "/api/models",
+     *      name="api_models",
+     * )
+     */
+    public function getModels()
+    {
+        $models = $this->getDoctrine()->getRepository("FrontBundle:Model")->findAll();
+
+        return new Response($this->get("jms_serializer")->serialize($models, "json"));
+    }
+
+//    /**
+//     * @return SearchQuery
+//     */
+//    private function getSearchQuery()
+//    {
+////        if ($this->get('session')->has('_search_query')) {
+////            $query = $this->get("jms_serializer")->deserialize(
+////                $this->get('session')->get('_search_query'),
+////                "Dende\FrontBundle\Model\SearchQuery",
+////                "json"
+////            );
+////        } else {
+//            $query = new SearchQuery();
+////        }
+//
+//        $this->get("dende.front.search_query_entity_merge")->merge($query);
+//
+//        return $query;
+//    }
 }

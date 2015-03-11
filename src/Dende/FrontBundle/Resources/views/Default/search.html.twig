@@ -1,5 +1,6 @@
 {{ form_start(form, {
-    action: url('set-search'),
+    action: url('list'),
+    method: "POST",
     attr: {
         'id'        : 'form1',
         'novalidate': 'novalidate',
@@ -26,39 +27,35 @@
 
 <script>
     $(function() {
-        var $brandSelect = $("select[name=car_filters\\[brand\\]]");
-        var $modelSelect = $("select[name=car_filters\\[model\\]]");
-        var emptyModelOption = '<option value="">Wszystkie modele</option>';
+        var $brandSelect = $("select#car_filters_brand");
+        var $modelSelect = $("select#car_filters_model");
 
-        $modelSelect.html(emptyModelOption);
+//        $brandSelect.change(function(e) {
+//            setModels($(this).val());
+//        });
 
-        $brandSelect.change(function(e) {
-            if ($(this).val() == "") {
-                return false;
-            }
+//        function setModels(val) {
+//            if (val)
+//
+//        }
+//
+//        function getModels(routing) {
+//            $.get(routing, {}, function(data) {
+//                    $modelSelect.html(emptyModelOption);
+//                    $.each(data, function(key, val) {
+//                        var $option = $("<option />").text(key).val(val);
+//                        if (val == $brandSelect.attr("data-models-selected"))
+//                        {
+//                            $option.attr("selected", "SELECTED");
+//                        }
+//
+//                        $modelSelect.append($option);
+//                    });
+//                }
+//            );
+//        }
 
-            $brandSelect.data("lastModelOption", $(":selected", $modelSelect));
 
-            $.get(
-                    $(this).attr("data-models-url"),
-                    {
-                        brand: $(this).val()
-                    },
-                    function(data) {
-                        $modelSelect.html(emptyModelOption);
-                        $.each(data, function(key, val) {
-                            var $option = $("<option />").text(key).val(val);
-                            if (val == $brandSelect.attr("data-models-selected"))
-                            {
-                                $option.attr("selected", "SELECTED");
-                            }
-
-                            $modelSelect.append($option);
-                        });
-                    }
-            );
-        });
-
-        $brandSelect.trigger("change");
+//        $brandSelect.trigger("change");
     });
 </script>

@@ -15,7 +15,10 @@
                         </a>
                         <div class="extra-wrap">
                             <h3><a href="{{ link }}">{{ car.getTranslated("title", app.request.locale) }}</a></h3>
-                            <p>{{ car.getTranslated("description", app.request.locale)|slice(0, 200) }}</p>
+
+                            {% set description = car.getTranslated("description", app.request.locale) %}
+
+                            <p>{{ description|slice(0, 200)|striptags }}{% if description|length>200 %}...{% endif %}</p>
                             <p class="price">
                                 {% for price in car.prices %}
                                     {{ price.amount }} {{ price.currency.symbol }}{% if not loop.last %}, {% endif %}
@@ -34,7 +37,7 @@
     <div class="inner-block">
         <div class="pad-1">
             <div class="form-title">Szukaj<span>wśród ofert</span></div>
-            {{ render(controller("FrontBundle:Default:search")) }}
+            {{ render(controller("FrontBundle:Default:search", {form: searchForm})) }}
         </div>
     </div>
 </div>
@@ -79,4 +82,3 @@
 </script><div class="clear"></div>
 <div class="clear"></div>
 {% endblock %}
-

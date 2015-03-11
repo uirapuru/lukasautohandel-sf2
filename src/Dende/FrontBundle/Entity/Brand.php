@@ -3,10 +3,13 @@ namespace Dende\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Table("brands")
  * @ORM\Entity()
+ * @ExclusionPolicy("all")
  */
 class Brand
 {
@@ -14,12 +17,14 @@ class Brand
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @var string $name
+     * @Expose()
      */
     protected $name;
 
@@ -27,8 +32,15 @@ class Brand
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255, unique=true)
      * @var string $slug
+     * @Expose()
      */
     protected $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Model", mappedBy="brand")
+     * @var ArrayCollection<Model> $models
+     */
+    protected $models;
 
     /**
      * @return mixed
@@ -76,5 +88,21 @@ class Brand
     public function setSlug($slug)
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getModels()
+    {
+        return $this->models;
+    }
+
+    /**
+     * @param mixed $models
+     */
+    public function setModels($models)
+    {
+        $this->models = $models;
     }
 }

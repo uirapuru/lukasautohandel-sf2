@@ -52,22 +52,21 @@ class ContactType extends AbstractType
         $defaultMessage = null;
 
         if ($this->car) {
-
             $builder
                 ->add('subject', "text", [
                     "label" => "contact.form.labels.subject",
                     "required" => false,
                     "error_bubbling" => true,
                     "attr" => [
-                        "placeholder" => $this->translator->trans('contact.form.placeholder.subject')
+                        "placeholder" => $this->translator->trans('contact.form.placeholder.subject'),
                     ],
                     "data" => $this->translator->trans(
                         'contact.message.about_car',
                         [
                             "%title%" => $this->car->getTitle(),
-                            "%link%" => $this->router->generate('show', ["id" => $this->car->getId()], true)
+                            "%link%" => $this->router->generate('show', ["id" => $this->car->getId()], true),
                         ]
-                    )
+                    ),
                 ]);
         }
 
@@ -77,8 +76,8 @@ class ContactType extends AbstractType
                 "required" => false,
                 "error_bubbling" => true,
                 "attr" => [
-                    "placeholder" => $this->translator->trans('contact.form.placeholder.name')
-                ]
+                    "placeholder" => $this->translator->trans('contact.form.placeholder.name'),
+                ],
             ])
             ->add('email', "email", [
                 "label" => "contact.form.labels.email",
@@ -93,16 +92,16 @@ class ContactType extends AbstractType
                 ],
                 "error_bubbling" => true,
                 "attr" => [
-                    "placeholder" => $this->translator->trans('contact.form.placeholder.email')
-                ]
+                    "placeholder" => $this->translator->trans('contact.form.placeholder.email'),
+                ],
             ])
             ->add('phone', "text", [
                 "label" => "contact.form.labels.phone",
                 "required" => false,
                 "error_bubbling" => true,
                 "attr" => [
-                    "placeholder" => $this->translator->trans('contact.form.placeholder.phone')
-                ]
+                    "placeholder" => $this->translator->trans('contact.form.placeholder.phone'),
+                ],
             ])
             ->add('message', "textarea", [
                 "label" => "contact.form.labels.message",
@@ -120,8 +119,8 @@ class ContactType extends AbstractType
                 ],
                 "error_bubbling" => true,
                 "attr" => [
-                    "placeholder" => $this->translator->trans('contact.form.placeholder.message')
-                ]
+                    "placeholder" => $this->translator->trans('contact.form.placeholder.message'),
+                ],
             ])
             ->add('submit', "submit", [
                 "label" => 'contact.form.labels.submit',

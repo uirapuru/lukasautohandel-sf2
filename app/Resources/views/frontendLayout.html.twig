@@ -17,6 +17,9 @@
     <link rel="icon" href="{{ asset("/images/favicon.ico") }}" type="image/x-icon">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
     {#<script type="text/javascript" src="{{ asset("/bundles/front/js/jquery-1.10.2.min.js") }}"></script>#}
     <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/jquery.min.js") }}"></script>
     {#<script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/jquery-migrate-1.2.1.js") }}"></script>#}

@@ -2,18 +2,16 @@
 
 namespace Dende\FrontBundle\Form\Type;
 
-use Dende\FrontBundle\Dictionary\Country;
-use Dende\FrontBundle\Dictionary\Engine;
-use Dende\FrontBundle\Dictionary\Fuel;
-use Dende\FrontBundle\Dictionary\Gearbox;
+use Dende\FrontBundle\Entity\Brand;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\Callback;
-use Symfony\Component\Validator\Constraints\NotNull;
-use Symfony\Component\Validator\Constraints\Range;
-use Symfony\Component\Validator\Constraints\Regex;
-use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class SearchType extends AbstractType
@@ -34,17 +32,17 @@ class SearchType extends AbstractType
                     "property" => "name",
                     'empty_value' => 'car.form.choice.all_types',
                     'empty_data' => null,
-                    'required' => true,
+                    'required' => false,
                     'constraints' => [
-                        new Callback(function ($data, ExecutionContextInterface $context) {
-                            $form = $context->getRoot();
-
-                            if ($form["add_type"]["name"]->isEmpty() && $form["type"]->isEmpty()) {
-                                $context->buildViolation('validator.you_have_to_choose_car_type')
-                                    ->atPath('type')
-                                    ->addViolation();
-                            }
-                        }),
+                //                        new Callback(function ($data, ExecutionContextInterface $context) {
+                //                            $form = $context->getRoot();
+                //
+                //                            if ($form["add_type"]["name"]->isEmpty() && $form["type"]->isEmpty()) {
+                //                                $context->buildViolation('validator.you_have_to_choose_car_type')
+                //                                    ->atPath('type')
+                //                                    ->addViolation();
+                //                            }
+                //                        }),
                     ],
                     "label" => 'car.form.label.type',
                 ]
@@ -57,22 +55,25 @@ class SearchType extends AbstractType
                     'empty_value' => 'car.form.choice.all_brands',
                     'empty_data' => null,
                     "property" => 'getName',
-                    'required' => true,
+                    'required' => false,
                     'constraints' => [
-                        new Callback(function ($data, ExecutionContextInterface $context) {
-                            $form = $context->getRoot();
-
-                            if ($form["add_model"]["name"]->isEmpty() && $form["model"]->isEmpty()) {
-                                $context->buildViolation('validator.you_have_to_choose_car_model')
-                                    ->atPath('model')
-                                    ->addViolation();
-                            }
-                        }),
+                //                        new Callback(function ($data, ExecutionContextInterface $context) {
+                //                            $form = $context->getRoot();
+                //
+                //                            if ($form["add_model"]["name"]->isEmpty() && $form["model"]->isEmpty()) {
+                //                                $context->buildViolation('validator.you_have_to_choose_car_model')
+                //                                    ->atPath('model')
+                //                                    ->addViolation();
+                //                            }
+                //                        }),
                     ],
                     "label" => 'car.form.label.model',
                 ]
             )
-            ->add(
+        ;
+
+        $formModifier = function (FormInterface $form, $brand) {
+            $form->add(
                 'model',
                 "entity",
                 [
@@ -80,22 +81,46 @@ class SearchType extends AbstractType
                     'empty_value' => 'car.form.choice.all_models',
                     'empty_data' => null,
                     "property" => 'getFullName',
-                    'required' => true,
+                    'required' => false,
+                    'query_builder' => function(EntityRepository $repo) use ($brand) {
+                        $qb = $repo->createQueryBuilder('m');
+                        if ($brand) {
+                            $qb->where('m.brand = :brand');
+                            $qb->setParameter('brand', $brand);
+                        }
+                        return $qb;
+                    },
                     'constraints' => [
-                        new Callback(function ($data, ExecutionContextInterface $context) {
-                            $form = $context->getRoot();
-
-                            if ($form["add_model"]["name"]->isEmpty() && $form["model"]->isEmpty()) {
-                                $context->buildViolation('validator.you_have_to_choose_car_model')
-                                    ->atPath('model')
-                                    ->addViolation();
-                            }
-                        }),
+                        //                        new Callback(function ($data, ExecutionContextInterface $context) {
+                        //                            $form = $context->getRoot();
+                        //
+                        //                            if ($form["add_model"]["name"]->isEmpty() && $form["model"]->isEmpty()) {
+                        //                                $context->buildViolation('validator.you_have_to_choose_car_model')
+                        //                                    ->atPath('model')
+                        //                                    ->addViolation();
+                        //                            }
+                        //                        }),
                     ],
                     "label" => 'car.form.label.model',
                 ]
-            )
-        ;
+            );
+        };
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($formModifier) {
+                $searchQuery = $event->getData();
+                $formModifier($event->getForm(), $searchQuery->getBrand());
+            }
+        );
+
+        $builder->get('brand')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier) {
+                $brand = $event->getForm()->getData();
+                $formModifier($event->getForm()->getParent(), $brand);
+            }
+        );
     }
 
     public function getName()

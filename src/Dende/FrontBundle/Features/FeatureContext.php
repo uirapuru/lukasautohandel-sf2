@@ -1,6 +1,7 @@
 <?php
 namespace Dende\FrontBundle\Features;
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
@@ -311,6 +312,26 @@ class FeatureContext extends MinkContext implements KernelAwareContext
 
         if ($el->getText() !== $value) {
             throw new Exception(sprintf("Element %s should have '%s' value, has '%s'", $element, $value, $el->getText()));
+        }
+    }
+
+    /**
+     * @Then /^I can see only "([^"]*)" cars models$/
+     */
+    public function iCanSeeOnlyCarsModels($brand)
+    {
+        $page = $this->getSession()->getPage();
+        $brand = $this->fixStepArgument($brand);
+        $models = $page->findAll("css", "select#car_filters_model option");
+
+        array_shift($models);
+
+        foreach ($models as $model) {
+            var_dump($model->getText(), $brand);
+
+            if (!strstr($model->getText(), $brand)) {
+                throw new Exception("Found other models than ".$brand);
+            }
         }
     }
 }

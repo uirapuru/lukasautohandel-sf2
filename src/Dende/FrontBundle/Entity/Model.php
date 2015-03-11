@@ -3,10 +3,13 @@ namespace Dende\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Table("models")
  * @ORM\Entity()
+ * @ExclusionPolicy("all")
  */
 class Model
 {
@@ -14,19 +17,22 @@ class Model
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @var string $name
+     * @Expose()
      */
     protected $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Brand")
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Brand", inversedBy="models")
      * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
      * @var Brand $brand
+     * @Expose()
      */
     protected $brand;
 
@@ -36,6 +42,12 @@ class Model
      * @var string $slug
      */
     protected $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Car", mappedBy="models")
+     * @var Car[]
+     */
+    protected $cars;
 
     /**
      * @return mixed
@@ -104,5 +116,21 @@ class Model
     public function getFullName()
     {
         return sprintf("%s / %s", $this->getName(), $this->getBrand()->getName());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCars()
+    {
+        return $this->cars;
+    }
+
+    /**
+     * @param mixed $cars
+     */
+    public function setCars($cars)
+    {
+        $this->cars = $cars;
     }
 }

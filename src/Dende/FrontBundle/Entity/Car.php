@@ -35,7 +35,7 @@ class Car implements Translatable
     protected $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Model")
+     * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Model", inversedBy="cars")
      * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
      * @var Model $model
      */

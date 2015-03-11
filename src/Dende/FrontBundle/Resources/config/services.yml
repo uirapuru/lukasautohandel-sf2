@@ -3,6 +3,11 @@ imports:
     - { resource: menus.yml }
 
 services:
+    dende.front.search_query_entity_merge:
+      class: Dende\FrontBundle\Service\SearchQueryEntityMerge
+      calls:
+        - [setEntityManager, [@doctrine.orm.entity_manager]]
+
     dende.front.manager.car:
         class: Dende\FrontBundle\Manager\CarManager
         arguments:

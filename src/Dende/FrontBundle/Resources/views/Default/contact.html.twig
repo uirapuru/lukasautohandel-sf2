@@ -36,39 +36,39 @@
                     {#</div>#}
                     {#{% endif %}#}
                     {#<fieldset>#}
-                        {#<? if ($car != null): ?>#}
+                        {#<?php if ($car != null): ?>#}
                         {#<label class="name">#}
                             {#{{ form_widget(form.email) }}#}
                         {#</label>#}
-                        {#<? endif; ?>#}
+                        {#<?php endif; ?>#}
                         {#<label class="name">#}
                             {#<?= $form["name"]->render(array("placeholder" => __("contact.name.placeholder"))); ?>#}
 
-                            {#<? if ($form["name"]->hasError()): ?>#}
+                            {#<?php if ($form["name"]->hasError()): ?>#}
                             {#<span class="error error-empty">#}
                                 {#<?= $form["name"]->getError(); ?>#}
                             {#</span>#}
-                            {#<? endif; ?>#}
+                            {#<?php endif; ?>#}
 
                         {#</label>#}
                         {#<label class="email">#}
                             {#<?= $form["email"]->render(array("placeholder" => __("contact.email.placeholder"))); ?>#}
-                            {#<? if ($form["email"]->hasError()): ?>#}
+                            {#<?php if ($form["email"]->hasError()): ?>#}
                             {#<span class="error error-empty">#}
                                 {#<?= $form["email"]->getError(); ?>#}
                             {#</span>#}
-                            {#<? endif; ?>#}
+                            {#<?php endif; ?>#}
                         {#</label>#}
                         {#<label class="phone">#}
                             {#<?= $form["phone"]->render(array("placeholder" => __("contact.phone.placeholder"))); ?>#}
                         {#</label>#}
                         {#<label class="message">#}
                             {#<?= $form["body"]->render(array("placeholder" => __("contact.body.placeholder"))); ?>#}
-                            {#<? if ($form["body"]->hasError()): ?>#}
+                            {#<?php if ($form["body"]->hasError()): ?>#}
                             {#<span class="error error-empty">#}
                                 {#<?= $form["body"]->getError(); ?>#}
                             {#</span>#}
-                            {#<? endif; ?>#}
+                            {#<?php endif; ?>#}
 
                         {#</label>#}
                         {#<div class="btns">#}

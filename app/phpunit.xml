@@ -16,7 +16,13 @@
 >
     <testsuites>
         <testsuite name="all">
-            <directory>../src/Dende/FrontBundle/Tests/**</directory>
+            <directory>../src/Dende/FrontBundle/Tests/*/</directory>
+        </testsuite>
+        <testsuite name="unit">
+            <directory>../src/Dende/FrontBundle/Tests/Unit/**</directory>
+        </testsuite>
+        <testsuite name="functional">
+            <directory>../src/Dende/FrontBundle/Tests/Functional/</directory>
         </testsuite>
     </testsuites>
 
