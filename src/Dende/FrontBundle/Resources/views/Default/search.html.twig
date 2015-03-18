@@ -1,61 +1,35 @@
-{{ form_start(form, {
-    action: url('list'),
-    method: "POST",
-    attr: {
-        'id'        : 'form1',
-        'novalidate': 'novalidate',
-    }
-}) }}
+<div class="grid_4 bg-white">
+    <div class="inner-block">
+        <div class="pad-1">
+            <div class="form-title">{{ 'search.form.caption_search'|trans }}<span>{{ 'search.form.caption_search_small'|trans }}</span></div>
 
-<label>
-<span>rodzaj</span>
-<strong class="select1">{{ form_widget(form.type, {id: "car_filters_variant"}) }}</strong>
-</label>
+            {{ form_start(form, {
+                action: url('list'),
+                method: "POST",
+                attr: {
+                    'id'        : 'form1',
+                    'novalidate': 'novalidate',
+                }
+            }) }}
 
-<label>
-<span>marka</span>
-<strong class="select1">{{ form_widget(form.brand, {id: "car_filters_brand"}) }}</strong>
-</label>
+            <label>
+            <span>{{ 'search.form.label.type'|trans }}</span>
+            <strong class="select1">{{ form_widget(form.type, {id: "car_filters_variant"}) }}</strong>
+            </label>
 
-<label><span>model</span>
-<strong class="select1">{{ form_widget(form.model, {id: "car_filters_model"}) }}</strong>
-</label>
+            <label>
+            <span>{{ 'search.form.label.type'|trans }}</span>
+            <strong class="select1">{{ form_widget(form.brand, {id: "car_filters_brand"}) }}</strong>
+            </label>
 
-<a onClick="document.getElementById('form1').submit()" href="#" class="button">szukaj</a>
+            <label><span>{{ 'search.form.label.model'|trans }}</span>
+            <strong class="select1">{{ form_widget(form.model, {id: "car_filters_model"}) }}</strong>
+            </label>
 
-{{ form_end(form) }}
+            <a onClick="document.getElementById('form1').submit()" href="#" class="button">{{ 'search.form.label.search'|trans }}</a>
 
-<script>
-//    $(function() {
-//        var $brandSelect = $("select#car_filters_brand");
-//        var $modelSelect = $("select#car_filters_model");
+            {{ form_end(form) }}
 
-//        $brandSelect.change(function(e) {
-//            setModels($(this).val());
-//        });
-
-//        function setModels(val) {
-//            if (val)
-//
-//        }
-//
-//        function getModels(routing) {
-//            $.get(routi ng, {}, function(data) {
-//                    $modelSelect.html(emptyModelOption);
-//                    $.each(data, function(key, val) {
-//                        var $option = $("<option />").text(key).val(val);
-//                        if (val == $brandSelect.attr("data-models-selected"))
-//                        {
-//                            $option.attr("selected", "SELECTED");
-//                        }
-//
-//                        $modelSelect.append($option);
-//                    });
-//                }
-//            );
-//        }
-
-
-//        $brandSelect.trigger("change");
-//    });
-</script>
+        </div>
+    </div>
+</div>

@@ -19,8 +19,6 @@ module.exports = function (grunt) {
         'bower_components/jquery-migrate/jquery-migrate.js',
         'bower_components/prettyPhoto/js/jquery.prettyPhoto.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
-        //'bower_components/modernizr/modernizr.js',
-        //'bower_components/underscore/underscore.js',
     ];
 
     var coffeeFilesAdmin = [

@@ -9,7 +9,7 @@
         </script>
         <div class="grid_8">
             <div class="inner-block">
-                <h2 class="h2-border">{{ car.title }} <a class="link" href="{{ path("list") }}">wszystkie</a>
+                <h2 class="h2-border">{{ car.title }} <a class="link" href="{{ path("list") }}">{{ 'details.show_all_link'|trans }}</a>
                 </h2>
 
                 <div class="camera_wrap camera_azure_skin" id="slide" style="display: block; height: 310px;">
@@ -42,44 +42,44 @@
         <div class="grid_4 bg-white">
             <div class="inner-block">
                 <div class="pad-1">
-                    <div class="form-title h2-border">Informacje<span>o samochodzie</span></div>
+                    <div class="form-title h2-border">{{ 'details.caption'|trans }}<span>{{ 'details.caption_small'|trans }}</span></div>
 
                     <table id="details-table" class="table">
                         <tbody>
                         <tr>
-                            <td>Marka i model</td>
+                            <td>{{ 'details.label.brand_and_model'|trans }}</td>
                             <td>{{ car.model.brand.name }} {{ car.model.name }}</td>
                         </tr>
                         <tr>
-                            <td>Rok</td>
+                            <td>{{ 'details.label.year'|trans }}</td>
                             <td>{{ car.year }}</td>
                         </tr>
                         <tr>
-                            <td>Przejechane km</td>
+                            <td>{{ 'details.label.distance'|trans }}</td>
                             <td>{{ car.distance }} km</td>
                         </tr>
                         <tr>
-                            <td>Rodzaj paliwa</td>
+                            <td>{{ 'details.label.fuel'|trans }}</td>
                             <td>{{ car.fuel }}</td>
                         </tr>
                         <tr>
-                            <td>Silnik</td>
+                            <td>{{ 'details.label.engine'|trans }}</td>
                             <td>{{ car.engine }}</td>
                         </tr>
                         <tr>
-                            <td>Skrzynia biegów</td>
+                            <td>{{ 'details.label.transmission'|trans }}</td>
                             <td>{{ car.gearbox }}</td>
                         </tr>
                         <tr>
-                            <td>Kolor</td>
+                            <td>{{ 'details.label.color'|trans }}</td>
                             <td>{{ car.color.getTranslated("name", app.request.locale) }}</td>
                         </tr>
                         <tr>
-                            <td>Kraj rejestracji</td>
+                            <td>{{ 'details.label.registrationCountry'|trans }}</td>
                             <td>{{ car.registrationCountry }}</td>
                         </tr>
                         <tr>
-                            <td>Cena</td>
+                            <td>{{ 'details.label.price'|trans }}</td>
                             <td>
                                 {% for price in car.prices %}
                                     {{ price.amount }} {{ price.currency.symbol }}{% if not loop.last %}<br /> {% endif %}
@@ -88,7 +88,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <a href="/contact/1" class="button">Zapytaj nas o auto</a>
+                                <a href="/contact/1" class="button">{{ 'details.ask_about_this_car_link'|trans }}</a>
                             </td>
 
                         </tr>
@@ -105,7 +105,7 @@
                 <h2 class="h2-border">{{ car.getTranslated("title", app.request.locale) }}</h2>
 
                 <div class="pad-1">
-                    <h3>Opis oferty</h3>
+                    <h3>{{ 'details.label.description'|trans }}</h3>
 
                     {{ car.getTranslated("description", app.request.locale)|raw }}
                 </div>

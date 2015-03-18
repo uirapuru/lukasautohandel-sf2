@@ -37,29 +37,6 @@ class DefaultController extends Controller
         return ["form" => $form->createView()];
     }
 
-//    /**
-//     * @Route("/set-search", name="set-search")
-//     */
-//    public function setSearchQueryAction(Request $request)
-//    {
-//        $query = $this->getSearchQuery();
-//
-//        $form = $this->createForm("dende_form_search", $query);
-//
-//        if ($request->isMethod("POST")) {
-//            $form->handleRequest($request);
-//
-//            if ($form->isValid()) {
-//                $this->get('session')->set(
-//                    '_search_query',
-//                    $this->get("jms_serializer")->serialize($form->getData(), "json")
-//                );
-//            }
-//        }
-//
-//        return $this->redirectToRoute("list");
-//    }
-
     /**
      * @Template()
      */
@@ -229,24 +206,4 @@ class DefaultController extends Controller
 
         return new Response($this->get("jms_serializer")->serialize($models, "json"));
     }
-
-//    /**
-//     * @return SearchQuery
-//     */
-//    private function getSearchQuery()
-//    {
-////        if ($this->get('session')->has('_search_query')) {
-////            $query = $this->get("jms_serializer")->deserialize(
-////                $this->get('session')->get('_search_query'),
-////                "Dende\FrontBundle\Model\SearchQuery",
-////                "json"
-////            );
-////        } else {
-//            $query = new SearchQuery();
-////        }
-//
-//        $this->get("dende.front.search_query_entity_merge")->merge($query);
-//
-//        return $query;
-//    }
 }

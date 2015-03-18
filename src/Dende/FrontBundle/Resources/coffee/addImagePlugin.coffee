@@ -28,7 +28,6 @@
 
     addNewItem: () =>
       index = @$container.find("ul.collection-container").children().length
-#      $proto = $(_.unescape(@prototype.replace @options.regex, index))
       $proto = $("<div/>").html(@prototype.replace @options.regex, index).text()
       $("ul.collection-container", @$container).append $proto
 
