@@ -205,6 +205,7 @@ class DefaultController extends Controller
      * @Route(
      *      "/api/models/brand/{id}",
      *      name="models_for_brand",
+     *      options={"expose"=true}
      * )
      * @ParamConverter("brand", class="FrontBundle:Brand")
      */
@@ -219,6 +220,7 @@ class DefaultController extends Controller
      * @Route(
      *      "/api/models",
      *      name="api_models",
+     *      options={"expose"=true}
      * )
      */
     public function getModels()

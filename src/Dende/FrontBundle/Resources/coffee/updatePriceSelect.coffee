@@ -1,14 +1,14 @@
 (($, window) ->
   class updatePriceSelect
-    $container: null
+    $form: null
 
     constructor: (el, options) ->
-      @$container = $(el)
+      @$form = $(el)
 
       parentSelector = "ul.collection-container > li > div.form-group > div.input-group"
       linkSelector =  "#{parentSelector} a.changeCurrencyLink"
 
-      @$container.on 'click.updatePriceSelect', linkSelector, (e) =>
+      @$form.on 'click.updatePriceSelect', linkSelector, (e) =>
         $item = $(e.target)
         $parent = $item.parents(parentSelector)
         $select = $parent.find 'select[id^="dende_form_car_prices_"]'

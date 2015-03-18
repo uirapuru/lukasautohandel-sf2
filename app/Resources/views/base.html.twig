@@ -13,8 +13,8 @@
         {% block stylesheets %}
             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
-            <link rel="stylesheet" type="text/css" href="{% if app.environment == 'prod' %}{{ asset('css/vendors.min.css') }}{% else %}{{ asset('css/vendors.css') }}{% endif %}"/>
-            <link rel="stylesheet" type="text/css" href="{% if app.environment == 'prod' %}{{ asset('css/project.min.css') }}{% else %}{{ asset('css/project.css') }}{% endif %}"/>
+            <link rel="stylesheet" type="text/css" href="{% if app.environment == 'prod' %}{{ asset('css/backend/vendors.min.css') }}{% else %}{{ asset('css/backend/vendors.css') }}{% endif %}"/>
+            <link rel="stylesheet" type="text/css" href="{% if app.environment == 'prod' %}{{ asset('css/backend/project.min.css') }}{% else %}{{ asset('css/backend/project.css') }}{% endif %}"/>
         {% endblock %}
     </head>
     <body>
@@ -41,8 +41,8 @@
         </div>
 
     {% block javascripts %}
-        <script src="{% if app.environment == 'prod' %}{{ asset('js/vendors.min.js') }}{% else %}{{ asset('js/vendors.js') }}{% endif %}" type="text/javascript"></script>
-        <script src="{% if app.environment == 'prod' %}{{ asset('js/project.min.js') }}{% else %}{{ asset('js/project.js') }}{% endif %}" type="text/javascript"></script>
+        <script src="{% if app.environment == 'prod' %}{{ asset('js/backend/vendors.min.js') }}{% else %}{{ asset('js/backend/vendors.js') }}{% endif %}" type="text/javascript"></script>
+        <script src="{% if app.environment == 'prod' %}{{ asset('js/backend/project.min.js') }}{% else %}{{ asset('js/backend/project.js') }}{% endif %}" type="text/javascript"></script>
         {#{% include '::analytics.html.twig' %}#}
     {% endblock javascripts %}
 </body>

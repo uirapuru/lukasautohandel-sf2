@@ -8,6 +8,13 @@
     <meta name="keywords" content="auto">
     <meta name="author" content="Grzegorz 'Uirapuru' Kaszuba <uirapuruadg@gmail.com> dende.com.pl">
 
+    {% block stylesheets %}
+        {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
+
+        {#<link rel="stylesheet" type="text/css" href="{% if app.environment == 'prod' %}{{ asset('css/frontend/vendors.min.css') }}{% else %}{{ asset('css/frontend/vendors.css') }}{% endif %}"/>#}
+        {#<link rel="stylesheet" type="text/css" href="{% if app.environment == 'prod' %}{{ asset('css/frontend/project.min.css') }}{% else %}{{ asset('css/frontend/project.css') }}{% endif %}"/>#}
+    {% endblock %}
+    
     <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/slider.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/jqtransform.css" />
@@ -17,50 +24,6 @@
     <link rel="icon" href="{{ asset("/images/favicon.ico") }}" type="image/x-icon">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 
-    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-
-    {#<script type="text/javascript" src="{{ asset("/bundles/front/js/jquery-1.10.2.min.js") }}"></script>#}
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/jquery.min.js") }}"></script>
-    {#<script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/jquery-migrate-1.2.1.js") }}"></script>#}
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/jquery-migrate.min.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/bootstrap.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/modernizr-2.5.3.min.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.mobile.customized.min.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.easing.1.3.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/camera.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/superfish.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.jqtransform.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.hoverIntent.minified.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.mobilemenu.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.ui.totop.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.prettyPhoto.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/script.js") }}"></script>
-    <script type="text/javascript" src="{{ asset("/bundles/front/js/main.js") }}"></script>
-
-
-    <!--[if (gt IE 9)|!(IE)]><!-->
-    <!-- script type="text/javascript" src="/js/jquery.mobile.customized.min.js"></script -->
-    <!--<![endif]-->
-
-    <script>
-        jQuery(document).ready(function() {
-//                $('.form-style').jqTransform();
-        });
-        $(window).load(function() {
-            $().UItoTop({easingType: 'easeOutQuart'});
-        });
-        jQuery
-        $(window).load(function() {
-            jQuery('#slide').camera({
-                pagination: false,
-                navigation: false,
-                transPeriod: 2000,
-                fx: 'simpleFade',
-                time: 7000
-            });
-        });
-    </script>
     <!--[if lt IE 8]>
     <div style=' clear: both; text-align:center; position: relative;'>
         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
@@ -133,5 +96,55 @@
     </footer>
     <!-- Footer -->
 </div>
+
+{% block javascripts %}
+
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/jquery.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/jquery-migrate.min.js") }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/bootstrap.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/vendor/modernizr-2.5.3.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.mobile.customized.min.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.easing.1.3.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/camera.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/superfish.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.jqtransform.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.hoverIntent.minified.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.mobilemenu.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.ui.totop.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/jquery.prettyPhoto.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/script.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/front/js/main.js") }}"></script>
+
+    <!--[if (gt IE 9)|!(IE)]><!-->
+    <!-- script type="text/javascript" src="/js/jquery.mobile.customized.min.js"></script -->
+    <!--<![endif]-->
+
+    <script>
+        jQuery(document).ready(function() {
+//                $('.form-style').jqTransform();
+        });
+        $(window).load(function() {
+            $().UItoTop({easingType: 'easeOutQuart'});
+        });
+        jQuery
+        $(window).load(function() {
+            jQuery('#slide').camera({
+                pagination: false,
+                navigation: false,
+                transPeriod: 2000,
+                fx: 'simpleFade',
+                time: 7000
+            });
+        });
+    </script>
+
+
+    {#<script src="{% if app.environment == 'prod' %}{{ asset('js/frontend/vendors.min.js') }}{% else %}{{ asset('js/frontend/vendors.js') }}{% endif %}" type="text/javascript"></script>#}
+    <script src="{% if app.environment == 'prod' %}{{ asset('js/frontend/project.min.js') }}{% else %}{{ asset('js/frontend/project.js') }}{% endif %}" type="text/javascript"></script>
+    {#{% include '::analytics.html.twig' %}#}
+{% endblock javascripts %}
+
 </body>
 </html>

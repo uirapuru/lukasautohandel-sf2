@@ -8,7 +8,6 @@ $ ->
 
   $('div#dende_form_car_prices').updatePriceSelect()
 
-
 # COLLECTIONS
 
   $("div#dende_form_car_images").collection

@@ -3,8 +3,8 @@
 (($, window) ->
   class collection
 
-    $container: null
     $form: null
+    $container: null
     prototype:  null
 
     defaults:
@@ -28,7 +28,8 @@
 
     addNewItem: () =>
       index = @$container.find("ul.collection-container").children().length
-      $proto = $(_.unescape(@prototype.replace @options.regex, index))
+#      $proto = $(_.unescape(@prototype.replace @options.regex, index))
+      $proto = $("<div/>").html(@prototype.replace @options.regex, index).text()
       $("ul.collection-container", @$container).append $proto
 
   $.fn.extend collection: (option, args...) ->

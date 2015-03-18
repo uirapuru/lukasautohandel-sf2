@@ -16,8 +16,8 @@ default:
             selenium2:
                 wd_host: "http://localhost:8643/wd/hub"
 
-    formatters:
-        progress: true
+#    formatters:
+#        progress: true
 
 firefox:
     suites:

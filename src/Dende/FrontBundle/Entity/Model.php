@@ -44,7 +44,7 @@ class Model
     protected $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Car", mappedBy="models")
+     * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Car", mappedBy="model")
      * @var Car[]
      */
     protected $cars;
@@ -115,7 +115,8 @@ class Model
 
     public function getFullName()
     {
-        return sprintf("%s / %s", $this->getName(), $this->getBrand()->getName());
+        return $this->getName();
+//        return sprintf("%s / %s", $this->getName(), $this->getBrand()->getName());
     }
 
     /**

@@ -82,7 +82,7 @@ class SearchType extends AbstractType
                     'empty_data' => null,
                     "property" => 'getFullName',
                     'required' => false,
-                    'query_builder' => function(EntityRepository $repo) use ($brand) {
+                    'query_builder' => function (EntityRepository $repo) use ($brand) {
                         $qb = $repo->createQueryBuilder('m');
                         if ($brand) {
                             $qb->where('m.brand = :brand');

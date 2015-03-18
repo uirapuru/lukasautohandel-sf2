@@ -19,15 +19,20 @@ module.exports = function (grunt) {
         'bower_components/jquery-migrate/jquery-migrate.js',
         'bower_components/prettyPhoto/js/jquery.prettyPhoto.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
-        'bower_components/modernizr/modernizr.js',
-        'bower_components/underscore/underscore.js',
+        //'bower_components/modernizr/modernizr.js',
+        //'bower_components/underscore/underscore.js',
     ];
 
-    var coffeeFiles = [
+    var coffeeFilesAdmin = [
         'src/Dende/FrontBundle/Resources/coffee/addImagePlugin.coffee',
         'src/Dende/FrontBundle/Resources/coffee/toggleWidgets.coffee',
         'src/Dende/FrontBundle/Resources/coffee/updatePriceSelect.coffee',
         'src/Dende/FrontBundle/Resources/coffee/main.coffee',
+    ];
+
+    var coffeeFilesFront = [
+        'src/Dende/FrontBundle/Resources/coffee/searchForm.coffee',
+        'src/Dende/FrontBundle/Resources/coffee/frontend.coffee',
     ];
 
     grunt.initConfig({
@@ -35,11 +40,18 @@ module.exports = function (grunt) {
         clean: {
             build:            { src: "build/assets" },
             web:              { src: [ "web/assets", "web/js", "web/css", "web/fonts", "web/images", "web/flags"] },
-            "dev-assets":     { src: ["!web/js/*.js", "!web/js/*.min.js", "!web/css/*.css", "!web/css/*.min.css"] }
+            "dev-assets":     { src: ["!web/js/*.js", "!web/js/*.min.js", "!web/css/backend/*.css", "!web/css/backend/*.min.css"] }
         },
         watch: {
-            scripts: {
-                files: coffeeFiles,
+            scriptsBackend: {
+                files: coffeeFilesAdmin,
+                tasks: ['coffee:development'],
+                options: {
+                    spawn: false,
+                },
+            },
+            scriptsFrontend: {
+                files: coffeeFilesFront,
                 tasks: ['coffee:development'],
                 options: {
                     spawn: false,
@@ -62,44 +74,48 @@ module.exports = function (grunt) {
                     optimization: 0
                 },
                 files : {
-                    "web/css/project.css" : lessFiles
+                    "web/css/backend/project.css" : lessFiles
                 }
             },
         },
         uglify: {
             production: {
                 files: {
-                    'web/js/vendors.min.js': 'web/js/vendors.js',
-                    'web/js/project.min.js': 'web/js/project.js'
+                    'web/js/backend/vendors.min.js': 'web/js/backend/vendors.js',
+                    'web/js/backend/project.min.js': 'web/js/backend/project.js',
+                    //'web/js/frontend/vendors.min.js': 'web/js/frontend/vendors.js',
+                    'web/js/frontend/project.min.js': 'web/js/frontend/project.js'
+
                 },
             },
         },
         cssmin: {
             "production-vendors": {
-                src: 'web/css/vendors.css',
-                dest: 'web/css/vendors.min.css'
+                src: 'web/css/backend/vendors.css',
+                dest: 'web/css/backend/vendors.min.css'
             },
             "production-project": {
-                src: 'web/css/project.css',
-                dest: 'web/css/project.min.css'
+                src: 'web/css/backend/project.css',
+                dest: 'web/css/backend/project.min.css'
             },
         },
         coffee: {
             development: {
                 files: {
-                    'web/js/project.js': coffeeFiles
+                    'web/js/backend/project.js': coffeeFilesAdmin,
+                    'web/js/frontend/project.js': coffeeFilesFront
                 },
             },
         },
         concat: {
             "vendors.css": {
                 src: cssVendors,
-                dest: 'web/css/vendors.css',
+                dest: 'web/css/backend/vendors.css',
                 nonull: true
             },
             "vendors.js": {
                 src: jsVendors,
-                dest: 'web/js/vendors.js',
+                dest: 'web/js/backend/vendors.js',
                 nonull: true
             },
         },
@@ -147,13 +163,13 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('css:development', [
-        "concat:vendors.css",                   // concatenates vendors into one web/css/vendors.css file
-        "less:development-project",             // compiles *.less from project into one web/css/project.css file
+        "concat:vendors.css",                   // concatenates vendors into one web/css/backend/vendors.css file
+        "less:development-project",             // compiles *.less from project into one web/css/backend/project.css file
     ]);
 
     grunt.registerTask('js:development', [
-        "coffee:development",                  // compiles *.coffee files into one web/js/project.js
-        "concat:vendors.js",                   // concatenates vendors into one web/js/vendors.js
+        "coffee:development",                  // compiles *.coffee files into one web/js/backend/project.js
+        "concat:vendors.js",                   // concatenates vendors into one web/js/backend/vendors.js
     ]);
 
     grunt.registerTask('development', [
