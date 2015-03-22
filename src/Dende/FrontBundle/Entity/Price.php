@@ -21,40 +21,46 @@ class Price
     /**
      * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Car", inversedBy="prices", cascade={"remove","persist"})
      * @ORM\JoinColumn(name="car_id", referencedColumnName="id")
-     * @var Car $car
+     *
+     * @var Car
      */
     protected $car;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Currency", cascade={"remove","persist"})
      * @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
-     * @var Currency $currency
+     *
+     * @var Currency
      */
     protected $currency;
 
     /**
      * @ORM\Column(type="decimal")
-     * @var string $amount
+     *
+     * @var string
      */
     protected $amount;
 
     /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
-     * @var \DateTime $createdAt
+     *
+     * @var \DateTime
      */
     protected $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
-     * @var \DateTime $modifiedAt
+     *
+     * @var \DateTime
      */
     protected $modified;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @var \DateTime $deletedAt
+     *
+     * @var \DateTime
      */
     protected $deleted;
 

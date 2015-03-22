@@ -20,14 +20,16 @@ class Type
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string $name
+     *
+     * @var string
      */
     protected $name;
 
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255)
-     * @var string $slug
+     *
+     * @var string
      */
     protected $slug;
 

@@ -17,15 +17,21 @@ class MenuBuilder extends ContainerAware
     /**
      * @var SecurityContext
      */
-    private $context;
+    private $securityContext;
+
+    /**
+     * @var array
+     */
+    private $languages = ["pl"];
 
     /**
      * @param FactoryInterface $factory
      */
-    public function __construct(FactoryInterface $factory, SecurityContext $context)
+    public function __construct(FactoryInterface $factory, SecurityContext $context, array $languages)
     {
         $this->factory = $factory;
-        $this->context = $context;
+        $this->securityContext = $context;
+        $this->languages = $languages;
     }
 
     public function createLangMenu(Request $request)
@@ -37,18 +43,14 @@ class MenuBuilder extends ContainerAware
             'id' => 'langMenu',
         ]);
 
-        $menu->addChild('pl', ['route' => 'switch_language', 'routeParameters' => ['locale' => 'pl']])
-            ->setLabel('PL');
-
-        $menu->addChild('en', ['route' => 'switch_language', 'routeParameters' => ['locale' => 'en']])
-            ->setLabel('EN');
-
-        $menu->addChild('de', ['route' => 'switch_language', 'routeParameters' => ['locale' => 'de']])
-            ->setLabel('DE');
+        foreach ($this->languages as $language) {
+            $menu->addChild($language, ['route' => 'switch_language', 'routeParameters' => ['locale' => $language]])
+            ->setLabel(strtoupper($language));
+        }
 
         $locale = $request->getLocale();
 
-        if (in_array($locale, ["pl", "en", "de"])) {
+        if (in_array($locale, $this->languages)) {
             $menu->getChild($locale)->setCurrent(true);
             $menu->getChild($locale)->setLinkAttribute("class", "active");
         }
@@ -60,7 +62,7 @@ class MenuBuilder extends ContainerAware
     {
         $menu = $this->factory->createItem('root');
 
-        if (!$this->context->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
+        if (!$this->securityContext->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
             return $menu;
         }
 

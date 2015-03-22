@@ -3,8 +3,8 @@
 namespace Dende\FrontBundle\Form\Type;
 
 use Dende\FrontBundle\Entity\Brand;
+use Dende\FrontBundle\Entity\Model;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -33,17 +33,7 @@ class SearchType extends AbstractType
                     'empty_value' => 'car.form.choice.all_types',
                     'empty_data' => null,
                     'required' => false,
-                    'constraints' => [
-                //                        new Callback(function ($data, ExecutionContextInterface $context) {
-                //                            $form = $context->getRoot();
-                //
-                //                            if ($form["add_type"]["name"]->isEmpty() && $form["type"]->isEmpty()) {
-                //                                $context->buildViolation('validator.you_have_to_choose_car_type')
-                //                                    ->atPath('type')
-                //                                    ->addViolation();
-                //                            }
-                //                        }),
-                    ],
+                    'constraints' => [],
                     "label" => 'car.form.label.type',
                 ]
             )
@@ -56,17 +46,7 @@ class SearchType extends AbstractType
                     'empty_data' => null,
                     "property" => 'getName',
                     'required' => false,
-                    'constraints' => [
-                //                        new Callback(function ($data, ExecutionContextInterface $context) {
-                //                            $form = $context->getRoot();
-                //
-                //                            if ($form["add_model"]["name"]->isEmpty() && $form["model"]->isEmpty()) {
-                //                                $context->buildViolation('validator.you_have_to_choose_car_model')
-                //                                    ->atPath('model')
-                //                                    ->addViolation();
-                //                            }
-                //                        }),
-                    ],
+                    'constraints' => [],
                     "label" => 'car.form.label.model',
                 ]
             )
@@ -88,19 +68,10 @@ class SearchType extends AbstractType
                             $qb->where('m.brand = :brand');
                             $qb->setParameter('brand', $brand);
                         }
+
                         return $qb;
                     },
-                    'constraints' => [
-                        //                        new Callback(function ($data, ExecutionContextInterface $context) {
-                        //                            $form = $context->getRoot();
-                        //
-                        //                            if ($form["add_model"]["name"]->isEmpty() && $form["model"]->isEmpty()) {
-                        //                                $context->buildViolation('validator.you_have_to_choose_car_model')
-                        //                                    ->atPath('model')
-                        //                                    ->addViolation();
-                        //                            }
-                        //                        }),
-                    ],
+                    'constraints' => [],
                     "label" => 'car.form.label.model',
                 ]
             );

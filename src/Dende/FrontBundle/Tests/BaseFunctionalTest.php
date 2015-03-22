@@ -10,14 +10,13 @@ use Symfony\Component\HttpKernel\Client;
 
 class BaseFunctionalTest extends WebTestCase
 {
-
     /**
      * @var Client
      */
     protected $client;
 
     /**
-     * @var Container $container
+     * @var Container
      */
     protected $container;
 

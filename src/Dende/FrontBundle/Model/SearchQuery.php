@@ -9,23 +9,22 @@ use JMS\Serializer\Annotation\Type as FieldType;
 
 class SearchQuery
 {
-
     /**
-     * @var Brand $brand
+     * @var Brand
      * @FieldType("Dende\FrontBundle\Entity\Brand")
      * @Expose()
      */
     private $brand;
 
     /**
-     * @var Model $model
+     * @var Model
      * @FieldType("Dende\FrontBundle\Entity\Model")
      * @Expose()
      */
     private $model;
 
     /**
-     * @var Type $type
+     * @var Type
      * @Expose()
      * @FieldType("Dende\FrontBundle\Entity\Type")
      */
@@ -82,6 +81,7 @@ class SearchQuery
     public function getQueryAsString()
     {
         $vars = $this->getQueryAsArray();
+
         return http_build_query($vars);
     }
 

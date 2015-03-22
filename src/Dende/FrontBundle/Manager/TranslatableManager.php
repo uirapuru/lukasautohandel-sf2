@@ -24,7 +24,7 @@ class TranslatableManager
     protected $class;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param EntityManager $em    Entity manager
      * @param string        $class Class name
@@ -37,7 +37,7 @@ class TranslatableManager
     }
 
     /**
-     * Sets the repository request default locale
+     * Sets the repository request default locale.
      *
      * @param ContainerInterface|null $container
      *

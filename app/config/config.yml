@@ -2,6 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+parameters:
+  supported_locales:
+    - pl
+    - en
+    - de
+
 framework:
     #esi:             ~
     translator:      { fallback: "%locale%" }
@@ -102,7 +108,7 @@ front:
         youtube:        ~
 
 a2lix_translation_form:
-    locales: [pl, en, de]
+    locales: %supported_locales%
     default_required: true
     manager_registry: doctrine
     templating: "A2lixTranslationFormBundle::default.html.twig"
@@ -123,7 +129,7 @@ services:
             - { name: doctrine.event_subscriber, connection: default }
         calls:
             - [ setAnnotationReader, [ @annotation_reader ] ]
-            - [ setDefaultLocale, [ pl ] ]
+            - [ setDefaultLocale, [ %locale% ] ]
             - [ setTranslationFallback, [ true ] ]
 
     gedmo.listener.softdeleteable:

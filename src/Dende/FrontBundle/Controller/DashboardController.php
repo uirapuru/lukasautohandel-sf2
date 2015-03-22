@@ -9,16 +9,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class CarController
- * @package Dende\FrontBundle\Controller
+ * Class CarController.
  *
  * @Route("/admin/")
  */
 class DashboardController extends Controller
 {
-
     /**
      * @Route("/",name="dashboard_index")
+     *
      * @Method({"GET","POST"})
      * @Template()
      */

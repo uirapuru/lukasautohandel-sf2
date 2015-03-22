@@ -24,7 +24,6 @@ abstract class KernelAwareTest extends \PHPUnit_Framework_TestCase
     protected $container;
 
     /**
-     * @return null
      */
     public function setUp()
     {
@@ -38,7 +37,6 @@ abstract class KernelAwareTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return null
      */
     public function tearDown()
     {

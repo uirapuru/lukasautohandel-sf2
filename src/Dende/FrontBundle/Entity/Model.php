@@ -23,7 +23,8 @@ class Model
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string $name
+     *
+     * @var string
      * @Expose()
      */
     protected $name;
@@ -31,7 +32,8 @@ class Model
     /**
      * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Brand", inversedBy="models")
      * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
-     * @var Brand $brand
+     *
+     * @var Brand
      * @Expose()
      */
     protected $brand;
@@ -39,12 +41,14 @@ class Model
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255, unique=true)
-     * @var string $slug
+     *
+     * @var string
      */
     protected $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Car", mappedBy="model")
+     *
      * @var Car[]
      */
     protected $cars;

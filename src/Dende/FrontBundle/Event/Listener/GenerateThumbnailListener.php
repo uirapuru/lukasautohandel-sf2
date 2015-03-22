@@ -15,8 +15,8 @@ class GenerateThumbnailListener
     public function uploadablePostFileProcess(UploadablePostFileProcessEventArgs $args)
     {
         $listener = $args->getListener();
-        /**
-         * @var Image $image
+        /*
+         * @var Image
          */
         $image = $args->getEntity();
         $defaultPath = $listener->getDefaultPath();

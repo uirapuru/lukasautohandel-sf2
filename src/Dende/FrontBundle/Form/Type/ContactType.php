@@ -14,7 +14,7 @@ use Dende\FrontBundle\Entity\Car;
 class ContactType extends AbstractType
 {
     /**
-     * @var Car $car
+     * @var Car
      */
     private $car;
 
@@ -64,7 +64,10 @@ class ContactType extends AbstractType
                         'contact.message.about_car',
                         [
                             "%title%" => $this->car->getTitle(),
-                            "%link%" => $this->router->generate('show', ["id" => $this->car->getId()], true),
+                            "%link%" => $this->router->generate('show', [
+                                "id"   => $this->car->getId(),
+                                "slug" => $this->car->getSlug(),
+                            ], true),
                         ]
                     ),
                 ]);

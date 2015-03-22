@@ -5,9 +5,9 @@ use Dende\FrontBundle\Entity\Type;
 
 class TypeFactory
 {
-
     /**
      * @param $array
+     *
      * @return Type
      */
     public function create(array $array = [])

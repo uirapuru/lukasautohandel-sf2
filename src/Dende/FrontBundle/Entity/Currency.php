@@ -21,19 +21,22 @@ class Currency
 
     /**
      * @ORM\Column(type="string", length=10)
-     * @var string $symbol
+     *
+     * @var string
      */
     protected $symbol;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string $type
+     *
+     * @var string
      */
     protected $type;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string $code
+     *
+     * @var string
      */
     protected $code;
 

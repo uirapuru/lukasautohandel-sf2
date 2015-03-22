@@ -13,8 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class CarController
- * @package Dende\FrontBundle\Controller
+ * Class CarController.
  *
  * @Route("/admin/cars")
  */
@@ -22,6 +21,7 @@ class CarController extends Controller
 {
     /**
      * @Route("/add",name="add_car")
+     *
      * @Method({"GET","POST"})
      */
     public function addAction(Request $request)
@@ -92,6 +92,7 @@ class CarController extends Controller
     /**
      * @Route("/edit/{id}",name="edit_car")
      * @ParamConverter("car", class="FrontBundle:Car")
+     *
      * @Method({"GET","POST"})
      * @GedmoTranslation()
      */
@@ -173,6 +174,7 @@ class CarController extends Controller
      * Lists all Car entities.
      *
      * @Route("/", name="car")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -192,6 +194,7 @@ class CarController extends Controller
      *
      * @Route("/{id}", name="car_show")
      * @ParamConverter("car", class="FrontBundle:Car")
+     *
      * @Method("GET")
      * @Template()
      */
@@ -205,6 +208,7 @@ class CarController extends Controller
     /**
      * @Route("/{id}/delete",name="delete_car")
      * @ParamConverter("car", class="FrontBundle:Car")
+     *
      * @Method({"GET"})
      */
     public function deleteAction(Request $request, Car $car)

@@ -3,7 +3,11 @@
 {% block body %}
 <div class="grid_8">
     <div class="inner-block">
-        <h2 class="h2-border top-1">{{ 'list.caption'|trans }} <a class="link" href="{{ path("list") }}">{{ 'list.show_all_link'|trans }}</a></h2>
+        <h2 class="h2-border top-1">{{ 'list.caption'|trans }} :
+            <span id="list-result-count">{{ cars|length }}</span>
+
+            <a class="link" href="{{ path("list") }}">{{ 'list.show_all_link'|trans }}</a>
+        </h2>
         <div class="box-3">
             <ul class="search-results">
                 {% for car in cars %}

@@ -155,6 +155,7 @@ search:
             brand: 'marka'
             model: 'model'
             search: 'szukaj'
+            empty: 'wszystkie modele'
 list:
     caption: 'Wyniki wyszukiwania'
     show_all_link: 'wszystkie'
@@ -162,3 +163,28 @@ list:
 
 details:
     show_all_link: 'wszystkie'
+    caption: 'Informacje'
+    caption_small: 'o samochodzie'
+    label:
+      brand_and_model: 'marka i model'
+      year: 'rok produkcji'
+      distance: 'przejechany dystans'
+      fuel: 'rodzaj paliwa'
+      engine: 'typ silnika'
+      transmission: 'skrzynia biegów'
+      color: 'kolor'
+      registrationCountry: 'kraj rejestracji'
+      price: 'cena'
+      description: 'opis oferty'
+    ask_about_this_car_link: 'zapytaj nas o auto'
+
+index:
+    best_offers_caption: 'Najciekawsze oferty'
+    show_all_link: 'wszystkie'
+    about_us_caption: 'O nas'
+
+    about_us_paragraph_1: "Lorem ipsum dolor sit amet conse ctetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci tation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe nderit in voluptate velit esse cillum dolore."
+    about_us_paragraph_2: "Lorem ipsum dolor sit amet conse ctetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci tation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe nderit in voluptate velit esse cillum dolore."
+
+promoted:
+    car_details_button: 'szczegóły'

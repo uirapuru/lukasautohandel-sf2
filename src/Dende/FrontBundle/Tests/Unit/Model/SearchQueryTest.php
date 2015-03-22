@@ -8,7 +8,6 @@ use Dende\FrontBundle\Model\SearchQuery;
 
 class SearchQueryTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @param $type
      * @param $model

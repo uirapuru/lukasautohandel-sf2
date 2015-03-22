@@ -9,7 +9,6 @@ use Stof\DoctrineExtensionsBundle\Uploadable\UploadableManager;
 
 class ProcessImages
 {
-
     /**
      * @var UploadableManager
      */
@@ -65,8 +64,8 @@ class ProcessImages
     public function removeUnused()
     {
         foreach ($this->originalImages as $image) {
-            /**
-             * @var Image $image
+            /*
+             * @var Image
              */
             if (!$this->car->getImages()->contains($image)) {
                 $image->setCar(null);

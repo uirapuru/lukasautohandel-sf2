@@ -1,7 +1,6 @@
 <?php
 namespace Dende\FrontBundle\Features;
 
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
@@ -46,12 +45,12 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         $labels = $page->findAll("css", "label");
 
         foreach ($labels as $label) {
-            /**
-             * @var NodeElement $label
+            /*
+             * @var NodeElement
              */
             if ($label->getText() == $rowLabel) {
-                /**
-                 * @var NodeElement $row
+                /*
+                 * @var NodeElement
                  */
                 $row = $label->getParent();
                 continue;
@@ -183,12 +182,12 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         $row = null;
 
         foreach ($labels as $label) {
-            /**
-             * @var NodeElement $label
+            /*
+             * @var NodeElement
              */
             if (trim($label->getText()) == $rowLabel) {
-                /**
-                 * @var NodeElement $row
+                /*
+                 * @var NodeElement
                  */
                 $row = $label->getParent();
                 continue;
@@ -218,8 +217,8 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         $elements = $page->findAll("css", $elementSelector);
 
         foreach ($elements as $element) {
-            /**
-             * @var NodeElement $element
+            /*
+             * @var NodeElement
              */
             if (!$element->isVisible()) {
                 return false;
@@ -333,5 +332,153 @@ class FeatureContext extends MinkContext implements KernelAwareContext
                 throw new Exception("Found other models than ".$brand);
             }
         }
+    }
+
+    /**
+     * @When /^I select "([^"]*)" brand$/
+     */
+    public function iSelectBrand($brand)
+    {
+        $this->selectOption('car_filters_brand', $brand);
+        sleep(1);
+    }
+
+    /**
+     * @Then /^I dont see any models$/
+     */
+    public function iDontSeeAnyModels()
+    {
+        $selector =  'select#car_filters_model option';
+        $hasModels = $this->getSession()->getPage()->has("css", $selector);
+
+        if ($hasModels) {
+            $models = [];
+            $elements = $this->getSession()->getPage()->findAll("css", $selector);
+
+            foreach ($elements as $element) {
+                $models[] = $element->getText();
+            }
+
+            if ($models == array(" ")) {
+                return;
+            }
+
+            throw new Exception(sprintf("There should be no options in models select but found %d models: %s", count($elements), implode(", ", $models)));
+        }
+    }
+
+    /**
+     * @Then /^I can see models "([^"]*)"$/
+     */
+    public function iCanSeeModels($arg1)
+    {
+        $expectedElements = array_map("trim", explode(",", $arg1));
+
+        $selector =  'select#car_filters_model option';
+
+        $hasModels = $this->getSession()->getPage()->has("css", $selector);
+
+        if ($hasModels) {
+            $elements = $this->getSession()->getPage()->findAll("css", $selector);
+            $actualElements = array_map(function ($el) {
+                return $el->getText();
+
+            }, $elements);
+
+            foreach ($expectedElements as $model) {
+                if (!in_array($model, $actualElements)) {
+                    throw new Exception(sprintf("There are no %s model in options. Only %s exists.", $model, implode(", ", $actualElements)));
+                }
+            }
+        } else {
+            throw new Exception("There are no options in models select");
+        }
+    }
+
+    /**
+     * @When /^I deselect brand$/
+     */
+    public function iDeselectBrand()
+    {
+        $this->selectOption('car_filters_brand', null);
+        sleep(1);
+    }
+
+    /**
+     * @When /^I select "([^"]*)" type$/
+     */
+    public function iSelectType($arg1)
+    {
+        $this->selectOption('car_filters_variant', $arg1);
+    }
+
+    /**
+     * @Given /^I submit search form$/
+     */
+    public function iSubmitSearchForm()
+    {
+        $this->iSubmitForm('form1');
+        sleep(1);
+    }
+
+    /**
+     * @Then /^I can see (\d+) cars in results$/
+     */
+    public function iCanSeeCarsInResults($count)
+    {
+        $count = (int) $this->fixStepArgument($count);
+        $page = $this->getSession()->getPage();
+        $hasResults = $page->has('css', 'ul.search-results li');
+
+        if ($hasResults) {
+            $results = $page->findAll('css', 'ul.search-results li');
+            if (count($results) !== $count) {
+                throw new Exception(sprintf("Results found differs from test. Should be %d, found %d", $count, count($results)));
+            }
+        } elseif ($count > 0) {
+            throw new Exception("No results from filtered cars");
+        }
+    }
+
+    /**
+     * @Then /^I don't see any cars in results$/
+     */
+    public function iDonTSeeAnyCarsInResults()
+    {
+        $this->iCanSeeCarsInResults(0);
+    }
+
+    /**
+     * @When /^I reset search form$/
+     */
+    public function iResetSearchForm()
+    {
+        $this->selectOption('car_filters_variant', null);
+        $this->selectOption('car_filters_brand', null);
+        $this->selectOption('car_filters_model', null);
+    }
+
+    /**
+     * @Given /^I can see (.*) cars in results caption$/
+     */
+    public function iCanSeeCarsInResultsCaption($count)
+    {
+        $count = (int) $this->fixStepArgument($count);
+        $selector = 'span#list-result-count';
+        $page = $this->getSession()->getPage();
+
+        $amount = (int) $page->find('css', $selector)->getText();
+
+        if ($amount != $count) {
+            throw new Exception(sprintf("Count in list caption differs from the test. Should be %d, found %d", $count, $amount));
+        }
+    }
+
+    /**
+     * @Given /^I select "([^"]*)" model$/
+     */
+    public function iSelectModel($arg1)
+    {
+        $this->selectOption('car_filters_model', $arg1);
     }
 }

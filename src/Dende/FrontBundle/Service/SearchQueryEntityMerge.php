@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManager;
 
 class SearchQueryEntityMerge
 {
-
     /**
      * @var EntityManager
      */
@@ -25,7 +24,6 @@ class SearchQueryEntityMerge
 
     public function merge(SearchQuery $query)
     {
-
         $brand = $query->getBrand();
 
         if ($brand instanceof Brand) {

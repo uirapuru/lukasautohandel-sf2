@@ -15,11 +15,23 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CarControllerTest extends BaseFunctionalTest
 {
+    /**
+     * @var array
+     */
+    private $languages = [];
+
+    /**
+     * @var string
+     */
+    private $defaultLocale = "pl";
+
     public function setUp()
     {
         parent::setUp();
 
         $this->login();
+        $this->languages = $this->container->getParameter("supported_locales");
+        $this->defaultLocale = $this->container->getParameter("locale");
     }
 
     public function tearDown()
@@ -73,8 +85,8 @@ class CarControllerTest extends BaseFunctionalTest
 
         $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
         $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
-        /**
-         * @var Car $carEntity
+        /*
+         * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
@@ -169,8 +181,8 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals('flash.car_add.success', trim($alert->text()));
 
         $em = $this->container->get("doctrine.orm.entity_manager");
-        /**
-         * @var Car $entity
+        /*
+         * @var Car
          */
         $entity = $em->getRepository("FrontBundle:Car")->findOneByTitle($title);
 
@@ -211,8 +223,8 @@ class CarControllerTest extends BaseFunctionalTest
 
         $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
         $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
-        /**
-         * @var Car $carEntity
+        /*
+         * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
@@ -232,7 +244,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["translations"]["pl"]["title"] = $title;
+        $values["dende_form_car"]["translations"][$this->defaultLocale]["title"] = $title;
         $values["dende_form_car"]["prices"] = [
             ["amount" => 30, "currency" => 2],
             ["amount" => 40, "currency" => 2],
@@ -261,7 +273,7 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals("GET", $this->client->getRequest()->getMethod());
 
         $em->refresh($carEntity);
-        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage("title", "pl")->first();
+        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage("title", $this->defaultLocale)->first();
         $em->refresh($titleTranslationEntity);
 
         $this->assertNotNull($carEntity, "Car entity can't be found");
@@ -394,8 +406,8 @@ class CarControllerTest extends BaseFunctionalTest
 
         $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
         $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
-        /**
-         * @var Car $carEntity
+        /*
+         * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
@@ -458,8 +470,8 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(200, $this->getStatusCode());
 
         $em = $this->container->get("doctrine.orm.entity_manager");
-        /**
-         * @var Car $carEntity
+        /*
+         * @var Car
          */
         $carEntity = $em->getRepository("FrontBundle:Car")->findOneByTitle($title);
 
@@ -477,8 +489,8 @@ class CarControllerTest extends BaseFunctionalTest
 
         $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
         $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
-        /**
-         * @var Car $carEntity
+        /*
+         * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
@@ -491,7 +503,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["add_color"]["translations"]["pl"]["name"] = $newColorName;
+        $values["dende_form_car"]["add_color"]["translations"][$this->defaultLocale]["name"] = $newColorName;
 
         $this->client->request("POST", $url, $values, $form->getFiles());
 
@@ -505,6 +517,7 @@ class CarControllerTest extends BaseFunctionalTest
 
     /**
      * @test
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function new_model_is_being_created_while_editing_new_car()
@@ -513,8 +526,8 @@ class CarControllerTest extends BaseFunctionalTest
 
         $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
         $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
-        /**
-         * @var Car $carEntity
+        /*
+         * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
@@ -543,6 +556,7 @@ class CarControllerTest extends BaseFunctionalTest
 
     /**
      * @test
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function new_model_is_being_created_while_adding_new_car()
@@ -581,7 +595,7 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(200, $this->getStatusCode());
 
         $em = $this->container->get("doctrine.orm.entity_manager");
-        /**
+        /*
          * @var Car $entity
          */
         $carEntity = $em->getRepository("FrontBundle:Car")->findOneByTitle($title);
@@ -602,23 +616,23 @@ class CarControllerTest extends BaseFunctionalTest
         $brandQuery = $em->getRepository("FrontBundle:Brand")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
         $typeQuery = $em->getRepository("FrontBundle:Type")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
 
-        /**
-         * @var Color $color
+        /*
+         * @var Color
          */
         $color = $colorQuery->getQuery()->getOneOrNullResult();
 
-        /**
-         * @var Model $model
+        /*
+         * @var Model
          */
         $model = $modelQuery->getQuery()->getOneOrNullResult();
 
-        /**
-         * @var Brand $brand
+        /*
+         * @var Brand
          */
         $brand = $brandQuery->getQuery()->getOneOrNullResult();
 
-        /**
-         * @var Type $type
+        /*
+         * @var Type
          */
         $type = $typeQuery->getQuery()->getOneOrNullResult();
 
@@ -656,8 +670,8 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(200, $this->getStatusCode());
 
         $em = $this->container->get("doctrine.orm.entity_manager");
-        /**
-         * @var Car $carEntity
+        /*
+         * @var Car
          */
         $carEntity = $em->getRepository("FrontBundle:Car")->findOneByTitle($title);
 
@@ -686,30 +700,30 @@ class CarControllerTest extends BaseFunctionalTest
         $brandQuery = $em->getRepository("FrontBundle:Brand")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
         $typeQuery = $em->getRepository("FrontBundle:Type")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
 
-        /**
-         * @var Color $color
+        /*
+         * @var Color
          */
         $color = $colorQuery->getQuery()->getOneOrNullResult();
 
-        /**
-         * @var Model $model
+        /*
+         * @var Model
          */
         $model = $modelQuery->getQuery()->getOneOrNullResult();
 
-        /**
-         * @var Brand $brand
+        /*
+         * @var Brand
          */
         $brand = $brandQuery->getQuery()->getOneOrNullResult();
 
-        /**
-         * @var Type $type
+        /*
+         * @var Type
          */
         $type = $typeQuery->getQuery()->getOneOrNullResult();
 
         $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
         $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
-        /**
-         * @var Car $carEntity
+        /*
+         * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
@@ -724,10 +738,10 @@ class CarControllerTest extends BaseFunctionalTest
 
         $values = $form->getPhpValues();
 
-        $values["dende_form_car"]["translations"]["pl"]["title"] = $title;
+        $values["dende_form_car"]["translations"][$this->defaultLocale]["title"] = $title;
         $values["dende_form_car"]["add_model"]["name"] = $model->getName();
         $values["dende_form_car"]["add_model"]["brand"] = $brand->getName();
-        $values["dende_form_car"]["add_color"]["translations"]["pl"]["name"] = $color->getName();
+        $values["dende_form_car"]["add_color"]["translations"][$this->defaultLocale]["name"] = $color->getName();
         $values["dende_form_car"]["add_type"]["name"] = $type->getName();
 
         $this->client->request($form->getMethod(), $form->getUri(), $values, []);
@@ -736,12 +750,12 @@ class CarControllerTest extends BaseFunctionalTest
 
         $em = $this->container->get("doctrine.orm.entity_manager");
 
-        /**
+        /*
          * @var Car $carEntity
          */
         $em->refresh($carEntity);
 
-        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage("title", "pl")->first();
+        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage("title", $this->defaultLocale)->first();
         $em->refresh($titleTranslationEntity);
         $em->refresh($color);
         $em->refresh($type);

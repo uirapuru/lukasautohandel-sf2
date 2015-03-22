@@ -12,8 +12,8 @@
             {% for price in car.prices %}
                 {{ price.amount }} {{ price.currency.symbol }}{% if not loop.last %}, {% endif %}
             {% endfor %}
-            <span>other info</span></p>
-        <a href="{{ link }}" class="button">Szczegóły</a>
+            {#<span>other info</span></p>#}
+        <a href="{{ link }}" class="button">{{ 'promoted.car_details_button'|trans }}</a>
     </li>
 {% endmacro %}
 

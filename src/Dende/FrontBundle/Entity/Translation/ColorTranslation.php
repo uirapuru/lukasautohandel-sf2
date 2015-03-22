@@ -13,7 +13,7 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 class ColorTranslation extends AbstractPersonalTranslation
 {
     /**
-     * Convenient constructor
+     * Convenient constructor.
      *
      * @param string $locale
      * @param string $field

@@ -11,8 +11,6 @@
         @handleBrandSwitch(e)
 
     setModelsForBrand: (brandId) =>
-      console.log brandId
-
       if brandId == ''
         url = Routing.generate 'api_models'
       else
@@ -23,6 +21,11 @@
     fillModelsList: (data) =>
       $modelSelect = $(@modelSelector)
       $modelSelect.empty()
+
+      chooseText = if data.length > 0 then @$form.data 'empty-label' else ' '
+
+      $modelSelect.append $("<option />").text(chooseText).val(null)
+
       $.each data, (i, element) ->
         $option = $("<option />").text(element.name).val(element.id)
         $modelSelect.append $option

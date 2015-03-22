@@ -28,7 +28,8 @@ class Image implements Uploadable
     /**
      * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Car", inversedBy="images", cascade={"remove","persist"})
      * @ORM\JoinColumn(name="car_id", referencedColumnName="id", onDelete="CASCADE")
-     * @var Car $car
+     *
+     * @var Car
      */
     protected $car;
 
@@ -58,27 +59,31 @@ class Image implements Uploadable
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @var boolean $hidden
+     *
+     * @var boolean
      */
     protected $hidden = false;
 
     /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
-     * @var \DateTime $createdAt
+     *
+     * @var \DateTime
      */
     protected $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
-     * @var \DateTime $modifiedAt
+     *
+     * @var \DateTime
      */
     protected $modified;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @var \DateTime $deletedAt
+     *
+     * @var \DateTime
      */
     protected $deleted;
 

@@ -37,8 +37,8 @@ class EntityTest extends WebTestCase
         $car = $this->prepareCar();
         $entityManager = $this->container->get("doctrine.orm.default_entity_manager");
 
-        /**
-         * @var CarRepository $repository
+        /*
+         * @var CarRepository
          */
         $repository = $entityManager->getRepository("FrontBundle:Car");
 

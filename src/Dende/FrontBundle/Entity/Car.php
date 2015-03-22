@@ -30,141 +30,163 @@ class Car implements Translatable
     /**
      * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Type")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
-     * @var string $type
+     *
+     * @var string
      */
     protected $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Model", inversedBy="cars")
      * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
-     * @var Model $model
+     *
+     * @var Model
      */
     protected $model;
 
     /**
      * @ORM\ManyToOne(targetEntity="Dende\FrontBundle\Entity\Color")
      * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
-     * @var Color $color
+     *
+     * @var Color
      */
     protected $color;
 
     /**
      * @ORM\Column(type="integer")
-     * @var integer $year
+     *
+     * @var integer
      */
     protected $year;
 
     /**
      * @ORM\Column(type="integer")
-     * @var integer $distance
+     *
+     * @var integer
      */
     protected $distance;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string $fuel
+     *
+     * @var string
      */
     protected $fuel;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string $engine
+     *
+     * @var string
      */
     protected $engine;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string $gearbox
+     *
+     * @var string
      */
     protected $gearbox;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string $registrationCountry
+     *
+     * @var string
      */
     protected $registrationCountry;
 
     /**
      * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Price", mappedBy="car", cascade={"remove", "persist"})
-     * @var Price[] $prices
+     *
+     * @var Price[]
      */
     protected $prices;
 
     /**
      * @ORM\OneToOne(targetEntity="Dende\FrontBundle\Entity\Image")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id", onDelete="CASCADE")
-     * @var Image $image
+     *
+     * @var Image
      */
     protected $image;
 
     /**
      * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Image", mappedBy="car", cascade={"remove", "persist"})
-     * @var ArrayCollection<Image> $images
+     *
+     * @var ArrayCollection<Image>
      */
     protected $images;
 
     /**
      * @ORM\Column(type="boolean")
-     * @var boolean $promoteCarousel
+     *
+     * @var boolean
      */
     protected $promoteCarousel = false;
 
     /**
      * @ORM\Column(type="boolean")
-     * @var boolean $promoteFrontpage
+     *
+     * @var boolean
      */
     protected $promoteFrontpage = false;
 
     /**
      * @ORM\Column(type="string", length=4096, nullable=false)
      * @Gedmo\Translatable
-     * @var string $title
+     *
+     * @var string
      */
     protected $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Gedmo\Translatable
-     * @var string $description
+     *
+     * @var string
      */
     protected $description;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @var string $adminNotes
+     *
+     * @var string
      */
     protected $adminNotes;
 
     /**
      * @ORM\Column(type="boolean")
-     * @var boolean $hidden
+     *
+     * @var boolean
      */
     protected $hidden = false;
 
     /**
      * @ORM\Column(type="string", length=4096, nullable=false)
      * @Gedmo\Slug(fields={"title"})
-     * @var string $slug
+     *
+     * @var string
      */
     protected $slug;
 
     /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
-     * @var \DateTime $createdAt
+     *
+     * @var \DateTime
      */
     protected $created;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
-     * @var \DateTime $modifiedAt
+     *
+     * @var \DateTime
      */
     protected $modified;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @var \DateTime $deletedAt
+     *
+     * @var \DateTime
      */
     protected $deleted;
 

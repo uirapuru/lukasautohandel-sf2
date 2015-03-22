@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityManager;
 
 class ProcessPrices
 {
-
     /**
      * @var EntityManager
      */
@@ -52,8 +51,8 @@ class ProcessPrices
     public function removeUnused()
     {
         foreach ($this->originalPrices as $price) {
-            /**
-             * @var Price $price
+            /*
+             * @var Price
              */
             if (!$this->car->getPrices()->contains($price)) {
                 $price->setCar(null);

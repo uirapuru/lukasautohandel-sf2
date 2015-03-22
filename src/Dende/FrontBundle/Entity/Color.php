@@ -26,7 +26,8 @@ class Color
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Gedmo\Translatable
-     * @var string $name
+     *
+     * @var string
      */
     protected $name;
 

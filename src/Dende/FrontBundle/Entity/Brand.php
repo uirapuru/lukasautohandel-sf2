@@ -23,7 +23,8 @@ class Brand
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @var string $name
+     *
+     * @var string
      * @Expose()
      */
     protected $name;
@@ -31,14 +32,16 @@ class Brand
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255, unique=true)
-     * @var string $slug
+     *
+     * @var string
      * @Expose()
      */
     protected $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Model", mappedBy="brand")
-     * @var ArrayCollection<Model> $models
+     *
+     * @var ArrayCollection<Model>
      */
     protected $models;
 

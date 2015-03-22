@@ -36,6 +36,7 @@ class CarsData extends BaseFixture
 
     /**
      * @param $params
+     *
      * @return Car
      */
     public function insert($params)

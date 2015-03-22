@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\Criteria;
 
 trait TranslatedTrait
 {
-
     /**
      * @param ArrayCollection $translations
      */
@@ -43,8 +42,9 @@ trait TranslatedTrait
     }
 
     /**
-     * @param  string $field
-     * @param  string $lang
+     * @param string $field
+     * @param string $lang
+     *
      * @return string
      */
     public function getTranslated($field, $lang = 'pl')
@@ -58,7 +58,8 @@ trait TranslatedTrait
 
     /**
      * @param $field
-     * @param  string                                         $lang
+     * @param string $lang
+     *
      * @return \Doctrine\Common\Collections\Collection|static
      */
     public function getTranslationEntityForLanguage($field, $lang = 'pl')
@@ -75,7 +76,8 @@ trait TranslatedTrait
     }
 
     /**
-     * @param  string                                         $lang
+     * @param string $lang
+     *
      * @return \Doctrine\Common\Collections\Collection|static
      */
     public function getTranslationEntitiesForLanguage($lang = 'pl')

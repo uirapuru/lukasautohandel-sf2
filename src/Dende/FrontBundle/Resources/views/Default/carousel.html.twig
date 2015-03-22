@@ -3,7 +3,7 @@
     <div data-src="/uploads/{{ car.firstImage }}">
         <div class="banner camera_caption fadeFromBottom">
             <p><strong>{{ car.model.brand.name }} {{ car.model.name }}</strong>
-                <a href="/">{{ car.getTranslated("title", app.request.locale) }}</a>
+                <a href="{{ url("show", {id: car.id, slug: car.slug}) }}">{{ car.getTranslated("title", app.request.locale) }}</a>
             </p>
         </div>
     </div>

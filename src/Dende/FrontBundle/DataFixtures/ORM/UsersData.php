@@ -6,7 +6,6 @@ use Dende\FrontBundle\Entity\User;
 
 class UsersData extends BaseFixture
 {
-
     public function insert($params)
     {
         $user = new User();

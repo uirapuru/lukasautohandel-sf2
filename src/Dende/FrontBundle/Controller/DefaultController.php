@@ -4,7 +4,6 @@ namespace Dende\FrontBundle\Controller;
 
 use Dende\FrontBundle\Entity\Brand;
 use Dende\FrontBundle\Entity\Car;
-use Doctrine\ORM\PersistentCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dende\FrontBundle\Model\SearchQuery;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,7 +30,7 @@ class DefaultController extends Controller
     public function searchAction($form = null)
     {
         if (!$form) {
-            $form = $this->createForm("dende_form_search", new SearchQuery);
+            $form = $this->createForm("dende_form_search", new SearchQuery());
         }
 
         return ["form" => $form->createView()];
@@ -42,7 +41,7 @@ class DefaultController extends Controller
      */
     public function promotedAction()
     {
-        /**
+        /*
          * @var PersistentCollection $cars
          */
         $promoted = $this->getDoctrine()->getRepository("FrontBundle:Car")->findBy(["promoteFrontpage" => true]);
@@ -55,7 +54,7 @@ class DefaultController extends Controller
      */
     public function carouselAction()
     {
-        /**
+        /*
          * @var PersistentCollection $cars
          */
         $promoted = $this->getDoctrine()->getRepository("FrontBundle:Car")->findBy(["promoteCarousel" => true]);
@@ -78,8 +77,8 @@ class DefaultController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-                /**
-                 * @var SearchQuery $searchQuery
+                /*
+                 * @var SearchQuery
                  */
                 $searchQuery = $form->getData();
 
@@ -99,16 +98,18 @@ class DefaultController extends Controller
                     $qb->andWhere("c.model = :carModel");
                     $qb->setParameter("carModel", $searchQuery->getModel());
                 }
+            } else {
+                return ["cars" => [], "searchForm" => $form];
             }
         }
 
-        /**
+        /*
          * @var PersistentCollection $cars
          */
 
         return [
             "cars" => $qb->getQuery()->execute(),
-            "searchForm" => $form
+            "searchForm" => $form,
         ];
     }
 
@@ -123,7 +124,8 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/contact",name="contact")
+     * @Route("/contact/{id}",name="contact", defaults={ "id" = null })
+     *
      * @Method({"GET","POST"})
      * @ParamConverter("car", class="FrontBundle:Car")
      * @Template()

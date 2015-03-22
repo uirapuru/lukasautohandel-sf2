@@ -15,7 +15,7 @@ class TranslatableRepository extends EntityRepository
     protected $defaultLocale;
 
     /**
-     * Sets default locale
+     * Sets default locale.
      *
      * @param string $locale
      */
@@ -25,7 +25,7 @@ class TranslatableRepository extends EntityRepository
     }
 
     /**
-     * Returns translated one (or null if not found) result for given locale
+     * Returns translated one (or null if not found) result for given locale.
      *
      * @param QueryBuilder $qb            A Doctrine query builder instance
      * @param string       $locale        A locale name
@@ -39,7 +39,7 @@ class TranslatableRepository extends EntityRepository
     }
 
     /**
-     * Returns translated results for given locale
+     * Returns translated results for given locale.
      *
      * @param QueryBuilder $qb            A Doctrine query builder instance
      * @param string       $locale        A locale name
@@ -53,7 +53,7 @@ class TranslatableRepository extends EntityRepository
     }
 
     /**
-     * Returns translated array results for given locale
+     * Returns translated array results for given locale.
      *
      * @param QueryBuilder $qb     A Doctrine query builder instance
      * @param string       $locale A locale name
@@ -66,7 +66,7 @@ class TranslatableRepository extends EntityRepository
     }
 
     /**
-     * Returns translated single result for given locale
+     * Returns translated single result for given locale.
      *
      * @param QueryBuilder $qb            A Doctrine query builder instance
      * @param string       $locale        A locale name
@@ -80,7 +80,7 @@ class TranslatableRepository extends EntityRepository
     }
 
     /**
-     * Returns translated scalar result for given locale
+     * Returns translated scalar result for given locale.
      *
      * @param QueryBuilder $qb     A Doctrine query builder instance
      * @param string       $locale A locale name
@@ -93,7 +93,7 @@ class TranslatableRepository extends EntityRepository
     }
 
     /**
-     * Returns translated single scalar result for given locale
+     * Returns translated single scalar result for given locale.
      *
      * @param QueryBuilder $qb     A Doctrine query builder instance
      * @param string       $locale A locale name
@@ -106,7 +106,7 @@ class TranslatableRepository extends EntityRepository
     }
 
     /**
-     * Returns translated Doctrine query instance
+     * Returns translated Doctrine query instance.
      *
      * @param QueryBuilder $qb     A Doctrine query builder instance
      * @param string       $locale A locale name

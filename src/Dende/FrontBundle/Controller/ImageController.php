@@ -10,16 +10,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class CarController
- * @package Dende\FrontBundle\Controller
+ * Class CarController.
  *
  * @Route("/image")
  */
 class ImageController extends Controller
 {
-
     /**
      * @Route("/add",name="add_image")
+     *
      * @Method({"GET","POST"})
      * @Template()
      */
