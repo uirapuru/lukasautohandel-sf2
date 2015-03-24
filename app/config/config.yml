@@ -5,7 +5,7 @@ imports:
 parameters:
   supported_locales:
     - pl
-    - en
+    - ru
     - de
 
 framework:

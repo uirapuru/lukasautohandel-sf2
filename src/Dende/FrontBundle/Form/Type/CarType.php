@@ -19,12 +19,40 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class CarType extends AbstractType
 {
     /**
+     * @var array
+     */
+    private $languages = [];
+
+    /**
+     * @var string
+     */
+    private $defaultLocale = "pl";
+
+    /**
+     * @param array $languages
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+    }
+
+    /**
+     * @param string $defaultLocale
+     */
+    public function setDefaultLocale($defaultLocale)
+    {
+        $this->defaultLocale = $defaultLocale;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $languages = $this->languages;
+
         $builder
             ->add(
                 'type',
@@ -98,12 +126,17 @@ class CarType extends AbstractType
                     'property' => 'getFullName',
                     'required' => true,
                     'constraints' => [
-                        new Callback(function ($data, ExecutionContextInterface $context) {
+                        new Callback(function ($data, ExecutionContextInterface $context) use ($languages) {
                             $form = $context->getRoot();
 
-                            $translationEmpty = $form["add_color"]["translations"]["pl"]["name"]->isEmpty() ||
-                                $form["add_color"]["translations"]["en"]["name"]->isEmpty() ||
-                                $form["add_color"]["translations"]["de"]["name"]->isEmpty();
+                            $translationEmpty = false;
+
+                            foreach ($languages as $language) {
+                                if ($form["add_color"]["translations"][$language]["name"]->isEmpty()) {
+                                    $translationEmpty = true;
+                                    break;
+                                }
+                            }
 
                             if ($translationEmpty && $form["color"]->isEmpty()) {
                                 $context->buildViolation('validator.you_have_to_choose_car_color')

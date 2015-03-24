@@ -52,7 +52,7 @@ class SearchFormTest extends BaseFunctionalTest
         $forms = $crawler->filter('form[name="dende_form_search"]');
         $this->assertEquals(1, $forms->count());
 
-        /**
+        /*
          * @var Form
          */
         $form = $forms->first()->form();
@@ -141,7 +141,6 @@ class SearchFormTest extends BaseFunctionalTest
         ];
     }
 
-
     /**
      * @test
      */
@@ -158,7 +157,7 @@ class SearchFormTest extends BaseFunctionalTest
         $forms = $crawler->filter('form[name="dende_form_search"]');
         $this->assertEquals(1, $forms->count());
 
-        /**
+        /*
          * @var Form
          */
         $form = $forms->first()->form();
@@ -176,6 +175,5 @@ class SearchFormTest extends BaseFunctionalTest
         $this->assertEquals(0, $carsCount);
 
         $this->assertContains('This value is not valid.', $crawler->text());
-
     }
 }

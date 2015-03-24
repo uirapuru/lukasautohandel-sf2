@@ -6,6 +6,9 @@ services:
 
     dende.front.form.type.car:
         class: Dende\FrontBundle\Form\Type\CarType
+        calls:
+          - [setDefaultLocale, [%locale%]]
+          - [setLanguages, [%supported_locales%]]
         tags:
             - {name: form.type, alias: dende_form_car }
 

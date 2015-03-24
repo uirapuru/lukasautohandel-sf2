@@ -28,17 +28,7 @@ class ColorType extends AbstractType
                         ],
                     'label' => ' ',
                 ]
-            )
-//            ->add(
-//                'name',
-//                'text',
-//                [
-//                    "required" => true,
-//                    "constraints" => [],
-//                    "label" => 'car.form.label.add_color.name',
-//                ]
-//            )
-        ;
+            );
     }
 
     public function getName()

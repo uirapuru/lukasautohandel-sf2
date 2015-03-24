@@ -16,11 +16,7 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-            ->add(
-                'file',
-                'file',
-                [
+            ->add('file', 'file', [
                     "required" => true,
                     'error_bubbling' => false,
                     "constraints" => [
@@ -28,12 +24,9 @@ class ImageType extends AbstractType
                             "maxSize" => 2000000,
                             "maxSizeMessage" => "validator.maximum_file_size_reached",
                             "uploadFormSizeErrorMessage" => "validator.file_is_too_large",
-
                         ]),
                     ],
-                ]
-            )
-        ;
+            ]);
     }
 
     public function getName()
