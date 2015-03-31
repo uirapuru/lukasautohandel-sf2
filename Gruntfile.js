@@ -128,6 +128,16 @@ module.exports = function (grunt) {
                 ],
                 dest: "./web/fonts/"
             },
+            fontsAwesome: {
+                expand: true,
+                flatten: true,
+                filter: 'isFile',
+                src: [
+                    'bower_components/font-awesome/fonts/*',
+                    'bower_components/bootstrap/fonts/*',
+                ],
+                dest: "./web/css/fonts/"
+            },
             images: {
                 expand: true,
                 flatten: true,
@@ -178,6 +188,7 @@ module.exports = function (grunt) {
         "copy:images",
         "copy:prettyPhotoImages",
         "copy:fonts",
+        "copy:fontsAwesome",
         "copy:flags",
     ]);
 

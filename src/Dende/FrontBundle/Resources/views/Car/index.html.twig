@@ -29,12 +29,20 @@
                 <tr>
                     <td class="column-id">{{ entity.id }}.</td>
                     <td>
-                        <a href="{{ path('car_show', { 'id': entity.id }) }}">
-                            <small>
-                                {{ entity.getTranslated("title") }}
-                            ({{ entity.getTranslated("description")|slice(0, 100) }})
-                                </small>
-                        </a>
+                        <div class="media row">
+                            <div class="media-left media-top col-xs-6 col-md-3">
+                                <a href="{{ path('car_show', { 'id': entity.id }) }}" class="thumbnail">
+                                    <img class="media-object" src="{{ asset("/uploads/thumbnails/" ~ entity.images.first.path) }}" alt="...">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="{{ path('car_show', { 'id': entity.id }) }}">{{ entity.getTranslated("title") }}</a>
+                                </h4>
+                                {% set description = entity.getTranslated("description") %}
+                                ({{ description|slice(0, 50)|striptags }}{% if description|length > 50 %}...{% endif %})
+                            </div>
+                        </div>
                     </td>
                     <td><small>{{ entity.model.name }} - {{ entity.model.brand.name }} ({{ entity.year }})</small></td>
                     <td class="column-thick">{% if entity.promoteCarousel == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>

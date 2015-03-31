@@ -4,7 +4,7 @@ services:
       arguments:
           - "@knp_menu.factory"
           - "@security.context"
-          - "%supported_locales%"
+          - ["pl"] # "%supported_locales%"
 
   front_bundle.menu.lang:
       class: Knp\Menu\MenuItem

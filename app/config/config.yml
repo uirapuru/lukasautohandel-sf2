@@ -64,20 +64,15 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: smtp
-    host:      smtp.gmail.com
+    transport: gmail
+    host:      ~
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     delivery_address: "%delivery_address%"
     port:                 465
     encryption:           ssl
     auth_mode:            ~
-
     logging:        true
-
-#    spool:
-#        type: file
-#        path: "%kernel.root_dir%/spool"
 
 knp_menu:
     twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
