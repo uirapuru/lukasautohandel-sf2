@@ -235,13 +235,6 @@ class CarControllerTest extends BaseFunctionalTest
 
         $title = md5("some title".microtime());
 
-        $uploadedFile = new UploadedFile(
-            realpath(__DIR__."/../../Resources/tests/test_image.jpg"),
-            'someTestFile.jpg',
-            'image/jpeg',
-            123
-        );
-
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
         $values["dende_form_car"]["translations"][$this->defaultLocale]["title"] = $title;
@@ -253,14 +246,8 @@ class CarControllerTest extends BaseFunctionalTest
         $values["dende_form_car"]["add_model"]["name"] = $newModelName;
         $values["dende_form_car"]["add_model"]["brand"] = $newModelName;
 
-        $files = [
-            "dende_form_car" => [
-                "images" => [
-                    ["file" => clone($uploadedFile)],
-                    ["file" => clone($uploadedFile)],
-                ],
-            ],
-        ];
+        $files = [];
+        $files["dende_form_car"]["images"] = $this->getUploadedImages(2);
 
         $crawler = $this->client->request("POST", $url, $values, $files);
 
@@ -288,42 +275,46 @@ class CarControllerTest extends BaseFunctionalTest
      * @test
      * @dataProvider getErrorGeneratingForms
      */
-    public function car_add_form_is_posted_and_error_is_emitted($formData, $error)
+    public function car_add_form_is_posted_and_error_is_emitted($formData, $collections, $error)
     {
         $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $form = $forms->first()->form($formData);
 
-        $crawler = $this->client->submit($form);
+        $values = $form->getPhpValues();
+        $values["dende_form_car"]["prices"] = $collections["prices"];
+
+        $crawler = $this->client->request("POST", $form->getUri(), $values, ["dende_form_car" => ["images" => $collections["images"]]]);
 
         $this->assertEquals(400, $this->getStatusCode());
 
         $alert = $crawler->filter('div.alert.alert-danger');
         $this->assertEquals('flash.car_edit.errors', trim($alert->text()));
-
-        $this->assertContains($error, $crawler->text());
+        $this->assertContains($error, $crawler->text(), sprintf("Error '%s' not found in response", $error));
     }
 
     /**
      * @test
      * @dataProvider getErrorGeneratingForms
      */
-    public function car_edit_form_is_posted_and_error_is_emitted($formData, $error)
+    public function car_edit_form_is_posted_and_error_is_emitted($formData, $collections, $error)
     {
         $crawler = $this->client->request('GET', $this->container->get("router")->generate("edit_car", ["id" => 1]));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $form = $forms->first()->form($formData);
 
-        $crawler = $this->client->submit($form);
+        $values = $form->getPhpValues();
+        $values["dende_form_car"]["prices"] = $collections["prices"];
+
+        $crawler = $this->client->request("POST", $form->getUri(), $values, ["dende_form_car" => ["images" => $collections["images"]]]);
 
         $this->assertEquals(400, $this->getStatusCode());
 
         $alert = $crawler->filter('div.alert.alert-danger');
         $this->assertEquals('flash.car_edit.errors', trim($alert->text()));
-
-        $this->assertContains($error, $crawler->text());
+        $this->assertContains($error, $crawler->text(), sprintf("Error '%s' not found in response", $error));
     }
 
     public function getErrorGeneratingForms()
@@ -346,6 +337,8 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[hidden]" => false,
         ];
 
+        $collections = ["images" => $this->getUploadedImages(2), "prices" => $this->getPrices(2)];
+
         return [
             "empty type" => [
                 "formData" => array_merge(
@@ -354,6 +347,7 @@ class CarControllerTest extends BaseFunctionalTest
                         "dende_form_car[type]" => null,
                     ]
                 ),
+                "collections" => $collections,
                 "error" => 'validator.you_have_to_choose_car_type',
             ],
             "empty model" => [
@@ -363,6 +357,7 @@ class CarControllerTest extends BaseFunctionalTest
                         "dende_form_car[model]" => null,
                     ]
                 ),
+                "collections" => $collections,
                 "error" => 'validator.you_have_to_choose_car_model',
             ],
             "empty color" => [
@@ -372,6 +367,7 @@ class CarControllerTest extends BaseFunctionalTest
                         "dende_form_car[color]" => null,
                     ]
                 ),
+                "collections" => $collections,
                 "error" => 'validator.you_have_to_choose_car_color',
             ],
             "empty brand" => [
@@ -382,6 +378,7 @@ class CarControllerTest extends BaseFunctionalTest
                         "dende_form_car[add_model][brand]" => null,
                     ]
                 ),
+                "collections" => $collections,
                 "error" => 'validator.you_have_to_add_car_brand',
             ],
             "empty model, filled brand" => [
@@ -392,8 +389,30 @@ class CarControllerTest extends BaseFunctionalTest
                         "dende_form_car[add_model][brand]" => "brand",
                     ]
                 ),
+                "collections" => $collections,
                 "error" => 'validator.you_have_to_add_car_model_name',
             ],
+            "empty prices" => [
+                "formData" => $correctData,
+                "collections" => array_merge($collections, ["prices" => []]),
+                "error" => 'car.validation.prices.min',
+            ],
+            "empty images" => [
+                "formData" => $correctData,
+                "collections" => array_merge($collections, ["images" => []]),
+                "error" => 'car.validation.images.min',
+            ],
+            "too much prices" => [
+                "formData" => $correctData,
+                "collections" => array_merge($collections, ["prices" => $this->getPrices(6)]),
+                "error" => 'car.validation.prices.max',
+            ],
+            "too much images" => [
+                "formData" => $correctData,
+                "collections" => array_merge($collections, ["images" => $this->getUploadedImages(21)]),
+                "error" => 'car.validation.images.max',
+            ],
+
         ];
     }
 
@@ -421,8 +440,12 @@ class CarControllerTest extends BaseFunctionalTest
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
         $values["dende_form_car"]["add_type"]["name"] = $newTypeName;
+        $values["dende_form_car"]["prices"] = $this->getPrices(1);
 
-        $this->client->request("POST", $url, $values, $form->getFiles());
+        $files = [];
+        $files["dende_form_car"]["images"] = $this->getUploadedImages(count($carEntity->getImages()));
+
+        $this->client->request("POST", $url, $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -465,7 +488,13 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[add_color][translations][".$this->defaultLocale."][name]" => $newColorName,
         ]);
 
-        $this->client->request($form->getMethod(), $form->getUri(), $form->getPhpValues(), []);
+        $files = [];
+        $files["dende_form_car"]["images"] = $this->getUploadedImages(1);
+
+        $values = $form->getPhpValues();
+        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+
+        $this->client->request($form->getMethod(), $form->getUri(), $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -504,8 +533,12 @@ class CarControllerTest extends BaseFunctionalTest
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
         $values["dende_form_car"]["add_color"]["translations"][$this->defaultLocale]["name"] = $newColorName;
+        $values["dende_form_car"]["prices"] = $this->getPrices(1);
 
-        $this->client->request("POST", $url, $values, $form->getFiles());
+        $files = [];
+        $files["dende_form_car"]["images"] = $this->getUploadedImages(count($carEntity->getImages()));
+
+        $this->client->request("POST", $url, $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -542,8 +575,12 @@ class CarControllerTest extends BaseFunctionalTest
         $values = $form->getPhpValues();
         $values["dende_form_car"]["add_model"]["name"] = $newModelName;
         $values["dende_form_car"]["add_model"]["brand"] = $newModelName;
+        $values["dende_form_car"]["prices"] = $this->getPrices(1);
 
-        $this->client->request("POST", $url, $values, $form->getFiles());
+        $files = [];
+        $files["dende_form_car"]["images"] = $this->getUploadedImages(count($carEntity->getImages()));
+
+        $this->client->request("POST", $url, $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -590,7 +627,13 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[add_model][brand]" => $newModelName,
         ]);
 
-        $this->client->request($form->getMethod(), $form->getUri(), $form->getPhpValues(), []);
+        $files = [];
+        $files["dende_form_car"]["images"] = $this->getUploadedImages(1);
+
+        $values = $form->getPhpValues();
+        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+
+        $this->client->request($form->getMethod(), $form->getUri(), $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -665,7 +708,13 @@ class CarControllerTest extends BaseFunctionalTest
             "dende_form_car[add_type][name]" => $type->getName(),
         ]);
 
-        $this->client->request($form->getMethod(), $form->getUri(), $form->getPhpValues(), []);
+        $files = [];
+        $files["dende_form_car"]["images"] = $this->getUploadedImages(1);
+
+        $values = $form->getPhpValues();
+        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+
+        $this->client->request($form->getMethod(), $form->getUri(), $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -743,8 +792,12 @@ class CarControllerTest extends BaseFunctionalTest
         $values["dende_form_car"]["add_model"]["brand"] = $brand->getName();
         $values["dende_form_car"]["add_color"]["translations"][$this->defaultLocale]["name"] = $color->getName();
         $values["dende_form_car"]["add_type"]["name"] = $type->getName();
+        $values["dende_form_car"]["prices"] = $this->getPrices(1);
 
-        $this->client->request($form->getMethod(), $form->getUri(), $values, []);
+        $files = [];
+        $files["dende_form_car"]["images"] = $this->getUploadedImages(count($carEntity->getImages()));
+
+        $this->client->request($form->getMethod(), $form->getUri(), $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -769,5 +822,39 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals($type->getId(), $carEntity->getType()->getId());
         $this->assertEquals($brand->getId(), $carEntity->getModel()->getBrand()->getId());
         $this->assertEquals($model->getId(), $carEntity->getModel()->getId());
+    }
+
+    private function getUploadedImages($int)
+    {
+        $uploadedFile = $this->getUploadedFile();
+
+        $array = [];
+
+        for ($a=0; $a<$int; $a++) {
+            $array[] = ["file" => clone($uploadedFile)];
+        }
+
+        return $array;
+    }
+
+    private function getPrices($int)
+    {
+        $array = [];
+
+        for ($a=0; $a<$int; $a++) {
+            $array[] = ["amount" => 30, "currency" => 2];
+        }
+
+        return $array;
+    }
+
+    private function getUploadedFile()
+    {
+        return new UploadedFile(
+            realpath(__DIR__."/../../Resources/tests/test_image.jpg"),
+            'someTestFile.jpg',
+            'image/jpeg',
+            123
+        );
     }
 }

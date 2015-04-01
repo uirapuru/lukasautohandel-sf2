@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Translatable\Translatable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Dende\FrontBundle\Repository\CarRepository")
@@ -97,6 +98,13 @@ class Car implements Translatable
      * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Price", mappedBy="car", cascade={"remove", "persist"})
      *
      * @var Price[]
+     *
+     * @Assert\Count(
+     *      min = "1",
+     *      max = "5",
+     *      minMessage = "car.validation.prices.min",
+     *      maxMessage = "car.validation.prices.max"
+     * )
      */
     protected $prices;
 
@@ -112,6 +120,13 @@ class Car implements Translatable
      * @ORM\OneToMany(targetEntity="Dende\FrontBundle\Entity\Image", mappedBy="car", cascade={"remove", "persist"})
      *
      * @var ArrayCollection<Image>
+     *
+     * @Assert\Count(
+     *      min = "1",
+     *      max = "20",
+     *      minMessage = "car.validation.images.min",
+     *      maxMessage = "car.validation.images.max"
+     * )
      */
     protected $images;
 

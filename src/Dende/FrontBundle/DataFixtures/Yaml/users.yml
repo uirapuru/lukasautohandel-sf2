@@ -5,7 +5,7 @@ user-uirapuru:
   email: uirapuruadg+timesheet@gmail.com
   plainPassword: uirapuru
   roles: [ROLE_SUPER_ADMIN]
-  enabled: false
+  enabled: true
 
 user-super-admin:
   firstname: Grzegorz
@@ -14,7 +14,7 @@ user-super-admin:
   email: uirapuruadg+superadmin@gmail.com
   plainPassword: superadmin
   roles: [ROLE_SUPER_ADMIN]
-  enabled: false
+  enabled: true
 
 user-admin:
   firstname: Grzegorz
@@ -23,7 +23,7 @@ user-admin:
   email: uirapuruadg+admin@gmail.com
   plainPassword: admin
   roles: [ROLE_ADMIN]
-  enabled: false
+  enabled: true
 
 user-user:
   firstname: Grzegorz
@@ -32,4 +32,4 @@ user-user:
   email: uirapuruadg+user@gmail.com
   plainPassword: user
   roles: [ROLE_USER]
-  enabled: false
+  enabled: true

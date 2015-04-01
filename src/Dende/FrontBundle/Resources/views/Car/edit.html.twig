@@ -1,10 +1,7 @@
-{% extends "FrontBundle::layout.html.twig" %}
-
-{% import "FrontBundle::collection_theme.html.twig" as _theme %}
-{% form_theme form 'FrontBundle::collection_theme.html.twig' %}
+{% extends "FrontBundle:Car:add.html.twig" %}
 
 {%  block body %}
-    {% include "@Front/Car/_flash.html.twig" %}
+    {% include "@Front/Car/_flash.html.twig" with {form: form} %}
 
     {{ form_start(form, {
         action: url('edit_car', {id : car.getId()}),

@@ -4,7 +4,7 @@
 {% form_theme form 'FrontBundle::collection_theme.html.twig' %}
 
 {%  block body %}
-    {% include "@Front/Car/_flash.html.twig" %}
+    {% include "@Front/Car/_flash.html.twig"  with {form: form}  %}
 
     {{ form_start(form, {
         action: url('add_car'),
