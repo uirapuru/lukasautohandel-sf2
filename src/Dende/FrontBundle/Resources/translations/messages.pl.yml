@@ -130,6 +130,7 @@ contact:
     success: "Dziękujemy za wiadomość"
     error: "Wystąpił błąd!"
     about_car: "Zapytanie o '%title%' [%link%]"
+  label:  "kontakt"
   form:
     label: "Napisz do nas"
     labels:
