@@ -326,8 +326,6 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         array_shift($models);
 
         foreach ($models as $model) {
-            var_dump($model->getText(), $brand);
-
             if (!strstr($model->getText(), $brand)) {
                 throw new Exception("Found other models than ".$brand);
             }

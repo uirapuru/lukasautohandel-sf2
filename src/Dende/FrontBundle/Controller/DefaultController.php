@@ -72,6 +72,8 @@ class DefaultController extends Controller
         $form = $this->createForm("dende_form_search", $searchQuery);
         $qb = $this->getDoctrine()->getRepository("FrontBundle:Car")->createQueryBuilder("c");
 
+        $cacheId = ["DefaultController:listAction"];
+
         if ($request->isMethod("POST")) {
             $this->get("dende.front.search_query_entity_merge")->merge($searchQuery);
             $form->handleRequest($request);
@@ -85,6 +87,7 @@ class DefaultController extends Controller
                 if ($searchQuery->getType()) {
                     $qb->andWhere("c.type = :type");
                     $qb->setParameter("type", $searchQuery->getType());
+                    $cacheId[]=$searchQuery->getType()->getId();
                 }
 
                 if ($searchQuery->getBrand()) {
@@ -92,11 +95,13 @@ class DefaultController extends Controller
 
                     $qb->andWhere("m.brand = :brand");
                     $qb->setParameter("brand", $searchQuery->getBrand());
+                    $cacheId[]=$searchQuery->getBrand()->getId();
                 }
 
                 if ($searchQuery->getModel()) {
                     $qb->andWhere("c.model = :carModel");
                     $qb->setParameter("carModel", $searchQuery->getModel());
+                    $cacheId[]=$searchQuery->getModel()->getId();
                 }
             } else {
                 return ["cars" => [], "searchForm" => $form];
@@ -107,8 +112,12 @@ class DefaultController extends Controller
          * @var PersistentCollection $cars
          */
 
+        $query = $qb->getQuery();
+
+        $query->useResultCache(true, 3600, md5(implode("/", $cacheId)));
+
         return [
-            "cars" => $qb->getQuery()->execute(),
+            "cars" => $query->execute(),
             "searchForm" => $form,
         ];
     }
@@ -188,7 +197,7 @@ class DefaultController extends Controller
      * )
      * @ParamConverter("brand", class="FrontBundle:Brand")
      */
-    public function getModelsForBrand(Brand $brand)
+    public function getModelsForBrandAction(Brand $brand)
     {
         $models = $brand->getModels();
 
