@@ -12,8 +12,6 @@ parameters:
     test_database_user:     replace_this_test_user
     test_database_password: replace_this_test_pass
 
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
     mailer_user:       ~
     mailer_password:   ~
 
@@ -28,4 +26,3 @@ parameters:
 
     sentry_backend_dsn:         ~
     sentry_backend_dsn_dev:     ~
-    doctrine.server_version:    5.5

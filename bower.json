@@ -28,6 +28,7 @@
     "flag-icon-css": "~0.6.3",
     "modernizr": "~2.8.3",
     "prettyPhoto": "http://www.no-margin-for-errors.com/demos/prettyPhoto-jquery-lightbox-clone/prettyPhoto_compressed_3.1.5.zip",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "jquery-migrate": "~1.2.1"
   }
 }
