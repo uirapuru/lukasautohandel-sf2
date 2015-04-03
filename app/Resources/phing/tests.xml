@@ -68,8 +68,19 @@
     </target>
 
     <target name="test-phpunit" depends="reset-db-test">
-        <echo>Running phpunit tests</echo>
-        <exec command="bin/phpunit -c app" checkreturn="true" passthru="true" />
+        <if>
+            <not>
+                <isset property="jenkins" />
+            </not>
+            <then>
+                <property name="phpunit_config" value="phpunit.xml" />
+            </then>
+            <else>
+                <property name="phpunit_config" value="phpunit-jenkins.xml" />
+            </else>
+        </if>
+        <echo>Running phpunit tests with ${phpunit_config} config file</echo>
+        <exec command="bin/phpunit -c app/${phpunit_config}" checkreturn="true" passthru="true" />
     </target>
 
     <target name="test-security">
