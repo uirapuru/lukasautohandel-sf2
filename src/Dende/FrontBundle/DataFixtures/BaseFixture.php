@@ -6,6 +6,10 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * Class BaseFixture
+ * @package Dende\FrontBundle\DataFixtures
+ */
 class BaseFixture extends AbstractFixture implements OrderedFixtureInterface
 {
     protected $manager;

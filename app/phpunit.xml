@@ -26,8 +26,8 @@
         </testsuite>
     </testsuites>
 
-    <!--<php>-->
-        <!--<server name="KERNEL_DIR" value="app/" />-->
-    <!--</php>-->
+    <php>
+        <server name="KERNEL_DIR" value="app/" />
+    </php>
 
 </phpunit>
