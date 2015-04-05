@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Entity;
 
 use FOS\UserBundle\Model\Group as BaseGroup;

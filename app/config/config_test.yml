@@ -21,15 +21,15 @@ swiftmailer:
 doctrine:
     dbal:
         driver:   pdo_sqlite
-        dbname:   "lukas"
+        dbname:   %database_name%
         charset:  UTF8
         path:     %kernel.cache_dir%/test.db
 
 liip_functional_test:
     cache_sqlite_db: true
     authentication:
-            username: "admin"
-            password: "admin"
+            username: %sqlite_database_user%
+            password: %sqlite_database_password%
 
 security:
     firewalls:

@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Tests\Functional;
 
 use Dende\FrontBundle\Dictionary\Country;
@@ -23,14 +24,14 @@ class CarControllerTest extends BaseFunctionalTest
     /**
      * @var string
      */
-    private $defaultLocale = "pl";
+    private $defaultLocale = 'pl';
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->languages = $this->container->getParameter("supported_locales");
-        $this->defaultLocale = $this->container->getParameter("locale");
+        $this->languages = $this->container->getParameter('supported_locales');
+        $this->defaultLocale = $this->container->getParameter('locale');
     }
 
     /**
@@ -39,13 +40,13 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function car_add_form_renders_properly()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $carTypes = $em->getRepository("FrontBundle:Type")->findAll();
-        $carModels = $em->getRepository("FrontBundle:Model")->findAll();
-        $carColors = $em->getRepository("FrontBundle:Color")->findAll();
+        $carTypes = $em->getRepository('FrontBundle:Type')->findAll();
+        $carModels = $em->getRepository('FrontBundle:Model')->findAll();
+        $carColors = $em->getRepository('FrontBundle:Color')->findAll();
 
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('add_car'));
         $this->assertEquals(200, $this->getStatusCode());
 
         $forms = $crawler->filter('form[name="dende_form_car"]');
@@ -77,20 +78,20 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function car_edit_form_renders_properly()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
-        $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
+        $qb = $em->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+        $query = $qb->orderBy('c.id', 'ASC')->setMaxResults(1);
         /*
          * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $carTypes = $em->getRepository("FrontBundle:Type")->findAll();
-        $carModels = $em->getRepository("FrontBundle:Model")->findAll();
-        $carColors = $em->getRepository("FrontBundle:Color")->findAll();
+        $carTypes = $em->getRepository('FrontBundle:Type')->findAll();
+        $carModels = $em->getRepository('FrontBundle:Model')->findAll();
+        $carColors = $em->getRepository('FrontBundle:Color')->findAll();
 
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('edit_car', ['id' => $carEntity->getId()]));
         $this->assertEquals(200, $this->getStatusCode());
 
         $forms = $crawler->filter('form[name="dende_form_car"]');
@@ -123,13 +124,13 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function car_add_form_is_posted_and_entity_is_added()
     {
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('add_car'));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
-        $title = md5("some title".microtime());
+        $title = md5('some title'.microtime());
 
         $uploadedFile = new UploadedFile(
-            realpath(__DIR__."/../../Resources/tests/test_image.jpg"),
+            realpath(__DIR__.'/../../Resources/tests/test_image.jpg'),
             'someTestFile.jpg',
             'image/jpeg',
             123
@@ -138,34 +139,34 @@ class CarControllerTest extends BaseFunctionalTest
         $form = $forms->first()->form();
 
         $form->setValues([
-            "dende_form_car[type]" => 1,
-            "dende_form_car[model]" => 1,
-            "dende_form_car[color]" => 1,
-            "dende_form_car[year]" => 1990,
-            "dende_form_car[distance]" => 40000,
-            "dende_form_car[fuel]" => Fuel::DIESEL,
-            "dende_form_car[engine]" => Engine::DIESEL,
-            "dende_form_car[gearbox]" => Gearbox::AUTOMATIC,
-            "dende_form_car[registrationCountry]" => Country::POLAND,
-            "dende_form_car[promoteCarousel]" => true,
-            "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[translations][".$this->defaultLocale."][title]" => $title,
-            "dende_form_car[translations][".$this->defaultLocale."][description]" => 'Some description',
-            "dende_form_car[adminNotes]" => 'Admin Notes',
-            "dende_form_car[hidden]" => false,
+            'dende_form_car[type]' => 1,
+            'dende_form_car[model]' => 1,
+            'dende_form_car[color]' => 1,
+            'dende_form_car[year]' => 1990,
+            'dende_form_car[distance]' => 40000,
+            'dende_form_car[fuel]' => Fuel::DIESEL,
+            'dende_form_car[engine]' => Engine::DIESEL,
+            'dende_form_car[gearbox]' => Gearbox::AUTOMATIC,
+            'dende_form_car[registrationCountry]' => Country::POLAND,
+            'dende_form_car[promoteCarousel]' => true,
+            'dende_form_car[promoteFrontpage]' => false,
+            'dende_form_car[translations]['.$this->defaultLocale.'][title]' => $title,
+            'dende_form_car[translations]['.$this->defaultLocale.'][description]' => 'Some description',
+            'dende_form_car[adminNotes]' => 'Admin Notes',
+            'dende_form_car[hidden]' => false,
         ]);
 
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["prices"] = [
-            ["amount" => 20, "currency" => 1],
+        $values['dende_form_car']['prices'] = [
+            ['amount' => 20, 'currency' => 1],
         ];
 
         $files = [
-            "dende_form_car" => [
-                "images" => [
-                    ["file" => clone($uploadedFile)],
-                    ["file" => clone($uploadedFile)],
-                    ["file" => clone($uploadedFile)],
+            'dende_form_car' => [
+                'images' => [
+                    ['file' => clone($uploadedFile)],
+                    ['file' => clone($uploadedFile)],
+                    ['file' => clone($uploadedFile)],
                 ],
             ],
         ];
@@ -177,14 +178,14 @@ class CarControllerTest extends BaseFunctionalTest
         $alert = $crawler->filter('div.alert.alert-success');
         $this->assertEquals('flash.car_add.success', trim($alert->text()));
 
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
         /*
          * @var Car
          */
-        $entity = $em->getRepository("FrontBundle:Car")->findOneByTitle($title);
+        $entity = $em->getRepository('FrontBundle:Car')->findOneByTitle($title);
 
-        $this->assertEquals($this->container->get("router")->generate("edit_car", ["id" => $entity->getId()]), $this->client->getRequest()->getRequestUri());
-        $this->assertEquals("GET", $this->client->getRequest()->getMethod());
+        $this->assertEquals($this->container->get('router')->generate('edit_car', ['id' => $entity->getId()]), $this->client->getRequest()->getRequestUri());
+        $this->assertEquals('GET', $this->client->getRequest()->getMethod());
 
         $this->assertEquals($entity->getType()->getId(), 1);
         $this->assertEquals($entity->getModel()->getId(), 1);
@@ -217,48 +218,48 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function car_edit_form_is_posted_and_entity_is_changed()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
-        $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
+        $qb = $em->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+        $query = $qb->orderBy('c.id', 'ASC')->setMaxResults(1);
         /*
          * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
+        $url = $this->container->get('router')->generate('edit_car', ['id' => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
-        $title = md5("some title".microtime());
+        $title = md5('some title'.microtime());
 
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["translations"][$this->defaultLocale]["title"] = $title;
-        $values["dende_form_car"]["prices"] = [
-            ["amount" => 30, "currency" => 2],
-            ["amount" => 40, "currency" => 2],
+        $values['dende_form_car']['translations'][$this->defaultLocale]['title'] = $title;
+        $values['dende_form_car']['prices'] = [
+            ['amount' => 30, 'currency' => 2],
+            ['amount' => 40, 'currency' => 2],
         ];
-        $newModelName = md5("some title".microtime());
-        $values["dende_form_car"]["add_model"]["name"] = $newModelName;
-        $values["dende_form_car"]["add_model"]["brand"] = $newModelName;
+        $newModelName = md5('some title'.microtime());
+        $values['dende_form_car']['add_model']['name'] = $newModelName;
+        $values['dende_form_car']['add_model']['brand'] = $newModelName;
 
         $files = [];
-        $files["dende_form_car"]["images"] = $this->getUploadedImages(2);
+        $files['dende_form_car']['images'] = $this->getUploadedImages(2);
 
-        $crawler = $this->client->request("POST", $url, $values, $files);
+        $crawler = $this->client->request('POST', $url, $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
         $alert = $crawler->filter('div.alert.alert-success');
         $this->assertEquals('flash.car_edit.success', trim($alert->text()));
 
-        $this->assertEquals($this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]), $this->client->getRequest()->getRequestUri());
-        $this->assertEquals("GET", $this->client->getRequest()->getMethod());
+        $this->assertEquals($this->container->get('router')->generate('edit_car', ['id' => $carEntity->getId()]), $this->client->getRequest()->getRequestUri());
+        $this->assertEquals('GET', $this->client->getRequest()->getMethod());
 
         $em->refresh($carEntity);
-        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage("title", $this->defaultLocale)->first();
+        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage('title', $this->defaultLocale)->first();
         $em->refresh($titleTranslationEntity);
 
         $this->assertNotNull($carEntity, "Car entity can't be found");
@@ -276,15 +277,15 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function car_add_form_is_posted_and_error_is_emitted($formData, $collections, $error)
     {
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('add_car'));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $form = $forms->first()->form($formData);
 
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["prices"] = $collections["prices"];
+        $values['dende_form_car']['prices'] = $collections['prices'];
 
-        $crawler = $this->client->request("POST", $form->getUri(), $values, ["dende_form_car" => ["images" => $collections["images"]]]);
+        $crawler = $this->client->request('POST', $form->getUri(), $values, ['dende_form_car' => ['images' => $collections['images']]]);
 
         $this->assertEquals(400, $this->getStatusCode());
 
@@ -300,15 +301,15 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function car_edit_form_is_posted_and_error_is_emitted($formData, $collections, $error)
     {
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("edit_car", ["id" => 1]));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('edit_car', ['id' => 1]));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
         $form = $forms->first()->form($formData);
 
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["prices"] = $collections["prices"];
+        $values['dende_form_car']['prices'] = $collections['prices'];
 
-        $crawler = $this->client->request("POST", $form->getUri(), $values, ["dende_form_car" => ["images" => $collections["images"]]]);
+        $crawler = $this->client->request('POST', $form->getUri(), $values, ['dende_form_car' => ['images' => $collections['images']]]);
 
         $this->assertEquals(400, $this->getStatusCode());
 
@@ -323,31 +324,31 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function new_type_is_being_created_while_editing_new_car()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
-        $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
+        $qb = $em->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+        $query = $qb->orderBy('c.id', 'ASC')->setMaxResults(1);
         /*
          * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
+        $url = $this->container->get('router')->generate('edit_car', ['id' => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
-        $newTypeName = md5("some title".microtime());
+        $newTypeName = md5('some title'.microtime());
 
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["add_type"]["name"] = $newTypeName;
-        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+        $values['dende_form_car']['add_type']['name'] = $newTypeName;
+        $values['dende_form_car']['prices'] = $this->getPrices(1);
 
         $files = [];
-        $files["dende_form_car"]["images"] = $this->getUploadedImages(count($carEntity->getImages()));
+        $files['dende_form_car']['images'] = $this->getUploadedImages(count($carEntity->getImages()));
 
-        $this->client->request("POST", $url, $values, $files);
+        $this->client->request('POST', $url, $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -363,51 +364,51 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function new_color_is_being_created_while_adding_new_car()
     {
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('add_car'));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
-        $title = md5("some title".microtime());
+        $title = md5('some title'.microtime());
 
         $form = $forms->first()->form();
 
-        $newColorName = md5("some title".microtime());
+        $newColorName = md5('some title'.microtime());
 
         $form->setValues([
-            "dende_form_car[type]" => 1,
-            "dende_form_car[model]" => 1,
-            "dende_form_car[color]" => 1,
-            "dende_form_car[year]" => 1990,
-            "dende_form_car[distance]" => 40000,
-            "dende_form_car[fuel]" => Fuel::DIESEL,
-            "dende_form_car[engine]" => Engine::DIESEL,
-            "dende_form_car[gearbox]" => Gearbox::AUTOMATIC,
-            "dende_form_car[registrationCountry]" => Country::POLAND,
-            "dende_form_car[promoteCarousel]" => true,
-            "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[translations][".$this->defaultLocale."][title]" => $title,
-            "dende_form_car[translations][".$this->defaultLocale."][description]" => 'Some description',
-            "dende_form_car[hidden]" => false,
-            "dende_form_car[adminNotes]" => "notes",
-            "dende_form_car[add_color][translations][".$this->defaultLocale."][name]" => $newColorName,
+            'dende_form_car[type]' => 1,
+            'dende_form_car[model]' => 1,
+            'dende_form_car[color]' => 1,
+            'dende_form_car[year]' => 1990,
+            'dende_form_car[distance]' => 40000,
+            'dende_form_car[fuel]' => Fuel::DIESEL,
+            'dende_form_car[engine]' => Engine::DIESEL,
+            'dende_form_car[gearbox]' => Gearbox::AUTOMATIC,
+            'dende_form_car[registrationCountry]' => Country::POLAND,
+            'dende_form_car[promoteCarousel]' => true,
+            'dende_form_car[promoteFrontpage]' => false,
+            'dende_form_car[translations]['.$this->defaultLocale.'][title]' => $title,
+            'dende_form_car[translations]['.$this->defaultLocale.'][description]' => 'Some description',
+            'dende_form_car[hidden]' => false,
+            'dende_form_car[adminNotes]' => 'notes',
+            'dende_form_car[add_color][translations]['.$this->defaultLocale.'][name]' => $newColorName,
         ]);
 
         $files = [];
-        $files["dende_form_car"]["images"] = $this->getUploadedImages(1);
+        $files['dende_form_car']['images'] = $this->getUploadedImages(1);
 
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+        $values['dende_form_car']['prices'] = $this->getPrices(1);
 
         $this->client->request($form->getMethod(), $form->getUri(), $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
         /*
          * @var Car
          */
-        $carEntity = $em->getRepository("FrontBundle:Car")->findOneByTitle($title);
+        $carEntity = $em->getRepository('FrontBundle:Car')->findOneByTitle($title);
 
-        $this->assertNotNull($carEntity, "Car entity not found");
+        $this->assertNotNull($carEntity, 'Car entity not found');
 
         $this->assertEquals($carEntity->getColor()->getName(), $newColorName, "Entity Model haven't been created in db");
     }
@@ -418,31 +419,31 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function new_color_is_being_created_while_editing_new_car()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
-        $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
+        $qb = $em->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+        $query = $qb->orderBy('c.id', 'ASC')->setMaxResults(1);
         /*
          * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
+        $url = $this->container->get('router')->generate('edit_car', ['id' => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
-        $newColorName = md5("some title".microtime());
+        $newColorName = md5('some title'.microtime());
 
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["add_color"]["translations"][$this->defaultLocale]["name"] = $newColorName;
-        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+        $values['dende_form_car']['add_color']['translations'][$this->defaultLocale]['name'] = $newColorName;
+        $values['dende_form_car']['prices'] = $this->getPrices(1);
 
         $files = [];
-        $files["dende_form_car"]["images"] = $this->getUploadedImages(count($carEntity->getImages()));
+        $files['dende_form_car']['images'] = $this->getUploadedImages(count($carEntity->getImages()));
 
-        $this->client->request("POST", $url, $values, $files);
+        $this->client->request('POST', $url, $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -455,36 +456,37 @@ class CarControllerTest extends BaseFunctionalTest
     /**
      * @test
      * @group read-write
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function new_model_is_being_created_while_editing_new_car()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
-        $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
+        $qb = $em->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+        $query = $qb->orderBy('c.id', 'ASC')->setMaxResults(1);
         /*
          * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
+        $url = $this->container->get('router')->generate('edit_car', ['id' => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
-        $newModelName = md5("some title".microtime());
+        $newModelName = md5('some title'.microtime());
 
         $form = $forms->first()->form();
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["add_model"]["name"] = $newModelName;
-        $values["dende_form_car"]["add_model"]["brand"] = $newModelName;
-        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+        $values['dende_form_car']['add_model']['name'] = $newModelName;
+        $values['dende_form_car']['add_model']['brand'] = $newModelName;
+        $values['dende_form_car']['prices'] = $this->getPrices(1);
 
         $files = [];
-        $files["dende_form_car"]["images"] = $this->getUploadedImages(count($carEntity->getImages()));
+        $files['dende_form_car']['images'] = $this->getUploadedImages(count($carEntity->getImages()));
 
-        $this->client->request("POST", $url, $values, $files);
+        $this->client->request('POST', $url, $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
@@ -498,54 +500,55 @@ class CarControllerTest extends BaseFunctionalTest
     /**
      * @test
      * @group read-write
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function new_model_is_being_created_while_adding_new_car()
     {
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('add_car'));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
-        $title = md5("some title".microtime());
+        $title = md5('some title'.microtime());
 
         $form = $forms->first()->form();
 
-        $newModelName = md5("some title".microtime());
+        $newModelName = md5('some title'.microtime());
 
         $form->setValues([
-            "dende_form_car[type]" => 1,
-            "dende_form_car[model]" => null,
-            "dende_form_car[color]" => 1,
-            "dende_form_car[year]" => 1990,
-            "dende_form_car[distance]" => 40000,
-            "dende_form_car[fuel]" => Fuel::DIESEL,
-            "dende_form_car[engine]" => Engine::DIESEL,
-            "dende_form_car[gearbox]" => Gearbox::AUTOMATIC,
-            "dende_form_car[registrationCountry]" => Country::POLAND,
-            "dende_form_car[promoteCarousel]" => true,
-            "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[translations][".$this->defaultLocale."][title]" => $title,
-            "dende_form_car[translations][".$this->defaultLocale."][description]" => 'Some description',
-            "dende_form_car[hidden]" => false,
-            "dende_form_car[adminNotes]" => "notes",
-            "dende_form_car[add_model][name]" => $newModelName,
-            "dende_form_car[add_model][brand]" => $newModelName,
+            'dende_form_car[type]' => 1,
+            'dende_form_car[model]' => null,
+            'dende_form_car[color]' => 1,
+            'dende_form_car[year]' => 1990,
+            'dende_form_car[distance]' => 40000,
+            'dende_form_car[fuel]' => Fuel::DIESEL,
+            'dende_form_car[engine]' => Engine::DIESEL,
+            'dende_form_car[gearbox]' => Gearbox::AUTOMATIC,
+            'dende_form_car[registrationCountry]' => Country::POLAND,
+            'dende_form_car[promoteCarousel]' => true,
+            'dende_form_car[promoteFrontpage]' => false,
+            'dende_form_car[translations]['.$this->defaultLocale.'][title]' => $title,
+            'dende_form_car[translations]['.$this->defaultLocale.'][description]' => 'Some description',
+            'dende_form_car[hidden]' => false,
+            'dende_form_car[adminNotes]' => 'notes',
+            'dende_form_car[add_model][name]' => $newModelName,
+            'dende_form_car[add_model][brand]' => $newModelName,
         ]);
 
         $files = [];
-        $files["dende_form_car"]["images"] = $this->getUploadedImages(1);
+        $files['dende_form_car']['images'] = $this->getUploadedImages(1);
 
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+        $values['dende_form_car']['prices'] = $this->getPrices(1);
 
         $this->client->request($form->getMethod(), $form->getUri(), $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
         /*
          * @var Car $entity
          */
-        $carEntity = $em->getRepository("FrontBundle:Car")->findOneByTitle($title);
+        $carEntity = $em->getRepository('FrontBundle:Car')->findOneByTitle($title);
 
         $this->assertEquals($carEntity->getModel()->getName(), $newModelName, "Entity Model haven't been created in db");
         $this->assertEquals($carEntity->getModel()->getBrand()->getName(), $newModelName, "Entity Brand haven't been created in db");
@@ -557,12 +560,12 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function new_model_type_color_brand_are_not_created_but_reused_when_adding_car()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $colorQuery = $em->getRepository("FrontBundle:Color")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
-        $modelQuery = $em->getRepository("FrontBundle:Model")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
-        $brandQuery = $em->getRepository("FrontBundle:Brand")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
-        $typeQuery = $em->getRepository("FrontBundle:Type")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
+        $colorQuery = $em->getRepository('FrontBundle:Color')->createQueryBuilder('c')->orderBy('c.id', 'ASC')->setMaxResults(1);
+        $modelQuery = $em->getRepository('FrontBundle:Model')->createQueryBuilder('c')->orderBy('c.id', 'ASC')->setMaxResults(1);
+        $brandQuery = $em->getRepository('FrontBundle:Brand')->createQueryBuilder('c')->orderBy('c.id', 'ASC')->setMaxResults(1);
+        $typeQuery = $em->getRepository('FrontBundle:Type')->createQueryBuilder('c')->orderBy('c.id', 'ASC')->setMaxResults(1);
 
         /*
          * @var Color
@@ -584,50 +587,50 @@ class CarControllerTest extends BaseFunctionalTest
          */
         $type = $typeQuery->getQuery()->getOneOrNullResult();
 
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("add_car"));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('add_car'));
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
-        $title = md5("some title".microtime());
+        $title = md5('some title'.microtime());
 
         $form = $forms->first()->form();
 
         $form->setValues([
-            "dende_form_car[type]" => 1,
-            "dende_form_car[model]" => 1,
-            "dende_form_car[color]" => 1,
-            "dende_form_car[year]" => 1990,
-            "dende_form_car[distance]" => 40000,
-            "dende_form_car[fuel]" => Fuel::DIESEL,
-            "dende_form_car[engine]" => Engine::DIESEL,
-            "dende_form_car[gearbox]" => Gearbox::AUTOMATIC,
-            "dende_form_car[registrationCountry]" => Country::POLAND,
-            "dende_form_car[promoteCarousel]" => true,
-            "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[translations][".$this->defaultLocale."][title]" => $title,
-            "dende_form_car[translations][".$this->defaultLocale."][description]" => 'Some description',
-            "dende_form_car[hidden]" => false,
-            "dende_form_car[adminNotes]" => "notes",
-            "dende_form_car[add_model][name]" => $model->getName(),
-            "dende_form_car[add_model][brand]" => $brand->getName(),
-            "dende_form_car[add_color][translations][".$this->defaultLocale."][name]" => $color->getName(),
-            "dende_form_car[add_type][name]" => $type->getName(),
+            'dende_form_car[type]' => 1,
+            'dende_form_car[model]' => 1,
+            'dende_form_car[color]' => 1,
+            'dende_form_car[year]' => 1990,
+            'dende_form_car[distance]' => 40000,
+            'dende_form_car[fuel]' => Fuel::DIESEL,
+            'dende_form_car[engine]' => Engine::DIESEL,
+            'dende_form_car[gearbox]' => Gearbox::AUTOMATIC,
+            'dende_form_car[registrationCountry]' => Country::POLAND,
+            'dende_form_car[promoteCarousel]' => true,
+            'dende_form_car[promoteFrontpage]' => false,
+            'dende_form_car[translations]['.$this->defaultLocale.'][title]' => $title,
+            'dende_form_car[translations]['.$this->defaultLocale.'][description]' => 'Some description',
+            'dende_form_car[hidden]' => false,
+            'dende_form_car[adminNotes]' => 'notes',
+            'dende_form_car[add_model][name]' => $model->getName(),
+            'dende_form_car[add_model][brand]' => $brand->getName(),
+            'dende_form_car[add_color][translations]['.$this->defaultLocale.'][name]' => $color->getName(),
+            'dende_form_car[add_type][name]' => $type->getName(),
         ]);
 
         $files = [];
-        $files["dende_form_car"]["images"] = $this->getUploadedImages(1);
+        $files['dende_form_car']['images'] = $this->getUploadedImages(1);
 
         $values = $form->getPhpValues();
-        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+        $values['dende_form_car']['prices'] = $this->getPrices(1);
 
         $this->client->request($form->getMethod(), $form->getUri(), $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
         /*
          * @var Car
          */
-        $carEntity = $em->getRepository("FrontBundle:Car")->findOneByTitle($title);
+        $carEntity = $em->getRepository('FrontBundle:Car')->findOneByTitle($title);
 
         $em->refresh($color);
         $em->refresh($type);
@@ -648,12 +651,12 @@ class CarControllerTest extends BaseFunctionalTest
      */
     public function new_model_type_color_brand_are_not_created_but_reused_when_editing_car()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $colorQuery = $em->getRepository("FrontBundle:Color")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
-        $modelQuery = $em->getRepository("FrontBundle:Model")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
-        $brandQuery = $em->getRepository("FrontBundle:Brand")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
-        $typeQuery = $em->getRepository("FrontBundle:Type")->createQueryBuilder("c")->orderBy('c.id', "ASC")->setMaxResults(1);
+        $colorQuery = $em->getRepository('FrontBundle:Color')->createQueryBuilder('c')->orderBy('c.id', 'ASC')->setMaxResults(1);
+        $modelQuery = $em->getRepository('FrontBundle:Model')->createQueryBuilder('c')->orderBy('c.id', 'ASC')->setMaxResults(1);
+        $brandQuery = $em->getRepository('FrontBundle:Brand')->createQueryBuilder('c')->orderBy('c.id', 'ASC')->setMaxResults(1);
+        $typeQuery = $em->getRepository('FrontBundle:Type')->createQueryBuilder('c')->orderBy('c.id', 'ASC')->setMaxResults(1);
 
         /*
          * @var Color
@@ -675,46 +678,46 @@ class CarControllerTest extends BaseFunctionalTest
          */
         $type = $typeQuery->getQuery()->getOneOrNullResult();
 
-        $qb = $em->getRepository("FrontBundle:Car")->createQueryBuilder("c");
-        $query = $qb->orderBy('c.id', "ASC")->setMaxResults(1);
+        $qb = $em->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+        $query = $qb->orderBy('c.id', 'ASC')->setMaxResults(1);
         /*
          * @var Car
          */
         $carEntity = $query->getQuery()->getOneOrNullResult();
 
-        $url = $this->container->get("router")->generate("edit_car", ["id" => $carEntity->getId()]);
+        $url = $this->container->get('router')->generate('edit_car', ['id' => $carEntity->getId()]);
 
         $crawler = $this->client->request('GET', $url);
         $forms = $crawler->filter('form[name="dende_form_car"]');
 
-        $title = md5("some title".microtime());
+        $title = md5('some title'.microtime());
 
         $form = $forms->first()->form();
 
         $values = $form->getPhpValues();
 
-        $values["dende_form_car"]["translations"][$this->defaultLocale]["title"] = $title;
-        $values["dende_form_car"]["add_model"]["name"] = $model->getName();
-        $values["dende_form_car"]["add_model"]["brand"] = $brand->getName();
-        $values["dende_form_car"]["add_color"]["translations"][$this->defaultLocale]["name"] = $color->getName();
-        $values["dende_form_car"]["add_type"]["name"] = $type->getName();
-        $values["dende_form_car"]["prices"] = $this->getPrices(1);
+        $values['dende_form_car']['translations'][$this->defaultLocale]['title'] = $title;
+        $values['dende_form_car']['add_model']['name'] = $model->getName();
+        $values['dende_form_car']['add_model']['brand'] = $brand->getName();
+        $values['dende_form_car']['add_color']['translations'][$this->defaultLocale]['name'] = $color->getName();
+        $values['dende_form_car']['add_type']['name'] = $type->getName();
+        $values['dende_form_car']['prices'] = $this->getPrices(1);
 
         $files = [];
-        $files["dende_form_car"]["images"] = $this->getUploadedImages(count($carEntity->getImages()));
+        $files['dende_form_car']['images'] = $this->getUploadedImages(count($carEntity->getImages()));
 
         $this->client->request($form->getMethod(), $form->getUri(), $values, $files);
 
         $this->assertEquals(200, $this->getStatusCode());
 
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
         /*
          * @var Car $carEntity
          */
         $em->refresh($carEntity);
 
-        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage("title", $this->defaultLocale)->first();
+        $titleTranslationEntity = $carEntity->getTranslationEntityForLanguage('title', $this->defaultLocale)->first();
         $em->refresh($titleTranslationEntity);
         $em->refresh($color);
         $em->refresh($type);
@@ -733,97 +736,97 @@ class CarControllerTest extends BaseFunctionalTest
     public function getErrorGeneratingForms()
     {
         $correctData = [
-            "dende_form_car[type]" => 1,
-            "dende_form_car[model]" => 1,
-            "dende_form_car[color]" => 1,
-            "dende_form_car[year]" => 1990,
-            "dende_form_car[distance]" => 40000,
-            "dende_form_car[fuel]" => Fuel::DIESEL,
-            "dende_form_car[engine]" => Engine::DIESEL,
-            "dende_form_car[gearbox]" => Gearbox::AUTOMATIC,
-            "dende_form_car[registrationCountry]" => Country::POLAND,
-            "dende_form_car[promoteCarousel]" => true,
-            "dende_form_car[promoteFrontpage]" => false,
-            "dende_form_car[translations][".$this->defaultLocale."][title]" => "Some title",
-            "dende_form_car[translations][".$this->defaultLocale."][description]" => 'Some description',
-            "dende_form_car[adminNotes]" => 'Admin Notes',
-            "dende_form_car[hidden]" => false,
+            'dende_form_car[type]' => 1,
+            'dende_form_car[model]' => 1,
+            'dende_form_car[color]' => 1,
+            'dende_form_car[year]' => 1990,
+            'dende_form_car[distance]' => 40000,
+            'dende_form_car[fuel]' => Fuel::DIESEL,
+            'dende_form_car[engine]' => Engine::DIESEL,
+            'dende_form_car[gearbox]' => Gearbox::AUTOMATIC,
+            'dende_form_car[registrationCountry]' => Country::POLAND,
+            'dende_form_car[promoteCarousel]' => true,
+            'dende_form_car[promoteFrontpage]' => false,
+            'dende_form_car[translations]['.$this->defaultLocale.'][title]' => 'Some title',
+            'dende_form_car[translations]['.$this->defaultLocale.'][description]' => 'Some description',
+            'dende_form_car[adminNotes]' => 'Admin Notes',
+            'dende_form_car[hidden]' => false,
         ];
 
-        $collections = ["images" => $this->getUploadedImages(2), "prices" => $this->getPrices(2)];
+        $collections = ['images' => $this->getUploadedImages(2), 'prices' => $this->getPrices(2)];
 
         return [
-            "empty type" => [
-                "formData" => array_merge(
+            'empty type' => [
+                'formData' => array_merge(
                     $correctData,
                     [
-                        "dende_form_car[type]" => null,
+                        'dende_form_car[type]' => null,
                     ]
                 ),
-                "collections" => $collections,
-                "error" => 'validator.you_have_to_choose_car_type',
+                'collections' => $collections,
+                'error' => 'validator.you_have_to_choose_car_type',
             ],
-            "empty model" => [
-                "formData" => array_merge(
+            'empty model' => [
+                'formData' => array_merge(
                     $correctData,
                     [
-                        "dende_form_car[model]" => null,
+                        'dende_form_car[model]' => null,
                     ]
                 ),
-                "collections" => $collections,
-                "error" => 'validator.you_have_to_choose_car_model',
+                'collections' => $collections,
+                'error' => 'validator.you_have_to_choose_car_model',
             ],
-            "empty color" => [
-                "formData" => array_merge(
+            'empty color' => [
+                'formData' => array_merge(
                     $correctData,
                     [
-                        "dende_form_car[color]" => null,
+                        'dende_form_car[color]' => null,
                     ]
                 ),
-                "collections" => $collections,
-                "error" => 'validator.you_have_to_choose_car_color',
+                'collections' => $collections,
+                'error' => 'validator.you_have_to_choose_car_color',
             ],
-            "empty brand" => [
-                "formData" => array_merge(
+            'empty brand' => [
+                'formData' => array_merge(
                     $correctData,
                     [
-                        "dende_form_car[add_model][name]" => "someName",
-                        "dende_form_car[add_model][brand]" => null,
+                        'dende_form_car[add_model][name]' => 'someName',
+                        'dende_form_car[add_model][brand]' => null,
                     ]
                 ),
-                "collections" => $collections,
-                "error" => 'validator.you_have_to_add_car_brand',
+                'collections' => $collections,
+                'error' => 'validator.you_have_to_add_car_brand',
             ],
-            "empty model, filled brand" => [
-                "formData" => array_merge(
+            'empty model, filled brand' => [
+                'formData' => array_merge(
                     $correctData,
                     [
-                        "dende_form_car[add_model][name]" => null,
-                        "dende_form_car[add_model][brand]" => "brand",
+                        'dende_form_car[add_model][name]' => null,
+                        'dende_form_car[add_model][brand]' => 'brand',
                     ]
                 ),
-                "collections" => $collections,
-                "error" => 'validator.you_have_to_add_car_model_name',
+                'collections' => $collections,
+                'error' => 'validator.you_have_to_add_car_model_name',
             ],
-            "empty prices" => [
-                "formData" => $correctData,
-                "collections" => array_merge($collections, ["prices" => []]),
-                "error" => 'car.validation.prices.min',
+            'empty prices' => [
+                'formData' => $correctData,
+                'collections' => array_merge($collections, ['prices' => []]),
+                'error' => 'car.validation.prices.min',
             ],
-            "empty images" => [
-                "formData" => $correctData,
-                "collections" => array_merge($collections, ["images" => []]),
-                "error" => 'car.validation.images.min',
+            'empty images' => [
+                'formData' => $correctData,
+                'collections' => array_merge($collections, ['images' => []]),
+                'error' => 'car.validation.images.min',
             ],
-            "too much prices" => [
-                "formData" => $correctData,
-                "collections" => array_merge($collections, ["prices" => $this->getPrices(6)]),
-                "error" => 'car.validation.prices.max',
+            'too much prices' => [
+                'formData' => $correctData,
+                'collections' => array_merge($collections, ['prices' => $this->getPrices(6)]),
+                'error' => 'car.validation.prices.max',
             ],
-            "too much images" => [
-                "formData" => $correctData,
-                "collections" => array_merge($collections, ["images" => $this->getUploadedImages(21)]),
-                "error" => 'car.validation.images.max',
+            'too much images' => [
+                'formData' => $correctData,
+                'collections' => array_merge($collections, ['images' => $this->getUploadedImages(21)]),
+                'error' => 'car.validation.images.max',
             ],
 
         ];
@@ -835,8 +838,8 @@ class CarControllerTest extends BaseFunctionalTest
 
         $array = [];
 
-        for ($a=0; $a<$int; $a++) {
-            $array[] = ["file" => clone($uploadedFile)];
+        for ($a = 0; $a<$int; $a++) {
+            $array[] = ['file' => clone($uploadedFile)];
         }
 
         return $array;
@@ -846,8 +849,8 @@ class CarControllerTest extends BaseFunctionalTest
     {
         $array = [];
 
-        for ($a=0; $a<$int; $a++) {
-            $array[] = ["amount" => 30, "currency" => 2];
+        for ($a = 0; $a<$int; $a++) {
+            $array[] = ['amount' => 30, 'currency' => 2];
         }
 
         return $array;
@@ -856,7 +859,7 @@ class CarControllerTest extends BaseFunctionalTest
     private function getUploadedFile()
     {
         return new UploadedFile(
-            realpath(__DIR__."/../../Resources/tests/test_image.jpg"),
+            realpath(__DIR__.'/../../Resources/tests/test_image.jpg'),
             'someTestFile.jpg',
             'image/jpeg',
             123

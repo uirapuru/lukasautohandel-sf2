@@ -1,36 +1,13 @@
 <?php
+
 namespace Dende\FrontBundle\Features;
 
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
-use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\HttpKernel\KernelInterface;
 
-class FeatureContext extends MinkContext implements KernelAwareContext
+class FeatureContext extends MinkContext
 {
-    private $baseUrl;
-
-    /**
-     * @var KernelInterface
-     */
-    private $kernel;
-
-    /**
-     * Sets Kernel instance.
-     *
-     * @param KernelInterface $kernel
-     */
-    public function setKernel(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
-    }
-
-    public function __construct($baseUrl, $session)
-    {
-        $this->baseUrl = $baseUrl;
-    }
-
     /**
      * @Then /^I press "([^"]*)" in "([^"]*)" row (\d+) times$/
      */
@@ -42,7 +19,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
 
         $page = $this->getSession()->getPage();
 
-        $labels = $page->findAll("css", "label");
+        $labels = $page->findAll('css', 'label');
 
         foreach ($labels as $label) {
             /*
@@ -52,7 +29,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
                 /*
                  * @var NodeElement
                  */
-                $row = $label->getParent();
+                $label->getParent();
                 continue;
             }
         }
@@ -65,20 +42,20 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     {
         $amount = $this->fixStepArgument($amount);
         $page = $this->getSession()->getPage();
-        $button = $page->find("css", "div#dende_form_car_images");
+        $button = $page->find('css', 'div#dende_form_car_images');
 
         if (count($button) == 0) {
-            throw new Exception("Element div#dende_form_car_images not found!");
+            throw new Exception('Element div#dende_form_car_images not found!');
         }
 
         $row = $button->getParent();
-        $link = $row->find("css", "a.item_add");
+        $link = $row->find('css', 'a.item_add');
 
         for ($a = 0; $a < $amount; $a++) {
             $link->click();
         }
 
-        $this->assertNumElements(5, "div#dende_form_car_images input[type=file]");
+        $this->assertNumElements(5, 'div#dende_form_car_images input[type=file]');
     }
 
     /**
@@ -88,8 +65,8 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     {
         $amount = $this->fixStepArgument($amount);
         $page = $this->getSession()->getPage();
-        $row = $page->find("css", "div#dende_form_car_images")->getParent();
-        $links = array_slice($row->findAll("css", "a.item_remove"), 0, $amount);
+        $row = $page->find('css', 'div#dende_form_car_images')->getParent();
+        $links = array_slice($row->findAll('css', 'a.item_remove'), 0, $amount);
 
         foreach ($links as $link) {
             $link->click();
@@ -101,7 +78,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
      */
     public function iHaveImages($arg1)
     {
-        $this->assertNumElements(2, "div#dende_form_car_images > ul > li");
+        $this->assertNumElements(2, 'div#dende_form_car_images > ul > li');
     }
 
     /**
@@ -109,7 +86,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
      */
     public function imagesListIsEmpty()
     {
-        $this->assertNumElements(0, "div#dende_form_car_images > ul > li");
+        $this->assertNumElements(0, 'div#dende_form_car_images > ul > li');
     }
 
     /**
@@ -117,7 +94,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
      */
     public function pricesListIsEmpty()
     {
-        $this->assertNumElements(0, "div#dende_form_car_prices > ul > li");
+        $this->assertNumElements(0, 'div#dende_form_car_prices > ul > li');
     }
 
     /**
@@ -128,21 +105,21 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         $amount = $this->fixStepArgument($amount);
         $page = $this->getSession()->getPage();
 
-        $button = $page->find("css", "div#dende_form_car_prices");
+        $button = $page->find('css', 'div#dende_form_car_prices');
 
         if (count($button) == 0) {
-            throw new Exception("Element div#dende_form_car_prices not found!");
+            throw new Exception('Element div#dende_form_car_prices not found!');
         }
 
         $row = $button->getParent();
 
-        $link = $row->find("css", "a.item_add");
+        $link = $row->find('css', 'a.item_add');
 
         for ($a = 0; $a < $amount; $a++) {
             $link->click();
         }
 
-        $this->assertNumElements($amount, "div#dende_form_car_prices > ul > li");
+        $this->assertNumElements($amount, 'div#dende_form_car_prices > ul > li');
     }
 
     /**
@@ -152,8 +129,8 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     {
         $amount = $this->fixStepArgument($amount);
         $page = $this->getSession()->getPage();
-        $row = $page->find("css", "div#dende_form_car_prices")->getParent();
-        $links = array_slice($row->findAll("css", "a.item_remove"), 0, $amount);
+        $row = $page->find('css', 'div#dende_form_car_prices')->getParent();
+        $links = array_slice($row->findAll('css', 'a.item_remove'), 0, $amount);
 
         foreach ($links as $link) {
             $link->click();
@@ -165,7 +142,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
      */
     public function iHavePrices($arg1)
     {
-        $this->assertNumElements($arg1, "div#dende_form_car_prices > ul > li");
+        $this->assertNumElements($arg1, 'div#dende_form_car_prices > ul > li');
     }
 
     /**
@@ -177,7 +154,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
 
         $page = $this->getSession()->getPage();
 
-        $labels = $page->findAll("css", "label");
+        $labels = $page->findAll('css', 'label');
 
         $row = null;
 
@@ -214,7 +191,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     {
         $page = $this->getSession()->getPage();
 
-        $elements = $page->findAll("css", $elementSelector);
+        $elements = $page->findAll('css', $elementSelector);
 
         foreach ($elements as $element) {
             /*
@@ -232,7 +209,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     public function iClick($selector)
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll("css", $selector);
+        $elements = $page->findAll('css', $selector);
 
         foreach ($elements as $element) {
             $element->click();
@@ -281,7 +258,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
      */
     public function iSubmitForm($arg1)
     {
-        $form = $this->getSession()->getPage()->find('css', "form#".$arg1);
+        $form = $this->getSession()->getPage()->find('css', 'form#'.$arg1);
 
         if (!$form) {
             throw new Exception("Form #$arg1 not found");
@@ -298,16 +275,16 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         $username = $this->fixStepArgument($username);
         $password = $this->fixStepArgument($password);
 
-        $this->visitPath("/login");
-        $this->fillField("_username", $username);
-        $this->fillField("_password", $password);
-        $this->iSubmitForm("loginForm");
+        $this->visitPath('/login');
+        $this->fillField('_username', $username);
+        $this->fillField('_password', $password);
+        $this->iSubmitForm('loginForm');
     }
 
     public function assertElementContains($element, $value)
     {
         $value = $this->fixStepArgument($value);
-        $el = $this->getSession()->getPage()->find("css", $element);
+        $el = $this->getSession()->getPage()->find('css', $element);
 
         if ($el->getText() !== $value) {
             throw new Exception(sprintf("Element %s should have '%s' value, has '%s'", $element, $value, $el->getText()));
@@ -321,13 +298,13 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     {
         $page = $this->getSession()->getPage();
         $brand = $this->fixStepArgument($brand);
-        $models = $page->findAll("css", "select#car_filters_model option");
+        $models = $page->findAll('css', 'select#car_filters_model option');
 
         array_shift($models);
 
         foreach ($models as $model) {
             if (!strstr($model->getText(), $brand)) {
-                throw new Exception("Found other models than ".$brand);
+                throw new Exception('Found other models than '.$brand);
             }
         }
     }
@@ -347,21 +324,21 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     public function iDontSeeAnyModels()
     {
         $selector =  'select#car_filters_model option';
-        $hasModels = $this->getSession()->getPage()->has("css", $selector);
+        $hasModels = $this->getSession()->getPage()->has('css', $selector);
 
         if ($hasModels) {
             $models = [];
-            $elements = $this->getSession()->getPage()->findAll("css", $selector);
+            $elements = $this->getSession()->getPage()->findAll('css', $selector);
 
             foreach ($elements as $element) {
                 $models[] = $element->getText();
             }
 
-            if ($models == array(" ")) {
+            if ($models == array(' ')) {
                 return;
             }
 
-            throw new Exception(sprintf("There should be no options in models select but found %d models: %s", count($elements), implode(", ", $models)));
+            throw new Exception(sprintf('There should be no options in models select but found %d models: %s', count($elements), implode(', ', $models)));
         }
     }
 
@@ -370,26 +347,25 @@ class FeatureContext extends MinkContext implements KernelAwareContext
      */
     public function iCanSeeModels($arg1)
     {
-        $expectedElements = array_map("trim", explode(",", $arg1));
+        $expectedElements = array_map('trim', explode(',', $arg1));
 
         $selector =  'select#car_filters_model option';
 
-        $hasModels = $this->getSession()->getPage()->has("css", $selector);
+        $hasModels = $this->getSession()->getPage()->has('css', $selector);
 
         if ($hasModels) {
-            $elements = $this->getSession()->getPage()->findAll("css", $selector);
-            $actualElements = array_map(function ($el) {
+            $elements = $this->getSession()->getPage()->findAll('css', $selector);
+            $actualElements = array_map(function (NodeElement $el) {
                 return $el->getText();
-
             }, $elements);
 
             foreach ($expectedElements as $model) {
                 if (!in_array($model, $actualElements)) {
-                    throw new Exception(sprintf("There are no %s model in options. Only %s exists.", $model, implode(", ", $actualElements)));
+                    throw new Exception(sprintf('There are no %s model in options. Only %s exists.', $model, implode(', ', $actualElements)));
                 }
             }
         } else {
-            throw new Exception("There are no options in models select");
+            throw new Exception('There are no options in models select');
         }
     }
 
@@ -431,10 +407,10 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         if ($hasResults) {
             $results = $page->findAll('css', 'ul.search-results li');
             if (count($results) !== $count) {
-                throw new Exception(sprintf("Results found differs from test. Should be %d, found %d", $count, count($results)));
+                throw new Exception(sprintf('Results found differs from test. Should be %d, found %d', $count, count($results)));
             }
         } elseif ($count > 0) {
-            throw new Exception("No results from filtered cars");
+            throw new Exception('No results from filtered cars');
         }
     }
 
@@ -468,7 +444,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
         $amount = (int) $page->find('css', $selector)->getText();
 
         if ($amount != $count) {
-            throw new Exception(sprintf("Count in list caption differs from the test. Should be %d, found %d", $count, $amount));
+            throw new Exception(sprintf('Count in list caption differs from the test. Should be %d, found %d', $count, $amount));
         }
     }
 

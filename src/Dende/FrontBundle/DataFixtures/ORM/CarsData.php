@@ -21,7 +21,7 @@ class CarsData extends BaseFixture
 
         $file = $this->translateClassToFilename($this);
 
-        $value = Yaml::parse(file_get_contents(__DIR__."/../Yaml/".$file));
+        $value = Yaml::parse(file_get_contents(__DIR__.'/../Yaml/'.$file));
 
         foreach ($value as $key => $params) {
             $car = $this->insert($params);
@@ -87,15 +87,15 @@ class CarsData extends BaseFixture
     }
 
     /**
-     * @param array   $params
-     * @param integer $getId
+     * @param array $params
+     * @param int   $getId
      */
     private function prepareTranslations($params, Car $car)
     {
-        $titles = $params["title"];
-        $descriptions = $params["description"];
+        $titles = $params['title'];
+        $descriptions = $params['description'];
 
-        $tmpArray = ["title" => $titles, "description" => $descriptions];
+        $tmpArray = ['title' => $titles, 'description' => $descriptions];
         $result = [];
 
         foreach ($tmpArray as $fieldName => $field) {

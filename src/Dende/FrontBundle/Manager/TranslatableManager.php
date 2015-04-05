@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Manager;
 
 use Dende\FrontBundle\Repository\TranslatableRepository;
@@ -43,7 +44,7 @@ class TranslatableManager
      *
      * @throws \InvalidArgumentException if repository is not an instance of TranslatableRepository
      */
-    public function setRepositoryLocale($container)
+    public function setRepositoryLocale(ContainerInterface $container)
     {
         if (null !== $container) {
             if (!$this->repository instanceof TranslatableRepository) {

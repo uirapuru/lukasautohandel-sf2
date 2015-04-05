@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Service;
 
 use Dende\FrontBundle\Entity\Brand;

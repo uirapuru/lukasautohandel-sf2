@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
@@ -14,9 +15,9 @@ class ModelsData extends BaseFixture
     public function insert($params)
     {
         $model = new Model();
-        $model->setName($params["name"]);
+        $model->setName($params['name']);
         $model->setBrand(
-            $this->getReference($params["brand"])
+            $this->getReference($params['brand'])
         );
 
         return $model;

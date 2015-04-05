@@ -20,27 +20,27 @@ class TitleType extends AbstractType
                 'pl',
                 'text',
                 [
-                    "required" => true,
-                    "constraints" => [],
-                    "label" => '_pl',
+                    'required' => true,
+                    'constraints' => [],
+                    'label' => '_pl',
                     'mapped' => false,
                 ]
             )->add(
                 'en',
                 'text',
                 [
-                    "required" => true,
-                    "constraints" => [],
-                    "label" => '_en',
+                    'required' => true,
+                    'constraints' => [],
+                    'label' => '_en',
                     'mapped' => false,
                 ]
             )->add(
                 'de',
                 'text',
                 [
-                    "required" => true,
-                    "constraints" => [],
-                    "label" => '_de',
+                    'required' => true,
+                    'constraints' => [],
+                    'label' => '_de',
                     'mapped' => false,
                 ]
             )
