@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
@@ -14,9 +15,9 @@ class CurrenciesData extends BaseFixture
     public function insert($params)
     {
         $currency = new Currency();
-        $currency->setSymbol($params["symbol"]);
-        $currency->setType($params["type"]);
-        $currency->setCode($params["code"]);
+        $currency->setSymbol($params['symbol']);
+        $currency->setType($params['type']);
+        $currency->setCode($params['code']);
 
         return $currency;
     }

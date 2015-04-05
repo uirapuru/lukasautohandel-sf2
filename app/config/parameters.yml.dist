@@ -12,6 +12,9 @@ parameters:
     test_database_user:     replace_this_test_user
     test_database_password: replace_this_test_pass
 
+    sqlite_database_user:     admin
+    sqlite_database_password: admin
+
     mailer_user:       ~
     mailer_password:   ~
 

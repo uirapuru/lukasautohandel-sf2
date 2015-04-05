@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -21,15 +22,15 @@ class PriceType extends AbstractType
                 'amount',
                 'integer',
                 [
-                    "required" => true,
-                    "constraints" => [
-                        new NotNull(["message" => 'validator.you_have_to_enter_price_amount']),
-                        new Range(["min" => '1', 'minMessage' => 'validator.minimal_price_must_be_over_0']),
+                    'required' => true,
+                    'constraints' => [
+                        new NotNull(['message' => 'validator.you_have_to_enter_price_amount']),
+                        new Range(['min' => '1', 'minMessage' => 'validator.minimal_price_must_be_over_0']),
                     ],
-                    "label" => 'car.form.label.amount',
-                    "error_bubbling" => false,
-                    "attr" => [
-                        "class" => "col-sm-10",
+                    'label' => 'car.form.label.amount',
+                    'error_bubbling' => false,
+                    'attr' => [
+                        'class' => 'col-sm-10',
                     ],
                 ]
             )
@@ -37,14 +38,14 @@ class PriceType extends AbstractType
                 'currency',
                 'entity',
                 [
-                    "class" => "Dende\FrontBundle\Entity\Currency",
-                    "property" => "symbol",
-                    "required" => true,
-                    "constraints" => [
+                    'class' => "Dende\FrontBundle\Entity\Currency",
+                    'property' => 'symbol',
+                    'required' => true,
+                    'constraints' => [
                         new NotNull(),
                     ],
-                    "label" => 'car.form.label.currency',
-                    "error_bubbling" => false,
+                    'label' => 'car.form.label.currency',
+                    'error_bubbling' => false,
                 ]
             )
         ;

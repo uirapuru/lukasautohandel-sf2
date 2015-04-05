@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
@@ -14,7 +15,7 @@ class TypesData extends BaseFixture
     public function insert($params)
     {
         $type = new Type();
-        $type->setName($params["name"]);
+        $type->setName($params['name']);
 
         return $type;
     }

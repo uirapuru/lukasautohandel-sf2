@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -60,7 +61,7 @@ class Image implements Uploadable
     /**
      * @ORM\Column(type="boolean", nullable=true)
      *
-     * @var boolean
+     * @var bool
      */
     protected $hidden = false;
 
@@ -189,7 +190,7 @@ class Image implements Uploadable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isHidden()
     {
@@ -197,7 +198,7 @@ class Image implements Uploadable
     }
 
     /**
-     * @param boolean $hidden
+     * @param bool $hidden
      */
     public function setHidden($hidden)
     {
@@ -270,6 +271,6 @@ class Image implements Uploadable
 
     public function generatePath($path)
     {
-        return $path."/".date('Ymd');
+        return $path.'/'.date('Ymd');
     }
 }

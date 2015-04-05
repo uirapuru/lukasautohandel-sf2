@@ -24,28 +24,28 @@ class SearchType extends AbstractType
         $builder
             ->add(
                 'type',
-                "entity",
+                'entity',
                 [
-                    "class" => "Dende\FrontBundle\Entity\Type",
-                    "property" => "name",
+                    'class' => "Dende\FrontBundle\Entity\Type",
+                    'property' => 'name',
                     'empty_value' => 'car.form.choice.all_types',
                     'empty_data' => null,
                     'required' => false,
                     'constraints' => [],
-                    "label" => 'car.form.label.type',
+                    'label' => 'car.form.label.type',
                 ]
             )
             ->add(
                 'brand',
-                "entity",
+                'entity',
                 [
-                    "class" => "Dende\FrontBundle\Entity\Brand",
+                    'class' => "Dende\FrontBundle\Entity\Brand",
                     'empty_value' => 'car.form.choice.all_brands',
                     'empty_data' => null,
-                    "property" => 'getName',
+                    'property' => 'getName',
                     'required' => false,
                     'constraints' => [],
-                    "label" => 'car.form.label.model',
+                    'label' => 'car.form.label.model',
                 ]
             )
         ;
@@ -53,12 +53,12 @@ class SearchType extends AbstractType
         $formModifier = function (FormInterface $form, $brand) {
             $form->add(
                 'model',
-                "entity",
+                'entity',
                 [
-                    "class" => "Dende\FrontBundle\Entity\Model",
+                    'class' => "Dende\FrontBundle\Entity\Model",
                     'empty_value' => 'car.form.choice.all_models',
                     'empty_data' => null,
-                    "property" => 'getFullName',
+                    'property' => 'getFullName',
                     'required' => false,
                     'query_builder' => function (EntityRepository $repo) use ($brand) {
                         $qb = $repo->createQueryBuilder('m');
@@ -70,7 +70,7 @@ class SearchType extends AbstractType
                         return $qb;
                     },
                     'constraints' => [],
-                    "label" => 'car.form.label.model',
+                    'label' => 'car.form.label.model',
                 ]
             );
         };

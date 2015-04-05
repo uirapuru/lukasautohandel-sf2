@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Model;
 
 use Dende\FrontBundle\Entity\Brand;
@@ -98,7 +99,7 @@ class SearchQuery
             if ($this->$var) {
                 $vars[$var] = $this->$var->getId();
             } else {
-                $vars[$var] = "null";
+                $vars[$var] = 'null';
             }
         }
 

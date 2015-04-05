@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Tests\Functional;
 
 use Dende\FrontBundle\Entity\Brand;
@@ -15,13 +16,13 @@ class SearchFormTest extends BaseFunctionalTest
      */
     public function search_form_renders_properly()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $carTypes = $em->getRepository("FrontBundle:Type")->findAll();
-        $carModels = $em->getRepository("FrontBundle:Model")->findAll();
-        $carBrands = $em->getRepository("FrontBundle:Brand")->findAll();
+        $carTypes = $em->getRepository('FrontBundle:Type')->findAll();
+        $carModels = $em->getRepository('FrontBundle:Model')->findAll();
+        $carBrands = $em->getRepository('FrontBundle:Brand')->findAll();
 
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("list"));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('list'));
         $this->assertEquals(200, $this->getStatusCode());
 
         $forms = $crawler->filter('form[name="dende_form_search"]');
@@ -42,13 +43,13 @@ class SearchFormTest extends BaseFunctionalTest
      */
     public function i_can_find_cars_by_submitting_search_form($params, $count)
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $type = $em->getRepository("FrontBundle:Type")->findOneByName($params["type"]);
-        $model = $em->getRepository("FrontBundle:Model")->findOneByName($params["model"]);
-        $brand = $em->getRepository("FrontBundle:Brand")->findOneByName($params["brand"]);
+        $type = $em->getRepository('FrontBundle:Type')->findOneByName($params['type']);
+        $model = $em->getRepository('FrontBundle:Model')->findOneByName($params['model']);
+        $brand = $em->getRepository('FrontBundle:Brand')->findOneByName($params['brand']);
 
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("list"));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('list'));
         $this->assertEquals(200, $this->getStatusCode());
 
         $forms = $crawler->filter('form[name="dende_form_search"]');
@@ -60,14 +61,14 @@ class SearchFormTest extends BaseFunctionalTest
         $form = $forms->first()->form();
 
         $form->setValues([
-            "dende_form_search[type]" => is_object($type) ? $type->getId() : $type,
-            "dende_form_search[model]" => is_object($model) ? $model->getId() : $model,
-            "dende_form_search[brand]" => is_object($brand) ? $brand->getId() : $brand,
+            'dende_form_search[type]' => is_object($type) ? $type->getId() : $type,
+            'dende_form_search[model]' => is_object($model) ? $model->getId() : $model,
+            'dende_form_search[brand]' => is_object($brand) ? $brand->getId() : $brand,
         ]);
 
         $crawler = $this->client->submit($form);
-        $resultsCount = (int) $crawler->filter("span#list-result-count")->text();
-        $carsCount = (int) $crawler->filter("ul.search-results li")->count();
+        $resultsCount = (int) $crawler->filter('span#list-result-count')->text();
+        $carsCount = (int) $crawler->filter('ul.search-results li')->count();
 
         $this->assertEquals($count, $resultsCount);
         $this->assertEquals($count, $carsCount);
@@ -77,68 +78,68 @@ class SearchFormTest extends BaseFunctionalTest
     {
         return [
             'search-by-model-1' => [
-                "params" => [
-                    "model" => "Golf",
-                    "brand" => null,
-                    "type"  => null,
+                'params' => [
+                    'model' => 'Golf',
+                    'brand' => null,
+                    'type'  => null,
                 ],
-                "count" => 3,
+                'count' => 3,
             ],
             'search-by-model-2' => [
-                "params" => [
-                    "model" => "A3",
-                    "brand" => null,
-                    "type"  => null,
+                'params' => [
+                    'model' => 'A3',
+                    'brand' => null,
+                    'type'  => null,
                 ],
-                "count" => 0,
+                'count' => 0,
             ],
             'search-by-brand-1' => [
-                "params" => [
-                    "model" => null,
-                    "brand" => "Audi",
-                    "type"  => null,
+                'params' => [
+                    'model' => null,
+                    'brand' => 'Audi',
+                    'type'  => null,
                 ],
-                "count" => 8,
+                'count' => 8,
             ],
             'search-by-brand-2' => [
-                "params" => [
-                    "model" => null,
-                    "brand" => "BMW",
-                    "type"  => null,
+                'params' => [
+                    'model' => null,
+                    'brand' => 'BMW',
+                    'type'  => null,
                 ],
-                "count" => 0,
+                'count' => 0,
             ],
             'search-by-type-1' => [
-                "params" => [
-                    "model" => null,
-                    "brand" => null,
-                    "type"  => "Sedan",
+                'params' => [
+                    'model' => null,
+                    'brand' => null,
+                    'type'  => 'Sedan',
                 ],
-                "count" => 11,
+                'count' => 11,
             ],
             'search-by-type-2' => [
-                "params" => [
-                    "model" => null,
-                    "brand" => null,
-                    "type"  => "Hatchback",
+                'params' => [
+                    'model' => null,
+                    'brand' => null,
+                    'type'  => 'Hatchback',
                 ],
-                "count" => 0,
+                'count' => 0,
             ],
             'search-by-mixed-1' => [
-                "params" => [
-                    "type"  => "Sedan",
-                    "brand" => "VolksWagen",
-                    "model" => "Golf",
+                'params' => [
+                    'type'  => 'Sedan',
+                    'brand' => 'VolksWagen',
+                    'model' => 'Golf',
                 ],
-                "count" => 3,
+                'count' => 3,
             ],
             'search-by-mixed-2' => [
-                "params" => [
-                    "type"  => "Coupe",
-                    "brand" => "VolksWagen",
-                    "model" => "Golf",
+                'params' => [
+                    'type'  => 'Coupe',
+                    'brand' => 'VolksWagen',
+                    'model' => 'Golf',
                 ],
-                "count" => 0,
+                'count' => 0,
             ],
         ];
     }
@@ -149,12 +150,12 @@ class SearchFormTest extends BaseFunctionalTest
      */
     public function i_submit_bad_data_with_search_form()
     {
-        $em = $this->container->get("doctrine.orm.entity_manager");
+        $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $brand = $em->getRepository("FrontBundle:Brand")->findOneByName("VolksWagen");
-        $model = $em->getRepository("FrontBundle:Model")->findOneByName("A3");
+        $brand = $em->getRepository('FrontBundle:Brand')->findOneByName('VolksWagen');
+        $model = $em->getRepository('FrontBundle:Model')->findOneByName('A3');
 
-        $crawler = $this->client->request('GET', $this->container->get("router")->generate("list"));
+        $crawler = $this->client->request('GET', $this->container->get('router')->generate('list'));
         $this->assertEquals(200, $this->getStatusCode());
 
         $forms = $crawler->filter('form[name="dende_form_search"]');
@@ -166,13 +167,13 @@ class SearchFormTest extends BaseFunctionalTest
         $form = $forms->first()->form();
 
         $form->setValues([
-            "dende_form_search[model]" => $model->getId(),
-            "dende_form_search[brand]" => $brand->getId(),
+            'dende_form_search[model]' => $model->getId(),
+            'dende_form_search[brand]' => $brand->getId(),
         ]);
 
         $crawler = $this->client->submit($form);
-        $resultsCount = (int) $crawler->filter("span#list-result-count")->text();
-        $carsCount = (int) $crawler->filter("ul.search-results li")->count();
+        $resultsCount = (int) $crawler->filter('span#list-result-count')->text();
+        $carsCount = (int) $crawler->filter('ul.search-results li')->count();
 
         $this->assertEquals(0, $resultsCount);
         $this->assertEquals(0, $carsCount);

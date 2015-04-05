@@ -18,7 +18,7 @@ class ColorType extends AbstractType
         $builder
             ->add(
                 'translations',
-                "a2lix_translations_gedmo",
+                'a2lix_translations_gedmo',
                 [
                     'translatable_class' => 'Dende\\FrontBundle\\Entity\\Color',
                     'fields' => [
