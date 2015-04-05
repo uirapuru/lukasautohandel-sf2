@@ -48,18 +48,15 @@
         <mkdir dir="build/pdepend" />
     </target>
 
-    <target name="phplint">
-        <exec command="${php_bin} -l ${php-file}" checkreturn="true" passthru="true" />
+
+    <target name="yamllint">
+        <exec command="${php_bin} ${symfony_console} yaml:lint app" checkreturn="true" passthru="true" />
+        <exec command="${php_bin} ${symfony_console} yaml:lint src" checkreturn="true" passthru="true" />
     </target>
 
-    <target name="test-phplint" description="linting phpfiles">
-        <foreach param="fname" absparam="php-file" target="phplint">
-            <fileset dir="${project.basedir}">
-                <include name="app/**/*.php" />
-                <include name="src/**/*.php" />
-                <exclude name="app/cache/**/*.php" />
-            </fileset>
-        </foreach>
+    <target name="test-phplint">
+        <exec command="find -L ./app -maxdepth=2 -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l" checkreturn="true" passthru="true" />
+        <exec command="find -L ./src -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l" checkreturn="true" passthru="true" />
     </target>
 
     <target name="test-twiglint">
@@ -67,7 +64,7 @@
         <exec command="${php_bin} ${symfony_console} twig:lint src" checkreturn="true" passthru="true" />
     </target>
 
-    <target name="test-phpunit" depends="reset-db-test">
+    <target name="test-phpunit">
         <if>
             <not>
                 <isset property="jenkins" />
@@ -80,7 +77,7 @@
             </else>
         </if>
         <echo>Running phpunit tests with ${phpunit_config} config file</echo>
-        <exec command="bin/phpunit -c app/${phpunit_config}" checkreturn="true" passthru="true" />
+        <exec command="${bin_phpunit} -c app/${phpunit_config}" checkreturn="true" passthru="true" />
     </target>
 
     <target name="test-security">
@@ -90,6 +87,7 @@
     <target name="test" depends="clear-build">
         <phingcall target="test-phplint" />
         <phingcall target="test-twiglint" />
+        <phingcall target="yamllint" />
         <phingcall target="test-security" />
         <phingcall target="phpcs" />
         <phingcall target="phpcb" />
@@ -97,7 +95,7 @@
         <phingcall target="phpmd" />
         <phingcall target="pdepend" />
         <phingcall target="test-phpunit" />
-        <phingcall target="behat" />
+        <if><isset property="jenkins" /><then><phingcall target="behat" /></then></if>
     </target>
 
     <target name="phpcs" description="php code sniffer">
@@ -136,9 +134,26 @@
 
     </target>
 
-    <target name="behat" description="Starts phantomjs" depends="phantomjs-start, reset-db-test">
-        <exec command="./bin/behat" checkreturn="true" passthru="true" />
+    <target name="start-php-server">
+        <exec command="${php_bin} ${symfony_console} server:start 127.0.0.1:8000" checkreturn="true" passthru="true" spawn="true" />
+    </target>
+
+    <target name="stop-php-server">
+        <exec command="${php_bin} ${symfony_console} server:stop 127.0.0.1:8000" checkreturn="false" passthru="true" />
+    </target>
+
+    <target name="behat" description="Starts phantomjs">
+        <phingcall target="stop-php-server" />
         <phingcall target="phantomjs-stop" />
+
+        <phingcall target="start-php-server" />
+        <phingcall target="phantomjs-start" />
+
+        <phingcall target="reset-db-test" />
+        <exec command='./bin/behat --tags="~@ignore"' checkreturn="true" passthru="true" />
+
+        <phingcall target="phantomjs-stop" />
+        <phingcall target="stop-php-server" />
     </target>
 
 </project>

@@ -1,10 +1,13 @@
 imports:
     - { resource: config_dev.yml }
 
+parameters:
+    translator.class: Dende\FrontBundle\Translator\NoTranslator
+
 framework:
     test: ~
     session:
-        storage_id: session.storage.mock_file
+        storage_id: session.storage.filesystem
     profiler:
         collect: false
 
@@ -17,18 +20,18 @@ swiftmailer:
 
 doctrine:
     dbal:
-        dbname:   "%test_database_name%"
-        user:     "%test_database_user%"
-        password: "%test_database_password%"
+        driver:   pdo_sqlite
+        dbname:   "lukas"
+        charset:  UTF8
+        path:     %kernel.cache_dir%/test.db
 
-#        driver:   pdo_sqlite
-#        host:     ~
-#        port:     ~
-#        dbname:   "lukas"
-#        path:     file.sqlite
-#        user:     ~
-#        password: ~
-#        charset:  UTF8
+liip_functional_test:
+    cache_sqlite_db: true
+    authentication:
+            username: "admin"
+            password: "admin"
 
-parameters:
-    translator.class: Dende\FrontBundle\Translator\NoTranslator
+security:
+    firewalls:
+        main:
+            http_basic: ~
