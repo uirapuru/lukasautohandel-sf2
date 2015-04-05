@@ -67,7 +67,7 @@
         <exec command="${php_bin} ${symfony_console} twig:lint src" checkreturn="true" passthru="true" />
     </target>
 
-    <target name="test-phpunit">
+    <target name="test-phpunit" depends="reset-db-test">
         <if>
             <not>
                 <isset property="jenkins" />
@@ -80,8 +80,7 @@
             </else>
         </if>
         <echo>Running phpunit tests with ${phpunit_config} config file</echo>
-        <exec command="bin/phpunit -c app/${phpunit_config} --testsuite=unit" checkreturn="true" passthru="true" />
-        <exec command="bin/phpunit -c app/${phpunit_config} --testsuite=functional" checkreturn="true" passthru="true" />
+        <exec command="bin/phpunit -c app/${phpunit_config}" checkreturn="true" passthru="true" />
     </target>
 
     <target name="test-security">

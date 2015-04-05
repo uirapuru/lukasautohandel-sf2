@@ -50,8 +50,7 @@
         "vipsoft/doctrine-data-fixtures-extension": "3.0.*@dev",
         "behat/common-formatters": "~1.2",
         "webignition/json-pretty-print": "dev-master",
-        "hasbridge/json-schema-validator": "dev-master",
-        "liip/functional-test-bundle": "~1.2"
+        "hasbridge/json-schema-validator": "dev-master"
     },
     "scripts": {
         "post-root-package-install": [

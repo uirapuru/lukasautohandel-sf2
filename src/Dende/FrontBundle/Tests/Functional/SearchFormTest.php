@@ -11,7 +11,6 @@ class SearchFormTest extends BaseFunctionalTest
 {
     /**
      * @test
-     * @group read-only
      */
     public function search_form_renders_properly()
     {
@@ -37,7 +36,6 @@ class SearchFormTest extends BaseFunctionalTest
 
     /**
      * @test
-     * @group read-only
      * @dataProvider searchDataProvider
      */
     public function i_can_find_cars_by_submitting_search_form($params, $count)
@@ -145,7 +143,6 @@ class SearchFormTest extends BaseFunctionalTest
 
     /**
      * @test
-     * @group read-only
      */
     public function i_submit_bad_data_with_search_form()
     {
