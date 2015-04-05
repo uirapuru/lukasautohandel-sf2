@@ -30,18 +30,4 @@
         <!--<server name="KERNEL_DIR" value="app/" />-->
     <!--</php>-->
 
-    <!--<logging>-->
-        <!--<log type="coverage-clover" target="../build/logs/clover.xml"/>-->
-        <!--<log type="coverage-html" target="../build/coverage" title="Portfolio"/>-->
-        <!--<log type="junit" target="../build/logs/junit.xml"/>-->
-    <!--</logging>-->
-
-    <!--<filter>-->
-        <!--<whitelist>-->
-            <!--<directory>../src/Dende/FrontBundle/Tests/Functional/*</directory>-->
-            <!--<exclude>-->
-                <!--&lt;!&ndash;<directory>../src/*/*Bundle/Resources</directory>&ndash;&gt;-->
-            <!--</exclude>-->
-        <!--</whitelist>-->
-    <!--</filter>-->
 </phpunit>
