@@ -32,7 +32,7 @@ class GenerateThumbnailListener
      */
     public function processImage(Image $image, $defaultPath = null)
     {
-        if ($defaultPath == null) {
+        if ($defaultPath === null) {
             throw new \Exception('No default path');
         }
 

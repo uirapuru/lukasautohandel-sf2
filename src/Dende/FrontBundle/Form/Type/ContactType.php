@@ -48,8 +48,6 @@ class ContactType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $defaultMessage = null;
-
         if ($this->car) {
             $builder
                 ->add('subject', 'text', [

@@ -77,7 +77,7 @@
             </else>
         </if>
         <echo>Running phpunit tests with ${phpunit_config} config file</echo>
-        <exec command="${bin_phpunit} -c app/${phpunit_config}" checkreturn="true" passthru="true" />
+        <exec command="${bin_phpunit} -c app/${phpunit_config} src/" checkreturn="true" passthru="true" />
     </target>
 
     <target name="test-security">

@@ -15,14 +15,11 @@
          syntaxCheck="false"
 >
     <testsuites>
-        <testsuite name="all">
-            <directory>../src/Dende/FrontBundle/Tests/*/</directory>
-        </testsuite>
         <testsuite name="unit">
-            <directory>../src/Dende/FrontBundle/Tests/Unit/**</directory>
+            <directory>../src/Dende/*/Tests/Unit/**</directory>
         </testsuite>
         <testsuite name="functional">
-            <directory>../src/Dende/FrontBundle/Tests/Functional/</directory>
+            <directory>../src/Dende/*/Tests/Functional/**</directory>
         </testsuite>
     </testsuites>
 

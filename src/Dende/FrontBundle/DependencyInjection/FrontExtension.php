@@ -14,25 +14,11 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class FrontExtension extends Extension
 {
     /**
-     * @var array
-     */
-    private $socialLinks;
-
-    /**
-     * @return array
-     */
-    public function getSocialLinks()
-    {
-        return $this->socialLinks;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-        $this->socialLinks = $configs[0]['links'];
     }
 }

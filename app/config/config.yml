@@ -98,14 +98,7 @@ stof_doctrine_extensions:
       sluggable:        true
       uploadable:       true
 
-front:
-    links:
-        contact_mail:   ~
-        facebook:       ~
-        linkedin:       ~
-        goldenline:     ~
-        github:         ~
-        youtube:        ~
+front: ~
 
 a2lix_translation_form:
     locales: %supported_locales%

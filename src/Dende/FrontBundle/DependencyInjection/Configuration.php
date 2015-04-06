@@ -17,22 +17,6 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $root        = $treeBuilder->root('frontBundle');
-
-        $root
-            ->children()
-                ->arrayNode('links')->isRequired()
-                    ->children()
-                        ->scalarNode('contact_mail')->isRequired()->end()
-                        ->scalarNode('facebook')->isRequired()->end()
-                        ->scalarNode('linkedin')->isRequired()->end()
-                        ->scalarNode('goldenline')->isRequired()->end()
-                        ->scalarNode('github')->isRequired()->end()
-                        ->scalarNode('youtube')->isRequired()->end()
-                    ->end()
-                ->end()
-            ->end();
-
         return $treeBuilder;
     }
 }

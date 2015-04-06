@@ -1,8 +1,6 @@
 <?php
 namespace Dende\FrontBundle\Form\Type;
 
-use Dende\FrontBundle\Entity\Brand;
-use Dende\FrontBundle\Entity\Model;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

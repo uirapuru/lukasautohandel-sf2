@@ -23,24 +23,11 @@ class CarType extends AbstractType
     private $languages = [];
 
     /**
-     * @var string
-     */
-    private $defaultLocale = 'pl';
-
-    /**
      * @param array $languages
      */
     public function setLanguages($languages)
     {
         $this->languages = $languages;
-    }
-
-    /**
-     * @param string $defaultLocale
-     */
-    public function setDefaultLocale($defaultLocale)
-    {
-        $this->defaultLocale = $defaultLocale;
     }
 
     /**

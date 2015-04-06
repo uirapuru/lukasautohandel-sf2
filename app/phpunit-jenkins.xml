@@ -15,14 +15,11 @@
          syntaxCheck="false"
 >
     <testsuites>
-        <testsuite name="all">
-            <directory>../src/Dende/FrontBundle/Tests/*/</directory>
-        </testsuite>
         <testsuite name="unit">
-            <directory>../src/Dende/FrontBundle/Tests/Unit/**</directory>
+            <directory>../src/Dende/*/Tests/Unit/**</directory>
         </testsuite>
         <testsuite name="functional">
-            <directory>../src/Dende/FrontBundle/Tests/Functional/</directory>
+            <directory>../src/Dende/*/Tests/Functional/**</directory>
         </testsuite>
     </testsuites>
 
@@ -37,22 +34,20 @@
     </logging>
 
     <filter>
-        <!--<blacklist>-->
-            <!--<directory suffix=".php">../src/Dende/**/DataFixtures/**</directory>-->
-            <!--<directory suffix=".php">../src/Dende/**/DataFixtures/**</directory>-->
-        <!--</blacklist>-->
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">../app/**</directory>
             <directory suffix=".php">../src/**</directory>
             <exclude>
                 <directory suffix=".php">../app/cache/**</directory>
-                <directory suffix=".php">../src/**/DataFixtures/**</directory>
+                <directory suffix=".php">../src/Dende/FrontBundle/DataFixtures/*</directory>
+                <directory suffix=".php">../src/Dende/FrontBundle/DataFixtures/ORM/*</directory>
                 <directory suffix=".php">../src/**/Entity/*</directory>
                 <directory suffix=".php">../src/**/Tests/*</directory>
                 <directory suffix=".php">../src/**/Features/*</directory>
                 <file>../app/AppCache.php</file>
                 <file>../app/AppKernel.php</file>
                 <file>../app/bootstrap.php.cache</file>
+                <file>../src/Dende/FrontBundle/Features/FeatureContext.php</file>
             </exclude>
         </whitelist>
     </filter>

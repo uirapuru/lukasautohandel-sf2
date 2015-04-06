@@ -6,13 +6,8 @@ use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
-class FeatureContext extends MinkContext implements Context
+final class FeatureContext extends MinkContext implements Context
 {
-    /**
-     * @var MinkContext
-     */
-    private $minkContext;
-
     /**
      * @Then /^I press "([^"]*)" in "([^"]*)" row (\d+) times$/
      */
@@ -475,7 +470,7 @@ class FeatureContext extends MinkContext implements Context
                 // nothing happens
             }
 
-            usleep(500);
+            usleep(250);
         }
 
         $backtrace = debug_backtrace();
