@@ -142,10 +142,7 @@ class DefaultController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-                $this->get('session')->getFlashBag()->add(
-                    'notice',
-                    $this->get('translator')->trans('contact.message.success')
-                );
+                $this->addFlash('notice', $this->get('translator')->trans('contact.message.success'));
 
                 $mailer = $this->get('mailer.contact');
                 $mailer->setParameters([
@@ -161,9 +158,7 @@ class DefaultController extends Controller
             }
         }
 
-        return [
-            'form' => $form->createView(),
-        ];
+        return ['form' => $form->createView()];
     }
 
     /**

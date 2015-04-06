@@ -93,6 +93,7 @@
         <phingcall target="phpcsfixer-dry-run" />
         <if><isset property="jenkins" /><then><phingcall target="phpcb" /></then></if>
         <if><isset property="jenkins" /><then><phingcall target="phpcpd" /></then></if>
+        <if><isset property="jenkins" /><then><phingcall target="phploc-ci" /></then></if>
         <phingcall target="phpmd" />
         <if><isset property="jenkins" /><then><phingcall target="pdepend" /></then></if>
         <phingcall target="test-phpunit" />
@@ -155,6 +156,10 @@
 
         <phingcall target="phantomjs-stop" />
         <phingcall target="stop-php-server" />
+    </target>
+
+    <target name="phploc-ci" description="Measure project size using PHPLOC and log result in CSV and XML format. Intended for usage within a continuous integration environment.">
+        <exec command="bin/phploc --count-tests --log-csv build/logs/phploc.csv --log-xml build/logs/phploc.xml src" />
     </target>
 
 </project>
