@@ -2,12 +2,18 @@
 
 namespace Dende\FrontBundle\Features;
 
+use Behat\Behat\Context\Context;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
-class FeatureContext extends MinkContext
+class FeatureContext extends MinkContext implements Context
 {
+    /**
+     * @var MinkContext
+     */
+    private $minkContext;
+
     /**
      * @Then /^I press "([^"]*)" in "([^"]*)" row (\d+) times$/
      */
@@ -222,7 +228,7 @@ class FeatureContext extends MinkContext
     public function iSetPriceCurrencyTo($number, $value)
     {
         $page = $this->getSession()->getPage();
-        $button = $page->find('css', sprintf('div#dende_form_car_prices_%d button.dropdown-toggle', $number-1));
+        $button = $page->find('css', sprintf('div#dende_form_car_prices_%d button.dropdown-toggle', $number - 1));
 
         $button->press();
 
@@ -230,7 +236,7 @@ class FeatureContext extends MinkContext
             'css',
             sprintf(
                 'div#dende_form_car_prices_%d ul.dropdown-menu a.changeCurrencyLink[data-code="%s"]',
-                $number-1,
+                $number - 1,
                 $value
             )
         );
@@ -244,7 +250,7 @@ class FeatureContext extends MinkContext
     public function iCanSeePriceCurrencySetTo($number, $value)
     {
         $page = $this->getSession()->getPage();
-        $button = $page->find('css', sprintf('div#dende_form_car_prices_%d button.currencySymbol', $number-1));
+        $button = $page->find('css', sprintf('div#dende_form_car_prices_%d button.currencySymbol', $number - 1));
 
         $val = $button->getText();
 
@@ -258,7 +264,7 @@ class FeatureContext extends MinkContext
      */
     public function iSubmitForm($arg1)
     {
-        $form = $this->getSession()->getPage()->find('css', 'form#'.$arg1);
+        $form = $this->getSession()->getPage()->find('css', 'form#' . $arg1);
 
         if (!$form) {
             throw new Exception("Form #$arg1 not found");
@@ -304,7 +310,7 @@ class FeatureContext extends MinkContext
 
         foreach ($models as $model) {
             if (!strstr($model->getText(), $brand)) {
-                throw new Exception('Found other models than '.$brand);
+                throw new Exception('Found other models than ' . $brand);
             }
         }
     }
@@ -315,7 +321,6 @@ class FeatureContext extends MinkContext
     public function iSelectBrand($brand)
     {
         $this->selectOption('car_filters_brand', $brand);
-        sleep(1);
     }
 
     /**
@@ -323,50 +328,47 @@ class FeatureContext extends MinkContext
      */
     public function iDontSeeAnyModels()
     {
-        $selector =  'select#car_filters_model option';
-        $hasModels = $this->getSession()->getPage()->has('css', $selector);
+        $selector = 'select#car_filters_model option';
 
-        if ($hasModels) {
-            $models = [];
-            $elements = $this->getSession()->getPage()->findAll('css', $selector);
-
-            foreach ($elements as $element) {
-                $models[] = $element->getText();
-            }
-
-            if ($models == array(' ')) {
-                return;
-            }
-
-            throw new Exception(sprintf('There should be no options in models select but found %d models: %s', count($elements), implode(', ', $models)));
+        if (!$this->getSession()->getPage()->has('css', $selector)) {
+            return;
         }
+
+        $page = $this->getSession()->getPage();
+
+        $this->spin(function() use ($page, $selector) {
+            $options = $page->findAll('css', $selector);
+
+            if (
+                count($options) == 0
+                || (count($options) == 1 && array_values($options)[0]->getText() === ' ')
+            ) {
+                return true;
+            }
+        });
     }
 
     /**
      * @Then /^I can see models "([^"]*)"$/
      */
-    public function iCanSeeModels($arg1)
+    public function iCanSeeModels($modelsList)
     {
-        $expectedElements = array_map('trim', explode(',', $arg1));
+        $expectedElements = array_map('trim', explode(
+            ',',
+            $this->fixStepArgument($modelsList)
+        ));
 
-        $selector =  'select#car_filters_model option';
+        $page = $this->getSession()->getPage();
 
-        $hasModels = $this->getSession()->getPage()->has('css', $selector);
-
-        if ($hasModels) {
-            $elements = $this->getSession()->getPage()->findAll('css', $selector);
+        $this->spin(function() use ($page, $expectedElements) {
             $actualElements = array_map(function (NodeElement $el) {
                 return $el->getText();
-            }, $elements);
+            }, $page->findAll('css', 'select#car_filters_model option'));
 
-            foreach ($expectedElements as $model) {
-                if (!in_array($model, $actualElements)) {
-                    throw new Exception(sprintf('There are no %s model in options. Only %s exists.', $model, implode(', ', $actualElements)));
-                }
+            if (array_diff($expectedElements, $actualElements) === []) {
+                return true;
             }
-        } else {
-            throw new Exception('There are no options in models select');
-        }
+        });
     }
 
     /**
@@ -375,7 +377,6 @@ class FeatureContext extends MinkContext
     public function iDeselectBrand()
     {
         $this->selectOption('car_filters_brand', null);
-        sleep(1);
     }
 
     /**
@@ -392,7 +393,6 @@ class FeatureContext extends MinkContext
     public function iSubmitSearchForm()
     {
         $this->iSubmitForm('form1');
-        sleep(1);
     }
 
     /**
@@ -400,7 +400,7 @@ class FeatureContext extends MinkContext
      */
     public function iCanSeeCarsInResults($count)
     {
-        $count = (int) $this->fixStepArgument($count);
+        $count = (int)$this->fixStepArgument($count);
         $page = $this->getSession()->getPage();
         $hasResults = $page->has('css', 'ul.search-results li');
 
@@ -437,11 +437,11 @@ class FeatureContext extends MinkContext
      */
     public function iCanSeeCarsInResultsCaption($count)
     {
-        $count = (int) $this->fixStepArgument($count);
+        $count = (int)$this->fixStepArgument($count);
         $selector = 'span#list-result-count';
         $page = $this->getSession()->getPage();
 
-        $amount = (int) $page->find('css', $selector)->getText();
+        $amount = (int)$page->find('css', $selector)->getText();
 
         if ($amount != $count) {
             throw new Exception(sprintf('Count in list caption differs from the test. Should be %d, found %d', $count, $amount));
@@ -454,5 +454,27 @@ class FeatureContext extends MinkContext
     public function iSelectModel($arg1)
     {
         $this->selectOption('car_filters_model', $arg1);
+    }
+
+    private function spin($lambda, $wait = 10)
+    {
+        for ($i = 0; $i < $wait; $i++) {
+            try {
+                if ($lambda($this)) {
+                    return true;
+                }
+            } catch (Exception $e) {
+                // do nothing
+            }
+
+            usleep(250);
+        }
+
+        $backtrace = debug_backtrace();
+
+        throw new Exception(
+            "Timeout thrown by " . $backtrace[1]['class'] . "::" . $backtrace[1]['function'] . "()\n" .
+            $backtrace[1]['file'] . ", line " . $backtrace[1]['line']
+        );
     }
 }
