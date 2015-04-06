@@ -94,25 +94,7 @@ class DefaultController extends Controller
                  */
                 $searchQuery = $form->getData();
 
-                if ($searchQuery->getType()) {
-                    $qb->andWhere('c.type = :type');
-                    $qb->setParameter('type', $searchQuery->getType());
-                    $cacheId[] = $searchQuery->getType()->getId();
-                }
-
-                if ($searchQuery->getBrand()) {
-                    $qb->innerJoin('c.model', 'm');
-
-                    $qb->andWhere('m.brand = :brand');
-                    $qb->setParameter('brand', $searchQuery->getBrand());
-                    $cacheId[] = $searchQuery->getBrand()->getId();
-                }
-
-                if ($searchQuery->getModel()) {
-                    $qb->andWhere('c.model = :carModel');
-                    $qb->setParameter('carModel', $searchQuery->getModel());
-                    $cacheId[] = $searchQuery->getModel()->getId();
-                }
+                $this->get('dende.front.search_query_modifier')->modify($searchQuery, $qb, $cacheId);
             } else {
                 return ['cars' => [], 'searchForm' => $form];
             }

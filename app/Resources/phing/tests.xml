@@ -91,10 +91,10 @@
         <phingcall target="test-security" />
         <phingcall target="phpcs" />
         <phingcall target="phpcsfixer-dry-run" />
-        <phingcall target="phpcb" />
-        <phingcall target="phpcpd" />
+        <if><isset property="jenkins" /><then><phingcall target="phpcb" /></then></if>
+        <if><isset property="jenkins" /><then><phingcall target="phpcpd" /></then></if>
         <phingcall target="phpmd" />
-        <phingcall target="pdepend" />
+        <if><isset property="jenkins" /><then><phingcall target="pdepend" /></then></if>
         <phingcall target="test-phpunit" />
         <if><isset property="jenkins" /><then><phingcall target="behat" /></then></if>
     </target>

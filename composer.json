@@ -25,7 +25,6 @@
         "stof/doctrine-extensions-bundle": "1.2.*@dev",
         "phing/phing": "~2.9",
         "jms/serializer-bundle": "0.13.*",
-        "mockery/mockery": "0.9.*",
         "a2lix/translation-form-bundle": "1.*@dev",
         "imagine/imagine": "0.6.*",
         "friendsofsymfony/user-bundle": "~2.0@dev",
@@ -52,7 +51,8 @@
         "webignition/json-pretty-print": "dev-master",
         "hasbridge/json-schema-validator": "dev-master",
         "liip/functional-test-bundle": "~1.2",
-        "behat/mink-browserkit-driver": "~1.2"
+        "behat/mink-browserkit-driver": "~1.2",
+        "mockery/mockery": "0.9.*"
     },
     "scripts": {
         "post-root-package-install": [

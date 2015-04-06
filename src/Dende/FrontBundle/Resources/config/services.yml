@@ -3,6 +3,9 @@ imports:
     - { resource: menus.yml }
 
 services:
+    dende.front.search_query_modifier:
+      class: Dende\FrontBundle\Service\SearchQueryModifier
+
     dende.front.search_query_entity_merge:
       class: Dende\FrontBundle\Service\SearchQueryEntityMerge
       calls:
