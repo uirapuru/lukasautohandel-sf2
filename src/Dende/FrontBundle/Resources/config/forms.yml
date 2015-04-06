@@ -74,3 +74,12 @@ services:
         class: Dende\FrontBundle\Form\Handler\ProcessPrices
         calls:
             - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+
+    dende.front.form_handler.car:
+      class: Dende\FrontBundle\Form\Handler\CarFormHandler
+      calls:
+        - [setProcessColors, ["@dende.front.form_handler.process_colors"]]
+        - [setProcessModels, ["@dende.front.form_handler.process_models"]]
+        - [setProcessTypes, ["@dende.front.form_handler.process_types"]]
+        - [setProcessImages, ["@dende.front.form_handler.process_images"]]
+        - [setProcessPrices, ["@dende.front.form_handler.process_prices"]]

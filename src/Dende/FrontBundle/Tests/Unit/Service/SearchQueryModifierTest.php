@@ -28,11 +28,16 @@ class SearchQueryModifierTest extends \PHPUnit_Framework_TestCase
         $queryBuilder->shouldReceive("setParameter")->with('brand', $brandMock)->once();
         $queryBuilder->shouldReceive("setParameter")->with('carModel', $modelMock)->once();
         $queryBuilder->shouldReceive("andWhere")->times(3);
-        $queryBuilder->shouldReceive("innerJoin")->times(3);
+        $queryBuilder->shouldReceive("innerJoin")->once();
 
         $cacheId = [];
         $modifier->modify($searchQueryMock, $queryBuilder, $cacheId);
 
         $this->assertEquals(["type_id", "brand_id", "model_id"], $cacheId);
+    }
+
+    public function tearDown()
+    {
+        m::close();
     }
 }

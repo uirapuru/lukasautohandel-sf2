@@ -356,8 +356,10 @@ class FeatureContext extends MinkContext implements Context
             $this->fixStepArgument($modelsList)
         ));
 
-        $this->spin(function ($context) use ($expectedElements) {
-            $page = $context->getSession()->getPage();
+        $page = $this->getSession()->getPage();
+
+        $this->spin(function ($context) use ($expectedElements, $page) {
+
             $actualElements = array_map(function (NodeElement $el) {
                 return $el->getText();
             }, $page->findAll('css', 'select#car_filters_model option'));
@@ -374,6 +376,15 @@ class FeatureContext extends MinkContext implements Context
     public function iDeselectBrand()
     {
         $this->selectOption('car_filters_brand', null);
+
+        $this->spin(function (MinkContext $context) {
+            $page = $context->getSession()->getPage();
+            $options = $page->findAll('css', 'select#car_filters_model option');
+
+            if (count($options) === 7) {
+                return true;
+            }
+        });
     }
 
     /**
@@ -460,11 +471,11 @@ class FeatureContext extends MinkContext implements Context
                 if ($lambda($this)) {
                     return true;
                 }
-            } catch (Exception $e) {
-                // do nothing
+            } catch (\Exception $e) {
+                // nothing happens
             }
 
-            usleep(250);
+            usleep(500);
         }
 
         $backtrace = debug_backtrace();
