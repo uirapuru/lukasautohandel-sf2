@@ -143,7 +143,7 @@
         <exec command="${php_bin} ${symfony_console} server:stop 127.0.0.1:8000" checkreturn="false" passthru="true" />
     </target>
 
-    <target name="behat" description="Starts phantomjs">
+    <target name="behat" description="Starts behat tests">
         <phingcall target="stop-php-server" />
         <phingcall target="phantomjs-stop" />
 
