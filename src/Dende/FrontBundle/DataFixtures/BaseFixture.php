@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\DataFixtures;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -6,6 +7,9 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * Class BaseFixture.
+ */
 class BaseFixture extends AbstractFixture implements OrderedFixtureInterface
 {
     protected $manager;
@@ -17,7 +21,7 @@ class BaseFixture extends AbstractFixture implements OrderedFixtureInterface
 
         $file = $this->translateClassToFilename($this);
 
-        $value = Yaml::parse(file_get_contents(__DIR__."/Yaml/".$file));
+        $value = Yaml::parse(file_get_contents(__DIR__.'/Yaml/'.$file));
 
         foreach ($value as $key => $params) {
             $object = $this->insert($params);
@@ -42,7 +46,7 @@ class BaseFixture extends AbstractFixture implements OrderedFixtureInterface
     {
         $classnameArray = explode("\\", get_class($object));
         $class = array_pop($classnameArray);
-        $filename = strtolower(substr($class, 0, strpos($class, "Data"))).".yml";
+        $filename = strtolower(substr($class, 0, strpos($class, 'Data'))).'.yml';
 
         return $filename;
     }

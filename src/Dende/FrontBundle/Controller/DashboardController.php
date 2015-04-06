@@ -18,7 +18,7 @@ class DashboardController extends Controller
     /**
      * @Route("/",name="dashboard_index")
      *
-     * @Method({"GET","POST"})
+     * @Method({"GET"})
      * @Template()
      */
     public function indexAction(Request $request)

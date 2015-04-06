@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Translator;
 
 use Symfony\Component\Translation\TranslatorInterface;

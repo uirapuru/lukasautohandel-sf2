@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
@@ -14,12 +15,12 @@ class PricesData extends BaseFixture
     public function insert($params)
     {
         $price = new Price();
-        $price->setAmount($params["amount"]);
+        $price->setAmount($params['amount']);
         $price->setCar(
-            $this->getReference($params["car"])
+            $this->getReference($params['car'])
         );
         $price->setCurrency(
-            $this->getReference($params["currency"])
+            $this->getReference($params['currency'])
         );
 
         return $price;

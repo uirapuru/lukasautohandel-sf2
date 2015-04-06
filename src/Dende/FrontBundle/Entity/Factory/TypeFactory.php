@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Entity\Factory;
 
 use Dende\FrontBundle\Entity\Type;
@@ -13,7 +14,7 @@ class TypeFactory
     public function create(array $array = [])
     {
         $type = new Type();
-        $type->setName($array["name"]);
+        $type->setName($array['name']);
 
         return $type;
     }

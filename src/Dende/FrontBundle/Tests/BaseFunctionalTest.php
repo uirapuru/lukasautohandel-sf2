@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Tests;
 
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
@@ -8,7 +9,7 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\Client;
 
-class BaseFunctionalTest extends WebTestCase
+abstract class BaseFunctionalTest extends WebTestCase
 {
     /**
      * @var Client
@@ -71,7 +72,7 @@ class BaseFunctionalTest extends WebTestCase
     protected function resetDb()
     {
         $em = $this->container->get('doctrine.orm.default_entity_manager');
-        $root = $this->container->getParameter("kernel.root_dir");
+        $root = $this->container->getParameter('kernel.root_dir');
         $loader = new Loader();
         $loader->loadFromDirectory($root.'/../src/Dende/FrontBundle/DataFixtures/ORM');
         $purger = new ORMPurger($em);

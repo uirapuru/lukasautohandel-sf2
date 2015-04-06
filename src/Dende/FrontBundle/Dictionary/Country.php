@@ -4,11 +4,11 @@ namespace Dende\FrontBundle\Dictionary;
 
 class Country
 {
-    const POLAND = "poland";
-    const GERMANY = "germany";
+    const POLAND = 'poland';
+    const GERMANY = 'germany';
 
     public static $choicesArray = [
-        self::POLAND    => "country.poland",
-        self::GERMANY   => "country.germany",
+        self::POLAND    => 'country.poland',
+        self::GERMANY   => 'country.germany',
     ];
 }

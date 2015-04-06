@@ -22,7 +22,7 @@ class MenuBuilder extends ContainerAware
     /**
      * @var array
      */
-    private $languages = ["pl"];
+    private $languages = ['pl'];
 
     /**
      * @param FactoryInterface $factory
@@ -52,7 +52,7 @@ class MenuBuilder extends ContainerAware
 
         if (in_array($locale, $this->languages)) {
             $menu->getChild($locale)->setCurrent(true);
-            $menu->getChild($locale)->setLinkAttribute("class", "active");
+            $menu->getChild($locale)->setLinkAttribute('class', 'active');
         }
 
         return $menu;
@@ -62,7 +62,7 @@ class MenuBuilder extends ContainerAware
     {
         $menu = $this->factory->createItem('root');
 
-        if (!$this->securityContext->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
+        if (!$this->securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $menu;
         }
 

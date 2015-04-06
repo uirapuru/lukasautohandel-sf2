@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -120,7 +121,6 @@ class Model
     public function getFullName()
     {
         return $this->getName();
-//        return sprintf("%s / %s", $this->getName(), $this->getBrand()->getName());
     }
 
     /**

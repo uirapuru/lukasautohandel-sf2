@@ -30,9 +30,30 @@
         <server name="KERNEL_DIR" value="app/" />
     </php>
 
-    <!--<logging>-->
-        <!--<log type="coverage-clover" target="../build/logs/clover.xml"/>-->
-        <!--<log type="coverage-html" target="../build/coverage" title="Portfolio"/>-->
-        <!--<log type="junit" target="../build/logs/junit.xml"/>-->
-    <!--</logging>-->
+    <logging>
+        <log type="coverage-clover" target="../build/logs/clover.xml"/>
+        <log type="coverage-html" target="../build/coverage" title="Portfolio"/>
+        <log type="junit" target="../build/logs/junit.xml"/>
+    </logging>
+
+    <filter>
+        <!--<blacklist>-->
+            <!--<directory suffix=".php">../src/Dende/**/DataFixtures/**</directory>-->
+            <!--<directory suffix=".php">../src/Dende/**/DataFixtures/**</directory>-->
+        <!--</blacklist>-->
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../app/**</directory>
+            <directory suffix=".php">../src/**</directory>
+            <exclude>
+                <directory suffix=".php">../app/cache/**</directory>
+                <directory suffix=".php">../src/**/DataFixtures/**</directory>
+                <directory suffix=".php">../src/**/Entity/*</directory>
+                <directory suffix=".php">../src/**/Tests/*</directory>
+                <directory suffix=".php">../src/**/Features/*</directory>
+                <file>../app/AppCache.php</file>
+                <file>../app/AppKernel.php</file>
+                <file>../app/bootstrap.php.cache</file>
+            </exclude>
+        </whitelist>
+    </filter>
 </phpunit>

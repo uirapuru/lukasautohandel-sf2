@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
@@ -14,7 +15,7 @@ class BrandData extends BaseFixture
     public function insert($params)
     {
         $brand = new Brand();
-        $brand->setName($params["name"]);
+        $brand->setName($params['name']);
 
         return $brand;
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Dende\FrontBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Currency
 {
-    const TYPE_PREFIX = "symbol.prefix";
-    const TYPE_SUFFIX = "symbol.suffix";
+    const TYPE_PREFIX = 'symbol.prefix';
+    const TYPE_SUFFIX = 'symbol.suffix';
 
     /**
      * @ORM\Id

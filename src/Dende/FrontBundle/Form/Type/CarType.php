@@ -26,7 +26,7 @@ class CarType extends AbstractType
     /**
      * @var string
      */
-    private $defaultLocale = "pl";
+    private $defaultLocale = 'pl';
 
     /**
      * @param array $languages
@@ -56,10 +56,10 @@ class CarType extends AbstractType
         $builder
             ->add(
                 'type',
-                "entity",
+                'entity',
                 [
-                    "class" => "Dende\FrontBundle\Entity\Type",
-                    "property" => "name",
+                    'class' => "Dende\FrontBundle\Entity\Type",
+                    'property' => 'name',
                     'empty_value' => 'car.form.choice.empty_car_type',
                     'empty_data' => null,
                     'required' => true,
@@ -67,60 +67,60 @@ class CarType extends AbstractType
                         new Callback(function ($data, ExecutionContextInterface $context) {
                             $form = $context->getRoot();
 
-                            if ($form["add_type"]["name"]->isEmpty() && $form["type"]->isEmpty()) {
+                            if ($form['add_type']['name']->isEmpty() && $form['type']->isEmpty()) {
                                 $context->buildViolation('validator.you_have_to_choose_car_type')
                                     ->atPath('type')
                                     ->addViolation();
                             }
                         }),
                     ],
-                    "label" => 'car.form.label.type',
+                    'label' => 'car.form.label.type',
                 ]
             )
             ->add(
                 'add_type',
                 'dende_form_type',
                 [
-                    "label" => 'car.form.label.add_type',
-                    "mapped" => false,
+                    'label' => 'car.form.label.add_type',
+                    'mapped' => false,
                 ]
             )
             ->add(
                 'model',
-                "entity",
+                'entity',
                 [
-                    "class" => "Dende\FrontBundle\Entity\Model",
+                    'class' => "Dende\FrontBundle\Entity\Model",
                     'empty_value' => 'car.form.choice.empty_car_model',
                     'empty_data' => null,
-                    "property" => 'getFullName',
+                    'property' => 'getFullName',
                     'required' => true,
                     'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) {
                             $form = $context->getRoot();
 
-                            if ($form["add_model"]["name"]->isEmpty() && $form["model"]->isEmpty()) {
+                            if ($form['add_model']['name']->isEmpty() && $form['model']->isEmpty()) {
                                 $context->buildViolation('validator.you_have_to_choose_car_model')
                                     ->atPath('model')
                                     ->addViolation();
                             }
                         }),
                     ],
-                    "label" => 'car.form.label.model',
+                    'label' => 'car.form.label.model',
                 ]
             )
             ->add(
                 'add_model',
                 'dende_form_model',
                 [
-                    "label" => 'car.form.label.add_model',
-                    "mapped" => false,
+                    'label' => 'car.form.label.add_model',
+                    'mapped' => false,
                 ]
             )
             ->add(
                 'color',
-                "entity",
+                'entity',
                 [
-                    "class" => "Dende\FrontBundle\Entity\Color",
+                    'class' => "Dende\FrontBundle\Entity\Color",
                     'empty_value' => 'car.form.choice.empty_car_color',
                     'empty_data' => null,
                     'property' => 'getFullName',
@@ -132,170 +132,170 @@ class CarType extends AbstractType
                             $translationEmpty = false;
 
                             foreach ($languages as $language) {
-                                if ($form["add_color"]["translations"][$language]["name"]->isEmpty()) {
+                                if ($form['add_color']['translations'][$language]['name']->isEmpty()) {
                                     $translationEmpty = true;
                                     break;
                                 }
                             }
 
-                            if ($translationEmpty && $form["color"]->isEmpty()) {
+                            if ($translationEmpty && $form['color']->isEmpty()) {
                                 $context->buildViolation('validator.you_have_to_choose_car_color')
                                     ->atPath('color')
                                     ->addViolation();
                             }
                         }),
                     ],
-                    "label" => 'car.form.label.color',
+                    'label' => 'car.form.label.color',
                 ]
             )
             ->add(
                 'add_color',
                 'dende_form_color',
                 [
-                    "label" => 'car.form.label.add_color',
-                    "mapped" => false,
+                    'label' => 'car.form.label.add_color',
+                    'mapped' => false,
                 ]
             )
             ->add(
                 'year',
-                "integer",
+                'integer',
                 [
-                    "required" => true,
-                    "constraints" => [
+                    'required' => true,
+                    'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_enter_production_year']),
                         new Range([
-                            "max" => (int) date("Y"),
-                            "maxMessage" => "validator.production_year_too_big_",
-                            "min" => 1900,
-                            "minMessage" => "validator.production_year_too_small",
+                            'max' => (int) date('Y'),
+                            'maxMessage' => 'validator.production_year_too_big_',
+                            'min' => 1900,
+                            'minMessage' => 'validator.production_year_too_small',
                         ]),
-                        new Regex(["pattern" => "/\d\d\d\d/", "message" => "validator.production_year_format"]),
+                        new Regex(['pattern' => "/\d\d\d\d/", 'message' => 'validator.production_year_format']),
                     ],
-                    "label" => 'car.form.label.year',
+                    'label' => 'car.form.label.year',
                 ]
             )
             ->add(
                 'distance',
-                "integer",
+                'integer',
                 [
-                    "required" => true,
-                    "constraints" => [
+                    'required' => true,
+                    'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_enter_distance']),
                         new Range([
-                            "min" => 0,
-                            "minMessage" => "validator.distance_too_small",
+                            'min' => 0,
+                            'minMessage' => 'validator.distance_too_small',
                         ]),
                     ],
-                    "label" => 'car.form.label.distance',
+                    'label' => 'car.form.label.distance',
                 ]
             )
             ->add(
                 'fuel',
-                "choice",
+                'choice',
                 [
-                    "choices" => Fuel::$choicesArray,
+                    'choices' => Fuel::$choicesArray,
                     'empty_value' => 'car.form.choice.empty_car_fuel_type',
                     'empty_data' => null,
                     'required' => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_fuel_type']),
                     ],
-                    "label" => 'car.form.label.fuel',
+                    'label' => 'car.form.label.fuel',
                 ]
             )
             ->add(
                 'engine',
-                "choice",
+                'choice',
                 [
-                    "choices" => Engine::$choicesArray,
+                    'choices' => Engine::$choicesArray,
                     'empty_value' => 'car.form.choice.empty_car_engine_type',
                     'empty_data' => null,
                     'required' => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_engine_type']),
                     ],
-                    "label" => 'car.form.label.engine',
+                    'label' => 'car.form.label.engine',
                 ]
             )
             ->add(
                 'gearbox',
-                "choice",
+                'choice',
                 [
-                    "choices" => Gearbox::$choicesArray,
+                    'choices' => Gearbox::$choicesArray,
                     'empty_value' => 'car.form.choice.empty_car_gearbox_type',
                     'empty_data' => null,
                     'required' => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_gearbox_type']),
                     ],
-                    "label" => 'car.form.label.gearbox',
+                    'label' => 'car.form.label.gearbox',
                 ]
             )
             ->add(
                 'registrationCountry',
-                "choice",
+                'choice',
                 [
-                    "choices" => Country::$choicesArray,
+                    'choices' => Country::$choicesArray,
                     'empty_value' => 'car.form.choice.empty_car_registration_country',
                     'empty_data' => null,
                     'required' => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_registration_country']),
                     ],
-                    "label" => 'car.form.label.registrationCountry',
+                    'label' => 'car.form.label.registrationCountry',
                 ]
             )
             ->add(
                 'prices',
-                "collection",
+                'collection',
                 [
-                    "type" => new PriceType(),
-                    "allow_add" => true,
-                    "allow_delete" => true,
-                    "by_reference" => false,
-                    "prototype" => true,
-                    "prototype_name" => "__price_name__",
-                    "label" => 'car.form.label.prices',
+                    'type' => new PriceType(),
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
+                    'prototype' => true,
+                    'prototype_name' => '__price_name__',
+                    'label' => 'car.form.label.prices',
                     'error_bubbling' => false,
-                    "constraints" => [
+                    'constraints' => [
                         new Valid(),
                     ],
                 ]
             )
             ->add(
                 'images',
-                "collection",
+                'collection',
                 [
-                    "type" => new ImageType(),
-                    "allow_add" => true,
-                    "allow_delete" => true,
-                    "by_reference" => false,
-                    "prototype" => true,
-                    "prototype_name" => "__image_name__",
-                    "label" => 'car.form.label.images',
+                    'type' => new ImageType(),
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
+                    'prototype' => true,
+                    'prototype_name' => '__image_name__',
+                    'label' => 'car.form.label.images',
                     'error_bubbling' => false,
-                    "constraints" => [
+                    'constraints' => [
                         new Valid(),
                     ],
                 ]
             )
             ->add(
                 'promoteCarousel',
-                "checkbox",
+                'checkbox',
                 [
-                    "label" => 'car.form.label.promoteCarousel',
+                    'label' => 'car.form.label.promoteCarousel',
                 ]
             )
             ->add(
                 'promoteFrontpage',
-                "checkbox",
+                'checkbox',
                 [
-                    "label" => 'car.form.label.promoteFrontpage',
+                    'label' => 'car.form.label.promoteFrontpage',
                 ]
             )
             ->add(
                 'translations',
-                "a2lix_translations_gedmo",
+                'a2lix_translations_gedmo',
                 [
                     'translatable_class' => 'Dende\\FrontBundle\\Entity\\Car',
                     'fields' => [
@@ -311,16 +311,16 @@ class CarType extends AbstractType
             )
             ->add(
                 'adminNotes',
-                "textarea",
+                'textarea',
                 [
-                    "label" => 'car.form.label.adminNotes',
+                    'label' => 'car.form.label.adminNotes',
                 ]
             )
             ->add(
                 'hidden',
-                "checkbox",
+                'checkbox',
                 [
-                    "label" => 'car.form.label.hidden',
+                    'label' => 'car.form.label.hidden',
                 ]
             )
         ;
