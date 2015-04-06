@@ -470,7 +470,7 @@ final class FeatureContext extends MinkContext implements Context
                 // nothing happens
             }
 
-            usleep(250);
+            usleep(500);
         }
 
         $backtrace = debug_backtrace();
