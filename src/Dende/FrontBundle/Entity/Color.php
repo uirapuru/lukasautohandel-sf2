@@ -66,7 +66,7 @@ class Color
      */
     public function getName()
     {
-        return $this->getTranslated("name", "pl");
+        return $this->getTranslated('name', 'pl');
     }
 
     /**
@@ -80,10 +80,10 @@ class Color
     public function getFullname()
     {
         return sprintf(
-            "%s (en: %s, de: %s)",
-            $this->getTranslated("name", "pl"),
-            $this->getTranslated("name", "en"),
-            $this->getTranslated("name", "de")
+            '%s (en: %s, de: %s)',
+            $this->getTranslated('name', 'pl'),
+            $this->getTranslated('name', 'en'),
+            $this->getTranslated('name', 'de')
         );
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\MailerBundle\Service;
 
 /**
@@ -63,7 +62,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $mock->expects($this->once())
-            ->method("createMessage")
+            ->method('createMessage')
             ->will($this->returnValue($this->getMessageMock()));
 
         return $mock;
@@ -76,15 +75,15 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $mock->expects($this->once())
-            ->method("getSubject")
+            ->method('getSubject')
             ->will($this->returnValue('message_subject'));
 
         $mock->expects($this->once())
-            ->method("setContentType")
+            ->method('setContentType')
             ->will($this->returnValue(null));
 
         $mock->expects($this->once())
-            ->method("setSubject")
+            ->method('setSubject')
             ->will($this->returnValue(null));
 
         return $mock;
@@ -97,7 +96,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $mock->expects($this->once())
-            ->method("render")
+            ->method('render')
             ->will($this->returnValue('template_body'));
 
         return $mock;
@@ -110,7 +109,7 @@ class MailerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $mock->expects($this->once())
-            ->method("trans")
+            ->method('trans')
             ->will($this->returnValue('translated_text'));
 
         return $mock;

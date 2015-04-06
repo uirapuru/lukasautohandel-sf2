@@ -18,16 +18,22 @@ class GenerateThumbnailListener
         /*
          * @var Image
          */
-        $image = $args->getEntity();
+        $image       = $args->getEntity();
         $defaultPath = $listener->getDefaultPath();
 
         $this->processImage($image, $defaultPath);
     }
 
-    public function processImage(Image $image, $defaultPath = '')
+    /**
+     * @param Image $image
+     * @param null  $defaultPath
+     *
+     * @throws \Exception
+     */
+    public function processImage(Image $image, $defaultPath = null)
     {
         if ($defaultPath == null) {
-            throw new \Exception("No default path");
+            throw new \Exception('No default path');
         }
 
         $imagine = new Imagine();
@@ -37,7 +43,6 @@ class GenerateThumbnailListener
 
         $imagine->open($defaultPath.DIRECTORY_SEPARATOR.$image->getName())
             ->thumbnail($size, $mode)
-            ->save(implode(DIRECTORY_SEPARATOR, [$defaultPath, "thumbnails", $image->getName()]))
-        ;
+            ->save(implode(DIRECTORY_SEPARATOR, [$defaultPath, 'thumbnails', $image->getName()]));
     }
 }

@@ -10,15 +10,15 @@ class ProcessImagesTest extends \PHPUnit_Framework_TestCase
     public function testRemoveUnused()
     {
         $imageMock = m::mock("Dende\FrontBundle\Entity\Image");
-        $imageMock->shouldReceive("setCar")->withArgs([null])->once();
+        $imageMock->shouldReceive('setCar')->withArgs([null])->once();
 
         $carMock = m::mock("Dende\FrontBundle\Entity\Car");
-        $carMock->shouldReceive("getImages->contains")->once()->andReturn(false);
+        $carMock->shouldReceive('getImages->contains')->once()->andReturn(false);
 
         $originalImagesMock = new ArrayCollection([$imageMock]);
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");
-        $entityManagerMock->shouldReceive("remove")->once();
+        $entityManagerMock->shouldReceive('remove')->once();
 
         $processImages = new ProcessImages();
 
@@ -32,17 +32,17 @@ class ProcessImagesTest extends \PHPUnit_Framework_TestCase
     public function testProcessUploaded()
     {
         $uploadableManager = m::mock("Stof\DoctrineExtensionsBundle\Uploadable\UploadableManager");
-        $uploadableManager->shouldReceive("markEntityToUpload")->once();
+        $uploadableManager->shouldReceive('markEntityToUpload')->once();
 
         $imageMock = m::mock("Dende\FrontBundle\Entity\Image");
-        $imageMock->shouldReceive("setCar")->once();
-        $imageMock->shouldReceive("getFile")->twice()->andReturn(true);
+        $imageMock->shouldReceive('setCar')->once();
+        $imageMock->shouldReceive('getFile')->twice()->andReturn(true);
 
         $carMock = m::mock("Dende\FrontBundle\Entity\Car");
-        $carMock->shouldReceive("getImages")->once()->andReturn(new ArrayCollection([$imageMock]));
+        $carMock->shouldReceive('getImages')->once()->andReturn(new ArrayCollection([$imageMock]));
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");
-        $entityManagerMock->shouldReceive("persist")->once();
+        $entityManagerMock->shouldReceive('persist')->once();
 
         $processImages = new ProcessImages();
 

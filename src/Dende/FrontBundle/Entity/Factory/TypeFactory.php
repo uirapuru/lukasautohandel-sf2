@@ -13,7 +13,7 @@ class TypeFactory
     public function create(array $array = [])
     {
         $type = new Type();
-        $type->setName($array["name"]);
+        $type->setName($array['name']);
 
         return $type;
     }

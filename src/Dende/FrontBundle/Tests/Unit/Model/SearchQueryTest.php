@@ -38,53 +38,53 @@ class SearchQueryTest extends \PHPUnit_Framework_TestCase
         $model->setId(44);
 
         return [
-            "full" => [
-                "type" => $type,
-                "model" => $model,
-                "brand" => $brand,
-                "url" => "brand=33&model=44&type=22",
+            'full' => [
+                'type'  => $type,
+                'model' => $model,
+                'brand' => $brand,
+                'url'   => 'brand=33&model=44&type=22',
             ],
-            "type" => [
-                "type" => $type,
-                "model" => null,
-                "brand" => null,
-                "url" => "brand=null&model=null&type=22",
+            'type' => [
+                'type'  => $type,
+                'model' => null,
+                'brand' => null,
+                'url'   => 'brand=null&model=null&type=22',
             ],
-            "model" => [
-                "type" => null,
-                "model" => $model,
-                "brand" => null,
-                "url" => "brand=null&model=44&type=null",
+            'model' => [
+                'type'  => null,
+                'model' => $model,
+                'brand' => null,
+                'url'   => 'brand=null&model=44&type=null',
             ],
-            "brand" => [
-                "type" => null,
-                "model" => null,
-                "brand" => $brand,
-                "url" => "brand=33&model=null&type=null",
+            'brand' => [
+                'type'  => null,
+                'model' => null,
+                'brand' => $brand,
+                'url'   => 'brand=33&model=null&type=null',
             ],
-            "type-model" => [
-                "type" => $type,
-                "model" => $model,
-                "brand" => null,
-                "url" => "brand=null&model=44&type=22",
+            'type-model' => [
+                'type'  => $type,
+                'model' => $model,
+                'brand' => null,
+                'url'   => 'brand=null&model=44&type=22',
             ],
-            "type-brand" => [
-                "type" => $type,
-                "model" => null,
-                "brand" => $brand,
-                "url" => "brand=33&model=null&type=22",
+            'type-brand' => [
+                'type'  => $type,
+                'model' => null,
+                'brand' => $brand,
+                'url'   => 'brand=33&model=null&type=22',
             ],
-            "model-brand" => [
-                "type" => null,
-                "model" => $model,
-                "brand" => $brand,
-                "url" => "brand=33&model=44&type=null",
+            'model-brand' => [
+                'type'  => null,
+                'model' => $model,
+                'brand' => $brand,
+                'url'   => 'brand=33&model=44&type=null',
             ],
-            "empty" => [
-                "type" => null,
-                "model" => null,
-                "brand" => null,
-                "url" => "brand=null&model=null&type=null",
+            'empty' => [
+                'type'  => null,
+                'model' => null,
+                'brand' => null,
+                'url'   => 'brand=null&model=null&type=null',
             ],
         ];
     }

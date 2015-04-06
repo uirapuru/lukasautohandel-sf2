@@ -2,9 +2,9 @@
 namespace Dende\FrontBundle\Manager;
 
 use Dende\FrontBundle\Repository\TranslatableRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Doctrine\ORM\EntityManager;
 
 class TranslatableManager
 {
@@ -43,7 +43,7 @@ class TranslatableManager
      *
      * @throws \InvalidArgumentException if repository is not an instance of TranslatableRepository
      */
-    public function setRepositoryLocale($container)
+    public function setRepositoryLocale(ContainerInterface $container)
     {
         if (null !== $container) {
             if (!$this->repository instanceof TranslatableRepository) {

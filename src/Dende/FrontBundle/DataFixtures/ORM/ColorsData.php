@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
@@ -21,10 +20,10 @@ class ColorsData extends BaseFixture
 
         $file = $this->translateClassToFilename($this);
 
-        $value = Yaml::parse(file_get_contents(__DIR__."/../Yaml/".$file));
+        $value = Yaml::parse(file_get_contents(__DIR__.'/../Yaml/'.$file));
 
         foreach ($value as $key => $params) {
-            $color = new Color();
+            $color             = new Color();
             $colorTranslations = $this->prepareTranslations($params, $color);
 
             $this->addReference($key, $color);
@@ -40,17 +39,17 @@ class ColorsData extends BaseFixture
     }
 
     /**
-     * @param array   $params
-     * @param integer $getId
+     * @param array $params
+     * @param int   $getId
      */
     private function prepareTranslations($params, Color $color)
     {
         $result = [];
 
-        foreach ($params["name"] as $language => $value) {
+        foreach ($params['name'] as $language => $value) {
             $carTranslation = new ColorTranslation();
             $carTranslation->setObject($color);
-            $carTranslation->setField("name");
+            $carTranslation->setField('name');
             $carTranslation->setContent($value);
             $carTranslation->setLocale($language);
             $result[] = $carTranslation;

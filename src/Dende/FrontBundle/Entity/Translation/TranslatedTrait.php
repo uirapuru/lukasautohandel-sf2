@@ -3,6 +3,7 @@ namespace Dende\FrontBundle\Entity\Translation;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 trait TranslatedTrait
 {
@@ -25,7 +26,7 @@ trait TranslatedTrait
     /**
      * @param $translation
      */
-    public function addTranslation($translation)
+    public function addTranslation(AbstractPersonalTranslation $translation)
     {
         if (!$this->translations->contains($translation)) {
             $this->translations[] = $translation;
@@ -64,11 +65,11 @@ trait TranslatedTrait
      */
     public function getTranslationEntityForLanguage($field, $lang = 'pl')
     {
-        $expr = Criteria::expr();
+        $expr     = Criteria::expr();
         $criteria = Criteria::create();
         $criteria->where($expr->andX(
-            $expr->eq("field", $field),
-            $expr->eq("locale", $lang)
+            $expr->eq('field', $field),
+            $expr->eq('locale', $lang)
         ));
         $collection = $this->getTranslations();
 
@@ -82,10 +83,10 @@ trait TranslatedTrait
      */
     public function getTranslationEntitiesForLanguage($lang = 'pl')
     {
-        $expr = Criteria::expr();
+        $expr     = Criteria::expr();
         $criteria = Criteria::create();
         $criteria->where($expr->andX(
-            $expr->eq("locale", $lang)
+            $expr->eq('locale', $lang)
         ));
         $collection = $this->getTranslations();
 

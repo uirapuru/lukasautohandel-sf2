@@ -19,7 +19,7 @@ class CarTranslation extends AbstractPersonalTranslation
      * @param string $field
      * @param string $value
      */
-    public function __construct($locale = "pl", $field = null, $value = null)
+    public function __construct($locale = 'pl', $field = null, $value = null)
     {
         $this->setLocale($locale);
         $this->setField($field);

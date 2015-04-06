@@ -9,18 +9,18 @@ class ProcessColorsTest extends \PHPUnit_Framework_TestCase
     public function testRemoveUnusedWithFoundColor()
     {
         $colorMock = m::mock("Dende\FrontBundle\Entity\Color");
-        $colorMock->shouldReceive("getName")->andReturn("test");
+        $colorMock->shouldReceive('getName')->andReturn('test');
 
         $carMock = m::mock("Dende\FrontBundle\Entity\Car");
-        $carMock->shouldReceive("setColor")->once();
+        $carMock->shouldReceive('setColor')->once();
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");
-        $entityManagerMock->shouldReceive("persist")->once();
-        $entityManagerMock->shouldReceive("getRepository->findOneByName")->once()->andReturn($colorMock);
+        $entityManagerMock->shouldReceive('persist')->once();
+        $entityManagerMock->shouldReceive('getRepository->findOneByName')->once()->andReturn($colorMock);
 
         $formMock = m::mock("Symfony\Component\Form\Form");
-        $formMock->shouldReceive("get->get->get->get->getData")->once()->andReturn("newTestType");
-        $formMock->shouldReceive("getData")->once()->andReturn($carMock);
+        $formMock->shouldReceive('get->get->get->get->getData')->once()->andReturn('newTestType');
+        $formMock->shouldReceive('getData')->once()->andReturn($carMock);
 
         $processType = new ProcessColor();
         $processType->setForm($formMock);
@@ -31,19 +31,19 @@ class ProcessColorsTest extends \PHPUnit_Framework_TestCase
     public function testRemoveUnusedWithColorNotFound()
     {
         $colorMock = m::mock("Dende\FrontBundle\Entity\Color");
-        $colorMock->shouldReceive("getName")->andReturn("test");
+        $colorMock->shouldReceive('getName')->andReturn('test');
 
         $carMock = m::mock("Dende\FrontBundle\Entity\Car");
-        $carMock->shouldReceive("setColor")->once();
+        $carMock->shouldReceive('setColor')->once();
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");
-        $entityManagerMock->shouldReceive("persist")->once();
-        $entityManagerMock->shouldReceive("getRepository->findOneByName")->once()->andReturnNull();
+        $entityManagerMock->shouldReceive('persist')->once();
+        $entityManagerMock->shouldReceive('getRepository->findOneByName')->once()->andReturnNull();
 
         $formMock = m::mock("Symfony\Component\Form\Form");
-        $formMock->shouldReceive("get->get->get->get->getData")->once()->andReturn("newTestType");
-        $formMock->shouldReceive("get->getData")->once()->andReturn($colorMock);
-        $formMock->shouldReceive("getData")->once()->andReturn($carMock);
+        $formMock->shouldReceive('get->get->get->get->getData')->once()->andReturn('newTestType');
+        $formMock->shouldReceive('get->getData')->once()->andReturn($colorMock);
+        $formMock->shouldReceive('getData')->once()->andReturn($carMock);
 
         $processType = new ProcessColor();
         $processType->setForm($formMock);

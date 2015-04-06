@@ -37,18 +37,18 @@ class ProcessModel
 
     public function addModel()
     {
-        $car = $this->form->getData();
-        $newModelName = $this->form->get("add_model")->get("name")->getData();
+        $car          = $this->form->getData();
+        $newModelName = $this->form->get('add_model')->get('name')->getData();
 
         if (!is_null($newModelName)) {
-            $model = $this->entityManager->getRepository("FrontBundle:Model")->findOneByName($newModelName);
+            $model = $this->entityManager->getRepository('FrontBundle:Model')->findOneByName($newModelName);
 
             if (is_null($model)) {
-                $model = $this->form->get("add_model")->getData();
+                $model = $this->form->get('add_model')->getData();
             }
 
-            $newModelBrandName = $this->form->get("add_model")->get("brand")->getData();
-            $brand = $this->entityManager->getRepository("FrontBundle:Brand")->findOneByName($newModelBrandName);
+            $newModelBrandName = $this->form->get('add_model')->get('brand')->getData();
+            $brand             = $this->entityManager->getRepository('FrontBundle:Brand')->findOneByName($newModelBrandName);
 
             if (is_null($brand)) {
                 $brand = new Brand();

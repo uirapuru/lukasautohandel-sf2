@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -18,10 +17,10 @@ class ColorType extends AbstractType
         $builder
             ->add(
                 'translations',
-                "a2lix_translations_gedmo",
+                'a2lix_translations_gedmo',
                 [
                     'translatable_class' => 'Dende\\FrontBundle\\Entity\\Color',
-                    'fields' => [
+                    'fields'             => [
                             'name' => [
                                 'label' => 'car.form.label.add_color.name',
                             ],
@@ -39,7 +38,7 @@ class ColorType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Dende\FrontBundle\Entity\Color',
+            'data_class'      => 'Dende\FrontBundle\Entity\Color',
             'csrf_protection' => false,
         ]);
     }

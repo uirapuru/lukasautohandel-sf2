@@ -38,13 +38,13 @@ class ProcessType
     {
         $car = $this->form->getData();
 
-        $newTypeName = $this->form->get("add_type")->get("name")->getData();
+        $newTypeName = $this->form->get('add_type')->get('name')->getData();
 
         if (!is_null($newTypeName)) {
-            $type = $this->entityManager->getRepository("FrontBundle:Type")->findOneByName($newTypeName);
+            $type = $this->entityManager->getRepository('FrontBundle:Type')->findOneByName($newTypeName);
 
             if (is_null($type)) {
-                $type = $this->form->get("add_type")->getData();
+                $type = $this->form->get('add_type')->getData();
             }
 
             $car->setType($type);

@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -20,31 +19,30 @@ class TitleType extends AbstractType
                 'pl',
                 'text',
                 [
-                    "required" => true,
-                    "constraints" => [],
-                    "label" => '_pl',
-                    'mapped' => false,
+                    'required'    => true,
+                    'constraints' => [],
+                    'label'       => '_pl',
+                    'mapped'      => false,
                 ]
             )->add(
                 'en',
                 'text',
                 [
-                    "required" => true,
-                    "constraints" => [],
-                    "label" => '_en',
-                    'mapped' => false,
+                    'required'    => true,
+                    'constraints' => [],
+                    'label'       => '_en',
+                    'mapped'      => false,
                 ]
             )->add(
                 'de',
                 'text',
                 [
-                    "required" => true,
-                    "constraints" => [],
-                    "label" => '_de',
-                    'mapped' => false,
+                    'required'    => true,
+                    'constraints' => [],
+                    'label'       => '_de',
+                    'mapped'      => false,
                 ]
-            )
-        ;
+            );
     }
 
     public function getName()
@@ -55,7 +53,7 @@ class TitleType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Dende\FrontBundle\Entity\Translation\CarTranslation',
+            'data_class'      => 'Dende\FrontBundle\Entity\Translation\CarTranslation',
             'csrf_protection' => false,
         ]);
     }

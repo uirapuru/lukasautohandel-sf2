@@ -1,14 +1,13 @@
 <?php
-
 namespace Dende\FrontBundle\Controller;
 
 use A2lix\TranslationFormBundle\Annotation\GedmoTranslation;
 use Dende\FrontBundle\Entity\Car;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -30,20 +29,20 @@ class CarController extends Controller
 
         $statusCode = 200;
 
-        if ($request->isMethod("POST")) {
+        if ($request->isMethod('POST')) {
             $form->handleRequest($request);
-            $serializer = $this->get("jms_serializer");
+            $serializer = $this->get('jms_serializer');
 
             if ($form->isValid()) {
                 $car = $form->getData();
 
                 $em = $this->getDoctrine()->getManager();
 
-                $this->get("dende.front.form_handler.process_colors")->setForm($form)->addColor();
-                $this->get("dende.front.form_handler.process_types")->setForm($form)->addType();
-                $this->get("dende.front.form_handler.process_models")->setForm($form)->addModel();
+                $this->get('dende.front.form_handler.process_colors')->setForm($form)->addColor();
+                $this->get('dende.front.form_handler.process_types')->setForm($form)->addType();
+                $this->get('dende.front.form_handler.process_models')->setForm($form)->addModel();
 
-                $processImages = $this->get("dende.front.form_handler.process_images");
+                $processImages = $this->get('dende.front.form_handler.process_images');
                 $processImages->setCar($car);
                 $processImages->processUploaded();
 
@@ -55,15 +54,15 @@ class CarController extends Controller
                     'flash.car_add.success'
                 );
 
-                $this->get("logger")->addWarning(
-                    "Car added",
+                $this->get('logger')->addWarning(
+                    'Car added',
                     [
-                        "formData" => $serializer->serialize($form->getData(), "json"),
+                        'formData' => $serializer->serialize($form->getData(), 'json'),
                     ]
                 );
 
                 return $this->redirect(
-                    $this->generateUrl("edit_car", ["id" => $car->getId()])
+                    $this->generateUrl('edit_car', ['id' => $car->getId()])
                 );
             } else {
                 $request->getSession()->getFlashBag()->add(
@@ -71,12 +70,12 @@ class CarController extends Controller
                     'flash.car_edit.errors'
                 );
 
-                $this->get("logger")->addWarning(
-                    "Car adding error",
+                $this->get('logger')->addWarning(
+                    'Car adding error',
                     [
-                        "formData" => $serializer->serialize($form->getData(), "json"),
-                        "formError" => $serializer->serialize($form->getErrors(), "json"),
-                        "asString" => $form->getErrorsAsString(),
+                        'formData'  => $serializer->serialize($form->getData(), 'json'),
+                        'formError' => $serializer->serialize($form->getErrors(), 'json'),
+                        'asString'  => $form->getErrorsAsString(),
                     ]
                 );
                 $statusCode = 400;
@@ -84,7 +83,7 @@ class CarController extends Controller
         }
 
         return new Response(
-            $this->renderView('@Front/Car/add.html.twig', ["form" => $form->createView()]),
+            $this->renderView('@Front/Car/add.html.twig', ['form' => $form->createView()]),
             $statusCode
         );
     }
@@ -98,17 +97,17 @@ class CarController extends Controller
      */
     public function editAction(Request $request, Car $car)
     {
-        $form = $this->createForm('dende_form_car', $car);
+        $form       = $this->createForm('dende_form_car', $car);
         $statusCode = 200;
-        $serializer = $this->get("jms_serializer");
+        $serializer = $this->get('jms_serializer');
 
-        $processImages = $this->get("dende.front.form_handler.process_images");
+        $processImages = $this->get('dende.front.form_handler.process_images');
         $processImages->setOriginalImages($car->getImages());
 
-        $processPrices = $this->get("dende.front.form_handler.process_prices");
+        $processPrices = $this->get('dende.front.form_handler.process_prices');
         $processPrices->setOriginalPrices(clone($car->getPrices()));
 
-        if ($request->isMethod("POST")) {
+        if ($request->isMethod('POST')) {
             $form->handleRequest($request);
 
             if ($form->isValid()) {
@@ -116,9 +115,9 @@ class CarController extends Controller
 
                 $em = $this->getDoctrine()->getManager();
 
-                $this->get("dende.front.form_handler.process_colors")->setForm($form)->addColor();
-                $this->get("dende.front.form_handler.process_types")->setForm($form)->addType();
-                $this->get("dende.front.form_handler.process_models")->setForm($form)->addModel();
+                $this->get('dende.front.form_handler.process_colors')->setForm($form)->addColor();
+                $this->get('dende.front.form_handler.process_types')->setForm($form)->addType();
+                $this->get('dende.front.form_handler.process_models')->setForm($form)->addModel();
 
                 $processImages->removeUnused();
                 $processImages->processUploaded();
@@ -133,15 +132,15 @@ class CarController extends Controller
                     'flash.car_edit.success'
                 );
 
-                $this->get("logger")->addWarning(
-                    "Car edited",
+                $this->get('logger')->addWarning(
+                    'Car edited',
                     [
-                        "formData" => $serializer->serialize($form->getData(), "json"),
+                        'formData' => $serializer->serialize($form->getData(), 'json'),
                     ]
                 );
 
                 return $this->redirect(
-                    $this->generateUrl("edit_car", ["id" => $car->getId()])
+                    $this->generateUrl('edit_car', ['id' => $car->getId()])
                 );
             } else {
                 $request->getSession()->getFlashBag()->add(
@@ -149,11 +148,11 @@ class CarController extends Controller
                     'flash.car_edit.errors'
                 );
 
-                $this->get("logger")->addWarning(
-                    "Car editing error",
+                $this->get('logger')->addWarning(
+                    'Car editing error',
                     [
-                        "formData" => $serializer->serialize($form->getData(), "json"),
-                        "formError" => $serializer->serialize($form->getErrors(true), "json"),
+                        'formData'  => $serializer->serialize($form->getData(), 'json'),
+                        'formError' => $serializer->serialize($form->getErrors(true), 'json'),
                     ]
                 );
 
@@ -164,7 +163,7 @@ class CarController extends Controller
         return new Response(
             $this->renderView(
                 '@Front/Car/edit.html.twig',
-                ["form" => $form->createView(), "car" => $car]
+                ['form' => $form->createView(), 'car' => $car]
             ),
             $statusCode
         );
@@ -184,9 +183,9 @@ class CarController extends Controller
 
         $entities = $em->getRepository('FrontBundle:Car')->findAll();
 
-        return array(
+        return [
             'entities' => $entities,
-        );
+        ];
     }
 
     /**
@@ -200,9 +199,9 @@ class CarController extends Controller
      */
     public function showAction(Car $car)
     {
-        return array(
+        return [
             'entity'      => $car,
-        );
+        ];
     }
 
     /**
@@ -213,12 +212,10 @@ class CarController extends Controller
      */
     public function deleteAction(Request $request, Car $car)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->remove($car);
-        $em->flush();
+        $this->get('dende.front.manager.car')->delete($car);
 
         return $this->redirect(
-            $request->headers->get("referer")
+            $request->headers->get('referer')
         );
     }
 }

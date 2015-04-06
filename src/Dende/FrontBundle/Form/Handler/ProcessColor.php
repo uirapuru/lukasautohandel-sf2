@@ -38,13 +38,13 @@ class ProcessColor
     {
         $car = $this->form->getData();
 
-        $newColorName = $this->form->get("add_color")->get("translations")->get("pl")->get("name")->getData();
+        $newColorName = $this->form->get('add_color')->get('translations')->get('pl')->get('name')->getData();
 
         if (!is_null($newColorName)) {
-            $color = $this->entityManager->getRepository("FrontBundle:Color")->findOneByName($newColorName);
+            $color = $this->entityManager->getRepository('FrontBundle:Color')->findOneByName($newColorName);
 
             if (is_null($color)) {
-                $color = $this->form->get("add_color")->getData();
+                $color = $this->form->get('add_color')->getData();
             }
 
             $car->setColor($color);

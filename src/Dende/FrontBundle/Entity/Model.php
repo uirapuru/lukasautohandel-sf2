@@ -120,7 +120,6 @@ class Model
     public function getFullName()
     {
         return $this->getName();
-//        return sprintf("%s / %s", $this->getName(), $this->getBrand()->getName());
     }
 
     /**

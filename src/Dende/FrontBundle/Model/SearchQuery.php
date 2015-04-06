@@ -98,7 +98,7 @@ class SearchQuery
             if ($this->$var) {
                 $vars[$var] = $this->$var->getId();
             } else {
-                $vars[$var] = "null";
+                $vars[$var] = 'null';
             }
         }
 

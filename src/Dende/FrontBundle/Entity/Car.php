@@ -55,14 +55,14 @@ class Car implements Translatable
     /**
      * @ORM\Column(type="integer")
      *
-     * @var integer
+     * @var int
      */
     protected $year;
 
     /**
      * @ORM\Column(type="integer")
      *
-     * @var integer
+     * @var int
      */
     protected $distance;
 
@@ -133,14 +133,14 @@ class Car implements Translatable
     /**
      * @ORM\Column(type="boolean")
      *
-     * @var boolean
+     * @var bool
      */
     protected $promoteCarousel = false;
 
     /**
      * @ORM\Column(type="boolean")
      *
-     * @var boolean
+     * @var bool
      */
     protected $promoteFrontpage = false;
 
@@ -170,7 +170,7 @@ class Car implements Translatable
     /**
      * @ORM\Column(type="boolean")
      *
-     * @var boolean
+     * @var bool
      */
     protected $hidden = false;
 
@@ -216,8 +216,8 @@ class Car implements Translatable
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
-        $this->prices = new ArrayCollection();
+        $this->images       = new ArrayCollection();
+        $this->prices       = new ArrayCollection();
         $this->translations = new ArrayCollection();
     }
 
@@ -430,7 +430,7 @@ class Car implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPromoteCorousel()
     {
@@ -438,7 +438,7 @@ class Car implements Translatable
     }
 
     /**
-     * @param boolean $promoteCorousel
+     * @param bool $promoteCorousel
      */
     public function setPromoteCorousel($promoteCorousel)
     {
@@ -446,7 +446,7 @@ class Car implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPromoteFrontpage()
     {
@@ -454,7 +454,7 @@ class Car implements Translatable
     }
 
     /**
-     * @param boolean $promoteFrontpage
+     * @param bool $promoteFrontpage
      */
     public function setPromoteFrontpage($promoteFrontpage)
     {
@@ -510,7 +510,7 @@ class Car implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isHidden()
     {
@@ -518,7 +518,7 @@ class Car implements Translatable
     }
 
     /**
-     * @param boolean $hidden
+     * @param bool $hidden
      */
     public function setHidden($hidden)
     {
@@ -582,7 +582,7 @@ class Car implements Translatable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPromoteCarousel()
     {
@@ -590,7 +590,7 @@ class Car implements Translatable
     }
 
     /**
-     * @param boolean $promoteCarousel
+     * @param bool $promoteCarousel
      */
     public function setPromoteCarousel($promoteCarousel)
     {

@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -22,42 +21,41 @@ class ModelType extends AbstractType
                 'name',
                 'text',
                 [
-                    "required" => true,
-                    "constraints" => [
+                    'required'    => true,
+                    'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) {
                             $form = $context->getRoot();
 
-                            if (!$form["add_model"]["brand"]->isEmpty() && $form["add_model"]["name"]->isEmpty()) {
+                            if (!$form['add_model']['brand']->isEmpty() && $form['add_model']['name']->isEmpty()) {
                                 $context->buildViolation('validator.you_have_to_add_car_model_name')
                                     ->atPath('add_model.name')
                                     ->addViolation();
                             }
                         }),
                     ],
-                    "label" => 'car.form.label.add_model.name',
+                    'label' => 'car.form.label.add_model.name',
                 ]
             )
             ->add(
                 'brand',
                 'text',
                 [
-                    "required" => true,
-                    "constraints" => [
+                    'required'    => true,
+                    'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) {
                             $form = $context->getRoot();
 
-                            if (!$form["add_model"]["name"]->isEmpty() && $form["add_model"]["brand"]->isEmpty()) {
+                            if (!$form['add_model']['name']->isEmpty() && $form['add_model']['brand']->isEmpty()) {
                                 $context->buildViolation('validator.you_have_to_add_car_brand')
                                     ->atPath('model')
                                     ->addViolation();
                             }
                         }),
                     ],
-                    "label" => 'car.form.label.add_model.brand',
-                    "mapped" => false,
+                    'label'  => 'car.form.label.add_model.brand',
+                    'mapped' => false,
                 ]
-            )
-        ;
+            );
     }
 
     public function getName()
@@ -68,7 +66,7 @@ class ModelType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Dende\FrontBundle\Entity\Model',
+            'data_class'      => 'Dende\FrontBundle\Entity\Model',
             'csrf_protection' => false,
         ]);
     }

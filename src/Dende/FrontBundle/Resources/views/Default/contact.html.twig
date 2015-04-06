@@ -42,38 +42,38 @@
                         {#</label>#}
                         {#<?php endif; ?>#}
                         {#<label class="name">#}
-                            {#<?= $form["name"]->render(array("placeholder" => __("contact.name.placeholder"))); ?>#}
+                            {#<?= $form['name']->render(['placeholder' => __('contact.name.placeholder')]); ?>#}
 
-                            {#<?php if ($form["name"]->hasError()): ?>#}
+                            {#<?php if ($form['name']->hasError()): ?>#}
                             {#<span class="error error-empty">#}
-                                {#<?= $form["name"]->getError(); ?>#}
+                                {#<?= $form['name']->getError(); ?>#}
                             {#</span>#}
                             {#<?php endif; ?>#}
 
                         {#</label>#}
                         {#<label class="email">#}
-                            {#<?= $form["email"]->render(array("placeholder" => __("contact.email.placeholder"))); ?>#}
-                            {#<?php if ($form["email"]->hasError()): ?>#}
+                            {#<?= $form['email']->render(['placeholder' => __('contact.email.placeholder')]); ?>#}
+                            {#<?php if ($form['email']->hasError()): ?>#}
                             {#<span class="error error-empty">#}
-                                {#<?= $form["email"]->getError(); ?>#}
+                                {#<?= $form['email']->getError(); ?>#}
                             {#</span>#}
                             {#<?php endif; ?>#}
                         {#</label>#}
                         {#<label class="phone">#}
-                            {#<?= $form["phone"]->render(array("placeholder" => __("contact.phone.placeholder"))); ?>#}
+                            {#<?= $form['phone']->render(['placeholder' => __('contact.phone.placeholder')]); ?>#}
                         {#</label>#}
                         {#<label class="message">#}
-                            {#<?= $form["body"]->render(array("placeholder" => __("contact.body.placeholder"))); ?>#}
-                            {#<?php if ($form["body"]->hasError()): ?>#}
+                            {#<?= $form['body']->render(['placeholder' => __('contact.body.placeholder')]); ?>#}
+                            {#<?php if ($form['body']->hasError()): ?>#}
                             {#<span class="error error-empty">#}
-                                {#<?= $form["body"]->getError(); ?>#}
+                                {#<?= $form['body']->getError(); ?>#}
                             {#</span>#}
                             {#<?php endif; ?>#}
 
                         {#</label>#}
                         {#<div class="btns">#}
-                            {#<button class="button" type="reset"><?= __("contact.contactForm.resetButtonLabel"); ?></button>#}
-                            {#<button class="button" type="submit"><?= __("contact.contactForm.submitButtonLabel"); ?></button>#}
+                            {#<button class="button" type="reset"><?= __('contact.contactForm.resetButtonLabel'); ?></button>#}
+                            {#<button class="button" type="submit"><?= __('contact.contactForm.submitButtonLabel'); ?></button>#}
                         {#</div>#}
                     {#</fieldset>#}
 
