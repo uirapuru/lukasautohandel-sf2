@@ -1,10 +1,9 @@
 <?php
-
 namespace Dende\FrontBundle\Dictionary;
 
 class Country
 {
-    const POLAND = 'poland';
+    const POLAND  = 'poland';
     const GERMANY = 'germany';
 
     public static $choicesArray = [

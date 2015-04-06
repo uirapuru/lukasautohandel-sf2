@@ -1,10 +1,9 @@
 <?php
-
 namespace Dende\MailerBundle\Service;
 
+use Swift_Mailer;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-use Swift_Mailer;
 
 class Mailer
 {

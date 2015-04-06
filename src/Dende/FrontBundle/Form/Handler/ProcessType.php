@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Handler;
 
 use Doctrine\ORM\EntityManager;

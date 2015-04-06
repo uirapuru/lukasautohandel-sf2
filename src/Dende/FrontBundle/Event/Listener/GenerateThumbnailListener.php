@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Event\Listener;
 
 use Dende\FrontBundle\Entity\Image;
@@ -19,7 +18,7 @@ class GenerateThumbnailListener
         /*
          * @var Image
          */
-        $image = $args->getEntity();
+        $image       = $args->getEntity();
         $defaultPath = $listener->getDefaultPath();
 
         $this->processImage($image, $defaultPath);
@@ -44,7 +43,6 @@ class GenerateThumbnailListener
 
         $imagine->open($defaultPath.DIRECTORY_SEPARATOR.$image->getName())
             ->thumbnail($size, $mode)
-            ->save(implode(DIRECTORY_SEPARATOR, [$defaultPath, 'thumbnails', $image->getName()]))
-        ;
+            ->save(implode(DIRECTORY_SEPARATOR, [$defaultPath, 'thumbnails', $image->getName()]));
     }
 }

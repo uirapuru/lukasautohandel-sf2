@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;

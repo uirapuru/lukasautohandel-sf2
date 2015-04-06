@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\DataFixtures;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -45,8 +44,8 @@ class BaseFixture extends AbstractFixture implements OrderedFixtureInterface
     public function translateClassToFilename($object)
     {
         $classnameArray = explode("\\", get_class($object));
-        $class = array_pop($classnameArray);
-        $filename = strtolower(substr($class, 0, strpos($class, 'Data'))).'.yml';
+        $class          = array_pop($classnameArray);
+        $filename       = strtolower(substr($class, 0, strpos($class, 'Data'))).'.yml';
 
         return $filename;
     }

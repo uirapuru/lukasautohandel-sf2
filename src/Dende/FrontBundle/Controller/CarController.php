@@ -1,14 +1,13 @@
 <?php
-
 namespace Dende\FrontBundle\Controller;
 
 use A2lix\TranslationFormBundle\Annotation\GedmoTranslation;
 use Dende\FrontBundle\Entity\Car;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -74,9 +73,9 @@ class CarController extends Controller
                 $this->get('logger')->addWarning(
                     'Car adding error',
                     [
-                        'formData' => $serializer->serialize($form->getData(), 'json'),
+                        'formData'  => $serializer->serialize($form->getData(), 'json'),
                         'formError' => $serializer->serialize($form->getErrors(), 'json'),
-                        'asString' => $form->getErrorsAsString(),
+                        'asString'  => $form->getErrorsAsString(),
                     ]
                 );
                 $statusCode = 400;
@@ -98,7 +97,7 @@ class CarController extends Controller
      */
     public function editAction(Request $request, Car $car)
     {
-        $form = $this->createForm('dende_form_car', $car);
+        $form       = $this->createForm('dende_form_car', $car);
         $statusCode = 200;
         $serializer = $this->get('jms_serializer');
 
@@ -152,7 +151,7 @@ class CarController extends Controller
                 $this->get('logger')->addWarning(
                     'Car editing error',
                     [
-                        'formData' => $serializer->serialize($form->getData(), 'json'),
+                        'formData'  => $serializer->serialize($form->getData(), 'json'),
                         'formError' => $serializer->serialize($form->getErrors(true), 'json'),
                     ]
                 );
@@ -184,9 +183,9 @@ class CarController extends Controller
 
         $entities = $em->getRepository('FrontBundle:Car')->findAll();
 
-        return array(
+        return [
             'entities' => $entities,
-        );
+        ];
     }
 
     /**
@@ -200,9 +199,9 @@ class CarController extends Controller
      */
     public function showAction(Car $car)
     {
-        return array(
+        return [
             'entity'      => $car,
-        );
+        ];
     }
 
     /**

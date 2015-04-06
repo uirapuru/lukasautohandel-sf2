@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Repository;
 
 use Doctrine\ORM\Query;

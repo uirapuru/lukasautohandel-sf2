@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Tests;
 
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
@@ -71,8 +70,8 @@ abstract class BaseFunctionalTest extends WebTestCase
 
     protected function resetDb()
     {
-        $em = $this->container->get('doctrine.orm.default_entity_manager');
-        $root = $this->container->getParameter('kernel.root_dir');
+        $em     = $this->container->get('doctrine.orm.default_entity_manager');
+        $root   = $this->container->getParameter('kernel.root_dir');
         $loader = new Loader();
         $loader->loadFromDirectory($root.'/../src/Dende/FrontBundle/DataFixtures/ORM');
         $purger = new ORMPurger($em);

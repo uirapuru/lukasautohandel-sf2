@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Entity\Factory;
 
 use Dende\FrontBundle\Entity\Type;

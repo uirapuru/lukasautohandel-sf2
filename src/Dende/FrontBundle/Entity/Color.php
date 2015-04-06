@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Entity;
 
 use Dende\FrontBundle\Entity\Translation\ColorTranslation;

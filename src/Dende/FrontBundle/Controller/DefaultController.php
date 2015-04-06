@@ -1,24 +1,24 @@
 <?php
-
 namespace Dende\FrontBundle\Controller;
 
 use Dende\FrontBundle\Entity\Brand;
 use Dende\FrontBundle\Entity\Car;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Dende\FrontBundle\Model\SearchQuery;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="main")
      * @Template()
+     *
      * @Method({"GET"})
      */
     public function indexAction()
@@ -28,6 +28,7 @@ class DefaultController extends Controller
 
     /**
      * @Template()
+     *
      * @Method({"GET"})
      */
     public function searchAction($form = null)
@@ -41,6 +42,7 @@ class DefaultController extends Controller
 
     /**
      * @Template()
+     *
      * @Method({"GET"})
      */
     public function promotedAction()
@@ -55,6 +57,7 @@ class DefaultController extends Controller
 
     /**
      * @Template()
+     *
      * @Method({"GET"})
      */
     public function carouselAction()
@@ -70,13 +73,14 @@ class DefaultController extends Controller
     /**
      * @Route("/list", name="list")
      * @Template()
+     *
      * @Method({"GET", "POST"})
      */
     public function listAction(Request $request)
     {
         $searchQuery = new SearchQuery();
-        $form = $this->createForm('dende_form_search', $searchQuery);
-        $qb = $this->getDoctrine()->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+        $form        = $this->createForm('dende_form_search', $searchQuery);
+        $qb          = $this->getDoctrine()->getRepository('FrontBundle:Car')->createQueryBuilder('c');
 
         $cacheId = ['DefaultController:listAction'];
 
@@ -123,7 +127,7 @@ class DefaultController extends Controller
         $query->useResultCache(true, 3600, md5(implode('/', $cacheId)));
 
         return [
-            'cars' => $query->execute(),
+            'cars'       => $query->execute(),
             'searchForm' => $form,
         ];
     }
@@ -132,6 +136,7 @@ class DefaultController extends Controller
      * @Route("/show/{id}/{slug}", name="show")
      * @ParamConverter("car", class="FrontBundle:Car")
      * @Template()
+     *
      * @Method({"GET"})
      */
     public function showAction(Car $car)
@@ -163,7 +168,7 @@ class DefaultController extends Controller
                 $mailer = $this->get('mailer.contact');
                 $mailer->setParameters([
                     'message' => $form->get('message')->getData(),
-                    'email' => $form->get('email')->getData(),
+                    'email'   => $form->get('email')->getData(),
                 ]);
                 $mailer->setFrom(
                     $form->get('email')->getData()
@@ -186,6 +191,7 @@ class DefaultController extends Controller
      *      requirements={"locale" = "(pl|ru|de)"},
      *      defaults={"locale" = "pl"}
      * )
+     *
      * @Method({"GET"})
      * @Template()
      */
@@ -205,6 +211,7 @@ class DefaultController extends Controller
      *      name="models_for_brand",
      *      options={"expose"=true}
      * )
+     *
      * @Method({"GET"})
      * @ParamConverter("brand", class="FrontBundle:Brand")
      */
@@ -221,6 +228,7 @@ class DefaultController extends Controller
      *      name="api_models",
      *      options={"expose"=true}
      * )
+     *
      * @Method({"GET"})
      */
     public function getModelsAction()

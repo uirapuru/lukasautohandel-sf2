@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
@@ -92,11 +91,11 @@ class CarsData extends BaseFixture
      */
     private function prepareTranslations($params, Car $car)
     {
-        $titles = $params['title'];
+        $titles       = $params['title'];
         $descriptions = $params['description'];
 
         $tmpArray = ['title' => $titles, 'description' => $descriptions];
-        $result = [];
+        $result   = [];
 
         foreach ($tmpArray as $fieldName => $field) {
             foreach ($field as $language => $value) {

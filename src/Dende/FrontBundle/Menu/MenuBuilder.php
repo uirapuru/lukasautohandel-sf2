@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
@@ -29,9 +28,9 @@ class MenuBuilder extends ContainerAware
      */
     public function __construct(FactoryInterface $factory, SecurityContext $context, array $languages)
     {
-        $this->factory = $factory;
+        $this->factory         = $factory;
         $this->securityContext = $context;
-        $this->languages = $languages;
+        $this->languages       = $languages;
     }
 
     public function createLangMenu(Request $request)
@@ -40,7 +39,7 @@ class MenuBuilder extends ContainerAware
 
         $menu->setChildrenAttributes([
             'class' => 'nav navbar-nav pull-right',
-            'id' => 'langMenu',
+            'id'    => 'langMenu',
         ]);
 
         foreach ($this->languages as $language) {
@@ -68,7 +67,7 @@ class MenuBuilder extends ContainerAware
 
         $menu->setChildrenAttributes([
             'class' => 'nav navbar-nav pull-left',
-            'id' => 'mainMenu',
+            'id'    => 'mainMenu',
         ]);
 
         $menu->addChild('menu.main.dashboard', ['route' => 'dashboard_index']);
@@ -88,7 +87,7 @@ class MenuBuilder extends ContainerAware
 
         $menu->setChildrenAttributes([
             'class' => 'sf-menu responsive-menu',
-            'id' => 'frontMenu',
+            'id'    => 'frontMenu',
         ]);
 
         $menu->addChild('menu.front.start', ['route' => 'main']);

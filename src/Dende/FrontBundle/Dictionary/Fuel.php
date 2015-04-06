@@ -1,13 +1,12 @@
 <?php
-
 namespace Dende\FrontBundle\Dictionary;
 
 class Fuel
 {
-    const DIESEL = 'diesel';
-    const LPG    = 'lpg';
+    const DIESEL    = 'diesel';
+    const LPG       = 'lpg';
     const BIODIESEL = 'biodiesel';
-    const PETROL = 'petrol';
+    const PETROL    = 'petrol';
 
     public static $choicesArray = [
         self::DIESEL    => 'fuel.diesel',

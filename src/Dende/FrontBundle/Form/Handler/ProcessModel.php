@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Handler;
 
 use Dende\FrontBundle\Entity\Brand;
@@ -38,7 +37,7 @@ class ProcessModel
 
     public function addModel()
     {
-        $car = $this->form->getData();
+        $car          = $this->form->getData();
         $newModelName = $this->form->get('add_model')->get('name')->getData();
 
         if (!is_null($newModelName)) {
@@ -49,7 +48,7 @@ class ProcessModel
             }
 
             $newModelBrandName = $this->form->get('add_model')->get('brand')->getData();
-            $brand = $this->entityManager->getRepository('FrontBundle:Brand')->findOneByName($newModelBrandName);
+            $brand             = $this->entityManager->getRepository('FrontBundle:Brand')->findOneByName($newModelBrandName);
 
             if (is_null($brand)) {
                 $brand = new Brand();

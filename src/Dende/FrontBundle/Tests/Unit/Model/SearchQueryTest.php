@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Tests\Unit\Model;
 
 use Dende\FrontBundle\Entity\Brand;
@@ -40,52 +39,52 @@ class SearchQueryTest extends \PHPUnit_Framework_TestCase
 
         return [
             'full' => [
-                'type' => $type,
+                'type'  => $type,
                 'model' => $model,
                 'brand' => $brand,
-                'url' => 'brand=33&model=44&type=22',
+                'url'   => 'brand=33&model=44&type=22',
             ],
             'type' => [
-                'type' => $type,
+                'type'  => $type,
                 'model' => null,
                 'brand' => null,
-                'url' => 'brand=null&model=null&type=22',
+                'url'   => 'brand=null&model=null&type=22',
             ],
             'model' => [
-                'type' => null,
+                'type'  => null,
                 'model' => $model,
                 'brand' => null,
-                'url' => 'brand=null&model=44&type=null',
+                'url'   => 'brand=null&model=44&type=null',
             ],
             'brand' => [
-                'type' => null,
+                'type'  => null,
                 'model' => null,
                 'brand' => $brand,
-                'url' => 'brand=33&model=null&type=null',
+                'url'   => 'brand=33&model=null&type=null',
             ],
             'type-model' => [
-                'type' => $type,
+                'type'  => $type,
                 'model' => $model,
                 'brand' => null,
-                'url' => 'brand=null&model=44&type=22',
+                'url'   => 'brand=null&model=44&type=22',
             ],
             'type-brand' => [
-                'type' => $type,
+                'type'  => $type,
                 'model' => null,
                 'brand' => $brand,
-                'url' => 'brand=33&model=null&type=22',
+                'url'   => 'brand=33&model=null&type=22',
             ],
             'model-brand' => [
-                'type' => null,
+                'type'  => null,
                 'model' => $model,
                 'brand' => $brand,
-                'url' => 'brand=33&model=44&type=null',
+                'url'   => 'brand=33&model=44&type=null',
             ],
             'empty' => [
-                'type' => null,
+                'type'  => null,
                 'model' => null,
                 'brand' => null,
-                'url' => 'brand=null&model=null&type=null',
+                'url'   => 'brand=null&model=null&type=null',
             ],
         ];
     }

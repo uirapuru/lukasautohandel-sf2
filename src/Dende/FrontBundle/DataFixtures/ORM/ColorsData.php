@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\DataFixtures\ORM;
 
 use Dende\FrontBundle\DataFixtures\BaseFixture;
@@ -24,7 +23,7 @@ class ColorsData extends BaseFixture
         $value = Yaml::parse(file_get_contents(__DIR__.'/../Yaml/'.$file));
 
         foreach ($value as $key => $params) {
-            $color = new Color();
+            $color             = new Color();
             $colorTranslations = $this->prepareTranslations($params, $color);
 
             $this->addReference($key, $color);

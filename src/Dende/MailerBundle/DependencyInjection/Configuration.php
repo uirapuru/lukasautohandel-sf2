@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\MailerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;

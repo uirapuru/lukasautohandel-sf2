@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Twig;
 
 use Dende\FrontBundle\Entity\Image;

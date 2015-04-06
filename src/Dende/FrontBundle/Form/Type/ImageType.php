@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -18,12 +17,12 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('file', 'file', [
-                    'required' => true,
+                    'required'       => true,
                     'error_bubbling' => false,
-                    'constraints' => [
+                    'constraints'    => [
                         new Image([
-                            'maxSize' => 2000000,
-                            'maxSizeMessage' => 'validator.maximum_file_size_reached',
+                            'maxSize'                    => 2000000,
+                            'maxSizeMessage'             => 'validator.maximum_file_size_reached',
                             'uploadFormSizeErrorMessage' => 'validator.file_is_too_large',
                         ]),
                     ],
@@ -38,12 +37,12 @@ class ImageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Dende\FrontBundle\Entity\Image',
+            'data_class'      => 'Dende\FrontBundle\Entity\Image',
             'csrf_protection' => false,
-            'error_bubbling' => false,
-            'attr' => [
+            'error_bubbling'  => false,
+            'attr'            => [
                 'collection_type' => 'image',
-                'class' => 'col-sm-10',
+                'class'           => 'col-sm-10',
             ],
         ]);
     }

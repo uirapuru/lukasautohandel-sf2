@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Entity\Translation;
 
 use Doctrine\ORM\Mapping as ORM;

@@ -1,11 +1,10 @@
 <?php
-
 namespace Dende\FrontBundle\Dictionary;
 
 class Gearbox
 {
-    const AUTOMATIC = 'automatic';
-    const MANUAL = 'manual';
+    const AUTOMATIC     = 'automatic';
+    const MANUAL        = 'manual';
     const SEMIAUTOMATIC = 'semiautomatic';
 
     public static $choicesArray = [

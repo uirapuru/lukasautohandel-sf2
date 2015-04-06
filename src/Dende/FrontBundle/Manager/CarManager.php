@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Manager;
 
 use Dende\FrontBundle\Entity\Car;

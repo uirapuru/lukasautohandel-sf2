@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\MailerBundle\Service;
 
 /**

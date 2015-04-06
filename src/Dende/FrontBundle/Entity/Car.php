@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Entity;
 
 use Dende\FrontBundle\Entity\Translation\CarTranslation;
@@ -217,8 +216,8 @@ class Car implements Translatable
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
-        $this->prices = new ArrayCollection();
+        $this->images       = new ArrayCollection();
+        $this->prices       = new ArrayCollection();
         $this->translations = new ArrayCollection();
     }
 

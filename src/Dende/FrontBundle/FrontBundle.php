@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;

@@ -1,11 +1,10 @@
 <?php
-
 namespace Dende\FrontBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Gedmo\Translatable\TranslatableListener;
 
 class TranslatableRepository extends EntityRepository

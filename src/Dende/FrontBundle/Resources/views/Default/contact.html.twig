@@ -42,7 +42,7 @@
                         {#</label>#}
                         {#<?php endif; ?>#}
                         {#<label class="name">#}
-                            {#<?= $form['name']->render(array('placeholder' => __('contact.name.placeholder'))); ?>#}
+                            {#<?= $form['name']->render(['placeholder' => __('contact.name.placeholder')]); ?>#}
 
                             {#<?php if ($form['name']->hasError()): ?>#}
                             {#<span class="error error-empty">#}
@@ -52,7 +52,7 @@
 
                         {#</label>#}
                         {#<label class="email">#}
-                            {#<?= $form['email']->render(array('placeholder' => __('contact.email.placeholder'))); ?>#}
+                            {#<?= $form['email']->render(['placeholder' => __('contact.email.placeholder')]); ?>#}
                             {#<?php if ($form['email']->hasError()): ?>#}
                             {#<span class="error error-empty">#}
                                 {#<?= $form['email']->getError(); ?>#}
@@ -60,10 +60,10 @@
                             {#<?php endif; ?>#}
                         {#</label>#}
                         {#<label class="phone">#}
-                            {#<?= $form['phone']->render(array('placeholder' => __('contact.phone.placeholder'))); ?>#}
+                            {#<?= $form['phone']->render(['placeholder' => __('contact.phone.placeholder')]); ?>#}
                         {#</label>#}
                         {#<label class="message">#}
-                            {#<?= $form['body']->render(array('placeholder' => __('contact.body.placeholder'))); ?>#}
+                            {#<?= $form['body']->render(['placeholder' => __('contact.body.placeholder')]); ?>#}
                             {#<?php if ($form['body']->hasError()): ?>#}
                             {#<span class="error error-empty">#}
                                 {#<?= $form['body']->getError(); ?>#}

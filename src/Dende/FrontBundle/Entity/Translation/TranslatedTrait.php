@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Entity\Translation;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -66,7 +65,7 @@ trait TranslatedTrait
      */
     public function getTranslationEntityForLanguage($field, $lang = 'pl')
     {
-        $expr = Criteria::expr();
+        $expr     = Criteria::expr();
         $criteria = Criteria::create();
         $criteria->where($expr->andX(
             $expr->eq('field', $field),
@@ -84,7 +83,7 @@ trait TranslatedTrait
      */
     public function getTranslationEntitiesForLanguage($lang = 'pl')
     {
-        $expr = Criteria::expr();
+        $expr     = Criteria::expr();
         $criteria = Criteria::create();
         $criteria->where($expr->andX(
             $expr->eq('locale', $lang)

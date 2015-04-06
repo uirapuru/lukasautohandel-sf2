@@ -1,11 +1,10 @@
 <?php
-
 namespace Dende\FrontBundle\Manager;
 
 use Dende\FrontBundle\Repository\TranslatableRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Doctrine\ORM\EntityManager;
 
 class TranslatableManager
 {

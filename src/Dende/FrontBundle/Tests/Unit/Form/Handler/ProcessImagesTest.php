@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Tests\Unit\Form\Handler;
 
 use Dende\FrontBundle\Form\Handler\ProcessImages;

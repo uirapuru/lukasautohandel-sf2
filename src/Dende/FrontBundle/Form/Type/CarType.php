@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Type;
 
 use Dende\FrontBundle\Dictionary\Country;
@@ -58,11 +57,11 @@ class CarType extends AbstractType
                 'type',
                 'entity',
                 [
-                    'class' => "Dende\FrontBundle\Entity\Type",
-                    'property' => 'name',
+                    'class'       => "Dende\FrontBundle\Entity\Type",
+                    'property'    => 'name',
                     'empty_value' => 'car.form.choice.empty_car_type',
-                    'empty_data' => null,
-                    'required' => true,
+                    'empty_data'  => null,
+                    'required'    => true,
                     'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) {
                             $form = $context->getRoot();
@@ -81,7 +80,7 @@ class CarType extends AbstractType
                 'add_type',
                 'dende_form_type',
                 [
-                    'label' => 'car.form.label.add_type',
+                    'label'  => 'car.form.label.add_type',
                     'mapped' => false,
                 ]
             )
@@ -89,11 +88,11 @@ class CarType extends AbstractType
                 'model',
                 'entity',
                 [
-                    'class' => "Dende\FrontBundle\Entity\Model",
+                    'class'       => "Dende\FrontBundle\Entity\Model",
                     'empty_value' => 'car.form.choice.empty_car_model',
-                    'empty_data' => null,
-                    'property' => 'getFullName',
-                    'required' => true,
+                    'empty_data'  => null,
+                    'property'    => 'getFullName',
+                    'required'    => true,
                     'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) {
                             $form = $context->getRoot();
@@ -112,7 +111,7 @@ class CarType extends AbstractType
                 'add_model',
                 'dende_form_model',
                 [
-                    'label' => 'car.form.label.add_model',
+                    'label'  => 'car.form.label.add_model',
                     'mapped' => false,
                 ]
             )
@@ -120,11 +119,11 @@ class CarType extends AbstractType
                 'color',
                 'entity',
                 [
-                    'class' => "Dende\FrontBundle\Entity\Color",
+                    'class'       => "Dende\FrontBundle\Entity\Color",
                     'empty_value' => 'car.form.choice.empty_car_color',
-                    'empty_data' => null,
-                    'property' => 'getFullName',
-                    'required' => true,
+                    'empty_data'  => null,
+                    'property'    => 'getFullName',
+                    'required'    => true,
                     'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) use ($languages) {
                             $form = $context->getRoot();
@@ -152,7 +151,7 @@ class CarType extends AbstractType
                 'add_color',
                 'dende_form_color',
                 [
-                    'label' => 'car.form.label.add_color',
+                    'label'  => 'car.form.label.add_color',
                     'mapped' => false,
                 ]
             )
@@ -160,13 +159,13 @@ class CarType extends AbstractType
                 'year',
                 'integer',
                 [
-                    'required' => true,
+                    'required'    => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_enter_production_year']),
                         new Range([
-                            'max' => (int) date('Y'),
+                            'max'        => (int) date('Y'),
                             'maxMessage' => 'validator.production_year_too_big_',
-                            'min' => 1900,
+                            'min'        => 1900,
                             'minMessage' => 'validator.production_year_too_small',
                         ]),
                         new Regex(['pattern' => "/\d\d\d\d/", 'message' => 'validator.production_year_format']),
@@ -178,11 +177,11 @@ class CarType extends AbstractType
                 'distance',
                 'integer',
                 [
-                    'required' => true,
+                    'required'    => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_enter_distance']),
                         new Range([
-                            'min' => 0,
+                            'min'        => 0,
                             'minMessage' => 'validator.distance_too_small',
                         ]),
                     ],
@@ -193,10 +192,10 @@ class CarType extends AbstractType
                 'fuel',
                 'choice',
                 [
-                    'choices' => Fuel::$choicesArray,
+                    'choices'     => Fuel::$choicesArray,
                     'empty_value' => 'car.form.choice.empty_car_fuel_type',
-                    'empty_data' => null,
-                    'required' => true,
+                    'empty_data'  => null,
+                    'required'    => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_fuel_type']),
                     ],
@@ -207,10 +206,10 @@ class CarType extends AbstractType
                 'engine',
                 'choice',
                 [
-                    'choices' => Engine::$choicesArray,
+                    'choices'     => Engine::$choicesArray,
                     'empty_value' => 'car.form.choice.empty_car_engine_type',
-                    'empty_data' => null,
-                    'required' => true,
+                    'empty_data'  => null,
+                    'required'    => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_engine_type']),
                     ],
@@ -221,10 +220,10 @@ class CarType extends AbstractType
                 'gearbox',
                 'choice',
                 [
-                    'choices' => Gearbox::$choicesArray,
+                    'choices'     => Gearbox::$choicesArray,
                     'empty_value' => 'car.form.choice.empty_car_gearbox_type',
-                    'empty_data' => null,
-                    'required' => true,
+                    'empty_data'  => null,
+                    'required'    => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_gearbox_type']),
                     ],
@@ -235,10 +234,10 @@ class CarType extends AbstractType
                 'registrationCountry',
                 'choice',
                 [
-                    'choices' => Country::$choicesArray,
+                    'choices'     => Country::$choicesArray,
                     'empty_value' => 'car.form.choice.empty_car_registration_country',
-                    'empty_data' => null,
-                    'required' => true,
+                    'empty_data'  => null,
+                    'required'    => true,
                     'constraints' => [
                         new NotNull(['message' => 'validator.you_have_to_choose_car_registration_country']),
                     ],
@@ -249,15 +248,15 @@ class CarType extends AbstractType
                 'prices',
                 'collection',
                 [
-                    'type' => new PriceType(),
-                    'allow_add' => true,
-                    'allow_delete' => true,
-                    'by_reference' => false,
-                    'prototype' => true,
+                    'type'           => new PriceType(),
+                    'allow_add'      => true,
+                    'allow_delete'   => true,
+                    'by_reference'   => false,
+                    'prototype'      => true,
                     'prototype_name' => '__price_name__',
-                    'label' => 'car.form.label.prices',
+                    'label'          => 'car.form.label.prices',
                     'error_bubbling' => false,
-                    'constraints' => [
+                    'constraints'    => [
                         new Valid(),
                     ],
                 ]
@@ -266,15 +265,15 @@ class CarType extends AbstractType
                 'images',
                 'collection',
                 [
-                    'type' => new ImageType(),
-                    'allow_add' => true,
-                    'allow_delete' => true,
-                    'by_reference' => false,
-                    'prototype' => true,
+                    'type'           => new ImageType(),
+                    'allow_add'      => true,
+                    'allow_delete'   => true,
+                    'by_reference'   => false,
+                    'prototype'      => true,
                     'prototype_name' => '__image_name__',
-                    'label' => 'car.form.label.images',
+                    'label'          => 'car.form.label.images',
                     'error_bubbling' => false,
-                    'constraints' => [
+                    'constraints'    => [
                         new Valid(),
                     ],
                 ]
@@ -298,7 +297,7 @@ class CarType extends AbstractType
                 'a2lix_translations_gedmo',
                 [
                     'translatable_class' => 'Dende\\FrontBundle\\Entity\\Car',
-                    'fields' => [
+                    'fields'             => [
                         'title' => [
                             'label' => 'car.form.label.title',
                         ],
@@ -322,8 +321,7 @@ class CarType extends AbstractType
                 [
                     'label' => 'car.form.label.hidden',
                 ]
-            )
-        ;
+            );
     }
 
     public function getName()
@@ -334,7 +332,7 @@ class CarType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Dende\FrontBundle\Entity\Car',
+            'data_class'      => 'Dende\FrontBundle\Entity\Car',
             'csrf_protection' => false,
         ]);
     }

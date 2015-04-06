@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -22,7 +21,7 @@ class ModelType extends AbstractType
                 'name',
                 'text',
                 [
-                    'required' => true,
+                    'required'    => true,
                     'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) {
                             $form = $context->getRoot();
@@ -41,7 +40,7 @@ class ModelType extends AbstractType
                 'brand',
                 'text',
                 [
-                    'required' => true,
+                    'required'    => true,
                     'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) {
                             $form = $context->getRoot();
@@ -53,11 +52,10 @@ class ModelType extends AbstractType
                             }
                         }),
                     ],
-                    'label' => 'car.form.label.add_model.brand',
+                    'label'  => 'car.form.label.add_model.brand',
                     'mapped' => false,
                 ]
-            )
-        ;
+            );
     }
 
     public function getName()
@@ -68,7 +66,7 @@ class ModelType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Dende\FrontBundle\Entity\Model',
+            'data_class'      => 'Dende\FrontBundle\Entity\Model',
             'csrf_protection' => false,
         ]);
     }

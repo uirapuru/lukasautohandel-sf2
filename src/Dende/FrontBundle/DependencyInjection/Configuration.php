@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -18,7 +17,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $root = $treeBuilder->root('frontBundle');
+        $root        = $treeBuilder->root('frontBundle');
 
         $root
             ->children()
@@ -32,8 +31,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('youtube')->isRequired()->end()
                     ->end()
                 ->end()
-            ->end()
-        ;
+            ->end();
 
         return $treeBuilder;
     }

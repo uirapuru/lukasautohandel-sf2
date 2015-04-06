@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -20,12 +19,11 @@ class TypeType extends AbstractType
                 'name',
                 'text',
                 [
-                    'required' => true,
+                    'required'    => true,
                     'constraints' => [],
-                    'label' => 'car.form.label.add_type.name',
+                    'label'       => 'car.form.label.add_type.name',
                 ]
-            )
-        ;
+            );
     }
 
     public function getName()
@@ -36,7 +34,7 @@ class TypeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Dende\FrontBundle\Entity\Type',
+            'data_class'      => 'Dende\FrontBundle\Entity\Type',
             'csrf_protection' => false,
         ]);
     }

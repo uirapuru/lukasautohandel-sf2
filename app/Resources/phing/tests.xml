@@ -90,6 +90,7 @@
         <phingcall target="yamllint" />
         <phingcall target="test-security" />
         <phingcall target="phpcs" />
+        <phingcall target="phpcsfixer-dry-run" />
         <phingcall target="phpcb" />
         <phingcall target="phpcpd" />
         <phingcall target="phpmd" />
@@ -99,7 +100,7 @@
     </target>
 
     <target name="phpcs" description="php code sniffer">
-        <exec command="bin/phpcs -p -s --report-summary --report-source --report-checkstyle=build/logs/checkstyle.xml --ignore=**/Tests/** --standard=app/phpcs.xml --extensions=php src/" checkreturn="true" passthru="true" />
+        <exec command="bin/phpcs -p -s --report-width=120 --report-full --report-checkstyle=build/logs/checkstyle.xml --ignore=**/Tests/** --standard=app/phpcs.xml --extensions=php src/" checkreturn="true" passthru="true" />
     </target>
 
     <target name="php-cs-fixer" description="php cs fixer">

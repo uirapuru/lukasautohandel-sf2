@@ -1,5 +1,4 @@
 <?php
-
 namespace Dende\FrontBundle\Tests\Functional;
 
 use Dende\FrontBundle\Entity\Brand;
@@ -18,7 +17,7 @@ class SearchFormTest extends BaseFunctionalTest
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $carTypes = $em->getRepository('FrontBundle:Type')->findAll();
+        $carTypes  = $em->getRepository('FrontBundle:Type')->findAll();
         $carModels = $em->getRepository('FrontBundle:Model')->findAll();
         $carBrands = $em->getRepository('FrontBundle:Brand')->findAll();
 
@@ -45,7 +44,7 @@ class SearchFormTest extends BaseFunctionalTest
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $type = $em->getRepository('FrontBundle:Type')->findOneByName($params['type']);
+        $type  = $em->getRepository('FrontBundle:Type')->findOneByName($params['type']);
         $model = $em->getRepository('FrontBundle:Model')->findOneByName($params['model']);
         $brand = $em->getRepository('FrontBundle:Brand')->findOneByName($params['brand']);
 
@@ -61,14 +60,14 @@ class SearchFormTest extends BaseFunctionalTest
         $form = $forms->first()->form();
 
         $form->setValues([
-            'dende_form_search[type]' => is_object($type) ? $type->getId() : $type,
+            'dende_form_search[type]'  => is_object($type) ? $type->getId() : $type,
             'dende_form_search[model]' => is_object($model) ? $model->getId() : $model,
             'dende_form_search[brand]' => is_object($brand) ? $brand->getId() : $brand,
         ]);
 
-        $crawler = $this->client->submit($form);
+        $crawler      = $this->client->submit($form);
         $resultsCount = (int) $crawler->filter('span#list-result-count')->text();
-        $carsCount = (int) $crawler->filter('ul.search-results li')->count();
+        $carsCount    = (int) $crawler->filter('ul.search-results li')->count();
 
         $this->assertEquals($count, $resultsCount);
         $this->assertEquals($count, $carsCount);
@@ -171,9 +170,9 @@ class SearchFormTest extends BaseFunctionalTest
             'dende_form_search[brand]' => $brand->getId(),
         ]);
 
-        $crawler = $this->client->submit($form);
+        $crawler      = $this->client->submit($form);
         $resultsCount = (int) $crawler->filter('span#list-result-count')->text();
-        $carsCount = (int) $crawler->filter('ul.search-results li')->count();
+        $carsCount    = (int) $crawler->filter('ul.search-results li')->count();
 
         $this->assertEquals(0, $resultsCount);
         $this->assertEquals(0, $carsCount);
