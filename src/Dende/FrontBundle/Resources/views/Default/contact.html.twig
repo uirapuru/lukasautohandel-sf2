@@ -23,62 +23,9 @@
         <div class="inner-block">
             <div class="bg-white pad-1 top">
                 <div class="form-title">{{ "contact.form.label"|trans }}</div>
+                {% include '@Front/Car/_flash.html.twig' with {form: form} %}
+
                 {{ form(form) }}
-
-
-
-                {# <form id="form" method="POST">#}
-                    {#{% if flash is not defined %}#}
-                    {#<div class="success">#}
-                        {#<div class="success_txt">#}
-                            {#{{ "contact.form.flash.thank_you"|trans }}#}
-                        {#</div>#}
-                    {#</div>#}
-                    {#{% endif %}#}
-                    {#<fieldset>#}
-                        {#<?php if ($car != null): ?>#}
-                        {#<label class="name">#}
-                            {#{{ form_widget(form.email) }}#}
-                        {#</label>#}
-                        {#<?php endif; ?>#}
-                        {#<label class="name">#}
-                            {#<?= $form['name']->render(['placeholder' => __('contact.name.placeholder')]); ?>#}
-
-                            {#<?php if ($form['name']->hasError()): ?>#}
-                            {#<span class="error error-empty">#}
-                                {#<?= $form['name']->getError(); ?>#}
-                            {#</span>#}
-                            {#<?php endif; ?>#}
-
-                        {#</label>#}
-                        {#<label class="email">#}
-                            {#<?= $form['email']->render(['placeholder' => __('contact.email.placeholder')]); ?>#}
-                            {#<?php if ($form['email']->hasError()): ?>#}
-                            {#<span class="error error-empty">#}
-                                {#<?= $form['email']->getError(); ?>#}
-                            {#</span>#}
-                            {#<?php endif; ?>#}
-                        {#</label>#}
-                        {#<label class="phone">#}
-                            {#<?= $form['phone']->render(['placeholder' => __('contact.phone.placeholder')]); ?>#}
-                        {#</label>#}
-                        {#<label class="message">#}
-                            {#<?= $form['body']->render(['placeholder' => __('contact.body.placeholder')]); ?>#}
-                            {#<?php if ($form['body']->hasError()): ?>#}
-                            {#<span class="error error-empty">#}
-                                {#<?= $form['body']->getError(); ?>#}
-                            {#</span>#}
-                            {#<?php endif; ?>#}
-
-                        {#</label>#}
-                        {#<div class="btns">#}
-                            {#<button class="button" type="reset"><?= __('contact.contactForm.resetButtonLabel'); ?></button>#}
-                            {#<button class="button" type="submit"><?= __('contact.contactForm.submitButtonLabel'); ?></button>#}
-                        {#</div>#}
-                    {#</fieldset>#}
-
-                    {#<?= $form->renderHiddenFields(); ?>#}
-                {#</form> #}
             </div>
         </div>
     </div>

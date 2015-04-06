@@ -40,6 +40,7 @@ twig:
       contact_number: "+48 600 00 00 00"
       email_address:  "lukas@lukasautohandel.de"
       address:        "Piłsudskiego 1<br />Wrocław"
+      base_url:       %base_url%
 
 # Doctrine Configuration
 doctrine:

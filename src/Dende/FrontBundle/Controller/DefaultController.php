@@ -127,7 +127,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/contact/{id}",name="contact", defaults={ "id" = null })
+     * @Route("/contact/{id}", name="contact", defaults={ "id" = null })
      *
      * @Method({"GET","POST"})
      * @ParamConverter("car", class="FrontBundle:Car")
@@ -142,19 +142,22 @@ class DefaultController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-                $this->addFlash('notice', $this->get('translator')->trans('contact.message.success'));
+                $this->addFlash('success', 'contact.message.success');
 
                 $mailer = $this->get('mailer.contact');
                 $mailer->setParameters([
                     'message' => $form->get('message')->getData(),
                     'email'   => $form->get('email')->getData(),
+                    'name'      => $form->get('name')->getData(),
+                    'gsm'   => $form->get('phone')->getData(),
+                    'car'     => $car
                 ]);
-                $mailer->setFrom(
-                    $form->get('email')->getData()
-                );
+                $mailer->setFrom($form->get('email')->getData());
                 $mailer->sendMail();
 
-                return new RedirectResponse($this->generateUrl('contact'));
+                return new RedirectResponse($this->generateUrl('contact', [
+                    "id" => is_null($car) ? null : $car->getId()
+                ]));
             }
         }
 

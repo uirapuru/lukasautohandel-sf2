@@ -49,6 +49,8 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if ($this->car) {
+            $carId = $this->car->getId();
+
             $builder
                 ->add('subject', 'text', [
                     'label'          => 'contact.form.labels.subject',
@@ -125,6 +127,8 @@ class ContactType extends AbstractType
             ->add('submit', 'submit', [
                 'label' => 'contact.form.labels.submit',
             ]);
+
+        $options["action"] = $this->router->generate("contact", ["id" => isset($carId) ? $carId : null]);
     }
 
     public function getName()

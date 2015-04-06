@@ -48,6 +48,7 @@ services:
             - {name: form.type, alias: dende_form_contact }
 
 
+
     dende.front.form_handler.process_images:
         class: Dende\FrontBundle\Form\Handler\ProcessImages
         calls:

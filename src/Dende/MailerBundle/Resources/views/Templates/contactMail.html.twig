@@ -1,17 +1,40 @@
 {% extends "MailerBundle::layout.html.twig" %}
 
 {% block content %}
-        <h3>Wiadomość kontaktowa z GyMan.pl</h3>
+        <h3>Wiadomość kontaktowa z lukasautohandel.de</h3>
 
         <p>Wiadomość wysłana o godzinie {{ "now"|date("H:i") }} dnia {{ "now"|date("d.m.Y") }} :
 
         <div style="border: 5px solid black; border-radius: 5px; padding: 25px; margin: 50px;">
             <table>
                 <tbody>
+                    {%  if car is not null %}
+                    <tr>
+                        <td><strong>aukcja:</strong></td>
+                        <td>
+                            <a href="{{ url("show", {id : car.id, slug: car.slug}) }}">
+                                <img src="{{ asset('uploads/thumbnails/' ~ car.images.first.path, null, true) }}" />
+                                {{ car.getTranslated("title", "pl") }}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endif %}
                     <tr>
                         <td><strong>email:</strong></td>
                         <td>
                             <a href="mailto:{{ email }}">{{ email }}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>imię i nazwisko:</strong></td>
+                        <td>
+                            {{ name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>telefon:</strong></td>
+                        <td>
+                            {{ gsm }}
                         </td>
                     </tr>
                     <tr>
