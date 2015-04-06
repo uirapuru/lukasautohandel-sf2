@@ -356,9 +356,8 @@ class FeatureContext extends MinkContext implements Context
             $this->fixStepArgument($modelsList)
         ));
 
-        $page = $this->getSession()->getPage();
-
-        $this->spin(function () use ($page, $expectedElements) {
+        $this->spin(function ($context) use ($expectedElements) {
+            $page = $context->getSession()->getPage();
             $actualElements = array_map(function (NodeElement $el) {
                 return $el->getText();
             }, $page->findAll('css', 'select#car_filters_model option'));
