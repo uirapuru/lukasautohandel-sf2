@@ -7,7 +7,6 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class Mailer
 {
-    // <editor-fold defaultstate="collapsed" desc="fields">
     /**
      * @var SwiftMailer
      */
@@ -36,9 +35,7 @@ class Mailer
     /**
      * @return Swift_Message
      */
-    private $message;// </editor-fold>
-
-// <editor-fold defaultstate="collapsed" desc="setters & getters">
+    private $message;
 
     public function getMessage()
     {
@@ -110,7 +107,7 @@ class Mailer
         $this->translator = $translator;
 
         return $this;
-    }// </editor-fold>
+    }
 
     public function sendMail()
     {

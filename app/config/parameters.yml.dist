@@ -26,6 +26,7 @@ parameters:
     use_assetic_controller: false
 
     delivery_address: ~
+    mailer_sendTo: []
 
     sentry_backend_dsn:         ~
     sentry_backend_dsn_dev:     ~

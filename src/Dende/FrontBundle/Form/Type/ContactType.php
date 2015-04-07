@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -35,7 +36,7 @@ class ContactType extends AbstractType
         $this->car = $car;
     }
 
-    public function __construct(Translator $translator, Router $router)
+    public function __construct(TranslatorInterface $translator, Router $router)
     {
         $this->translator = $translator;
         $this->router     = $router;

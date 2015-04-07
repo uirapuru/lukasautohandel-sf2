@@ -25,7 +25,22 @@
                 <div class="form-title">{{ "contact.form.label"|trans }}</div>
                 {% include '@Front/Car/_flash.html.twig' with {form: form} %}
 
-                {{ form(form) }}
+                {{ form_start(form, {attr: {novalidate : "NOVALIDATE"}}) }}
+
+                    {% if form.vars.errors|length > 0 %}
+                    <div class="alert alert-error">
+                        {{ form_errors(form) }}
+                    </div>
+                    {% endif %}
+
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.phone) }}
+                    {{ form_row(form.message) }}
+
+                {{ form_rest(form) }}
+
+                {{ form_end(form) }}
             </div>
         </div>
     </div>

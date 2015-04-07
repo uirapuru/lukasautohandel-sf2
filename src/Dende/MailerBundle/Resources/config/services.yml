@@ -14,7 +14,7 @@ services:
             - [ setTemplating, ["@templating"]]
             - [ setSubject,['%contact.subject%']]
             - [ setTemplate,['%contact.template%']]
-            - [ setTo,['some@email.com']]
+            - [ setTo,["%mailer_sendto%"]]
 
     mailer.registration_successful:
         class:  Dende\MailerBundle\Service\Mailer
