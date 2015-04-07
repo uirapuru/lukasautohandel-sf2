@@ -20,14 +20,10 @@ framework:
     validation:      { enabled: true, enable_annotations: true }
     templating:
         engines: ['twig']
-#        assets_base_urls:
-#            http:   ["%base_url%"]
-        #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
     fragments:       ~
     http_method_override: true
@@ -81,10 +77,10 @@ swiftmailer:
     logging:        true
 
 knp_menu:
-    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
         template: knp_menu.html.twig
-    templating: false # if true, enables the helper for PHP templates
-    default_renderer: twig # The renderer to use, list is also available by default
+    templating: false
+    default_renderer: twig
 
 stof_doctrine_extensions:
   default_locale: en_US

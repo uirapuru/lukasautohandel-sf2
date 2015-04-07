@@ -9,14 +9,12 @@ framework:
     session:
         storage_id: session.storage.filesystem
     profiler:
-        collect: false
+        collect: true
+        only_exceptions: false
 
 web_profiler:
     toolbar: false
     intercept_redirects: false
-
-swiftmailer:
-    disable_delivery: true
 
 doctrine:
     dbal:
