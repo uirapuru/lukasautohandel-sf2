@@ -25,8 +25,11 @@ parameters:
     debug_redirects:        false
     use_assetic_controller: false
 
-    delivery_address: ~
-    mailer_sendTo: []
+    delivery_address: uirapuruadg@gmail.com
+    mailer_sendto:
+      - lukas.l.sobanski@gmail.com
+      - lukas.i.molfa@gmail.com
+      - lukas.m.pieniazek@gmail.com
 
     sentry_backend_dsn:         ~
     sentry_backend_dsn_dev:     ~
