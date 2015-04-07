@@ -8,6 +8,10 @@
     <meta name="keywords" content="auto">
     <meta name="author" content="Grzegorz 'Uirapuru' Kaszuba <uirapuruadg@gmail.com> dende.com.pl">
 
+    <meta name="app.revision" content="{{ revision() }}">
+
+    <meta name="app.revisionDate" content="{% if revisionDate()|date("YmdHis") != "now"|date("YmdHis") %}{{ revisionDate()|date("Y-m-d H:i:s") }}{% endif %}">
+
     {% block stylesheets %}
         {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
 
@@ -24,6 +28,7 @@
     <link rel="shortcut icon" href="{{ asset("/images/favicon.ico") }}" type="image/x-icon">
 </head>
 <body>
+
 <div class="main">
     <!-- Header -->
     <div class="container_12">

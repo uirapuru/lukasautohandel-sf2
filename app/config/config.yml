@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
 
 parameters:
+  revision_file: "%kernel.root_dir%/../REVISION"
   supported_locales:
     - pl
     - ru

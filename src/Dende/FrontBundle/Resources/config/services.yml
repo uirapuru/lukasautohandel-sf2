@@ -32,6 +32,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    dende.twig_extension.revision:
+        class: Dende\FrontBundle\Twig\Revision
+        calls:
+          - [setRevisionFile, ["%revision_file%"]]
+        tags:
+            - { name: twig.extension }
+
     dende.front.factory.type:
         class: Dende\FrontBundle\Entity\Factory\TypeFactory
 
