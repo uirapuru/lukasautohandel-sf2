@@ -33,6 +33,10 @@
                     </div>
                     {% endif %}
 
+                    {% if form.subject is defined %}
+                        {{ form_row(form.subject) }}
+                    {% endif %}
+
                     {{ form_row(form.name) }}
                     {{ form_row(form.email) }}
                     {{ form_row(form.phone) }}
