@@ -40,4 +40,11 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
+
+    public function boot()
+    {
+        parent::boot();
+        $logger = $this->container->get('logger');
+        \Monolog\ErrorHandler::register($logger);
+    }
 }
