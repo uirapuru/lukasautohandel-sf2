@@ -43,7 +43,7 @@
     {% block javascripts %}
         <script src="{% if app.environment == 'prod' %}{{ asset('js/backend/vendors.min.js') }}{% else %}{{ asset('js/backend/vendors.js') }}{% endif %}" type="text/javascript"></script>
         <script src="{% if app.environment == 'prod' %}{{ asset('js/backend/project.min.js') }}{% else %}{{ asset('js/backend/project.js') }}{% endif %}" type="text/javascript"></script>
-        {#{% include '::analytics.html.twig' %}#}
+        {% include '::analytics.html.twig' %}
     {% endblock javascripts %}
 </body>
 </html>
