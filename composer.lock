@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d5c6a145f67f248251df845dcc8b9620",
+    "hash": "b11d8eec6005c8fa152e24e9af10e2a2",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -107,6 +107,73 @@
                 "transliterator"
             ],
             "time": "2014-05-15 22:08:22"
+        },
+        {
+            "name": "dende/common-bundle",
+            "version": "dev-master",
+            "target-dir": "Dende/CommonBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UirapuruDende/CommonBundle.git",
+                "reference": "081983473f427917cb9f581c1de027e8187c6732"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UirapuruDende/CommonBundle/zipball/081983473f427917cb9f581c1de027e8187c6732",
+                "reference": "081983473f427917cb9f581c1de027e8187c6732",
+                "shasum": ""
+            },
+            "require": {
+                "phing/phing": "~2.9",
+                "php": ">=5.4",
+                "raven/raven": "0.8.*@dev"
+            },
+            "require-dev": {
+                "behat/behat": "~3.0",
+                "behat/common-formatters": "~1.2",
+                "behat/mink-browserkit-driver": "~1.2",
+                "behat/mink-extension": "~2.0",
+                "behat/mink-selenium2-driver": "~1.2",
+                "behat/mink-zombie-driver": "~1.2",
+                "behat/symfony2-extension": "2.0.*@dev",
+                "evert/phpdoc-md": "*",
+                "fabpot/php-cs-fixer": "2.0.*@dev",
+                "hasbridge/json-schema-validator": "dev-master",
+                "liip/functional-test-bundle": "~1.2",
+                "mayflower/php-codebrowser": "~1.1",
+                "mockery/mockery": "0.9.*",
+                "pdepend/pdepend": "*",
+                "phploc/phploc": "*",
+                "phpmd/phpmd": "*",
+                "phpunit/phpunit": "*",
+                "sebastian/phpcpd": "*",
+                "squizlabs/php_codesniffer": "2.0.*@dev",
+                "vipsoft/doctrine-data-fixtures-extension": "3.0.*@dev",
+                "webignition/json-pretty-print": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Dende\\CommonBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grzegorz 'Uirapuru' Kaszuba",
+                    "email": "uirapuruadg@gmail.com"
+                }
+            ],
+            "description": "Common stuff for various projects",
+            "keywords": [
+                "Symfony2",
+                "bundle",
+                "public"
+            ],
+            "time": "2015-04-14 19:23:13"
         },
         {
             "name": "doctrine/annotations",
@@ -1119,12 +1186,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "53b8b1d768343d0811bf3ce7f9106c0b93d76eb2"
+                "reference": "0f130d2b0ad96914fb3e251bdfd835eb7c853660"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/53b8b1d768343d0811bf3ce7f9106c0b93d76eb2",
-                "reference": "53b8b1d768343d0811bf3ce7f9106c0b93d76eb2",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/0f130d2b0ad96914fb3e251bdfd835eb7c853660",
+                "reference": "0f130d2b0ad96914fb3e251bdfd835eb7c853660",
                 "shasum": ""
             },
             "require": {
@@ -1190,7 +1257,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-03-30 09:21:01"
+            "time": "2015-04-08 20:13:25"
         },
         {
             "name": "imagine/imagine",
@@ -1626,7 +1693,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -1684,7 +1751,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -2052,17 +2119,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v3.0.20",
+            "version": "v3.0.21",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "48c76189fb0a76a20a4a67a750b513ed06074b55"
+                "reference": "da23c78093676a823a1ff43a214987ea3fbf83c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/48c76189fb0a76a20a4a67a750b513ed06074b55",
-                "reference": "48c76189fb0a76a20a4a67a750b513ed06074b55",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/da23c78093676a823a1ff43a214987ea3fbf83c8",
+                "reference": "da23c78093676a823a1ff43a214987ea3fbf83c8",
                 "shasum": ""
             },
             "require": {
@@ -2108,7 +2175,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-03-26 11:09:50"
+            "time": "2015-04-10 06:20:46"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2445,12 +2512,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "80546293afca4387fe28fe5ad6c95c2539fa7f33"
+                "reference": "85a494c12d0a5d6f0f88cdd97dacb25210dcd386"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/80546293afca4387fe28fe5ad6c95c2539fa7f33",
-                "reference": "80546293afca4387fe28fe5ad6c95c2539fa7f33",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/85a494c12d0a5d6f0f88cdd97dacb25210dcd386",
+                "reference": "85a494c12d0a5d6f0f88cdd97dacb25210dcd386",
                 "shasum": ""
             },
             "require": {
@@ -2554,7 +2621,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-04-04 18:55:32"
+            "time": "2015-04-13 15:33:55"
         },
         {
             "name": "twig/extensions",
@@ -3295,15 +3362,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "27275208d4a610973efca73826ac7fded9154e02"
+                "reference": "ac26fe21011444f5af8fc62fd43d3b54dc773cb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/27275208d4a610973efca73826ac7fded9154e02",
-                "reference": "27275208d4a610973efca73826ac7fded9154e02",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/ac26fe21011444f5af8fc62fd43d3b54dc773cb6",
+                "reference": "ac26fe21011444f5af8fc62fd43d3b54dc773cb6",
                 "shasum": ""
             },
             "require": {
+                "ext-tokenizer": "*",
                 "php": ">=5.3.6",
                 "sebastian/diff": "~1.1",
                 "symfony/console": "~2.3",
@@ -3345,7 +3413,7 @@
                 }
             ],
             "description": "A script to automatically fix Symfony Coding Standard",
-            "time": "2015-04-01 20:11:37"
+            "time": "2015-04-14 19:15:28"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -3753,16 +3821,16 @@
         },
         {
             "name": "phploc/phploc",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phploc.git",
-                "reference": "0e7ead01180d93536dec14da10d038a62d9f509d"
+                "reference": "a47a7c4758bdfb7cebbb1ccaa2c9df882b10db7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/0e7ead01180d93536dec14da10d038a62d9f509d",
-                "reference": "0e7ead01180d93536dec14da10d038a62d9f509d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/a47a7c4758bdfb7cebbb1ccaa2c9df882b10db7f",
+                "reference": "a47a7c4758bdfb7cebbb1ccaa2c9df882b10db7f",
                 "shasum": ""
             },
             "require": {
@@ -3802,7 +3870,7 @@
             ],
             "description": "A tool for quickly measuring the size of a PHP project.",
             "homepage": "https://github.com/sebastianbergmann/phploc",
-            "time": "2015-03-10 16:49:43"
+            "time": "2015-04-12 12:00:39"
         },
         {
             "name": "phpmd/phpmd",
@@ -3928,16 +3996,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.15",
+            "version": "2.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67"
+                "reference": "934fd03eb6840508231a7f73eb8940cf32c3b66c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/34cc484af1ca149188d0d9e91412191e398e0b67",
-                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/934fd03eb6840508231a7f73eb8940cf32c3b66c",
+                "reference": "934fd03eb6840508231a7f73eb8940cf32c3b66c",
                 "shasum": ""
             },
             "require": {
@@ -3986,7 +4054,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-01-24 10:06:35"
+            "time": "2015-04-11 04:35:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4125,16 +4193,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74"
+                "reference": "eab81d02569310739373308137284e0158424330"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/db32c18eba00b121c145575fcbcd4d4d24e6db74",
-                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/eab81d02569310739373308137284e0158424330",
+                "reference": "eab81d02569310739373308137284e0158424330",
                 "shasum": ""
             },
             "require": {
@@ -4170,20 +4238,20 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-01-17 09:51:32"
+            "time": "2015-04-08 04:46:07"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.6.1",
+            "version": "4.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "08b2aacdd8433abbba468f995d6d64b76a7a62ec"
+                "reference": "163232991e652e6efed2f8470326fffa61e848e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/08b2aacdd8433abbba468f995d6d64b76a7a62ec",
-                "reference": "08b2aacdd8433abbba468f995d6d64b76a7a62ec",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/163232991e652e6efed2f8470326fffa61e848e2",
+                "reference": "163232991e652e6efed2f8470326fffa61e848e2",
                 "shasum": ""
             },
             "require": {
@@ -4222,9 +4290,6 @@
             "autoload": {
                 "classmap": [
                     "src/"
-                ],
-                "files": [
-                    "src/Framework/Assert/Functions.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4245,7 +4310,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-03 13:46:59"
+            "time": "2015-04-11 05:23:21"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4575,16 +4640,16 @@
         },
         {
             "name": "sebastian/git",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/git.git",
-                "reference": "572c35353fefcc8607d6fef0e362a9f3a5e84d96"
+                "reference": "2d5c139d0eedcb9e67e0e9ca08023be6e9b7b47b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/git/zipball/572c35353fefcc8607d6fef0e362a9f3a5e84d96",
-                "reference": "572c35353fefcc8607d6fef0e362a9f3a5e84d96",
+                "url": "https://api.github.com/repos/sebastianbergmann/git/zipball/2d5c139d0eedcb9e67e0e9ca08023be6e9b7b47b",
+                "reference": "2d5c139d0eedcb9e67e0e9ca08023be6e9b7b47b",
                 "shasum": ""
             },
             "require": {
@@ -4608,8 +4673,7 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Simple wrapper for Git",
@@ -4617,7 +4681,7 @@
             "keywords": [
                 "git"
             ],
-            "time": "2014-06-14 07:12:53"
+            "time": "2015-04-06 16:23:43"
         },
         {
             "name": "sebastian/global-state",
@@ -4863,12 +4927,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "ca687a3c5b8266aeed31306936e4e12328997c30"
+                "reference": "bc7623aec5a2efe9e9f12c25680be1cf74fb2a80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/ca687a3c5b8266aeed31306936e4e12328997c30",
-                "reference": "ca687a3c5b8266aeed31306936e4e12328997c30",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/bc7623aec5a2efe9e9f12c25680be1cf74fb2a80",
+                "reference": "bc7623aec5a2efe9e9f12c25680be1cf74fb2a80",
                 "shasum": ""
             },
             "require": {
@@ -4929,7 +4993,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-03-30 22:07:22"
+            "time": "2015-04-09 23:34:27"
         },
         {
             "name": "theseer/fdomdocument",
@@ -5087,6 +5151,7 @@
         "stof/doctrine-extensions-bundle": 20,
         "a2lix/translation-form-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
+        "dende/common-bundle": 20,
         "squizlabs/php_codesniffer": 20,
         "fabpot/php-cs-fixer": 20,
         "behat/symfony2-extension": 20,

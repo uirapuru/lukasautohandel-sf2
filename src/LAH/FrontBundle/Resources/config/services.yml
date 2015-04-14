@@ -1,0 +1,54 @@
+imports:
+    - { resource: forms.yml }
+    - { resource: menus.yml }
+
+services:
+    lah.front.search_query_modifier:
+      class: LAH\FrontBundle\Service\SearchQueryModifier
+
+    lah.front.search_query_entity_merge:
+      class: LAH\FrontBundle\Service\SearchQueryEntityMerge
+      calls:
+        - [setEntityManager, [@doctrine.orm.entity_manager]]
+
+    lah.front.manager.car:
+        class: LAH\FrontBundle\Manager\CarManager
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - LAH\FrontBundle\Entity\Car
+        calls:
+            - [setRepositoryLocale, [@service_container]]
+
+    lah.front.manager.color:
+        class: LAH\FrontBundle\Manager\ColorManager
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - LAH\FrontBundle\Entity\Color
+        calls:
+            - [setRepositoryLocale, [@service_container]]
+
+    lah.twig_extension.instance_of:
+        class: LAH\FrontBundle\Twig\InstanceOfExtension
+        tags:
+            - { name: twig.extension }
+
+    lah.twig_extension.revision:
+        class: LAH\FrontBundle\Twig\Revision
+        calls:
+          - [setRevisionFile, ["%revision_file%"]]
+        tags:
+            - { name: twig.extension }
+
+    lah.front.factory.type:
+        class: LAH\FrontBundle\Entity\Factory\TypeFactory
+
+    front_bundle.locale_listener:
+        class: LAH\FrontBundle\Service\Listener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    front_bundle.listener.generate_thumbnail:
+      class: LAH\FrontBundle\Event\Listener\GenerateThumbnailListener
+      tags:
+        - { name: doctrine.event_listener, event: uploadablePostFileProcess, method: onUploadPostFile }

@@ -2,9 +2,9 @@ default:
     suites:
         default:
             paths:
-                - %paths.base%/src/Dende/FrontBundle/Resources/features
+                - %paths.base%/src/LAH/FrontBundle/Resources/features
             contexts:
-                - Dende\FrontBundle\Features\FeatureContext: ~
+                - LAH\FrontBundle\Features\FeatureContext: ~
     extensions:
         Behat\Symfony2Extension: ~
         Behat\MinkExtension:
@@ -24,9 +24,9 @@ firefox:
     suites:
         default:
             paths:
-                - %paths.base%/src/Dende/FrontBundle/Resources/features
+                - %paths.base%/src/LAH/FrontBundle/Resources/features
             contexts:
-                - Dende\FrontBundle\Features\FeatureContext: ~
+                - LAH\FrontBundle\Features\FeatureContext: ~
     extensions:
         Behat\Symfony2Extension: ~
         Behat\MinkExtension:

@@ -1,0 +1,34 @@
+services:
+  front_bundle.menu_builder:
+      class: LAH\FrontBundle\Menu\MenuBuilder
+      arguments:
+          - "@knp_menu.factory"
+          - "@security.context"
+          - ["pl"] # "%supported_locales%"
+
+  front_bundle.menu.lang:
+      class: Knp\Menu\MenuItem
+      factory_service: front_bundle.menu_builder
+      factory_method: createLangMenu
+      arguments: ["@request"]
+      scope: request
+      tags:
+          - { name: knp_menu.menu, alias: langMenu }
+
+  front_bundle.menu.main:
+      class: Knp\Menu\MenuItem
+      factory_service: front_bundle.menu_builder
+      factory_method: createMainMenu
+      arguments: ["@request"]
+      scope: request
+      tags:
+          - { name: knp_menu.menu, alias: mainMenu }
+
+  front_bundle.menu.front:
+      class: Knp\Menu\MenuItem
+      factory_service: front_bundle.menu_builder
+      factory_method: createFrontMenu
+      arguments: ["@request"]
+      scope: request
+      tags:
+          - { name: knp_menu.menu, alias: frontMenu }
