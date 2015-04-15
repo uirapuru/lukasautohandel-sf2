@@ -15,12 +15,6 @@ class ContactFormTest extends BaseFunctionalTest
      */
     private $mailerCollector;
 
-    public function setUp()
-    {
-        $this->resetKernel();
-        $this->prepareClient();
-    }
-
     /**
      * @test
      * @group read-only

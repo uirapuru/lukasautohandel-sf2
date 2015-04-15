@@ -1,8 +1,7 @@
 <?php
 namespace LAH\FrontBundle\DataFixtures\ORM;
 
-use Dende\CommonBundle\DataFixtures\BaseFixtures;
-use Dende\CommonBundle\DataFixtures\FixtureInterface;
+use Dende\CommonBundle\DataFixtures\BaseFixture;
 use LAH\FrontBundle\Entity\Color;
 use LAH\FrontBundle\Entity\Translation\ColorTranslation;
 use Doctrine\Common\Persistence\ObjectManager;
