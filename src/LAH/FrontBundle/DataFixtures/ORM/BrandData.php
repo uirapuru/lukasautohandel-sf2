@@ -1,10 +1,11 @@
 <?php
 namespace LAH\FrontBundle\DataFixtures\ORM;
 
-use LAH\FrontBundle\DataFixtures\BaseFixture;
+use Dende\CommonBundle\DataFixtures\BaseFixtures;
+use Dende\CommonBundle\DataFixtures\FixtureInterface;
 use LAH\FrontBundle\Entity\Brand;
 
-class BrandData extends BaseFixture
+class BrandData extends BaseFixture implements FixtureInterface
 {
     public function getOrder()
     {
