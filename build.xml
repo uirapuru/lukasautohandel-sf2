@@ -5,6 +5,7 @@
     <import file="${project.basedir}/vendor/dende/common-bundle/Dende/CommonBundle/Resources/phing/database.xml"/>
     <import file="${project.basedir}/vendor/dende/common-bundle/Dende/CommonBundle/Resources/phing/tests.xml"/>
     <import file="${project.basedir}/vendor/dende/common-bundle/Dende/CommonBundle/Resources/phing/fixers.xml"/>
+    <import file="${project.basedir}/vendor/dende/common-bundle/Dende/CommonBundle/Resources/phing/reports.xml"/>
 
     <target name="clear-cache">
         <echo>Clearing cache - ${env} environment</echo>
