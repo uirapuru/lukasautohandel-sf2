@@ -3,14 +3,6 @@ imports:
     - { resource: menus.yml }
 
 services:
-    lah.front.search_query_modifier:
-      class: LAH\FrontBundle\Service\SearchQueryModifier
-
-    lah.front.search_query_entity_merge:
-      class: LAH\FrontBundle\Service\SearchQueryEntityMerge
-      calls:
-        - [setEntityManager, [@doctrine.orm.entity_manager]]
-
     lah.front.manager.car:
         class: LAH\FrontBundle\Manager\CarManager
         arguments:

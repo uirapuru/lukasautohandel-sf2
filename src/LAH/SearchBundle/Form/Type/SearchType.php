@@ -1,5 +1,5 @@
 <?php
-namespace LAH\FrontBundle\Form\Type;
+namespace LAH\SearchBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
@@ -96,7 +96,7 @@ class SearchType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class'      => 'LAH\FrontBundle\Model\SearchQuery',
+            'data_class'      => 'LAH\SearchBundle\Model\SearchQuery',
             'csrf_protection' => false,
             'method'          => "GET"
         ]);

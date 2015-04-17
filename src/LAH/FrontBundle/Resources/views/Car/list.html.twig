@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row vertical-bottom-margin">
             <div class="col-md-12">
-                {{ render(controller("FrontBundle:Default:search", {form: searchForm, action: path('car')})) }}
+                {{ render(controller("LAHSearchBundle:Default:search", {form: searchForm, action: path('car')})) }}
             </div>
         </div>
     </div>
@@ -34,46 +34,46 @@
             <tr>
                 <th colspan="7">
                     <div class="navigation">
-                        {{ knp_pagination_render(entities) }}
+                        {{ knp_pagination_render(cars) }}
                     </div>
                 </th>
             </tr>
             </tfoot>
             <tbody>
-            {% for entity in entities %}
+            {% for car in cars %}
                 <tr>
-                    <td class="column-id">{{ entity.id }}.</td>
+                    <td class="column-id">{{ car.id }}.</td>
                     <td>
                         <div class="media row">
                             <div class="media-left media-top col-xs-6 col-md-3">
-                                <a href="{{ path('car_show', { 'id': entity.id }) }}" class="thumbnail">
-                                    <img class="media-object" src="{{ asset("/uploads/thumbnails/" ~ entity.images.first.path) }}" alt="...">
+                                <a href="{{ path('car_show', { 'id': car.id }) }}" class="thumbnail">
+                                    <img class="media-object" src="{{ asset("/uploads/thumbnails/" ~ car.images.first.path) }}" alt="...">
                                 </a>
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    <a href="{{ path('car_show', { 'id': entity.id }) }}">{{ entity.getTranslated("title") }}</a>
+                                    <a href="{{ path('car_show', { 'id': car.id }) }}">{{ car.getTranslated("title") }}</a>
                                 </h4>
-                                {% set description = entity.getTranslated("description") %}
+                                {% set description = car.getTranslated("description") %}
                                 ({{ description|slice(0, 50)|striptags }}{% if description|length > 50 %}...{% endif %})
                             </div>
                         </div>
                     </td>
-                    <td><small>{{ entity.model.name }} - {{ entity.model.brand.name }} ({{ entity.year }})</small></td>
-                    <td class="column-thick">{% if entity.promoteCarousel == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
-                    <td class="column-thick">{% if entity.promoteFrontpage == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
-                    <td class="column-thick">{% if entity.hidden == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+                    <td><small>{{ car.model.name }} - {{ car.model.brand.name }} ({{ car.year }})</small></td>
+                    <td class="column-thick">{% if car.promoteCarousel == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+                    <td class="column-thick">{% if car.promoteFrontpage == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+                    <td class="column-thick">{% if car.hidden == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
                     <td>
                         <span class="btn-group">
-                            <a href="{{ path('car_show', { 'id': entity.id }) }}" title="{{ "crud.action.show"|trans }}" class="xcrud-action btn btn-info btn-sm">
+                            <a href="{{ path('car_show', { 'id': car.id }) }}" title="{{ "crud.action.show"|trans }}" class="xcrud-action btn btn-info btn-sm">
                                 <i class="glyphicon glyphicon-search"></i>
                             </a>
 
-                            <a href="{{ path('edit_car', { 'id': entity.id }) }}" title="{{ "crud.action.edit"|trans }}" class="xcrud-action btn btn-warning btn-sm">
+                            <a href="{{ path('edit_car', { 'id': car.id }) }}" title="{{ "crud.action.edit"|trans }}" class="xcrud-action btn btn-warning btn-sm">
                                 <i class="glyphicon glyphicon-edit "></i>
                             </a>
 
-                            <a href="{{ path('delete_car', { 'id': entity.id }) }}"  onclick="return confirm('{{ 'crud.action.are_you_sure'|trans }}')" title="{{ "crud.action.delete"|trans }}" class="btn btn-danger btn-sm">
+                            <a href="{{ path('delete_car', { 'id': car.id }) }}"  onclick="return confirm('{{ 'crud.action.are_you_sure'|trans }}')" title="{{ "crud.action.delete"|trans }}" class="btn btn-danger btn-sm">
                                 <i class="glyphicon glyphicon-remove"></i>
                             </a>
                         </span>

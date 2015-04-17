@@ -1,7 +1,4 @@
-
 module.exports = function (grunt) {
-    //require('time-grunt')(grunt);
-    //require('quiet-grunt');
 
     var cssVendors = [
         'bower_components/bootstrap/dist/css/bootstrap.css',
@@ -29,7 +26,7 @@ module.exports = function (grunt) {
     ];
 
     var coffeeFilesFront = [
-        'src/LAH/FrontBundle/Resources/coffee/searchForm.coffee',
+        'src/LAH/SearchBundle/Resources/coffee/searchForm.coffee',
         'src/LAH/FrontBundle/Resources/coffee/frontend.coffee',
     ];
 

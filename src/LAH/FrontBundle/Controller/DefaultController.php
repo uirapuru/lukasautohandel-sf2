@@ -3,13 +3,11 @@ namespace LAH\FrontBundle\Controller;
 
 use LAH\FrontBundle\Entity\Brand;
 use LAH\FrontBundle\Entity\Car;
-use LAH\FrontBundle\Model\SearchQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,22 +22,6 @@ class DefaultController extends Controller
     public function indexAction()
     {
         return [];
-    }
-
-    /**
-     * @Template()
-     *
-     * @Method({"GET"})
-     */
-    public function searchAction($form = null)
-    {
-        if (!$form) {
-            $form = $this->createForm('search', new SearchQuery(), [
-                "method" => "GET"
-            ]);
-        }
-
-        return ['form' => $form->createView()];
     }
 
     /**
@@ -73,52 +55,18 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/list/{page}", name="list", defaults={ "page" = 1})
+     * @Route("/list", name="list")
      * @Template()
      *
      * @Method({"GET"})
      */
-    public function listAction(Request $request, $page = 1)
+    public function listAction(Request $request)
     {
-        $searchQuery = new SearchQuery();
-        $form = $this->createForm('search', $searchQuery, [
-            "method" => "GET"
+        return $this->forward("LAHSearchBundle:Default:list", [
+            'request' => $request,
+            'template' => 'FrontBundle:Default:list.html.twig',
+            'action' => $this->generateUrl('list')
         ]);
-
-        $qb = $this->getDoctrine()->getRepository('FrontBundle:Car')->createQueryBuilder('c');
-
-        $cacheId = ['DefaultController:listAction'];
-
-        $this->get('lah.front.search_query_entity_merge')->merge($searchQuery);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            /*
-             * @var SearchQuery
-             */
-            $searchQuery = $form->getData();
-
-            $this->get('lah.front.search_query_modifier')->modify($searchQuery, $qb, $cacheId);
-        } else {
-            $pagination =  $this->get('knp_paginator')->paginate([], 1, 10);
-            return ['cars' => $pagination, 'searchForm' => $form];
-        }
-
-        /*
-         * @var PersistentCollection $cars
-         */
-
-        $query = $qb->getQuery();
-
-        $query->useResultCache(true, 3600, md5(implode('/', $cacheId)));
-
-        $pagination =  $this->get('knp_paginator')->paginate($query, $page, 10);
-
-        return [
-            'cars'       => $pagination,
-            'searchForm' => $form,
-        ];
     }
 
     /**

@@ -3,7 +3,7 @@ namespace LAH\FrontBundle\Controller;
 
 use A2lix\TranslationFormBundle\Annotation\GedmoTranslation;
 use LAH\FrontBundle\Entity\Car;
-use LAH\FrontBundle\Model\SearchQuery;
+use LAH\SearchBundle\Model\SearchQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -116,57 +116,18 @@ class CarController extends Controller
     }
 
     /**
-     * @Route("/list/{page}", name="car", defaults={ "page" = 1})
+     * @Route("/list", name="car")
      * @Template()
      *
      * @Method({"GET", "POST"})
      */
-    public function listAction(Request $request, $page = 1)
+    public function listAction(Request $request)
     {
-        $searchQuery = new SearchQuery();
-
-        $formType = $this->get('lah.front.form.type.search');
-        $form        = $this->createForm($formType, $searchQuery, [
-            "action" => $this->generateUrl("car"),
-            "method" => "GET"
+        return $this->forward("LAHSearchBundle:Default:list", [
+            'request' => $request,
+            'template' => 'FrontBundle:Car:list.html.twig',
+            'action' => $this->generateUrl('car')
         ]);
-
-        $qb          = $this->getDoctrine()->getRepository('FrontBundle:Car')->createQueryBuilder('c');
-
-        $cacheId = ['DefaultController:listAction'];
-
-        $this->get('lah.front.search_query_entity_merge')->merge($searchQuery);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            /*
-             * @var SearchQuery
-             */
-            $searchQuery = $form->getData();
-
-            $this->get('lah.front.search_query_modifier')->modify($searchQuery, $qb, $cacheId);
-        }
-
-        /*
-         * @var PersistentCollection $cars
-         */
-
-        $query = $qb->getQuery();
-
-        $query->useResultCache(true, 3600, md5(implode('/', $cacheId)));
-
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $query,
-            $request->query->get('page', $page),
-            10
-        );
-
-        return [
-            'entities'       => $pagination,
-            'searchForm' => $form,
-        ];
     }
 
 

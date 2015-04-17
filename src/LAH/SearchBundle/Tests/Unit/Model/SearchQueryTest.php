@@ -1,10 +1,10 @@
 <?php
-namespace LAH\FrontBundle\Tests\Unit\Model;
+namespace LAH\SearchBundle\Tests\Unit\Model;
 
 use LAH\FrontBundle\Entity\Brand;
 use LAH\FrontBundle\Entity\Model;
 use LAH\FrontBundle\Entity\Type;
-use LAH\FrontBundle\Model\SearchQuery;
+use LAH\SearchBundle\Model\SearchQuery;
 
 class SearchQueryTest extends \PHPUnit_Framework_TestCase
 {

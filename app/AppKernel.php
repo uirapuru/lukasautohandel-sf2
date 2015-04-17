@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Dende\CommonBundle\DendeCommonBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new LAH\SearchBundle\LAHSearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
