@@ -97,7 +97,7 @@ class SearchType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class'      => 'LAH\FrontBundle\Model\SearchQuery',
-            'csrf_protection' => true,
+            'csrf_protection' => false,
             'method'          => "GET"
         ]);
     }
