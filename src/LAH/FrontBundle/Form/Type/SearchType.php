@@ -90,7 +90,7 @@ class SearchType extends AbstractType
 
     public function getName()
     {
-        return 'lah_form_search';
+        return 'search';
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -98,6 +98,7 @@ class SearchType extends AbstractType
         $resolver->setDefaults([
             'data_class'      => 'LAH\FrontBundle\Model\SearchQuery',
             'csrf_protection' => true,
+            'method'          => "GET"
         ]);
     }
 }

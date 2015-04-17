@@ -95,7 +95,7 @@ crud:
     header:
         title: 'tytuł'
         model: 'model'
-        promote_carousel: 'promój zdjęcie'
+        promote_carousel: 'promuj zdjęcie'
         promote_frontpage: 'na głównej'
         hidden: 'ukryty'
         created_at: 'stworzony'
