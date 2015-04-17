@@ -4,11 +4,16 @@
 <div class="grid_8">
     <div class="inner-block">
         <h2 class="h2-border top-1">{{ 'list.caption'|trans }} :
-            <span id="list-result-count">{{ cars|length }}</span>
+            <span id="list-result-count">{{ cars.getTotalItemCount }}</span>
+
 
             <a class="link" href="{{ path("list") }}">{{ 'list.show_all_link'|trans }}</a>
         </h2>
+
         <div class="box-3">
+
+            {{ knp_pagination_render(cars) }}
+
             <ul class="search-results">
                 {% for car in cars %}
                     {% set link = path("show", {id: car.id, slug: car.slug}) %}
@@ -33,11 +38,26 @@
                     </li>
                 {% endfor %}
             </ul>
+
+            {{ knp_pagination_render(cars) }}
+
         </div>
     </div>
 </div>
 
-{{ render(controller("FrontBundle:Default:search", {form: searchForm})) }}
+<div class="grid_4 bg-white">
+    <div class="inner-block">
+        <div class="pad-1">
+            <div class="form-title">{{ 'search.form.caption_search'|trans }}
+                <span>{{ 'search.form.caption_search_small'|trans }}</span>
+            </div>
 
-<div class="clear"></div>
+            {{ render(controller("FrontBundle:Default:search", {form: searchForm, action: path('list')})) }}
+
+        </div>
+    </div>
+</div>
+
+
+    <div class="clear"></div>
 {% endblock %}

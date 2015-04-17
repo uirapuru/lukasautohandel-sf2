@@ -9,6 +9,14 @@
         </div>
     </div>
 
+    <div class="container-fluid">
+        <div class="row vertical-bottom-margin">
+            <div class="col-md-12">
+                {{ render(controller("FrontBundle:Default:search", {form: searchForm, action: path('car')})) }}
+            </div>
+        </div>
+    </div>
+
     <div class="table-responsive">
         <table id="carsTable" class="table table-striped table-hover table-bordered records_list">
             <thead>
@@ -19,11 +27,18 @@
                     <th><i class="glyphicon glyphicon-film"></i> {{ 'crud.header.promote_carousel'|trans }}</th>
                     <th><i class="glyphicon glyphicon-list-alt"></i> {{ 'crud.header.promote_frontpage'|trans }}</th>
                     <th><i class="glyphicon glyphicon-off"></i> {{ 'crud.header.hidden'|trans }}</th>
-                    {#<th><i class="glyphicon glyphicon-th"></i> {{ 'crud.header.created_at'|trans }}</th>#}
-                    {#<th><i class="glyphicon glyphicon-th-list"></i> {{ 'crud.header.modified_at'|trans }}</th>#}
                     <th><i class="glyphicon glyphicon-pencil"></i> {{ 'crud.header.actions'|trans }}</th>
                 </tr>
             </thead>
+            <tfoot>
+            <tr>
+                <th colspan="7">
+                    <div class="navigation">
+                        {{ knp_pagination_render(entities) }}
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
             <tbody>
             {% for entity in entities %}
                 <tr>
@@ -48,8 +63,6 @@
                     <td class="column-thick">{% if entity.promoteCarousel == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
                     <td class="column-thick">{% if entity.promoteFrontpage == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
                     <td class="column-thick">{% if entity.hidden == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
-                    {#<td class="small">{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                    {#<td class="small">{% if entity.modified %}{{ entity.modified|date('Y-m-d H:i:s') }}{% endif %}</td>#}
                     <td>
                         <span class="btn-group">
                             <a href="{{ path('car_show', { 'id': entity.id }) }}" title="{{ "crud.action.show"|trans }}" class="xcrud-action btn btn-info btn-sm">
@@ -69,6 +82,8 @@
             {% endfor %}
             </tbody>
         </table>
+
     </div>
+
 
     {% endblock %}

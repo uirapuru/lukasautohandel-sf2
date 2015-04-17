@@ -2,7 +2,7 @@ services:
     lah.front.form.type.search:
         class: LAH\FrontBundle\Form\Type\SearchType
         tags:
-            - {name: form.type, alias: lah_form_search }
+            - {name: form.type, alias: search }
 
     lah.front.form.type.car:
         class: LAH\FrontBundle\Form\Type\CarType

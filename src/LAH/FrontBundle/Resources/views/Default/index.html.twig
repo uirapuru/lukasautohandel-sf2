@@ -7,7 +7,18 @@
     </div>
 </div>
 
-{{ render(controller("FrontBundle:Default:search")) }}
+<div class="grid_4 bg-white">
+    <div class="inner-block">
+        <div class="pad-1">
+            <div class="form-title">{{ 'search.form.caption_search'|trans }}
+                <span>{{ 'search.form.caption_search_small'|trans }}</span>
+            </div>
+
+            {{ render(controller("FrontBundle:Default:search")) }}
+
+        </div>
+    </div>
+</div>
 
 <div class="clear p2"></div>
 <div class="grid_8">

@@ -34,7 +34,9 @@ class DefaultController extends Controller
     public function searchAction($form = null)
     {
         if (!$form) {
-            $form = $this->createForm('lah_form_search', new SearchQuery());
+            $form = $this->createForm('search', new SearchQuery(), [
+                "method" => "GET"
+            ]);
         }
 
         return ['form' => $form->createView()];
@@ -71,33 +73,36 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/list", name="list")
+     * @Route("/list/{page}", name="list", defaults={ "page" = 1})
      * @Template()
      *
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      */
-    public function listAction(Request $request)
+    public function listAction(Request $request, $page = 1)
     {
         $searchQuery = new SearchQuery();
-        $form        = $this->createForm('lah_form_search', $searchQuery);
-        $qb          = $this->getDoctrine()->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+        $form = $this->createForm('search', $searchQuery, [
+            "method" => "GET"
+        ]);
+
+        $qb = $this->getDoctrine()->getRepository('FrontBundle:Car')->createQueryBuilder('c');
 
         $cacheId = ['DefaultController:listAction'];
 
-        if ($request->isMethod('POST')) {
-            $this->get('lah.front.search_query_entity_merge')->merge($searchQuery);
-            $form->handleRequest($request);
+        $this->get('lah.front.search_query_entity_merge')->merge($searchQuery);
 
-            if ($form->isValid()) {
-                /*
-                 * @var SearchQuery
-                 */
-                $searchQuery = $form->getData();
+        $form->handleRequest($request);
 
-                $this->get('lah.front.search_query_modifier')->modify($searchQuery, $qb, $cacheId);
-            } else {
-                return ['cars' => [], 'searchForm' => $form];
-            }
+        if ($form->isValid()) {
+            /*
+             * @var SearchQuery
+             */
+            $searchQuery = $form->getData();
+
+            $this->get('lah.front.search_query_modifier')->modify($searchQuery, $qb, $cacheId);
+        } else {
+            $pagination =  $this->get('knp_paginator')->paginate([], 1, 10);
+            return ['cars' => $pagination, 'searchForm' => $form];
         }
 
         /*
@@ -108,8 +113,10 @@ class DefaultController extends Controller
 
         $query->useResultCache(true, 3600, md5(implode('/', $cacheId)));
 
+        $pagination =  $this->get('knp_paginator')->paginate($query, $page, 10);
+
         return [
-            'cars'       => $query->execute(),
+            'cars'       => $pagination,
             'searchForm' => $form,
         ];
     }

@@ -3,6 +3,7 @@ namespace LAH\FrontBundle\Controller;
 
 use A2lix\TranslationFormBundle\Annotation\GedmoTranslation;
 use LAH\FrontBundle\Entity\Car;
+use LAH\FrontBundle\Model\SearchQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -115,23 +116,59 @@ class CarController extends Controller
     }
 
     /**
-     * Lists all Car entities.
-     *
-     * @Route("/", name="car")
-     *
-     * @Method("GET")
+     * @Route("/list/{page}", name="car", defaults={ "page" = 1})
      * @Template()
+     *
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function listAction(Request $request, $page = 1)
     {
-        $em = $this->getDoctrine()->getManager();
+        $searchQuery = new SearchQuery();
 
-        $entities = $em->getRepository('FrontBundle:Car')->findAll();
+        $formType = $this->get('lah.front.form.type.search');
+        $form        = $this->createForm($formType, $searchQuery, [
+            "action" => $this->generateUrl("car"),
+            "method" => "GET"
+        ]);
+
+        $qb          = $this->getDoctrine()->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+
+        $cacheId = ['DefaultController:listAction'];
+
+        $this->get('lah.front.search_query_entity_merge')->merge($searchQuery);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            /*
+             * @var SearchQuery
+             */
+            $searchQuery = $form->getData();
+
+            $this->get('lah.front.search_query_modifier')->modify($searchQuery, $qb, $cacheId);
+        }
+
+        /*
+         * @var PersistentCollection $cars
+         */
+
+        $query = $qb->getQuery();
+
+        $query->useResultCache(true, 3600, md5(implode('/', $cacheId)));
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->get('page', $page),
+            10
+        );
 
         return [
-            'entities' => $entities,
+            'entities'       => $pagination,
+            'searchForm' => $form,
         ];
     }
+
 
     /**
      * Finds and displays a Car entity.

@@ -24,7 +24,7 @@ class SearchFormTest extends BaseFunctionalTest
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('list'));
         $this->assertEquals(200, $this->getStatusCode());
 
-        $forms = $crawler->filter('form[name="lah_form_search"]');
+        $forms = $crawler->filter('form[name="search"]');
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
@@ -40,7 +40,7 @@ class SearchFormTest extends BaseFunctionalTest
      * @group read-only
      * @dataProvider searchDataProvider
      */
-    public function i_can_find_cars_by_submitting_search_form($params, $count)
+    public function i_can_find_cars_by_submitting_search_form($params, $resultsCountExpected, $countExpected, $pagesExpected = 1)
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
 
@@ -51,7 +51,7 @@ class SearchFormTest extends BaseFunctionalTest
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('list'));
         $this->assertEquals(200, $this->getStatusCode());
 
-        $forms = $crawler->filter('form[name="lah_form_search"]');
+        $forms = $crawler->filter('form[name="search"]');
         $this->assertEquals(1, $forms->count());
 
         /*
@@ -60,17 +60,19 @@ class SearchFormTest extends BaseFunctionalTest
         $form = $forms->first()->form();
 
         $form->setValues([
-            'lah_form_search[type]'  => is_object($type) ? $type->getId() : $type,
-            'lah_form_search[model]' => is_object($model) ? $model->getId() : $model,
-            'lah_form_search[brand]' => is_object($brand) ? $brand->getId() : $brand,
+            'search[type]'  => is_object($type) ? $type->getId() : $type,
+            'search[model]' => is_object($model) ? $model->getId() : $model,
+            'search[brand]' => is_object($brand) ? $brand->getId() : $brand,
         ]);
 
         $crawler      = $this->client->submit($form);
         $resultsCount = (int) $crawler->filter('span#list-result-count')->text();
         $carsCount    = (int) $crawler->filter('ul.search-results li')->count();
+        $pages    = (int) $crawler->filter('div.pagination:first-child span')->count();
 
-        $this->assertEquals($count, $resultsCount);
-        $this->assertEquals($count, $carsCount);
+        $this->assertEquals($resultsCountExpected, $resultsCount);
+        $this->assertEquals($countExpected, $carsCount);
+        $this->assertEquals($pagesExpected, $pages == 0 ? 1 : $pages - 2);
     }
 
     public function searchDataProvider()
@@ -82,7 +84,8 @@ class SearchFormTest extends BaseFunctionalTest
                     'brand' => null,
                     'type'  => null,
                 ],
-                'count' => 3,
+                'countExpected' => 3,
+                'resultsCountExpected' => 3,
             ],
             'search-by-model-2' => [
                 'params' => [
@@ -90,7 +93,8 @@ class SearchFormTest extends BaseFunctionalTest
                     'brand' => null,
                     'type'  => null,
                 ],
-                'count' => 0,
+                'countExpected' => 0,
+                'resultsCountExpected' => 0,
             ],
             'search-by-brand-1' => [
                 'params' => [
@@ -98,7 +102,8 @@ class SearchFormTest extends BaseFunctionalTest
                     'brand' => 'Audi',
                     'type'  => null,
                 ],
-                'count' => 8,
+                'countExpected' => 8,
+                'resultsCountExpected' => 8,
             ],
             'search-by-brand-2' => [
                 'params' => [
@@ -106,7 +111,8 @@ class SearchFormTest extends BaseFunctionalTest
                     'brand' => 'BMW',
                     'type'  => null,
                 ],
-                'count' => 0,
+                'countExpected' => 0,
+                'resultsCountExpected' => 0,
             ],
             'search-by-type-1' => [
                 'params' => [
@@ -114,7 +120,9 @@ class SearchFormTest extends BaseFunctionalTest
                     'brand' => null,
                     'type'  => 'Sedan',
                 ],
-                'count' => 11,
+                'countExpected' => 11,
+                'resultsCountExpected' => 10,
+                'pagesExpected' => 2,
             ],
             'search-by-type-2' => [
                 'params' => [
@@ -122,7 +130,8 @@ class SearchFormTest extends BaseFunctionalTest
                     'brand' => null,
                     'type'  => 'Hatchback',
                 ],
-                'count' => 0,
+                'countExpected' => 0,
+                'resultsCountExpected' => 0,
             ],
             'search-by-mixed-1' => [
                 'params' => [
@@ -130,7 +139,8 @@ class SearchFormTest extends BaseFunctionalTest
                     'brand' => 'VolksWagen',
                     'model' => 'Golf',
                 ],
-                'count' => 3,
+                'countExpected' => 3,
+                'resultsCountExpected' => 3,
             ],
             'search-by-mixed-2' => [
                 'params' => [
@@ -138,7 +148,8 @@ class SearchFormTest extends BaseFunctionalTest
                     'brand' => 'VolksWagen',
                     'model' => 'Golf',
                 ],
-                'count' => 0,
+                'countExpected' => 0,
+                'resultsCountExpected' => 0,
             ],
         ];
     }
@@ -157,7 +168,7 @@ class SearchFormTest extends BaseFunctionalTest
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('list'));
         $this->assertEquals(200, $this->getStatusCode());
 
-        $forms = $crawler->filter('form[name="lah_form_search"]');
+        $forms = $crawler->filter('form[name="search"]');
         $this->assertEquals(1, $forms->count());
 
         /*
@@ -166,8 +177,8 @@ class SearchFormTest extends BaseFunctionalTest
         $form = $forms->first()->form();
 
         $form->setValues([
-            'lah_form_search[model]' => $model->getId(),
-            'lah_form_search[brand]' => $brand->getId(),
+            'search[model]' => $model->getId(),
+            'search[brand]' => $brand->getId(),
         ]);
 
         $crawler      = $this->client->submit($form);
