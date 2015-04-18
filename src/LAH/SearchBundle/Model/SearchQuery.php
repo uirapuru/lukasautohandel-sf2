@@ -1,5 +1,5 @@
 <?php
-namespace LAH\FrontBundle\Model;
+namespace LAH\SearchBundle\Model;
 
 use LAH\FrontBundle\Entity\Brand;
 use LAH\FrontBundle\Entity\Model;

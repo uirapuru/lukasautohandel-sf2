@@ -1,5 +1,5 @@
 <?php
-namespace LAH\FrontBundle\Tests\Functional;
+namespace LAH\SearchBundle\Tests\Functional;
 
 use LAH\FrontBundle\Entity\Brand;
 use LAH\FrontBundle\Entity\Model;

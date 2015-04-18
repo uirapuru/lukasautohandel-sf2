@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class CarController.
  *
- * @Route("/admin/")
+ * @Route("/admin")
  */
 class DashboardController extends Controller
 {

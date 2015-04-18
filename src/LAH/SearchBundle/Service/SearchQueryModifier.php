@@ -1,10 +1,10 @@
 <?php
-namespace LAH\FrontBundle\Service;
+namespace LAH\SearchBundle\Service;
 
 use LAH\FrontBundle\Entity\Brand;
 use LAH\FrontBundle\Entity\Model;
 use LAH\FrontBundle\Entity\Type;
-use LAH\FrontBundle\Model\SearchQuery;
+use LAH\SearchBundle\Model\SearchQuery;
 use Doctrine\ORM\QueryBuilder;
 
 class SearchQueryModifier
