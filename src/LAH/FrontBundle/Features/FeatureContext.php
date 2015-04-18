@@ -395,7 +395,7 @@ final class FeatureContext extends MinkContext implements Context
      */
     public function iSubmitSearchForm()
     {
-        $this->iSubmitForm('form1');
+        $this->iSubmitForm('lahSearchForm');
     }
 
     /**

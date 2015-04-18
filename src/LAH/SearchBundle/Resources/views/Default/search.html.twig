@@ -1,6 +1,6 @@
 {{ form_start(form, {
     attr: {
-        'id'        : 'form1',
+        'id'        : 'lahSearchForm',
         'novalidate': 'novalidate',
         'data-empty-label' : 'search.form.label.empty'|trans
     }
@@ -26,7 +26,7 @@
     </span>
 </label>
 
-<a onClick="document.getElementById('form1').submit()" href="javascript:;" class="button">{{ 'search.form.label.search'|trans }}</a>
+<a onClick="document.getElementById('lahSearchForm').submit()" href="javascript:;" class="button">{{ 'search.form.label.search'|trans }}</a>
 
 {{ form_rest(form) }}
 
