@@ -17,16 +17,18 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new LAH\FrontBundle\FrontBundle(),
-            new LAH\MailerBundle\MailerBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new Dende\CommonBundle\DendeCommonBundle(),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new SmartCore\Bundle\AcceleratorCacheBundle\AcceleratorCacheBundle(),
+
+            new LAH\FrontBundle\FrontBundle(),
+            new LAH\MailerBundle\MailerBundle(),
             new LAH\SearchBundle\LAHSearchBundle(),
+            new Dende\CommonBundle\DendeCommonBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
