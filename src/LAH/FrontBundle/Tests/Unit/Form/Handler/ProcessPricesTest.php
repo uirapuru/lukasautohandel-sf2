@@ -1,7 +1,7 @@
 <?php
 namespace LAH\FrontBundle\Tests\Unit\Form\Handler;
 
-use LAH\FrontBundle\Form\Handler\ProcessPrices;
+use LAH\AdminBundle\Form\Handler\ProcessPrices;
 use Doctrine\Common\Collections\ArrayCollection;
 use Mockery as m;
 
@@ -9,10 +9,10 @@ class ProcessPricesTest extends \PHPUnit_Framework_TestCase
 {
     public function testRemoveUnused()
     {
-        $priceMock = m::mock("LAH\FrontBundle\Entity\Price");
+        $priceMock = m::mock("LAH\MainBundle\Entity\Price");
         $priceMock->shouldReceive('setCar')->withArgs([null])->once();
 
-        $carMock = m::mock("LAH\FrontBundle\Entity\Car");
+        $carMock = m::mock("LAH\MainBundle\Entity\Car");
         $carMock->shouldReceive('getPrices->contains')->once()->andReturn(false);
 
         $originalPricesMock = new ArrayCollection([$priceMock]);

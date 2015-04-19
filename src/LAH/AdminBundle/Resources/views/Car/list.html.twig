@@ -1,0 +1,89 @@
+{% extends '@LAHAdmin/layout.html.twig' %}
+
+{% block body -%}
+    <div class="container-fluid">
+        <div class="row vertical-bottom-margin">
+            <div class="col-md-12">
+                <a href="{{ url("add_car") }}" class="btn btn-danger pull-right">{{ "crud.action.add"|trans }}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row vertical-bottom-margin">
+            <div class="col-md-12">
+                {{ render(controller("LAHSearchBundle:Default:search", {form: searchForm, action: path('car')})) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table id="carsTable" class="table table-striped table-hover table-bordered records_list">
+            <thead>
+                <tr>
+                    <th><i class="glyphicon glyphicon-record"></i> Id</th>
+                    <th><i class="glyphicon glyphicon-home"></i> {{ 'crud.header.title'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-heart"></i> {{ 'crud.header.model'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-film"></i> {{ 'crud.header.promote_carousel'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-list-alt"></i> {{ 'crud.header.promote_frontpage'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-off"></i> {{ 'crud.header.hidden'|trans }}</th>
+                    <th><i class="glyphicon glyphicon-pencil"></i> {{ 'crud.header.actions'|trans }}</th>
+                </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th colspan="7">
+                    <div class="navigation">
+                        {{ knp_pagination_render(cars) }}
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+            <tbody>
+            {% for car in cars %}
+                <tr>
+                    <td class="column-id">{{ car.id }}.</td>
+                    <td>
+                        <div class="media row">
+                            <div class="media-left media-top col-xs-6 col-md-3">
+                                <a href="{{ path('car_show', { 'id': car.id }) }}" class="thumbnail">
+                                    <img class="media-object" src="{{ asset("/uploads/thumbnails/" ~ car.images.first.path) }}" alt="...">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="{{ path('car_show', { 'id': car.id }) }}">{{ car.getTranslated("title") }}</a>
+                                </h4>
+                                {% set description = car.getTranslated("description") %}
+                                ({{ description|slice(0, 50)|striptags }}{% if description|length > 50 %}...{% endif %})
+                            </div>
+                        </div>
+                    </td>
+                    <td><small>{{ car.model.name }} - {{ car.model.brand.name }} ({{ car.year }})</small></td>
+                    <td class="column-thick">{% if car.promoteCarousel == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+                    <td class="column-thick">{% if car.promoteFrontpage == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+                    <td class="column-thick">{% if car.hidden == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+                    <td>
+                        <span class="btn-group">
+                            <a href="{{ path('car_show', { 'id': car.id }) }}" title="{{ "crud.action.show"|trans }}" class="xcrud-action btn btn-info btn-sm">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </a>
+
+                            <a href="{{ path('edit_car', { 'id': car.id }) }}" title="{{ "crud.action.edit"|trans }}" class="xcrud-action btn btn-warning btn-sm">
+                                <i class="glyphicon glyphicon-edit "></i>
+                            </a>
+
+                            <a href="{{ path('delete_car', { 'id': car.id }) }}"  onclick="return confirm('{{ 'crud.action.are_you_sure'|trans }}')" title="{{ "crud.action.delete"|trans }}" class="btn btn-danger btn-sm">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+    {% endblock %}

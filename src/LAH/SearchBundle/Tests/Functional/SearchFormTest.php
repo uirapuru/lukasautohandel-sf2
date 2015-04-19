@@ -1,10 +1,10 @@
 <?php
 namespace LAH\SearchBundle\Tests\Functional;
 
-use LAH\FrontBundle\Entity\Brand;
-use LAH\FrontBundle\Entity\Model;
-use LAH\FrontBundle\Entity\Type;
-use LAH\FrontBundle\Tests\BaseFunctionalTest;
+use LAH\MainBundle\Entity\Brand;
+use LAH\MainBundle\Entity\Model;
+use LAH\MainBundle\Entity\Type;
+use LAH\MainBundle\Tests\BaseFunctionalTest;
 use Symfony\Component\DomCrawler\Form;
 
 class SearchFormTest extends BaseFunctionalTest
@@ -17,9 +17,9 @@ class SearchFormTest extends BaseFunctionalTest
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $carTypes  = $em->getRepository('FrontBundle:Type')->findAll();
-        $carModels = $em->getRepository('FrontBundle:Model')->findAll();
-        $carBrands = $em->getRepository('FrontBundle:Brand')->findAll();
+        $carTypes  = $em->getRepository('LAHMainBundle:Type')->findAll();
+        $carModels = $em->getRepository('LAHMainBundle:Model')->findAll();
+        $carBrands = $em->getRepository('LAHMainBundle:Brand')->findAll();
 
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('list'));
         $this->assertEquals(200, $this->getStatusCode());
@@ -44,9 +44,9 @@ class SearchFormTest extends BaseFunctionalTest
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $type  = $em->getRepository('FrontBundle:Type')->findOneByName($params['type']);
-        $model = $em->getRepository('FrontBundle:Model')->findOneByName($params['model']);
-        $brand = $em->getRepository('FrontBundle:Brand')->findOneByName($params['brand']);
+        $type  = $em->getRepository('LAHMainBundle:Type')->findOneByName($params['type']);
+        $model = $em->getRepository('LAHMainBundle:Model')->findOneByName($params['model']);
+        $brand = $em->getRepository('LAHMainBundle:Brand')->findOneByName($params['brand']);
 
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('list'));
         $this->assertEquals(200, $this->getStatusCode());
@@ -162,8 +162,8 @@ class SearchFormTest extends BaseFunctionalTest
     {
         $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $brand = $em->getRepository('FrontBundle:Brand')->findOneByName('VolksWagen');
-        $model = $em->getRepository('FrontBundle:Model')->findOneByName('A3');
+        $brand = $em->getRepository('LAHMainBundle:Brand')->findOneByName('VolksWagen');
+        $model = $em->getRepository('LAHMainBundle:Model')->findOneByName('A3');
 
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('list'));
         $this->assertEquals(200, $this->getStatusCode());

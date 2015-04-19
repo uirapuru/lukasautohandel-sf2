@@ -1,0 +1,18 @@
+{% extends "LAHAdminBundle:Car:add.html.twig" %}
+
+{%  block body %}
+    {% include "@LAHAdmin/Car/_flash.html.twig" with {form: form} %}
+
+    {{ form_start(form, {
+        action: url('edit_car', {id : car.getId()}),
+        attr: {
+            'id'        : 'editCar',
+            'novalidate': 'novalidate',
+            'data-image-prototype': _theme.image_item(form.images.vars.prototype)|e,
+            'data-price-prototype': _theme.price_item(form.prices.vars.prototype)|e
+        }
+    }) }}
+
+    {% include "@LAHAdmin/Car/_form.html.twig" %}
+
+{%  endblock body %}

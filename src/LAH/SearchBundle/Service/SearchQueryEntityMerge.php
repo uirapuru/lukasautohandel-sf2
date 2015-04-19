@@ -1,9 +1,9 @@
 <?php
 namespace LAH\SearchBundle\Service;
 
-use LAH\FrontBundle\Entity\Brand;
-use LAH\FrontBundle\Entity\Model;
-use LAH\FrontBundle\Entity\Type;
+use LAH\MainBundle\Entity\Brand;
+use LAH\MainBundle\Entity\Model;
+use LAH\MainBundle\Entity\Type;
 use LAH\SearchBundle\Model\SearchQuery;
 use Doctrine\ORM\EntityManager;
 

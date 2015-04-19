@@ -2,9 +2,10 @@ default:
     suites:
         default:
             paths:
+                - %paths.base%/src/LAH/AdminBundle/Resources/features
                 - %paths.base%/src/LAH/FrontBundle/Resources/features
             contexts:
-                - LAH\FrontBundle\Features\FeatureContext: ~
+                - LAH\MainBundle\Features\FeatureContext: ~
     extensions:
         Behat\Symfony2Extension: ~
         Behat\MinkExtension:
@@ -24,9 +25,10 @@ firefox:
     suites:
         default:
             paths:
+                - %paths.base%/src/LAH/AdminBundle/Resources/features
                 - %paths.base%/src/LAH/FrontBundle/Resources/features
             contexts:
-                - LAH\FrontBundle\Features\FeatureContext: ~
+                - LAH\MainBundle\Features\FeatureContext: ~
     extensions:
         Behat\Symfony2Extension: ~
         Behat\MinkExtension:

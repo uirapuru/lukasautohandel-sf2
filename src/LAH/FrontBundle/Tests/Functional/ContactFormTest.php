@@ -1,12 +1,8 @@
 <?php
 namespace LAH\FrontBundle\Tests\Functional;
 
-use LAH\FrontBundle\Entity\Brand;
-use LAH\FrontBundle\Entity\Model;
-use LAH\FrontBundle\Entity\Type;
-use LAH\FrontBundle\Tests\BaseFunctionalTest;
+use LAH\MainBundle\Tests\BaseFunctionalTest;
 use Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector;
-use Symfony\Component\DomCrawler\Form;
 
 class ContactFormTest extends BaseFunctionalTest
 {
@@ -24,7 +20,7 @@ class ContactFormTest extends BaseFunctionalTest
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('contact'));
         $this->assertEquals(200, $this->getStatusCode());
 
-        $forms = $crawler->filter('form[name="lah_form_contact"]');
+        $forms = $crawler->filter('form[name="lah_contact"]');
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
@@ -34,7 +30,7 @@ class ContactFormTest extends BaseFunctionalTest
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('contact', ["id" => 1]));
         $this->assertEquals(200, $this->getStatusCode());
 
-        $forms = $crawler->filter('form[name="lah_form_contact"]');
+        $forms = $crawler->filter('form[name="lah_contact"]');
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
@@ -51,7 +47,7 @@ class ContactFormTest extends BaseFunctionalTest
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('contact'));
         $this->assertEquals(200, $this->getStatusCode());
 
-        $forms = $crawler->filter('form[name="lah_form_contact"]');
+        $forms = $crawler->filter('form[name="lah_contact"]');
         $this->assertEquals(1, $forms->count());
 
         /*
@@ -60,10 +56,10 @@ class ContactFormTest extends BaseFunctionalTest
         $form = $forms->first()->form();
 
         $form->setValues([
-            'lah_form_contact[name]' => "john doe",
-            'lah_form_contact[email]' => "john@doe.com",
-            'lah_form_contact[phone]' => "600 000 000",
-            'lah_form_contact[message]' => "lorem ipsum dolot simet",
+            'lah_contact[name]' => "john doe",
+            'lah_contact[email]' => "john@doe.com",
+            'lah_contact[phone]' => "600 000 000",
+            'lah_contact[message]' => "lorem ipsum dolot simet",
         ]);
 
         $this->client->enableProfiler();
@@ -96,7 +92,7 @@ class ContactFormTest extends BaseFunctionalTest
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('contact'));
         $this->assertEquals(200, $this->getStatusCode());
 
-        $forms = $crawler->filter('form[name="lah_form_contact"]');
+        $forms = $crawler->filter('form[name="lah_contact"]');
         $this->assertEquals(1, $forms->count());
 
         /*
@@ -105,10 +101,10 @@ class ContactFormTest extends BaseFunctionalTest
         $form = $forms->first()->form();
 
         $form->setValues([
-            'lah_form_contact[name]' => "",
-            'lah_form_contact[email]' => "",
-            'lah_form_contact[phone]' => "",
-            'lah_form_contact[message]' => "",
+            'lah_contact[name]' => "",
+            'lah_contact[email]' => "",
+            'lah_contact[phone]' => "",
+            'lah_contact[message]' => "",
         ]);
 
         $this->client->enableProfiler();
