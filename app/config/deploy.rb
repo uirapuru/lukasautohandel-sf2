@@ -49,6 +49,17 @@ logger.level = Logger::MAX_LEVEL
 # Run migrations before warming the cache
 after "deploy:restart", "assets"
 # after "deploy:restart", "deploy:cleanup"
+after "deploy", "symfony:clear_accelerator_cache"
+after "deploy:rollback:cleanup", "symfony:clear_accelerator_cache"
+
+namespace :symfony do
+  desc "Clear accelerator cache"
+  task :clear_accelerator_cache do
+    capifony_pretty_print "--> Clear accelerator cache"
+    run "#{try_sudo} sh -c 'cd #{latest_release} && #{php_bin} #{symfony_console} cache:accelerator:clear #{console_options}'"
+    capifony_puts_ok
+  end
+end
 
 # Custom(ised) tasks
 
