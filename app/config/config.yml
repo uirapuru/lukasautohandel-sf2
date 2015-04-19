@@ -187,5 +187,5 @@ knp_paginator:
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
 accelerator_cache:
-    host: http://%base_url%
+    host: %base_url%
     web_dir: %kernel.root_dir%/../web
