@@ -1,0 +1,21 @@
+{% extends "FrontBundle::layout.html.twig" %}
+
+{% import "FrontBundle::collection_theme.html.twig" as _theme %}
+{% form_theme form 'FrontBundle::collection_theme.html.twig' %}
+
+{%  block body %}
+    {% include "@Front/Car/_flash.html.twig"  with {form: form}  %}
+
+    {{ form_start(form, {
+        action: url('add_car'),
+        attr: {
+            'id'        : 'addCar',
+            'novalidate': 'novalidate',
+            'data-image-prototype': _theme.image_item(form.images.vars.prototype)|e,
+            'data-price-prototype': _theme.price_item(form.prices.vars.prototype)|e
+        }
+    }) }}
+
+    {% include "@Front/Car/_form.html.twig" %}
+
+{%  endblock body %}

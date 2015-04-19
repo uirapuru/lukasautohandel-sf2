@@ -1,0 +1,18 @@
+{% extends "FrontBundle::frontendLayout.html.twig" %}
+
+{% block title %}
+    500 - server error
+{% endblock title %}
+
+{% block body %}
+    <div class="grid_8">
+        <div class="inner-block">
+            <div class="box-1">
+                <h2 class="h2-border">500 - błąd serwera.</h2>
+                Skontaktuj się z administracją! <a href="mailto:{{ email_address }}">{{ email_address }}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+{% endblock body %}

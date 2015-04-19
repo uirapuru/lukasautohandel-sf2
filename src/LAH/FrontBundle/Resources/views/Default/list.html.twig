@@ -1,0 +1,63 @@
+{% extends 'FrontBundle::frontendLayout.html.twig' %}
+
+{% block body %}
+<div class="grid_8">
+    <div class="inner-block">
+        <h2 class="h2-border top-1">{{ 'list.caption'|trans }} :
+            <span id="list-result-count">{{ cars.getTotalItemCount }}</span>
+
+
+            <a class="link" href="{{ path("list") }}">{{ 'list.show_all_link'|trans }}</a>
+        </h2>
+
+        <div class="box-3">
+
+            {{ knp_pagination_render(cars) }}
+
+            <ul class="search-results">
+                {% for car in cars %}
+                    {% set link = path("show", {id: car.id, slug: car.slug}) %}
+
+                    <li>
+                        <a href="{{ link }}">
+                            <img style="width: 290px" alt="" src="{{ asset('/uploads/thumbnails/' ~ car.getFirstImage() ) }}">
+                        </a>
+                        <div class="extra-wrap">
+                            <h3><a href="{{ link }}">{{ car.getTranslated("title", app.request.locale) }}</a></h3>
+
+                            {% set description = car.getTranslated("description", app.request.locale) %}
+
+                            <p>{{ description|slice(0, 200)|striptags }}{% if description|length>200 %}...{% endif %}</p>
+                            <p class="price">
+                                {% for price in car.prices %}
+                                    {{ price.amount }} {{ price.currency.symbol }}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </p>
+                            <a class="button" href="{{ link }}">{{ 'list.car_details'|trans }}</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            {{ knp_pagination_render(cars) }}
+
+        </div>
+    </div>
+</div>
+
+<div class="grid_4 bg-white">
+    <div class="inner-block">
+        <div class="pad-1">
+            <div class="form-title">{{ 'search.form.caption_search'|trans }}
+                <span>{{ 'search.form.caption_search_small'|trans }}</span>
+            </div>
+
+            {{ render(controller("LAHSearchBundle:Default:search", {form: searchForm, action: path('list')})) }}
+
+        </div>
+    </div>
+</div>
+
+
+    <div class="clear"></div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "::frontendLayout.html.twig" %}
+
+{% block body %}
+
+    <div class="grid_8">
+        <div class="inner-block">
+            <h2 class="h2-border p3">{{ "contact.label"|trans }}</h2>
+            <div class="wrap">
+                <figure class="img-border map">
+                    <iframe src="http://maps.google.com/maps?z=14&t=m&q={{ address|striptags|url_encode }}&output=embed"></iframe>
+                </figure>
+                <dl class="adrss">
+                    <dt><strong>{{ address|raw }}</strong></dt>
+                    <dd><span>{{ "contact.telephone"|trans }}:</span>{{ contact_number }}</dd>
+                    <dd class="p8"><a href="mailto:{{ email_address }}" class="link-4">{{ email_address }}</a></dd>
+                </dl>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_4">
+        <div class="inner-block">
+            <div class="bg-white pad-1 top">
+                <div class="form-title">{{ "contact.form.label"|trans }}</div>
+                {% include '@Front/Car/_flash.html.twig' with {form: form} %}
+
+                {{ form_start(form, {attr: {novalidate : "NOVALIDATE"}}) }}
+
+                    {% if form.vars.errors|length > 0 %}
+                    <div class="alert alert-error">
+                        {{ form_errors(form) }}
+                    </div>
+                    {% endif %}
+
+                    {% if form.subject is defined %}
+                        {{ form_row(form.subject) }}
+                    {% endif %}
+
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.phone) }}
+                    {{ form_row(form.message) }}
+
+                {{ form_rest(form) }}
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+{% endblock body %}

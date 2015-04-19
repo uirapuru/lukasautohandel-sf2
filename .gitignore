@@ -1,3 +1,15 @@
+.idea
+build
+node_modules
+web/css
+web/flags
+web/images
+web/js
+web/fonts
+bower_components
+node_modules
+build
+
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
@@ -25,10 +37,14 @@
 # Assets and user uploads
 /web/bundles/
 /web/uploads/
-
-# PHPUnit
-/app/phpunit.xml
-/phpunit.xml
+/web/uploads/thumbnails
+!/web/uploads/.gitkeep
+!/web/uploads/thumbnails/.gitkeep
 
 # Composer PHAR
 /composer.phar
+
+.php_cs.cache
+
+app/spool/*
+!app/spool/.gitkeep

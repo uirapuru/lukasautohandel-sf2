@@ -1,0 +1,25 @@
+imports:
+    - { resource: config.yml }
+
+monolog:
+  handlers:
+    console:
+        type:  console
+    main:
+        type:         fingers_crossed
+        action_level: error
+        handler:      grouped_main
+    # Groups
+    grouped_main:
+        type:    group
+        members: [sentry, streamed_main]
+
+    # Streams
+    streamed_main:
+        type:  stream
+        path:  %kernel.logs_dir%/%kernel.environment%.log
+        level: error
+    sentry:
+        type:  raven
+        dsn:   %sentry_backend_dsn%
+        level: notice

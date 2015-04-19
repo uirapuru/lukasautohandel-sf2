@@ -1,0 +1,35 @@
+parameters:
+    base_url:          http://lukas.local
+
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     lukas
+    database_user:     ~
+    database_password: ~
+
+    test_database_name:     lukas_test
+    test_database_user:     replace_this_test_user
+    test_database_password: replace_this_test_pass
+
+    sqlite_database_user:     admin
+    sqlite_database_password: admin
+
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            pl
+    secret:            AMyNieChcemyUciekaćStąd
+
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: false
+
+    delivery_address: uirapuruadg@gmail.com
+    mailer_sendto:
+      - lukas.l.sobanski@gmail.com
+      - lukas.i.molfa@gmail.com
+      - lukas.m.pieniazek@gmail.com
+
+    sentry_backend_dsn:         ~
+    sentry_backend_dsn_dev:     ~

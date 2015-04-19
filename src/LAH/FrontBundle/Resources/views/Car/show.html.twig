@@ -1,0 +1,92 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <a href="{{ path('delete_car', {id: entity.id}) }}" onclick="return confirm('{{ 'crud.action.are_you_sure'|trans }}')" class="btn btn-danger">{{ "crud.action.delete"|trans }}</a>
+                    <a href="{{ path('edit_car', {id: entity.id}) }}" class="btn btn-warning">{{ "crud.action.edit"|trans }}</a>
+                    <a href="{{ path('car') }}" class="btn btn-info">{{ "crud.action.back_to_list"|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>{{ entity.title }}</h1>
+
+    <table class="table table-bordered table-striped record_properties">
+        <tbody>
+            <tr>
+                <th>{{ "car.form.label.title"|trans }}</th>
+                <td>{{ entity.getTranslated("title", app.request.locale) }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.description"|trans }}</th>
+                <td>{{ entity.getTranslated("description", app.request.locale)|raw }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.year"|trans }}</th>
+                <td>{{ entity.year }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.distance"|trans }}</th>
+                <td>{{ entity.distance }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.fuel"|trans }}</th>
+                <td>{{ entity.fuel }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.engine"|trans }}</th>
+                <td>{{ entity.engine }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.gearbox"|trans }}</th>
+                <td>{{ entity.gearbox }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.registrationCountry"|trans }}</th>
+                <td>{{ entity.registrationCountry }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.promoteCarousel"|trans }}</th>
+                <td>{% if entity.promoteCarousel == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.promoteFrontpage"|trans }}</th>
+                <td>{% if entity.promoteFrontpage == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.hidden"|trans }}</th>
+                <td>{% if entity.hidden == 1 %}<i class="glyphicon glyphicon-ok"></i>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.adminNotes"|trans }}</th>
+                <td>{{ entity.adminNotes }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.created"|trans }}</th>
+                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>{{ "car.form.label.modified"|trans }}</th>
+                <td>{{ entity.modified|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% if entity.images|length > 0 %}
+    <div class="container-fluid">
+        <div class="row">
+            <h1>{{ "car_images_headline"|trans }}</h1>
+            {% for image in entity.images %}
+                <a href="/uploads/{{ image.name }}" rel="prettyPhoto[car]" title="{{ entity.description }}">
+                    <img src="{{ asset("/uploads/thumbnails/"~image.name) }}" class="img-thumbnail col-xs-2" />
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}

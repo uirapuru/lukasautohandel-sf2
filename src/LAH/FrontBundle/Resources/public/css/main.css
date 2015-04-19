@@ -1,0 +1,329 @@
+@font-face {
+    font-family: Myriad;
+    src: url('/fonts/MyriadPro-Regular.otf');
+}
+
+body {
+    background: transparent url('/images/top-banner-bg.png');
+    /*    overflow: hidden;  wyłączyć!!! */
+}
+
+div#lang-switcher {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 22px;
+    width: 50px;
+    height: 20px;
+}
+
+div#top-banner > div.container_16 {
+    position: relative;
+    height: 100px;
+}
+
+div#top-banner > div.container_16 > div#top-banner-logo-bg {
+    width: 938px;
+    height: 100px;
+    background: transparent url('/images/top-banner-logo-bg.png') top left no-repeat;
+    left: -68px;
+    bottom: 0;
+    position: absolute;
+    z-index: 0;
+}
+div#top-banner > div.container_16 > div#top-banner-logo {
+    width: 577px;
+    height: 66px;
+    background: transparent url('/images/top-banner-logo.png') top left no-repeat;
+    position: absolute;
+    bottom: 5px;
+    left: 2px;
+    z-index: 1;
+}
+div#top-banner > div.container_16 > nav {
+    position: absolute;
+    top: 6px;
+    left: 0;
+}
+
+div#top-banner > div.container_16 > nav > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+}
+div#top-banner > div.container_16 > nav > ul:after {
+    clear:both;
+    content : "";
+    display: block;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+}
+div#top-banner > div.container_16 > nav > ul > li {
+    display: block;
+    float: left;
+    position: relative;
+    margin-left: -5px;
+}
+
+div#top-banner > div.container_16 > nav > ul > li > a {
+    font-family: Myriad, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    color: #000000;
+    height: 14px;
+    width: auto;
+    line-height: 14px;
+    margin: 0 10px;
+    display: block;
+    padding: 0 1px;
+}
+div#top-banner > div.container_16 > nav > ul > li.active > a {
+    color: #ffffff;
+    background-color: #000000;
+    font-weight: normal;
+}
+div#top-banner > div.container_16 > nav > ul > li.active > a:before
+{
+    position: absolute;
+    /*top: 3px;*/
+    left: 0;
+    content : "";
+    display: block;
+    width: 10px;
+    height: 14px;
+    background-color: transparent;
+    background-image: url('/images/sprites.png');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+div#top-banner > div.container_16 > nav > ul >  li.active > a:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content : "";
+    display: block;
+    width: 10px;
+    height: 14px;
+    background-color: transparent;
+    background-image: url('/images/sprites.png');
+    background-repeat: no-repeat;
+    background-position: -10px 0 ;
+}
+div#top-banner > div.container_16 > nav > ul > li:hover > a {
+    text-decoration: underline
+}
+div#top-banner > div.container_16 > nav > ul > li.active:hover > a {
+    text-decoration: none
+}
+
+div#middle-banner {
+    position: relative;
+}
+
+div#middle-banner > div.container_16 {
+    height: 100%;
+    position: relative;
+}
+
+div#middle-banner > div.container_16 > nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div#middle-banner > div.container_16 > nav > a {
+    font-size: 75px;
+    font-family: "Arial Black", sans-serif;
+    display: block;
+    position: absolute;
+    top: 133px;
+    width: 21px;
+    height: 27px;
+    background-image: url('/images/sprites.png');  
+}
+
+div#middle-banner > div.container_16 > nav > a#prev-image {
+    left: -37px;
+    background-position: 0 -15px;
+}
+
+div#middle-banner > div.container_16 > nav > a#next-image {
+    right: -37px;
+    background-position: -21px -15px;
+}
+
+div[role=main] {
+    padding-top: 9px;
+    background-image: url("/images/news-bg.png");
+    position: relative;
+    min-height: 770px;
+}
+
+div#sidebar {
+    /*    background-color: #000000;*/
+    height: 553px;
+    width: 302px;
+    position: absolute;
+    right: 0;
+    top: 9px;
+}
+
+footer {
+    height: 100px;
+    background-image: url('/images/footer-bg.png');
+    background-repeat: repeat-x;
+    background-position: top left;
+    width: 100%;
+
+}
+footer > div.container_16 {
+
+}
+
+footer > div.container_16 > div#under-the-foot {
+    font-family: Myriad, sans-serif;
+    font-size: 9px;
+    font-weight: normal;
+    margin: 0 auto;
+    width: 730px;
+    line-height: 18px;
+    margin-top: 10px;
+}
+footer > div.container_16 > div#under-the-foot a {
+    color: #000000;
+}
+footer > div.container_16 > ul {
+    list-style: none;
+    width: 510px;
+    height: 30px;
+    margin: 0 auto;
+    /*    margin-top: 16px;*/
+    padding: 15px 0;
+}
+footer > div.container_16 > ul:after {
+    clear:both;
+    content : "";
+    display: block;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+}
+
+footer > div.container_16 > ul > li {
+    float: left;
+    margin-right: 50px;
+}
+footer > div.container_16 > ul > li:last-child {
+    margin-right: 0;
+}
+footer > div.container_16 > ul > li > div#thomas-cloud-online-caption {
+    background-image: url("/images/sprites.png");
+    background-repeat: no-repeat;
+    background-position: 0 -42px;
+    display: block;
+    width: 142px;
+    height: 12px;
+    margin-top: 9px;
+}
+
+div#carousel-wrapper {
+    width: 960px;
+    height: 289px;
+    overflow:hidden;
+    position: relative;
+}
+div#carousel-wrapper > div#inner-carousel-wrapper {
+    width: 100000px;
+    height: 289px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+html.csstransitions div#carousel-wrapper > div#inner-carousel-wrapper {
+    -webkit-transition: all 1000ms ease-in-out;
+    -moz-transition: all 1000ms ease-in-out;
+    -ms-transition: all 1000ms ease-in-out;
+    -o-transition: all 1000ms ease-in-out;
+    transition: all 1000ms ease-in-out;
+}
+
+
+div#carousel-wrapper > div#inner-carousel-wrapper:after {
+    clear:both;
+    content : "";
+    display: block;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+}
+div#middle-banner > div.container_16 > img {
+    float: left;
+}
+
+img.caption {
+    margin-bottom: 15px;
+}
+
+div.news-item { width: 100%; margin-bottom: 30px; }
+div.news-header { color: #ffffff; width: 475px; height: 45px; background-image: url("/images/news-header.png"); background-position: top left; background-repeat: no-repeat; padding-left: 60px;}
+div.news-header div.news-date {width: 180px; height: 22px; line-height: 22px; font-family: Myriad, sans-serif; font-size: 12px; font-weight: normal; }
+div.news-header a.news-title {color: #ffffff; width: 375px; height: 23px; line-height: 23px; font-family: Myriad, sans-serif; font-size: 13px; font-weight: bold;    }
+div.news-header a.news-title:hover {color: #ffffff; text-decoration: none; }
+div.news-content-wrapper { background-image: url("/images/top-banner-bg.png"); padding: 16px 22px;   }
+div.news-content-wrapper div.news-content { font-family: Tahoma, sans-serif; font-size: 12px; color: #000000; }
+ul.news-footer { text-align: justify; text-align-last: left; position: relative; left: -12px; margin: 0; padding: 0; list-style: none; width: 607px; height: 17px; background-image: url("/images/news-bottom.png"); background-position: top left; background-repeat: no-repeat;   }
+
+.news-item li a {
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    right: 30px;
+    bottom: 0;
+}
+
+.news-item li.news-cloud-link a {
+    right: 59px;
+}
+.news-item li.news-yt-link a {
+    right: 28px;
+}
+.news-item li.news-fb-link a {
+    right: 90px;
+}
+.news-item li.news-tw-link a {
+    right: 0;
+}
+
+div#schedule { background-color: #060606; width: 100%; height: 170px;}
+div#schedule div.schedule-date {float: left; margin: 7px 0; height: 26px; width: 127px; border-right: 2px solid #00adf1; line-height: 26px; padding-left: 17px; font-family: Tahoma, sans-serif; font-weight: bold; font-size: 18px; color: #b80059}
+div#schedule div.schedule-where {margin-left: 20px; float: left; height: 40px; width: 135px;}
+div#schedule div.schedule-where div.schedule-place {height: 17px; margin-top: 4px; line-height: 15px; width: 155px; font-family: Myriad, sans-serif; font-size: 15px; color: #ffffff}
+div#schedule div.schedule-where div.schedule-location {height: 17px; margin-top: 2px; line-height: 12px; width: 155px;  font-family: Myriad, sans-serif; font-size: 12px; color: #a0a0a0}
+div#schedule div.r { height: 40px; width: 100%; display: block; border-top: 2px solid #39393b;}
+div#schedule div.r:after { clear:both; content : ""; display: block; visibility: hidden; font-size: 0; height: 0;}
+
+div.pagination a
+{
+    color: #000000 !important;
+    line-height: 17px;
+    padding: 0 7px;
+    font-size: 9px;
+}
+div.pagination li.disabled a {
+    background-color: #000000;
+    color: #ffffff !important;
+}
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }

@@ -1,0 +1,70 @@
+/* menu */
+.sf-menu {display:inline-block; }
+.sf-menu ul {position:absolute; top:-999px; display:none;}
+.sf-menu li {position:relative; float:left; }
+.sf-menu a {text-decoration:none;text-transform:uppercase; }
+.sf-menu li:hover ul,.sf-menu li.sfHover ul {z-index:99}
+ul.sf-menu li:hover li ul,ul.sf-menu li.sfHover li ul {top:-999px; display:none;}
+ul.sf-menu li li:hover ul,ul.sf-menu li li.sfHover ul {left:100%; top:0;}
+
+ul.sf-menu>li { display:inline-block; border-left:#2e2d2d 1px solid; text-align:center; }
+ul.sf-menu>li>a {color:#8f8f8f; font-size:14px; line-height:17px; font-weight:bold;  display:block; position:relative; padding:26px 18px 30px 19px;}
+ul.sf-menu>li>a>span {display:block; margin-top:-2px;}
+ul.sf-menu>li>a>strong {font-weight:inherit; display:block; padding:7px 0 8px 0;}
+ul.sf-menu>li.current , ul.sf-menu>li.sfHover , ul.sf-menu>li:hover {  }
+ul.sf-menu>li.current>a, ul.sf-menu>li.sfHover>a, ul.sf-menu>li>a:hover {color:#fff; -webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;-o-transition:all 0.3s ease;transition:all 0.3s ease; }
+
+.sf-menu>li>ul { width:202px; background: #292929; left:0px; top:89px; padding:1px;}
+.sf-menu>li>ul>li {display:block; background:#434242; width:100%; text-align:left; line-height:13px; margin-top:1px;} 
+.sf-menu>li>ul>li:first-child {margin-top:0px;}
+.sf-menu>li>ul>li>a { font-size:10px; color:#aeaeae;display:block; padding:5px 8px 6px 8px; }
+.sf-menu>li>ul>li:hover, ul.sf-menu>li>ul>li.sfHover{background:#292929; -webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;-o-transition:all 0.3s ease;transition:all 0.3s ease;}
+.sf-menu>li>ul>li>a:hover, ul.sf-menu>li>ul>li.sfHover a {}
+nav {
+    float: right;
+}
+
+.sf-menu li.sub-menu:after {
+    background: url("../images/indicator.png") no-repeat scroll 0 0 transparent;
+    content: "";
+    display: block;
+    height: 4px;
+    right: 5%;
+    margin-top: -1px;
+    position: absolute;
+    top: 48%;
+    width: 5px;
+}
+
+
+
+/* Design for a width of 768px */
+@media only screen and (max-width: 995px) {
+
+	
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+
+
+nav select {
+    display: block !important;
+    height: 23px;
+    line-height: 23px;
+    outline: medium none;
+    padding: 0;
+    width: 100%;
+}
+
+nav span,
+.sf-menu{display:none}
+
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {	
+nav span,
+.sf-menu{display:none}
+ 
+}

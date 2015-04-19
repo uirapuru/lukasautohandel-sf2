@@ -1,0 +1,13 @@
+contact.too_short_message: 'Wiadomość jest zbyt krótka, powinna zawierać conajmniej {{ limit }} znaków'
+contact.too_long_message: 'Wiadomość jest zbyt długa, powinna zawierać maksymalnie {{ limit }} znaków'
+contact.empty_message: 'Musisz podać treść wiadomości!'
+contact.empty_email: 'Musisz podać email!'
+contact.wrong_email: 'Nieprawidłowy adres email.'
+validator.minimal_price_must_be_over_0: Cena musi być większa od 0!
+
+car.validation.images.min: "Należy załączyć conajmniej {{ limit }} obraz"
+car.validation.images.max: "Należy załączyć conajwyżej {{ limit }} obrazów"
+car.validation.prices.min: "Należy załączyć conajmniej {{ limit }} cenę"
+car.validation.prices.max: "Należy załączyć conajwyżej {{ limit }} cen"
+
+validator.you_have_to_enter_price_amount: "Musisz podać wysokość kwoty"

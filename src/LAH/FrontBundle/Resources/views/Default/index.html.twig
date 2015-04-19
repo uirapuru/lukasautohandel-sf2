@@ -1,0 +1,40 @@
+{% extends "FrontBundle::frontendLayout.html.twig" %}
+
+{% block body %}
+<div class="grid_8">
+    <div class="inner-block">
+        {{ render(controller("FrontBundle:Default:carousel")) }}
+    </div>
+</div>
+
+<div class="grid_4 bg-white">
+    <div class="inner-block">
+        <div class="pad-1">
+            <div class="form-title">{{ 'search.form.caption_search'|trans }}
+                <span>{{ 'search.form.caption_search_small'|trans }}</span>
+            </div>
+
+            {{ render(controller("LAHSearchBundle:Default:search", {action: path('list')} )) }}
+
+        </div>
+    </div>
+</div>
+
+<div class="clear p2"></div>
+<div class="grid_8">
+    <div class="inner-block">
+        <h2 class="h2-border">{{ 'index.best_offers_caption'|trans }} <a href="{{ url("list") }}" class="link">{{ 'index.show_all_link'|trans }}</a></h2>
+        <div class="box-1">
+            {{ render(controller("FrontBundle:Default:promoted")) }}
+        </div>
+    </div>
+</div>
+<div class="grid_4">
+    <div class="inner-block">
+        <h2 class="h2-border p3">{{ 'index.about_us_caption'|trans }}</h2>
+        <p class="p1">{{ 'index.about_us_paragraph_1'|trans }}</p>
+        <p class="p4">{{ 'index.about_us_paragraph_2'|trans }}</p>
+    </div>
+</div>
+<div class="clear"></div>
+{% endblock body %}

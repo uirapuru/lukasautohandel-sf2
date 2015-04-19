@@ -1,0 +1,33 @@
+{{ form_start(form, {
+    attr: {
+        'id'        : 'lahSearchForm',
+        'novalidate': 'novalidate',
+        'data-empty-label' : 'search.form.label.empty'|trans
+    }
+}) }}
+
+<label>
+    <span>{{ 'search.form.label.type'|trans }}</span>
+    <strong class="select1">{{ form_widget(form.type, {id: "car_filters_variant"}) }}</strong>
+</label>
+
+<label>
+    <span>{{ 'search.form.label.brand'|trans }}</span>
+    <strong class="select1">{{ form_widget(form.brand, {id: "car_filters_brand"}) }}</strong>
+</label>
+
+<label>
+    <span>{{ 'search.form.label.model'|trans }}</span>
+    <strong class="select1">{{ form_widget(form.model, {id: "car_filters_model"}) }}</strong>
+    <span>
+        {% for error in form.model.vars.errors %}
+            {{ error.message }}{% if not loop.index|last %}<br />{% endif %}
+        {% endfor %}
+    </span>
+</label>
+
+<a onClick="document.getElementById('lahSearchForm').submit()" href="javascript:;" class="button">{{ 'search.form.label.search'|trans }}</a>
+
+{{ form_rest(form) }}
+
+{{ form_end(form) }}

@@ -1,0 +1,191 @@
+car.form.label.type:                                    "Typ"
+car.form.label.model:                                   "Model"
+car.form.label.color:                                   "Kolor"
+car.form.label.year:                                    "Rok produkcji"
+car.form.label.distance:                                "Przejechany dystans"
+car.form.label.engine:                                  "Typ silnika"
+car.form.label.fuel:                                    "Rodzaj paliwa"
+car.form.label.gearbox:                                 "Typ skrzyni biegów"
+car.form.label.registrationCountry:                     "Kraj rejestracji"
+car.form.label.promoteCarousel:                         "Promuj zdjęcie na głównej"
+car.form.label.promoteFrontpage:                        "Promuj na głównej"
+car.form.label.title:                                   "Nazwa"
+car.form.label.description:                             "Opis"
+car.form.label.adminNotes:                              "Notatki administratora (niewidoczne dla użytkowników)"
+car.form.label.hidden:                                  "Ukryj całkowicie samochód z systemu"
+car.form.label.images:                                  "Zdjęcia"
+car.form.label.prices:                                  "Dostępne ceny i waluty"
+car.form.label.submit:                                  "Zapisz"
+car.form.label.created:                                 "Utworzony"
+car.form.label.modified:                                "Zmieniono"
+
+car.form.label.add_type:                                "Nowy typ"
+car.form.label.add_type.name:                           "Nazwa"
+
+car.form.label.add_color:                               "Nowy kolor"
+car.form.label.add_color.name:                          "Nazwa"
+car.form.label.add_color.hex:                           "Hex"
+
+car.form.label.add_model:                               "Nowy model"
+car.form.label.add_model.name:                          "Nazwa"
+car.form.label.add_model.brand:                         "Marka"
+
+car.form.label.amount:                                  "Kwota"
+car.form.label.currency:                                "Waluta"
+
+car.form.choice.empty_car_type:                         "wybierz typ"
+car.form.choice.empty_car_model:                        "wybierz model"
+car.form.choice.empty_car_color:                        "wybierz kolor"
+car.form.choice.empty_car_engine_type:                  "wybierz typ silnika"
+car.form.choice.empty_car_fuel_type:                    "wybierz typ paliwa"
+car.form.choice.empty_car_gearbox_type:                 "wybierz typ skrzyni biegów"
+car.form.choice.empty_car_registration_country:         "wybierz kraj rejestracji pojazdu"
+
+car.form.add_item:                                      "Dodaj"
+car.form.remove_item:                                   "Usuń"
+
+car.form.choice.all_types:                         "wszystkie typy"
+car.form.choice.all_models:                        "wszystkie modele"
+car.form.choice.all_brands:                        "wszystkie marki"
+
+
+click_here_to_add_new_car_type: 'kliknij, aby dodać nowy typ samochodu'
+click_here_to_add_new_car_model: 'kliknij, aby dodać nowy model samochodu'
+click_here_to_add_new_car_color: 'kliknij, aby dodać nowy kolor samochodu'
+toggle_widgets_close: 'zamknij'
+
+flash.car_edit.errors:  "Formularz zawiera błędy"
+flash.car_edit.success: "Formularz zapisano z powodzeniem!"
+
+validator.you_have_to_choose_car_type: "Musisz wybrać typ samochodu"
+validator.you_have_to_choose_car_model: "Musisz wybrać model samochodu"
+validator.you_have_to_choose_car_color: "Musisz wybrać kolor samochodu"
+validator.you_have_to_enter_production_year: "Musisz wybrać rok produkcji"
+validator.you_have_to_enter_distance: "Musisz podać przejechany dystans"
+validator.you_have_to_choose_car_engine_type: "Musisz wybrać typ silnika"
+validator.you_have_to_choose_car_fuel_type: "Musisz wybrać rodzaj paliwa"
+validator.you_have_to_choose_car_gearbox_type: "Musisz wybrać typ skrzyni biegów"
+validator.you_have_to_choose_car_registration_country: "Musisz wybrać kraj rejestracji"
+validator.title_cannot_be_empty: "Tytuł nie może być pusty"
+validator.description_cannot_be_empty: "Opis nie może być pusty"
+
+country.poland: "Polska"
+country.germany: "Niemcy"
+
+transmission.automatic: "Automatyczna"
+transmission.manual: "Manualna"
+transmission.semiautomatic: "Półautomat"
+
+fuel.lpg: "LPG"
+fuel.biodiesel: "Biodiesel"
+fuel.diesel: "Diesel"
+fuel.petrol: "Benzyna"
+
+engine.diesel: "Diesel"
+engine.petrol: "Benzyna"
+
+crud:
+    action:
+        add: "Dodaj nowy samochód"
+        show: 'pokaż'
+        edit: 'zmień'
+        delete: 'skasuj'
+        back_to_list: 'powrót do listy'
+        are_you_sure: 'Czy jesteś pewien?'
+    header:
+        title: 'tytuł'
+        model: 'model'
+        promote_carousel: 'promuj zdjęcie'
+        promote_frontpage: 'na głównej'
+        hidden: 'ukryty'
+        created_at: 'stworzony'
+        modified_at: 'zmieniony'
+        actions: 'akcje'
+
+menu:
+    main:
+        dashboard: "Pulpit"
+        cars:      "Samochody"
+        logout:    "Wyloguj się"
+    front:
+      start:      "Start"
+      search:     "Szukaj"
+      contact:    "Kontakt"
+
+car_images_headline: 'Galeria'
+
+account:
+  login:
+    label:
+      username: 'Nazwa użytkownika'
+      password: Hasło
+      submit: 'Zaloguj się'
+    required_info: 'pole jest wymagane'
+    remember_me: 'Zapamiętaj mnie'
+    password_recovery:  "Przypomnienie hasła"
+
+contact:
+  telephone: "Telefon"
+  message:
+    success: "Dziękujemy za wiadomość"
+    error: "Wystąpił błąd!"
+    about_car: "Zapytanie o '%title%' [%link%]"
+  label:  "kontakt"
+  form:
+    label: "Napisz do nas"
+    labels:
+      subject: "Temat wiadomości"
+      name: "Twoje imię"
+      email: "Twój email"
+      phone: "Twój numer telefonu"
+      message: "Treść wiadomości"
+      submit: "Wyślij wiadomość"
+    placeholder:
+      subject: "temat"
+      name: "podaj imię"
+      email: "podaj email"
+      phone: "podaj numer telefonu"
+      message: "podaj treść"
+
+search:
+    form:
+        caption_search: 'Szukaj'
+        caption_search_small: 'wśród ofert'
+        label:
+            type: 'rodzaj'
+            brand: 'marka'
+            model: 'model'
+            search: 'szukaj'
+            empty: 'wszystkie modele'
+list:
+    caption: 'Wyniki wyszukiwania'
+    show_all_link: 'wszystkie'
+    car_details: 'szczegóły'
+
+details:
+    show_all_link: 'wszystkie'
+    caption: 'Informacje'
+    caption_small: 'o samochodzie'
+    label:
+      brand_and_model: 'marka i model'
+      year: 'rok produkcji'
+      distance: 'przejechany dystans'
+      fuel: 'rodzaj paliwa'
+      engine: 'typ silnika'
+      transmission: 'skrzynia biegów'
+      color: 'kolor'
+      registrationCountry: 'kraj rejestracji'
+      price: 'cena'
+      description: 'opis oferty'
+    ask_about_this_car_link: 'zapytaj nas o auto'
+
+index:
+    best_offers_caption: 'Najciekawsze oferty'
+    show_all_link: 'wszystkie'
+    about_us_caption: 'O nas'
+
+    about_us_paragraph_1: "Lorem ipsum dolor sit amet conse ctetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci tation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe nderit in voluptate velit esse cillum dolore."
+    about_us_paragraph_2: "Lorem ipsum dolor sit amet conse ctetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci tation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe nderit in voluptate velit esse cillum dolore."
+
+promoted:
+    car_details_button: 'szczegóły'

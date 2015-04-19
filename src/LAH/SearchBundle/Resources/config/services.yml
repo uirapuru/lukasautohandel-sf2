@@ -1,0 +1,13 @@
+services:
+    lah.search.query_modifier:
+      class: LAH\SearchBundle\Service\SearchQueryModifier
+
+    lah.search.query_entity_merge:
+      class: LAH\SearchBundle\Service\SearchQueryEntityMerge
+      calls:
+        - [setEntityManager, [@doctrine.orm.entity_manager]]
+
+    lah.search.search_form_type:
+        class: LAH\SearchBundle\Form\Type\SearchType
+        tags:
+            - {name: form.type, alias: search }

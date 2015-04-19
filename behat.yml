@@ -1,0 +1,37 @@
+default:
+    suites:
+        default:
+            paths:
+                - %paths.base%/src/LAH/FrontBundle/Resources/features
+            contexts:
+                - LAH\FrontBundle\Features\FeatureContext: ~
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            sessions:
+              default:
+                symfony2: ~
+            base_url: 'http://127.0.0.1:8000/app_test.php'
+            default_session: selenium2
+            javascript_session: selenium2
+            selenium2:
+                wd_host: "http://localhost:8643/wd/hub"
+
+#    formatters:
+#        progress: true
+
+firefox:
+    suites:
+        default:
+            paths:
+                - %paths.base%/src/LAH/FrontBundle/Resources/features
+            contexts:
+                - LAH\FrontBundle\Features\FeatureContext: ~
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            base_url: 'http://127.0.0.1:8000/app_test.php'
+            javascript_session:  'selenium2'
+            browser_name: firefox
+            selenium2:
+              wd_host: "http://127.0.0.1:4444/wd/hub"

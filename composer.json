@@ -1,0 +1,92 @@
+{
+    "name": "symfony/framework-standard-edition",
+    "license": "MIT",
+    "type": "project",
+    "description": "The \"Symfony Standard Edition\" distribution",
+    "autoload": {
+        "psr-0": { "": "src/", "SymfonyStandard": "app/" }
+    },
+    "require": {
+        "php": ">=5.4",
+        "symfony/symfony": "2.6.*@dev",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "twig/extensions": "~1.0",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~3.0",
+        "sensio/framework-extra-bundle": "~3.0",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "knplabs/knp-menu": "2.0.*@dev",
+        "knplabs/knp-menu-bundle": "2.0.*@dev",
+        "gedmo/doctrine-extensions": "2.3.*@dev",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
+        "raven/raven": "0.8.*@dev",
+        "stof/doctrine-extensions-bundle": "1.2.*@dev",
+        "phing/phing": "~2.9",
+        "jms/serializer-bundle": "0.13.*",
+        "a2lix/translation-form-bundle": "1.*@dev",
+        "imagine/imagine": "0.6.*",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "friendsofsymfony/jsrouting-bundle": "~1.5",
+        "dende/common-bundle": "0.0.*",
+        "phpdocumentor/phpdocumentor": "2.*",
+        "knplabs/knp-paginator-bundle": "~2.4",
+        "smart-core/accelerator-cache-bundle": "~1.0"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3",
+        "phpunit/phpunit": "4.8.*@dev",
+        "mayflower/php-codebrowser": "1.1.1",
+        "squizlabs/php_codesniffer": "2.0.*@dev",
+        "sebastian/phpcpd": "2.0.*@dev",
+        "evert/phpdoc-md": "dev-master",
+        "phploc/phploc": "2.1.*@dev",
+        "phpmd/phpmd": "dev-master",
+        "pdepend/pdepend": "2.0.*",
+        "fabpot/php-cs-fixer": "2.0.*@dev",
+        "behat/behat": "~3.0",
+        "behat/mink-extension": "~2.0",
+        "behat/symfony2-extension": "2.0.*@dev",
+        "behat/mink-zombie-driver": "~1.2",
+        "behat/mink-selenium2-driver": "~1.2",
+        "vipsoft/doctrine-data-fixtures-extension": "3.0.*@dev",
+        "behat/common-formatters": "~1.2",
+        "webignition/json-pretty-print": "dev-master",
+        "hasbridge/json-schema-validator": "dev-master",
+        "liip/functional-test-bundle": "~1.2",
+        "behat/mink-browserkit-driver": "~1.2",
+        "mockery/mockery": "0.9.*"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        }
+    }
+}

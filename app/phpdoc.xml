@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentator>
+    <title>LukasAutoHandel.de</title>
+    <parser>
+        <default-package-name>Gumdrop</default-package-name>
+        <target>../build/docs</target>
+        <encoding>utf8</encoding>
+        <markers>
+            <item>TODO</item>
+            <item>FIXME</item>
+        </markers>
+        <extensions>
+            <extension>php</extension>
+        </extensions>
+    </parser>
+    <transformer>
+        <target>../build/docs</target>
+    </transformer>
+    <transformations>
+        <template name="clean" />
+    </transformations>
+    <files>
+        <directory>../src</directory>
+        <ignore-hidden>true</ignore-hidden>
+        <ignore-symlinks>true</ignore-symlinks>
+    </files>
+</phpdocumentator>

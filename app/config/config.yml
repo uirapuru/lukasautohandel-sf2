@@ -1,0 +1,191 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+parameters:
+  revision_file: "%kernel.root_dir%/../REVISION"
+  supported_locales:
+    - pl
+    - ru
+    - de
+
+framework:
+    #esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enabled: true, enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    globals:
+      contact_number: "+48 600 00 00 00"
+      email_address:  "lukas@lukasautohandel.de"
+      address:        "Piłsudskiego 1<br />Wrocław"
+      base_url:       %base_url%
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        server_version: 5.6
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+        filters:
+          softdeleteable:
+            class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+            enabled: true
+        mappings:
+          StofDoctrineExtensionsBundle: ~
+
+        metadata_cache_driver: apc
+        result_cache_driver: apc
+        query_cache_driver: apc
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: gmail
+    host:      ~
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    delivery_address: "%delivery_address%"
+    port:                 465
+    encryption:           ssl
+    auth_mode:            ~
+    logging:        true
+
+knp_menu:
+    twig:
+        template: knp_menu.html.twig
+    templating: false
+    default_renderer: twig
+
+stof_doctrine_extensions:
+  default_locale: en_US
+  uploadable:
+    default_file_path:       %kernel.root_dir%/../web/uploads
+    mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
+    default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
+
+  orm:
+    default:
+      timestampable:    true
+      sluggable:        true
+      uploadable:       true
+
+front: ~
+
+a2lix_translation_form:
+    locales: %supported_locales%
+    default_required: true
+    manager_registry: doctrine
+    templating: "A2lixTranslationFormBundle::default.html.twig"
+
+services:
+#    # Doctrine Extension listeners to handle behaviors
+#    gedmo.listener.sluggable:
+#      class: Gedmo\Sluggable\SluggableListener
+#      tags:
+##            - { name: doctrine.event_subscriber, connection: default }
+#            - { name: doctrine.event_subscriber, connection: default, priority: 255 }
+#      calls:
+#            - [ setAnnotationReader, [ @annotation_reader ] ]
+
+    gedmo.listener.translatable:
+        class: Gedmo\Translatable\TranslatableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]
+            - [ setDefaultLocale, [ %locale% ] ]
+            - [ setTranslationFallback, [ true ] ]
+
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]
+
+fos_user:
+    db_driver:              orm
+    firewall_name:          main
+    user_class:             LAH\FrontBundle\Entity\User
+#    use_listener:           true
+#    use_username_form_type: true
+#    model_manager_name:     null  # change it to the name of your entity/document manager if you don't want to use the default one.
+#    from_email:
+#        address:        office@lukas
+#        sender_name:    Lukas
+#    profile:
+#        form:
+#            type:               gyman_user_profile
+#            name:               fos_user_profile_form
+#            validation_groups:  [Profile, Default]
+#    change_password:
+#        form:
+#            type:               fos_user_change_password
+#            name:               fos_user_change_password_form
+#            validation_groups:  [ChangePassword, Default]
+#    registration:
+#        confirmation:
+#            enabled:    false
+#            template:   MailerBundle:Templates:registerConfirmation.html.twig
+#        form:
+#            type:               dende_user_registration
+#            name:               dende_registration_form
+#            validation_groups:  [Registration, Default]
+#    resetting:
+#        token_ttl: 86400
+#        email:
+#            template:   MailerBundle:Templates:resetting.html.twig
+#        form:
+#            type:               fos_user_resetting
+#            name:               fos_user_resetting_form
+#            validation_groups:  [ResetPassword, Default]
+#    service:
+#        mailer:                 fos_user.mailer.twig_swift
+#        email_canonicalizer:    fos_user.util.canonicalizer.default
+#        username_canonicalizer: fos_user.util.canonicalizer.default
+#        token_generator:        fos_user.util.token_generator.default
+#        user_manager:           fos_user.user_manager.default
+    group:
+            group_class: Gyman\Bundle\UserBundle\Entity\Group
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+accelerator_cache:
+    host: http://%base_url%
+    web_dir: %kernel.root_dir%/../web
