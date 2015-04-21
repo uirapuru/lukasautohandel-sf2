@@ -9,7 +9,6 @@
     <meta name="author" content="Grzegorz 'Uirapuru' Kaszuba <uirapuruadg@gmail.com> dende.com.pl">
 
     <meta name="app.revision" content="{{ revision() }}">
-
     <meta name="app.revisionDate" content="{% if revisionDate()|date("YmdHis") != "now"|date("YmdHis") %}{{ revisionDate()|date("Y-m-d H:i:s") }}{% endif %}">
 
     {% block stylesheets %}
@@ -19,11 +18,11 @@
         {#<link rel="stylesheet" type="text/css" href="{% if app.environment == 'prod' %}{{ asset('css/frontend/project.min.css') }}{% else %}{{ asset('css/frontend/project.css') }}{% endif %}"/>#}
     {% endblock %}
     
-    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/slider.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/jqtransform.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/prettyPhoto.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/front/css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('/bundles/front/css/bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('/bundles/front/css/slider.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('/bundles/front/css/jqtransform.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('/bundles/front/css/prettyPhoto.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('/bundles/front/css/style.css') }}" />
 
     <link rel="shortcut icon" href="{{ asset("/images/favicon.ico") }}" type="image/x-icon">
 </head>

@@ -1,46 +1,30 @@
-imports:
-    - { resource: forms.yml }
-    - { resource: menus.yml }
-
 services:
-    lah.front.manager.car:
-        class: LAH\FrontBundle\Manager\CarManager
-        arguments:
-            - @doctrine.orm.default_entity_manager
-            - LAH\FrontBundle\Entity\Car
-        calls:
-            - [setRepositoryLocale, [@service_container]]
+  lah.front.locale_listener:
+    class: LAH\FrontBundle\Service\Listener\LocaleListener
+    arguments: ["%kernel.default_locale%"]
+    tags:
+        - { name: kernel.event_subscriber }
 
-    lah.front.manager.color:
-        class: LAH\FrontBundle\Manager\ColorManager
-        arguments:
-            - @doctrine.orm.default_entity_manager
-            - LAH\FrontBundle\Entity\Color
-        calls:
-            - [setRepositoryLocale, [@service_container]]
+  lah.front.form.type.contact:
+    class: LAH\FrontBundle\Form\Type\ContactType
+    arguments: [@translator.default, @router]
+    tags:
+        - {name: form.type, alias: lah_contact }
 
-    lah.twig_extension.instance_of:
-        class: LAH\FrontBundle\Twig\InstanceOfExtension
-        tags:
-            - { name: twig.extension }
+  lah.front.menu.lang:
+    class: Knp\Menu\MenuItem
+    factory_service: lah.main.menu_builder
+    factory_method: createLangMenu
+    arguments: ["@request"]
+    scope: request
+    tags:
+      - { name: knp_menu.menu, alias: langMenu }
 
-    lah.twig_extension.revision:
-        class: LAH\FrontBundle\Twig\Revision
-        calls:
-          - [setRevisionFile, ["%revision_file%"]]
-        tags:
-            - { name: twig.extension }
-
-    lah.front.factory.type:
-        class: LAH\FrontBundle\Entity\Factory\TypeFactory
-
-    front_bundle.locale_listener:
-        class: LAH\FrontBundle\Service\Listener\LocaleListener
-        arguments: ["%kernel.default_locale%"]
-        tags:
-            - { name: kernel.event_subscriber }
-
-    front_bundle.listener.generate_thumbnail:
-      class: LAH\FrontBundle\Event\Listener\GenerateThumbnailListener
-      tags:
-        - { name: doctrine.event_listener, event: uploadablePostFileProcess, method: onUploadPostFile }
+  lah.front.menu.front:
+    class: Knp\Menu\MenuItem
+    factory_service: lah.main.menu_builder
+    factory_method: createFrontMenu
+    arguments: ["@request"]
+    scope: request
+    tags:
+      - { name: knp_menu.menu, alias: frontMenu }

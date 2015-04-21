@@ -32,7 +32,7 @@ class DefaultController extends Controller
             "action" => $action
         ]);
 
-        $queryBuilder = $this->getDoctrine()->getRepository('FrontBundle:Car')->createQueryBuilder('c');
+        $queryBuilder = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->createQueryBuilder('c');
 
         $cacheId = ['LAHSearchBundle:Default:listAction'];
 

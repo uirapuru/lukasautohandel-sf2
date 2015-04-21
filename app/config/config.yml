@@ -96,8 +96,6 @@ stof_doctrine_extensions:
       sluggable:        true
       uploadable:       true
 
-front: ~
-
 a2lix_translation_form:
     locales: %supported_locales%
     default_required: true
@@ -133,7 +131,7 @@ services:
 fos_user:
     db_driver:              orm
     firewall_name:          main
-    user_class:             LAH\FrontBundle\Entity\User
+    user_class:             LAH\AdminBundle\Entity\User
 #    use_listener:           true
 #    use_username_form_type: true
 #    model_manager_name:     null  # change it to the name of your entity/document manager if you don't want to use the default one.
@@ -173,7 +171,7 @@ fos_user:
 #        token_generator:        fos_user.util.token_generator.default
 #        user_manager:           fos_user.user_manager.default
     group:
-            group_class: Gyman\Bundle\UserBundle\Entity\Group
+            group_class: LAH\AdminBundle\Entity\Group
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control

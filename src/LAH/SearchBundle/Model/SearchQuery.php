@@ -1,9 +1,9 @@
 <?php
 namespace LAH\SearchBundle\Model;
 
-use LAH\FrontBundle\Entity\Brand;
-use LAH\FrontBundle\Entity\Model;
-use LAH\FrontBundle\Entity\Type;
+use LAH\MainBundle\Entity\Brand;
+use LAH\MainBundle\Entity\Model;
+use LAH\MainBundle\Entity\Type;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Type as FieldType;
 
@@ -11,14 +11,14 @@ class SearchQuery
 {
     /**
      * @var Brand
-     * @FieldType("LAH\FrontBundle\Entity\Brand")
+     * @FieldType("LAH\MainBundle\Entity\Brand")
      * @Expose()
      */
     private $brand;
 
     /**
      * @var Model
-     * @FieldType("LAH\FrontBundle\Entity\Model")
+     * @FieldType("LAH\MainBundle\Entity\Model")
      * @Expose()
      */
     private $model;
@@ -26,7 +26,7 @@ class SearchQuery
     /**
      * @var Type
      * @Expose()
-     * @FieldType("LAH\FrontBundle\Entity\Type")
+     * @FieldType("LAH\MainBundle\Entity\Type")
      */
     private $type;
 

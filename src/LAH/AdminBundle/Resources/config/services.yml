@@ -1,0 +1,17 @@
+imports:
+    - { resource: forms.yml }
+
+services:
+  lah.admin.listener.generate_thumbnail:
+    class: LAH\AdminBundle\Event\Listener\GenerateThumbnailListener
+    tags:
+      - { name: doctrine.event_listener, event: uploadablePostFileProcess }
+
+  lah.admin.menu.main:
+      class: Knp\Menu\MenuItem
+      factory_service: lah.main.menu_builder
+      factory_method: createMainMenu
+      arguments: ["@request"]
+      scope: request
+      tags:
+          - { name: knp_menu.menu, alias: mainMenu }

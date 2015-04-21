@@ -23,7 +23,7 @@ class SearchType extends AbstractType
                 'type',
                 'entity',
                 [
-                    'class'       => "LAH\FrontBundle\Entity\Type",
+                    'class'       => "LAH\MainBundle\Entity\Type",
                     'property'    => 'name',
                     'empty_value' => 'car.form.choice.all_types',
                     'empty_data'  => null,
@@ -36,7 +36,7 @@ class SearchType extends AbstractType
                 'brand',
                 'entity',
                 [
-                    'class'       => "LAH\FrontBundle\Entity\Brand",
+                    'class'       => "LAH\MainBundle\Entity\Brand",
                     'empty_value' => 'car.form.choice.all_brands',
                     'empty_data'  => null,
                     'property'    => 'getName',
@@ -51,7 +51,7 @@ class SearchType extends AbstractType
                 'model',
                 'entity',
                 [
-                    'class'         => "LAH\FrontBundle\Entity\Model",
+                    'class'         => "LAH\MainBundle\Entity\Model",
                     'empty_value'   => 'car.form.choice.all_models',
                     'empty_data'    => null,
                     'property'      => 'getFullName',

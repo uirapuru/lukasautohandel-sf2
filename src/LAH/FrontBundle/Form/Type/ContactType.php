@@ -1,7 +1,7 @@
 <?php
 namespace LAH\FrontBundle\Form\Type;
 
-use LAH\FrontBundle\Entity\Car;
+use LAH\MainBundle\Entity\Car;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -134,6 +134,6 @@ class ContactType extends AbstractType
 
     public function getName()
     {
-        return 'lah_form_contact';
+        return 'lah_contact';
     }
 }

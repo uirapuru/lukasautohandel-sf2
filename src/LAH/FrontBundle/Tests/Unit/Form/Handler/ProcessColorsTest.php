@@ -1,17 +1,17 @@
 <?php
 namespace LAH\FrontBundle\Tests\Unit\Form\Handler;
 
-use LAH\FrontBundle\Form\Handler\ProcessColor;
+use LAH\AdminBundle\Form\Handler\ProcessColor;
 use Mockery as m;
 
 class ProcessColorsTest extends \PHPUnit_Framework_TestCase
 {
     public function testRemoveUnusedWithFoundColor()
     {
-        $colorMock = m::mock("LAH\FrontBundle\Entity\Color");
+        $colorMock = m::mock("LAH\MainBundle\Entity\Color");
         $colorMock->shouldReceive('getName')->andReturn('test');
 
-        $carMock = m::mock("LAH\FrontBundle\Entity\Car");
+        $carMock = m::mock("LAH\MainBundle\Entity\Car");
         $carMock->shouldReceive('setColor')->once();
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");
@@ -30,10 +30,10 @@ class ProcessColorsTest extends \PHPUnit_Framework_TestCase
 
     public function testRemoveUnusedWithColorNotFound()
     {
-        $colorMock = m::mock("LAH\FrontBundle\Entity\Color");
+        $colorMock = m::mock("LAH\MainBundle\Entity\Color");
         $colorMock->shouldReceive('getName')->andReturn('test');
 
-        $carMock = m::mock("LAH\FrontBundle\Entity\Car");
+        $carMock = m::mock("LAH\MainBundle\Entity\Car");
         $carMock->shouldReceive('setColor')->once();
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");

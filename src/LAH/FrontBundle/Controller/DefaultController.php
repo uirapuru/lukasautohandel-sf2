@@ -1,8 +1,8 @@
 <?php
 namespace LAH\FrontBundle\Controller;
 
-use LAH\FrontBundle\Entity\Brand;
-use LAH\FrontBundle\Entity\Car;
+use LAH\MainBundle\Entity\Brand;
+use LAH\MainBundle\Entity\Car;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -34,7 +34,7 @@ class DefaultController extends Controller
         /*
          * @var PersistentCollection $cars
          */
-        $promoted = $this->getDoctrine()->getRepository('FrontBundle:Car')->findBy(['promoteFrontpage' => true]);
+        $promoted = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->findBy(['promoteFrontpage' => true]);
 
         return ['cars' => $promoted];
     }
@@ -49,7 +49,7 @@ class DefaultController extends Controller
         /*
          * @var PersistentCollection $cars
          */
-        $promoted = $this->getDoctrine()->getRepository('FrontBundle:Car')->findBy(['promoteCarousel' => true]);
+        $promoted = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->findBy(['promoteCarousel' => true]);
 
         return ['cars' => $promoted];
     }
@@ -64,14 +64,14 @@ class DefaultController extends Controller
     {
         return $this->forward("LAHSearchBundle:Default:list", [
             'request' => $request,
-            'template' => 'FrontBundle:Default:list.html.twig',
+            'template' => 'LAHFrontBundle:Default:list.html.twig',
             'action' => $this->generateUrl('list')
         ]);
     }
 
     /**
      * @Route("/show/{id}/{slug}", name="show")
-     * @ParamConverter("car", class="FrontBundle:Car")
+     * @ParamConverter("car", class="LAHMainBundle:Car")
      * @Template()
      *
      * @Method({"GET"})
@@ -85,13 +85,13 @@ class DefaultController extends Controller
      * @Route("/contact/{id}", name="contact", defaults={ "id" = null })
      *
      * @Method({"GET","POST"})
-     * @ParamConverter("car", class="FrontBundle:Car")
+     * @ParamConverter("car", class="LAHMainBundle:Car")
      * @Template()
      */
     public function contactAction(Request $request, $car = null)
     {
         $this->get('lah.front.form.type.contact')->setCar($car);
-        $form = $this->createForm('lah_form_contact');
+        $form = $this->createForm('lah_contact');
 
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
@@ -144,7 +144,7 @@ class DefaultController extends Controller
      * )
      *
      * @Method({"GET"})
-     * @ParamConverter("brand", class="FrontBundle:Brand")
+     * @ParamConverter("brand", class="LAHMainBundle:Brand")
      */
     public function getModelsForBrandAction(Brand $brand)
     {
@@ -164,7 +164,7 @@ class DefaultController extends Controller
      */
     public function getModelsAction()
     {
-        $models = $this->getDoctrine()->getRepository('FrontBundle:Model')->findAll();
+        $models = $this->getDoctrine()->getRepository('LAHMainBundle:Model')->findAll();
 
         return new Response($this->get('jms_serializer')->serialize($models, 'json'));
     }
