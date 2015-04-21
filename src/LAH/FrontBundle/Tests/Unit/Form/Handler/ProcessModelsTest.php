@@ -1,19 +1,19 @@
 <?php
 namespace LAH\FrontBundle\Tests\Unit\Form\Handler;
 
-use LAH\FrontBundle\Form\Handler\ProcessModel;
+use LAH\AdminBundle\Form\Handler\ProcessModel;
 use Mockery as m;
 
 class ProcessModelsTest extends \PHPUnit_Framework_TestCase
 {
     public function testRemoveUnusedWithFoundModel()
     {
-        $brandMock = m::mock("LAH\FrontBundle\Entity\Brand");
+        $brandMock = m::mock("LAH\MainBundle\Entity\Brand");
 
-        $modelMock = m::mock("LAH\FrontBundle\Entity\Model");
+        $modelMock = m::mock("LAH\MainBundle\Entity\Model");
         $modelMock->shouldReceive('setBrand')->once();
 
-        $carMock = m::mock("LAH\FrontBundle\Entity\Car");
+        $carMock = m::mock("LAH\MainBundle\Entity\Car");
         $carMock->shouldReceive('setModel')->once();
 
         $brandRepoMock = m::mock("Doctrine\ORM\EntityRepository");
@@ -24,8 +24,8 @@ class ProcessModelsTest extends \PHPUnit_Framework_TestCase
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");
         $entityManagerMock->shouldReceive('persist')->once();
-        $entityManagerMock->shouldReceive('getRepository')->with('FrontBundle:Model')->andReturn($modelRepoMock);
-        $entityManagerMock->shouldReceive('getRepository')->with('FrontBundle:Brand')->andReturn($brandRepoMock);
+        $entityManagerMock->shouldReceive('getRepository')->with('LAHMainBundle:Model')->andReturn($modelRepoMock);
+        $entityManagerMock->shouldReceive('getRepository')->with('LAHMainBundle:Brand')->andReturn($brandRepoMock);
 
         $formMock = m::mock("Symfony\Component\Form\Form");
         $formMock->shouldReceive('get->get->getData')->andReturn('newTestModel');
@@ -39,12 +39,12 @@ class ProcessModelsTest extends \PHPUnit_Framework_TestCase
 
     public function testRemoveUnusedWithModelNotFound()
     {
-        $brandMock = m::mock("LAH\FrontBundle\Entity\Brand");
+        $brandMock = m::mock("LAH\MainBundle\Entity\Brand");
 
-        $modelMock = m::mock("LAH\FrontBundle\Entity\Model");
+        $modelMock = m::mock("LAH\MainBundle\Entity\Model");
         $modelMock->shouldReceive('setBrand')->once();
 
-        $carMock = m::mock("LAH\FrontBundle\Entity\Car");
+        $carMock = m::mock("LAH\MainBundle\Entity\Car");
         $carMock->shouldReceive('setModel')->once();
 
         $brandRepoMock = m::mock("Doctrine\ORM\EntityRepository");
@@ -55,8 +55,8 @@ class ProcessModelsTest extends \PHPUnit_Framework_TestCase
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");
         $entityManagerMock->shouldReceive('persist')->once();
-        $entityManagerMock->shouldReceive('getRepository')->with('FrontBundle:Model')->andReturn($modelRepoMock);
-        $entityManagerMock->shouldReceive('getRepository')->with('FrontBundle:Brand')->andReturn($brandRepoMock);
+        $entityManagerMock->shouldReceive('getRepository')->with('LAHMainBundle:Model')->andReturn($modelRepoMock);
+        $entityManagerMock->shouldReceive('getRepository')->with('LAHMainBundle:Brand')->andReturn($brandRepoMock);
 
         $formMock = m::mock("Symfony\Component\Form\Form");
         $formMock->shouldReceive('get->get->getData')->andReturn('newTestType');

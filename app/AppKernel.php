@@ -25,10 +25,12 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new SmartCore\Bundle\AcceleratorCacheBundle\AcceleratorCacheBundle(),
 
-            new LAH\FrontBundle\FrontBundle(),
-            new LAH\MailerBundle\MailerBundle(),
             new LAH\SearchBundle\LAHSearchBundle(),
+            new LAH\MainBundle\LAHMainBundle(),
+            new LAH\AdminBundle\LAHAdminBundle(),
+            new LAH\MailerBundle\MailerBundle(),
             new Dende\CommonBundle\DendeCommonBundle(),
+            new LAH\FrontBundle\LAHFrontBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

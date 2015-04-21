@@ -8,7 +8,7 @@ module.exports = function (grunt) {
     ];
 
     var lessFiles = [
-        'src/LAH/FrontBundle/Resources/less/main.less',
+        'src/LAH/AdminBundle/Resources/less/main.less'
     ];
 
     var jsVendors = [
@@ -19,15 +19,16 @@ module.exports = function (grunt) {
     ];
 
     var coffeeFilesAdmin = [
-        'src/LAH/FrontBundle/Resources/coffee/addImagePlugin.coffee',
-        'src/LAH/FrontBundle/Resources/coffee/toggleWidgets.coffee',
-        'src/LAH/FrontBundle/Resources/coffee/updatePriceSelect.coffee',
-        'src/LAH/FrontBundle/Resources/coffee/main.coffee',
+        'src/LAH/AdminBundle/Resources/coffee/addImagePlugin.coffee',
+        'src/LAH/AdminBundle/Resources/coffee/toggleWidgets.coffee',
+        'src/LAH/AdminBundle/Resources/coffee/updatePriceSelect.coffee',
+        'src/LAH/AdminBundle/Resources/coffee/main.coffee',
     ];
 
     var coffeeFilesFront = [
         'src/LAH/SearchBundle/Resources/coffee/searchForm.coffee',
         'src/LAH/FrontBundle/Resources/coffee/frontend.coffee',
+        'src/LAH/FrontBundle/Resources/coffee/main.coffee',
     ];
 
     grunt.initConfig({

@@ -1,8 +1,8 @@
 <?php
 namespace LAH\FrontBundle\Tests\Unit\Form\Handler;
 
-use LAH\FrontBundle\Entity\Type;
-use LAH\FrontBundle\Form\Handler\ProcessType;
+use LAH\MainBundle\Entity\Type;
+use LAH\AdminBundle\Form\Handler\ProcessType;
 use Mockery as m;
 
 class ProcessTypesTest extends \PHPUnit_Framework_TestCase
@@ -12,7 +12,7 @@ class ProcessTypesTest extends \PHPUnit_Framework_TestCase
         $typeMock = new Type();
         $typeMock->setName('test');
 
-        $carMock = m::mock("LAH\FrontBundle\Entity\Car");
+        $carMock = m::mock("LAH\MainBundle\Entity\Car");
         $carMock->shouldReceive('setType')->once();
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");
@@ -34,7 +34,7 @@ class ProcessTypesTest extends \PHPUnit_Framework_TestCase
         $typeMock = new Type();
         $typeMock->setName('test');
 
-        $carMock = m::mock("LAH\FrontBundle\Entity\Car");
+        $carMock = m::mock("LAH\MainBundle\Entity\Car");
         $carMock->shouldReceive('setType')->once();
 
         $entityManagerMock = m::mock("Doctrine\ORM\EntityManager");

@@ -9,11 +9,11 @@ class SearchQueryModifierTest extends \PHPUnit_Framework_TestCase
 {
     public function testModify()
     {
-        $typeMock = m::mock("LAH\FrontBundle\Entity\Type");
+        $typeMock = m::mock("LAH\MainBundle\Entity\Type");
         $typeMock->shouldReceive("getId")->once()->andReturn("type_id");
-        $brandMock = m::mock("LAH\FrontBundle\Entity\Brand");
+        $brandMock = m::mock("LAH\MainBundle\Entity\Brand");
         $brandMock->shouldReceive("getId")->once()->andReturn("brand_id");
-        $modelMock = m::mock("LAH\FrontBundle\Entity\Model");
+        $modelMock = m::mock("LAH\MainBundle\Entity\Model");
         $modelMock->shouldReceive("getId")->once()->andReturn("model_id");
 
         $searchQueryMock = m::mock("LAH\SearchBundle\Model\SearchQuery");

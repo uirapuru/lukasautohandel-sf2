@@ -1,0 +1,72 @@
+services:
+    lah.admin.form.type.car:
+        class: LAH\AdminBundle\Form\Type\CarType
+        calls:
+          - [setLanguages, [%supported_locales%]]
+        tags:
+            - {name: form.type, alias: lah_car }
+
+    lah.admin.form.type.image:
+        class: LAH\AdminBundle\Form\Type\ImageType
+        tags:
+            - {name: form.type, alias: lah_image }
+
+    lah.admin.form.type.color:
+        class: LAH\AdminBundle\Form\Type\ColorType
+        tags:
+            - {name: form.type, alias: lah_color }
+
+    lah.admin.form.type.model:
+        class: LAH\AdminBundle\Form\Type\ModelType
+        tags:
+            - {name: form.type, alias: lah_model }
+
+    lah.admin.form.type.price:
+        class: LAH\AdminBundle\Form\Type\PriceType
+        tags:
+            - {name: form.type, alias: lah_price }
+
+    lah.admin.form.type.type:
+        class: LAH\AdminBundle\Form\Type\TypeType
+        tags:
+            - {name: form.type, alias: lah_type }
+
+    lah.admin.form.type.title:
+        class: LAH\AdminBundle\Form\Type\TitleType
+        tags:
+            - {name: form.type, alias: lah_title }
+
+    lah.admin.handler.process_images:
+        class: LAH\AdminBundle\Form\Handler\ProcessImages
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+            - [setUploadableManager, ["@stof_doctrine_extensions.uploadable.manager"]]
+
+    lah.admin.handler.process_types:
+        class: LAH\AdminBundle\Form\Handler\ProcessType
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+
+    lah.admin.handler.process_colors:
+        class: LAH\AdminBundle\Form\Handler\ProcessColor
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+
+    lah.admin.handler.process_models:
+        class: LAH\AdminBundle\Form\Handler\ProcessModel
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+
+    lah.admin.handler.process_prices:
+        class: LAH\AdminBundle\Form\Handler\ProcessPrices
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+
+    lah.admin.handler.car:
+        class: LAH\AdminBundle\Form\Handler\CarFormHandler
+        calls:
+          - [setProcessColors, ["@lah.admin.handler.process_colors"]]
+          - [setProcessModels, ["@lah.admin.handler.process_models"]]
+          - [setProcessTypes, ["@lah.admin.handler.process_types"]]
+          - [setProcessImages, ["@lah.admin.handler.process_images"]]
+          - [setProcessPrices, ["@lah.admin.handler.process_prices"]]

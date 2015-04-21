@@ -1,10 +1,15 @@
-lah_search:
-    resource: "@LAHSearchBundle/Controller/"
+lah_admin:
+    resource: "@LAHAdminBundle/Controller/"
     type:     annotation
     prefix:   /
 
-front:
-    resource: "@FrontBundle/Controller/"
+lah_front:
+    resource: "@LAHFrontBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+lah_search:
+    resource: "@LAHSearchBundle/Controller/"
     type:     annotation
     prefix:   /
 
