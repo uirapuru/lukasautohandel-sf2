@@ -1,4 +1,7 @@
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+
+{% if app.environment == "prod" %}
+
 <script type="text/javascript">
 
     var _gaq = _gaq || [];
@@ -30,3 +33,5 @@
 </script>
 <noscript><p><img src="//piwik.uirapu.ru/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
 <!-- End Piwik Code -->
+
+{% endif %}

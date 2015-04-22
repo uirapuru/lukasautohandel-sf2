@@ -107,7 +107,7 @@
                 <div class="pad-1">
                     <h3>{{ 'details.label.description'|trans }}</h3>
 
-                    {{ car.getTranslated("description", app.request.locale)|raw }}
+                    {{ html_description(car) }}
                 </div>
 
             </div>

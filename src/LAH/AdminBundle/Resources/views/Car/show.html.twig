@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <th>{{ "car.form.label.description"|trans }}</th>
-                <td>{{ entity.getTranslated("description", app.request.locale)|raw }}</td>
+                <td>{{ html_description(entity) }}</td>
             </tr>
             <tr>
                 <th>{{ "car.form.label.year"|trans }}</th>
