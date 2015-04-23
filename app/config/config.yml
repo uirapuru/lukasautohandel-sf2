@@ -34,9 +34,9 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
-      contact_number: "+48 600 00 00 00"
-      email_address:  "lukas@lukasautohandel.de"
-      address:        "Piłsudskiego 1<br />Wrocław"
+      contact_number: %company_phone%
+      email_address:  %company_email%
+      address:        %company_address%
       base_url:       %base_url%
 
 # Doctrine Configuration

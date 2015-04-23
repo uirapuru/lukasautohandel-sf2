@@ -33,3 +33,7 @@ parameters:
 
     sentry_backend_dsn:         ~
     sentry_backend_dsn_dev:     ~
+
+    company_address:    "Piłsudskiego 1<br />Wrocław"
+    company_email:      "lukas.l.sobanski@gmail.com"
+    company_phone:      "+48 604 000 000"

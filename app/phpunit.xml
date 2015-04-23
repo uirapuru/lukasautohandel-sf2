@@ -16,10 +16,10 @@
 >
     <testsuites>
         <testsuite name="unit">
-            <directory>../src/Dende/*/Tests/Unit/**</directory>
+            <directory>../src/LAH/*/Tests/Unit/**</directory>
         </testsuite>
         <testsuite name="functional">
-            <directory>../src/Dende/*/Tests/Functional/**</directory>
+            <directory>../src/LAH/*/Tests/Functional/**</directory>
         </testsuite>
     </testsuites>
 

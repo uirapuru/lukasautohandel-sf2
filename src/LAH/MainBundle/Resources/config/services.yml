@@ -34,5 +34,13 @@ services:
       tags:
           - { name: twig.extension }
 
+  lah.main.twig_extension.html_description:
+      class: LAH\MainBundle\Twig\HtmlDescription
+      calls:
+        - ["setLanguage", ["@=service('session').get('_locale')"]]
+        - ["setAddress", ["%company_address%"]]
+      tags:
+        - { name: twig.extension }
+
   lah.main.factory.type:
       class: LAH\MainBundle\Entity\Factory\TypeFactory

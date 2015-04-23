@@ -36,3 +36,10 @@ $ ->
     normal : "div#car_color_row"
     toggled : "div#car_add_color_row"
     close : "a#add-new-car-color-close"
+
+# delete form
+  $("form[id^='delete_']").off('click.delete_car').on 'click.delete_car', (event) =>
+    $form = $(event.target).parents('form')
+
+    if confirm $form.data 'confirm-text'
+      $form.submit()

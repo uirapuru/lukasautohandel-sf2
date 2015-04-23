@@ -10,7 +10,7 @@
                     <iframe src="http://maps.google.com/maps?z=14&t=m&q={{ address|striptags|url_encode }}&output=embed"></iframe>
                 </figure>
                 <dl class="adrss">
-                    <dt><strong>{{ address|raw }}</strong></dt>
+                    <dt><strong>{{ html_address() }}</strong></dt>
                     <dd><span>{{ "contact.telephone"|trans }}:</span>{{ contact_number }}</dd>
                     <dd class="p8"><a href="mailto:{{ email_address }}" class="link-4">{{ email_address }}</a></dd>
                 </dl>

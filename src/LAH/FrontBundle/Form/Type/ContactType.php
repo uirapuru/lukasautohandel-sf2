@@ -5,6 +5,7 @@ use LAH\MainBundle\Entity\Car;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Constraints\Email;
@@ -128,8 +129,14 @@ class ContactType extends AbstractType
             ->add('submit', 'submit', [
                 'label' => 'contact.form.labels.submit',
             ]);
+    }
 
-        $options["action"] = $this->router->generate("contact", ["id" => isset($carId) ? $carId : null]);
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class'      => null,
+            'csrf_protection' => false,
+        ]);
     }
 
     public function getName()
