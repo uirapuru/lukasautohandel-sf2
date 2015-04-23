@@ -88,9 +88,8 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <a href="/contact/1" class="button">{{ 'details.ask_about_this_car_link'|trans }}</a>
+                                <a href="{{ path("contact", {id: car.id}) }}" class="button">{{ 'details.ask_about_this_car_link'|trans }}</a>
                             </td>
-
                         </tr>
                         </tbody>
                     </table>
