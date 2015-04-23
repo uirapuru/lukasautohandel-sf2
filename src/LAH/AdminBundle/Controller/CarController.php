@@ -2,8 +2,8 @@
 namespace LAH\AdminBundle\Controller;
 
 use A2lix\TranslationFormBundle\Annotation\GedmoTranslation;
+use Doctrine\Common\Persistence\ObjectManager;
 use LAH\MainBundle\Entity\Car;
-use LAH\SearchBundle\Model\SearchQuery;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -39,19 +39,13 @@ class CarController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($car);
                 $em->flush();
+                $em->getConfiguration()->getResultCacheImpl()->deleteAll();
 
                 $this->addFlash('success', 'flash.car_add.success');
-
-                $this->get('logger')->addWarning('Car added', [
-                    'formData' => $serializer->serialize($form->getData(), 'json'),
-                ]);
-
-                return $this->redirect(
-                    $this->generateUrl('edit_car', ['id' => $car->getId()])
-                );
+                $this->get('logger')->addWarning('Car added', ['formData' => $serializer->serialize($form->getData(), 'json')]);
+                return $this->redirect($this->generateUrl('edit_car', ['id' => $car->getId()]));
             } else {
                 $this->addFlash('error', 'flash.car_edit.errors');
-
                 $this->get('logger')->addWarning('Car adding error', [
                     'formData'  => $serializer->serialize($form->getData(), 'json'),
                     'formError' => $serializer->serialize($form->getErrors(), 'json'),
@@ -60,7 +54,6 @@ class CarController extends Controller
                 $statusCode = 400;
             }
         }
-
         return new Response($this->renderView('@LAHAdmin/Car/add.html.twig', [
                 'form' => $form->createView()
             ]), isset($statusCode) ? $statusCode : 200);
@@ -90,22 +83,17 @@ class CarController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($car);
                 $em->flush();
+                $em->getConfiguration()->getResultCacheImpl()->deleteAll();
 
                 $this->addFlash('success', 'flash.car_edit.success');
-
-                $this->get('logger')->addWarning('Car edited', [
-                        'formData' => $serializer->serialize($form->getData(), 'json'),
-                ]);
-
+                $this->get('logger')->addWarning('Car edited', ['formData' => $serializer->serialize($form->getData(), 'json')]);
                 return $this->redirect($this->generateUrl('edit_car', ['id' => $car->getId()]));
             } else {
                 $this->addFlash('error', 'flash.car_edit.errors');
-
                 $this->get('logger')->addWarning('Car editing error', [
                         'formData'  => $serializer->serialize($form->getData(), 'json'),
                         'formError' => $serializer->serialize($form->getErrors(true), 'json'),
                 ]);
-
                 $statusCode = 400;
             }
         }
@@ -151,14 +139,12 @@ class CarController extends Controller
      * @Route("/{id}/delete",name="delete_car")
      * @ParamConverter("car", class="LAHMainBundle:Car")
      *
-     * @Method({"GET"})
+     * @Method({"POST"})
      */
     public function deleteAction(Request $request, Car $car)
     {
-        $this->get('lah.front.manager.car')->delete($car);
-
-        return $this->redirect(
-            $request->headers->get('referer')
-        );
+        $this->get('lah.main.manager.car')->delete($car);
+        $this->getDoctrine()->getManager()->getConfiguration()->getResultCacheImpl()->deleteAll();
+        return $this->redirectToRoute("car");
     }
 }

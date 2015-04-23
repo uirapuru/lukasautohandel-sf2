@@ -37,7 +37,7 @@ services:
   lah.main.twig_extension.html_description:
       class: LAH\MainBundle\Twig\HtmlDescription
       calls:
-        - ["setLanguage", ["@=service('request').getLocale()"]]
+        - ["setLanguage", ["@=service('session').get('_locale')"]]
         - ["setAddress", ["%company_address%"]]
       tags:
         - { name: twig.extension }

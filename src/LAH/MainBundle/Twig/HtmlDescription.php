@@ -27,20 +27,21 @@ class HtmlDescription extends \Twig_Extension
 
     public function getFunctions()
     {
-
         return [
             new \Twig_SimpleFunction('html_description', [$this, "getHtmlDescription"], ["is_safe" => ["html"]]),
             new \Twig_SimpleFunction('html_address', [$this, "getAddress"], ["is_safe" => ["html"]]),
         ];
     }
 
-    public function getAddress() {
+    public function getAddress()
+    {
         return $this->address;
     }
 
-    public function getHtmlDescription (Car $car, $language = null) {
+    public function getHtmlDescription(Car $car, $language = null)
+    {
         if (!$language) {
-           $language = $this->language;
+            $language = $this->language;
         }
 
         return $car->getTranslated("description", $language);

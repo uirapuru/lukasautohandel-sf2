@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="pull-right">
-                    <a href="{{ path('delete_car', {id: entity.id}) }}" onclick="return confirm('{{ 'crud.action.are_you_sure'|trans }}')" class="btn btn-danger">{{ "crud.action.delete"|trans }}</a>
+                    {% include('@LAHAdmin/Car/_delete_button.html.twig') with {car: entity, title: "crud.action.delete"|trans } %}
                     <a href="{{ path('edit_car', {id: entity.id}) }}" class="btn btn-warning">{{ "crud.action.edit"|trans }}</a>
                     <a href="{{ path('car') }}" class="btn btn-info">{{ "crud.action.back_to_list"|trans }}</a>
                 </div>

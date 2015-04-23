@@ -1,0 +1,9 @@
+<form id="{{ 'delete_' ~ car.id }}" name="{{ 'delete_' ~ car.id }}" method="POST" action="{{ path('delete_car', { 'id': car.id }) }}" data-confirm-text="{{ 'crud.action.are_you_sure'|trans }}" >
+        {% if title is defined %}
+        <a href="#" title="{{ "crud.action.delete"|trans }}" class="btn btn-danger">{{ title }}</a>
+        {% else %}
+        <a href="#" title="{{ "crud.action.delete"|trans }}" class="btn btn-danger btn-sm">
+            <i class="glyphicon glyphicon-remove"></i>
+        </a>
+        {% endif %}
+</form>
