@@ -91,7 +91,9 @@ class DefaultController extends Controller
     public function contactAction(Request $request, $car = null)
     {
         $this->get('lah.front.form.type.contact')->setCar($car);
-        $form = $this->createForm('lah_contact');
+        $form = $this->createForm('lah_contact', null, [
+            'action'=> $this->generateUrl("contact", ["id" => $car ? $car->getId() : null])
+        ]);
 
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);

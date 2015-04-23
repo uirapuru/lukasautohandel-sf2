@@ -24,7 +24,7 @@ class ContactFormTest extends BaseFunctionalTest
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
-        $this->assertCount(4, $form->filter('input'));
+        $this->assertCount(3, $form->filter('input'));
         $this->assertCount(1, $form->filter('textarea'));
 
         $crawler = $this->client->request('GET', $this->container->get('router')->generate('contact', ["id" => 1]));
@@ -34,7 +34,7 @@ class ContactFormTest extends BaseFunctionalTest
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
-        $this->assertCount(5, $form->filter('input'));
+        $this->assertCount(4, $form->filter('input'));
         $this->assertCount(1, $form->filter('textarea'));
     }
 

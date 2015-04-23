@@ -2,7 +2,6 @@
 namespace LAH\AdminBundle\Controller;
 
 use A2lix\TranslationFormBundle\Annotation\GedmoTranslation;
-use Doctrine\Common\Persistence\ObjectManager;
 use LAH\MainBundle\Entity\Car;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
