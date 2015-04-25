@@ -31,12 +31,22 @@ class DefaultController extends Controller
      */
     public function promotedAction()
     {
-        /*
-         * @var PersistentCollection $cars
-         */
-        $promoted = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->findBy(['promoteFrontpage' => true]);
+        $queryBuilder = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->createQueryBuilder('c');
+        $queryBuilder->leftJoin("c.model", "m");
+        $queryBuilder->leftJoin("c.translations", "ct");
+        $queryBuilder->leftJoin("c.images", "i");
+        $queryBuilder->leftJoin("m.brand", "b");
+        $queryBuilder->leftJoin("c.prices", "p");
+        $queryBuilder->leftJoin("c.color", "cl");
+        $queryBuilder->leftJoin("c.type", "t");
+        $queryBuilder->leftJoin("cl.translations", "clt");
 
-        return ['cars' => $promoted];
+        $queryBuilder->andwhere('c.promoteFrontpage = true');
+
+        $query = $queryBuilder->getQuery();
+        $query->useResultCache(true, 3600, "cars-frontpage");
+
+        return ['cars' => $query->execute()];
     }
 
     /**
@@ -46,12 +56,22 @@ class DefaultController extends Controller
      */
     public function carouselAction()
     {
-        /*
-         * @var PersistentCollection $cars
-         */
-        $promoted = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->findBy(['promoteCarousel' => true]);
+        $queryBuilder = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->createQueryBuilder('c');
+        $queryBuilder->leftJoin("c.model", "m");
+        $queryBuilder->leftJoin("c.translations", "ct");
+        $queryBuilder->leftJoin("c.images", "i");
+        $queryBuilder->leftJoin("m.brand", "b");
+        $queryBuilder->leftJoin("c.prices", "p");
+        $queryBuilder->leftJoin("c.color", "cl");
+        $queryBuilder->leftJoin("c.type", "t");
+        $queryBuilder->leftJoin("cl.translations", "clt");
 
-        return ['cars' => $promoted];
+        $queryBuilder->where('c.promoteCarousel = true');
+
+        $query = $queryBuilder->getQuery();
+        $query->useResultCache(true, 3600, "cars-carousel");
+
+        return ['cars' => $query->execute()];
     }
 
     /**
@@ -95,7 +115,7 @@ class DefaultController extends Controller
             'action'=> $this->generateUrl("contact", ["id" => $car ? $car->getId() : null])
         ]);
 
-        if ($request->getMethod() == 'POST') {
+        if ($request->getMethod() === 'POST') {
             $form->handleRequest($request);
 
             if ($form->isValid()) {
@@ -111,6 +131,8 @@ class DefaultController extends Controller
                 ]);
                 $mailer->setFrom($form->get('email')->getData());
                 $mailer->sendMail();
+
+                return $this->redirectToRoute('contact', ["id" => $car ? $car->getId() : null]);
             }
         }
 

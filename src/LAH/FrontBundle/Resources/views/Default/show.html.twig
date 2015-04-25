@@ -2,11 +2,6 @@
 
 {% block body %}
     <div class="container_12">
-        <script>
-            $(document).ready(function () {
-                $("a[rel^='prettyPhoto']").prettyPhoto();
-            });
-        </script>
         <div class="grid_8">
             <div class="inner-block">
                 <h2 class="h2-border">{{ car.title }} <a class="link" href="{{ path("list") }}">{{ 'details.show_all_link'|trans }}</a>
