@@ -228,17 +228,17 @@
         },
         {
             "name": "dende/common-bundle",
-            "version": "0.0.4",
+            "version": "0.0.6",
             "target-dir": "Dende/CommonBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UirapuruDende/CommonBundle.git",
-                "reference": "3f0e7d491ef60d13d0c6f1c76d1cd7f7d6ee03b5"
+                "reference": "d9a1cae114ce7348207d15868ef18f94c1e4f57b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UirapuruDende/CommonBundle/zipball/3f0e7d491ef60d13d0c6f1c76d1cd7f7d6ee03b5",
-                "reference": "3f0e7d491ef60d13d0c6f1c76d1cd7f7d6ee03b5",
+                "url": "https://api.github.com/repos/UirapuruDende/CommonBundle/zipball/d9a1cae114ce7348207d15868ef18f94c1e4f57b",
+                "reference": "d9a1cae114ce7348207d15868ef18f94c1e4f57b",
                 "shasum": ""
             },
             "require": {
@@ -292,7 +292,7 @@
                 "bundle",
                 "public"
             ],
-            "time": "2015-04-23 19:20:49"
+            "time": "2015-04-25 09:24:11"
         },
         {
             "name": "doctrine/annotations",
@@ -3907,12 +3907,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "f48cc1ba3497eda512a75b76fb82d95ac80a05fd"
+                "reference": "dc86ff71e2b06fb9f110beab4c5d76e1fb1b3e83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/f48cc1ba3497eda512a75b76fb82d95ac80a05fd",
-                "reference": "f48cc1ba3497eda512a75b76fb82d95ac80a05fd",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/dc86ff71e2b06fb9f110beab4c5d76e1fb1b3e83",
+                "reference": "dc86ff71e2b06fb9f110beab4c5d76e1fb1b3e83",
                 "shasum": ""
             },
             "require": {
@@ -4016,7 +4016,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-04-19 17:01:19"
+            "time": "2015-04-24 15:35:34"
         },
         {
             "name": "twig/extensions",
@@ -5384,12 +5384,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "df8e38bed29bc98bafa22ed1d4f02a10a1e9f997"
+                "reference": "9e212ed7f598929d491563d01d221155e358a2a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/df8e38bed29bc98bafa22ed1d4f02a10a1e9f997",
-                "reference": "df8e38bed29bc98bafa22ed1d4f02a10a1e9f997",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/9e212ed7f598929d491563d01d221155e358a2a3",
+                "reference": "9e212ed7f598929d491563d01d221155e358a2a3",
                 "shasum": ""
             },
             "require": {
@@ -5435,7 +5435,7 @@
                 }
             ],
             "description": "A script to automatically fix Symfony Coding Standard",
-            "time": "2015-04-20 20:19:27"
+            "time": "2015-04-22 08:14:17"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -6900,12 +6900,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "76853c5707775b17d68c8878a3672c952692ea30"
+                "reference": "3760f15cad52fb272959957b141f2dacaa9af7de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/76853c5707775b17d68c8878a3672c952692ea30",
-                "reference": "76853c5707775b17d68c8878a3672c952692ea30",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/3760f15cad52fb272959957b141f2dacaa9af7de",
+                "reference": "3760f15cad52fb272959957b141f2dacaa9af7de",
                 "shasum": ""
             },
             "require": {
@@ -6966,7 +6966,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-04-21 05:31:04"
+            "time": "2015-04-24 05:53:54"
         },
         {
             "name": "theseer/fdomdocument",

@@ -31,12 +31,22 @@ class DefaultController extends Controller
      */
     public function promotedAction()
     {
-        /*
-         * @var PersistentCollection $cars
-         */
-        $promoted = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->findBy(['promoteFrontpage' => true]);
+        $queryBuilder = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->createQueryBuilder('c');
+        $queryBuilder->innerJoin("c.model", "m");
+        $queryBuilder->innerJoin("c.translations", "ct");
+        $queryBuilder->innerJoin("c.images", "i");
+        $queryBuilder->innerJoin("m.brand", "b");
+        $queryBuilder->innerJoin("c.prices", "p");
+        $queryBuilder->innerJoin("c.color", "cl");
+        $queryBuilder->innerJoin("c.type", "t");
+        $queryBuilder->innerJoin("cl.translations", "clt");
 
-        return ['cars' => $promoted];
+        $queryBuilder->andwhere('c.promoteFrontpage = true');
+
+        $query = $queryBuilder->getQuery();
+        $query->useResultCache(true, 3600, "cars-frontpage");
+
+        return ['cars' => $query->execute()];
     }
 
     /**
@@ -46,12 +56,22 @@ class DefaultController extends Controller
      */
     public function carouselAction()
     {
-        /*
-         * @var PersistentCollection $cars
-         */
-        $promoted = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->findBy(['promoteCarousel' => true]);
+        $queryBuilder = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->createQueryBuilder('c');
+        $queryBuilder->innerJoin("c.model", "m");
+        $queryBuilder->innerJoin("c.translations", "ct");
+        $queryBuilder->innerJoin("c.images", "i");
+        $queryBuilder->innerJoin("m.brand", "b");
+        $queryBuilder->innerJoin("c.prices", "p");
+        $queryBuilder->innerJoin("c.color", "cl");
+        $queryBuilder->innerJoin("c.type", "t");
+        $queryBuilder->innerJoin("cl.translations", "clt");
 
-        return ['cars' => $promoted];
+        $queryBuilder->andwhere('c.promoteCarousel = true');
+
+        $query = $queryBuilder->getQuery();
+        $query->useResultCache(true, 3600, "cars-carousel");
+
+        return ['cars' => $query->execute()];
     }
 
     /**
