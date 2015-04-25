@@ -170,7 +170,7 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(200, $this->getStatusCode());
 
         $alert = $crawler->filter('div.alert.alert-success');
-        $this->assertEquals('flash.car_add.success', trim($alert->text()));
+        $this->assertEquals('flash.car_edit.success', trim($alert->text()));
 
         $em = $this->container->get('doctrine.orm.entity_manager');
         /*

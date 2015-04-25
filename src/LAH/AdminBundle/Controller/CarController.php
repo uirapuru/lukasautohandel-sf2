@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -33,15 +34,7 @@ class CarController extends Controller
 
             if ($form->isValid()) {
                 $car = $form->getData();
-                $this->get('lah.admin.handler.car')->setCar($car)->handle($form);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($car);
-                $em->flush();
-                $em->getConfiguration()->getResultCacheImpl()->deleteAll();
-
-                $this->addFlash('success', 'flash.car_add.success');
-                $this->get('logger')->addWarning('Car added', ['formData' => $serializer->serialize($form->getData(), 'json')]);
+                $this->saveCar($car, $form);
                 return $this->redirect($this->generateUrl('edit_car', ['id' => $car->getId()]));
             } else {
                 $this->addFlash('error', 'flash.car_edit.errors');
@@ -77,15 +70,7 @@ class CarController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-                $this->get('lah.admin.handler.car')->setCar($car)->handle($form);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($car);
-                $em->flush();
-                $em->getConfiguration()->getResultCacheImpl()->deleteAll();
-
-                $this->addFlash('success', 'flash.car_edit.success');
-                $this->get('logger')->addWarning('Car edited', ['formData' => $serializer->serialize($form->getData(), 'json')]);
+                $this->saveCar($car, $form);
                 return $this->redirect($this->generateUrl('edit_car', ['id' => $car->getId()]));
             } else {
                 $this->addFlash('error', 'flash.car_edit.errors');
@@ -145,5 +130,18 @@ class CarController extends Controller
         $this->get('lah.main.manager.car')->delete($car);
         $this->getDoctrine()->getManager()->getConfiguration()->getResultCacheImpl()->deleteAll();
         return $this->redirectToRoute("car");
+    }
+
+    private function saveCar(Car $car, Form $form)
+    {
+        $this->get('lah.admin.handler.car')->setCar($car)->handle($form);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($car);
+        $em->flush();
+        $em->getConfiguration()->getResultCacheImpl()->deleteAll();
+
+        $this->addFlash('success', 'flash.car_edit.success');
+        $this->get('logger')->addWarning('Car edited', ['formData' => $this->get("jms_serializer")->serialize($form->getData(), 'json')]);
     }
 }
