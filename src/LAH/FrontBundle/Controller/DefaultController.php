@@ -111,6 +111,8 @@ class DefaultController extends Controller
                 ]);
                 $mailer->setFrom($form->get('email')->getData());
                 $mailer->sendMail();
+
+                $this->redirectToRoute('contact', ["id" => $car ? $car->getId() : null]);
             }
         }
 
