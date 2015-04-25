@@ -16,10 +16,10 @@
 >
     <testsuites>
         <testsuite name="unit">
-            <directory>../src/Dende/*/Tests/Unit/**</directory>
+            <directory>../src/LAH/*/Tests/Unit/**</directory>
         </testsuite>
         <testsuite name="functional">
-            <directory>../src/Dende/*/Tests/Functional/**</directory>
+            <directory>../src/LAH/*/Tests/Functional/**</directory>
         </testsuite>
     </testsuites>
 
@@ -39,15 +39,15 @@
             <directory suffix=".php">../src/**</directory>
             <exclude>
                 <directory suffix=".php">../app/cache/**</directory>
-                <directory suffix=".php">../src/Dende/FrontBundle/DataFixtures/*</directory>
-                <directory suffix=".php">../src/Dende/FrontBundle/DataFixtures/ORM/*</directory>
+                <directory suffix=".php">../src/LAH/MainBundle/DataFixtures/*</directory>
+                <directory suffix=".php">../src/LAH/MainBundle/DataFixtures/ORM/*</directory>
                 <directory suffix=".php">../src/**/Entity/*</directory>
                 <directory suffix=".php">../src/**/Tests/*</directory>
                 <directory suffix=".php">../src/**/Features/*</directory>
                 <file>../app/AppCache.php</file>
                 <file>../app/AppKernel.php</file>
                 <file>../app/bootstrap.php.cache</file>
-                <file>../src/Dende/FrontBundle/Features/FeatureContext.php</file>
+                <file>../src/LAH/MainBundle/Features/FeatureContext.php</file>
             </exclude>
         </whitelist>
     </filter>

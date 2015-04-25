@@ -228,17 +228,17 @@
         },
         {
             "name": "dende/common-bundle",
-            "version": "0.0.3",
+            "version": "0.0.4",
             "target-dir": "Dende/CommonBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UirapuruDende/CommonBundle.git",
-                "reference": "83f450e2f8c0f9e2cc47e3bc51c74cef418af5d1"
+                "reference": "3f0e7d491ef60d13d0c6f1c76d1cd7f7d6ee03b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UirapuruDende/CommonBundle/zipball/83f450e2f8c0f9e2cc47e3bc51c74cef418af5d1",
-                "reference": "83f450e2f8c0f9e2cc47e3bc51c74cef418af5d1",
+                "url": "https://api.github.com/repos/UirapuruDende/CommonBundle/zipball/3f0e7d491ef60d13d0c6f1c76d1cd7f7d6ee03b5",
+                "reference": "3f0e7d491ef60d13d0c6f1c76d1cd7f7d6ee03b5",
                 "shasum": ""
             },
             "require": {
@@ -292,7 +292,7 @@
                 "bundle",
                 "public"
             ],
-            "time": "2015-04-17 21:06:48"
+            "time": "2015-04-23 19:20:49"
         },
         {
             "name": "doctrine/annotations",
