@@ -63,12 +63,12 @@ class ContactFormTest extends BaseFunctionalTest
         ]);
 
         $this->client->enableProfiler();
+        $this->client->followRedirects(false);
 
         $crawler = $this->client->submit($form);
 
         $this->mailerCollector = $this->client->getProfile()->getCollector("swiftmailer");
 
-        $this->assertContains('contact.message.success', $crawler->text());
         $this->assertEquals(1, $this->mailerCollector->getMessageCount());
 
         /**
