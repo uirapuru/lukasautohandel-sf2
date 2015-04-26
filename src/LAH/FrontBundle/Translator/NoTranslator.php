@@ -1,6 +1,7 @@
 <?php
 namespace LAH\FrontBundle\Translator;
 
+use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Translation\TranslatorBagInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -38,6 +39,6 @@ class NoTranslator implements TranslatorInterface, TranslatorBagInterface
      */
     public function getCatalogue($locale = null)
     {
-        return [];
+        return new MessageCatalogue($locale, []);
     }
 }
