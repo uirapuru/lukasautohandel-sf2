@@ -1,0 +1,37 @@
+language: php
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+
+env:
+  - SYMFONY_VERSION=2.6.*
+  - SYMFONY_VERSION=2.7.*@dev
+
+allow_failures:
+  - php: 7.0
+
+install:
+  - composer self-update
+  - composer install --prefer-dist
+  - npm install
+  - node_modules/.bin/bower install
+  #+5.5 uses APCU
+  - if [ "`phpenv version-name`" == "5.6" ]; then printf "\n"| pecl install apcu-beta; fi
+
+before_script:
+  - phpenv config-add app/Resources/travis/$TRAVIS_PHP_VERSION.ini
+  - composer require --prefer-dist --dev symfony/symfony:${SYMFONY_VERSION}
+  - ./bin/phing assets
+
+script:
+  - ./bin/phing test -Djenkins=true
+
+notifications:
+  email:
+    - uirapuruadg@gmail.com
+
+cache:
+  directories:
+    - $COMPOSER_CACHE_DIR
