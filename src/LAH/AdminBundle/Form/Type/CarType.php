@@ -78,7 +78,7 @@ class CarType extends AbstractType
                     'class'       => "LAH\MainBundle\Entity\Model",
                     'empty_value' => 'car.form.choice.empty_car_model',
                     'empty_data'  => null,
-                    'property'    => 'getFullName',
+                    'property'    => 'getModelAndBrandName',
                     'required'    => true,
                     'constraints' => [
                         new Callback(function ($data, ExecutionContextInterface $context) {

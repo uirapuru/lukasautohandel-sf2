@@ -122,6 +122,11 @@ class Model
         return $this->getName();
     }
 
+    public function getModelAndBrandName()
+    {
+        return sprintf("%s %s", $this->getBrand()->getName(), $this->getName());
+    }
+
     /**
      * @return mixed
      */
