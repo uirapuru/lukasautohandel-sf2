@@ -38,3 +38,5 @@ parameters:
     company_address:    "Bystrzycka 67 A<br />54-215 Wrocław, Dolnośląskie"
     company_email:      "lukas.l.sobanski@gmail.com"
     company_phone:      "+48 793 698 171"
+
+    google_verification_code:    ~

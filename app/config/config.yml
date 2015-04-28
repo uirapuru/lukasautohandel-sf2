@@ -39,6 +39,7 @@ twig:
       email_address:  %company_email%
       address:        %company_address%
       base_url:       %base_url%
+      google_site_verification_code: %google_verification_code%
 
 # Doctrine Configuration
 doctrine:
