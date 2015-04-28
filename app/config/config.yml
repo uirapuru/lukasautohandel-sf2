@@ -34,10 +34,12 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
+      company_name:   %company_name%
       contact_number: %company_phone%
       email_address:  %company_email%
       address:        %company_address%
       base_url:       %base_url%
+      google_site_verification_code: %google_verification_code%
 
 # Doctrine Configuration
 doctrine:
@@ -71,7 +73,7 @@ swiftmailer:
     host:      ~
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    delivery_address: "%delivery_address%"
+    # delivery_address: "%delivery_address%"
     port:                 465
     encryption:           ssl
     auth_mode:            ~

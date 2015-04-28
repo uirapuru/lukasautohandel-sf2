@@ -55,15 +55,15 @@
                         </tr>
                         <tr>
                             <td>{{ 'details.label.fuel'|trans }}</td>
-                            <td>{{ car.fuel }}</td>
+                            <td>{{ ('fuel.' ~ car.fuel)|trans }}</td>
                         </tr>
                         <tr>
                             <td>{{ 'details.label.engine'|trans }}</td>
-                            <td>{{ car.engine }}</td>
+                            <td>{{ ('engine.' ~ car.engine)|trans }}</td>
                         </tr>
                         <tr>
                             <td>{{ 'details.label.transmission'|trans }}</td>
-                            <td>{{ car.gearbox }}</td>
+                            <td>{{ ('transmission.' ~ car.gearbox)|trans }}</td>
                         </tr>
                         <tr>
                             <td>{{ 'details.label.color'|trans }}</td>
@@ -71,7 +71,7 @@
                         </tr>
                         <tr>
                             <td>{{ 'details.label.registrationCountry'|trans }}</td>
-                            <td>{{ car.registrationCountry }}</td>
+                            <td>{{ ('country.' ~ car.registrationCountry)|trans }}</td>
                         </tr>
                         <tr>
                             <td>{{ 'details.label.price'|trans }}</td>

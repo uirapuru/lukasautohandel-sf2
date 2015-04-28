@@ -1,9 +1,11 @@
 <?php
 namespace LAH\FrontBundle\Translator;
 
+use Symfony\Component\Translation\MessageCatalogue;
+use Symfony\Component\Translation\TranslatorBagInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class NoTranslator implements TranslatorInterface
+class NoTranslator implements TranslatorInterface, TranslatorBagInterface
 {
     public function trans($id, array $parameters = [], $domain = null, $locale = null)
     {
@@ -30,5 +32,13 @@ class NoTranslator implements TranslatorInterface
 
     public function addResource($resource)
     {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCatalogue($locale = null)
+    {
+        return new MessageCatalogue($locale, []);
     }
 }

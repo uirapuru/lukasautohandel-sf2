@@ -34,20 +34,24 @@
                 <td>{{ entity.distance }}</td>
             </tr>
             <tr>
-                <th>{{ "car.form.label.fuel"|trans }}</th>
-                <td>{{ entity.fuel }}</td>
+                <td>{{ 'details.label.fuel'|trans }}</td>
+                <td>{{ ('fuel.' ~ entity.fuel)|trans }}</td>
             </tr>
             <tr>
-                <th>{{ "car.form.label.engine"|trans }}</th>
-                <td>{{ entity.engine }}</td>
+                <td>{{ 'details.label.engine'|trans }}</td>
+                <td>{{ ('engine.' ~ entity.engine)|trans }}</td>
             </tr>
             <tr>
-                <th>{{ "car.form.label.gearbox"|trans }}</th>
-                <td>{{ entity.gearbox }}</td>
+                <td>{{ 'details.label.transmission'|trans }}</td>
+                <td>{{ ('transmission.' ~ entity.gearbox)|trans }}</td>
             </tr>
             <tr>
-                <th>{{ "car.form.label.registrationCountry"|trans }}</th>
-                <td>{{ entity.registrationCountry }}</td>
+                <td>{{ 'details.label.color'|trans }}</td>
+                <td>{{ entity.color.getTranslated("name", app.request.locale) }}</td>
+            </tr>
+            <tr>
+                <td>{{ 'details.label.registrationCountry'|trans }}</td>
+                <td>{{ ('country.' ~ entity.registrationCountry)|trans }}</td>
             </tr>
             <tr>
                 <th>{{ "car.form.label.promoteCarousel"|trans }}</th>

@@ -7,6 +7,11 @@ services:
     tags:
       - { name: doctrine.event_listener, event: uploadablePostFileProcess }
 
+  lah.admin.listener.rescale_image:
+    class: LAH\AdminBundle\Event\Listener\RescaleImageListener
+    tags:
+      - { name: doctrine.event_listener, event: uploadablePostFileProcess }
+
   lah.admin.menu.main:
       class: Knp\Menu\MenuItem
       factory_service: lah.main.menu_builder

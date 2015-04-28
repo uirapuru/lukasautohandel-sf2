@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0be2216cf019d36ac49f05bf4047ddac",
+    "hash": "e1e749ba2780e22f44df42389089ad50",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -2259,17 +2259,16 @@
         },
         {
             "name": "knplabs/knp-paginator-bundle",
-            "version": "2.4.1",
-            "target-dir": "Knp/Bundle/PaginatorBundle",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle.git",
-                "reference": "701dffe02dbe4aa8784d3d9e5343985318ef5e2c"
+                "reference": "5990419ed9cfb54fac4a4b63056c3cd2ceb2f14a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/701dffe02dbe4aa8784d3d9e5343985318ef5e2c",
-                "reference": "701dffe02dbe4aa8784d3d9e5343985318ef5e2c",
+                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/5990419ed9cfb54fac4a4b63056c3cd2ceb2f14a",
+                "reference": "5990419ed9cfb54fac4a4b63056c3cd2ceb2f14a",
                 "shasum": ""
             },
             "require": {
@@ -2278,6 +2277,9 @@
                 "symfony/framework-bundle": "~2.0",
                 "twig/twig": "~1.5"
             },
+            "require-dev": {
+                "symfony/expression-language": "~2.4"
+            },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -2285,8 +2287,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Knp\\Bundle\\PaginatorBundle": ""
+                "psr-4": {
+                    "Knp\\Bundle\\PaginatorBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2314,7 +2316,7 @@
                 "pagination",
                 "paginator"
             ],
-            "time": "2014-09-15 15:49:24"
+            "time": "2015-02-03 02:04:01"
         },
         {
             "name": "monolog/monolog",
@@ -7124,6 +7126,7 @@
         "stof/doctrine-extensions-bundle": 20,
         "a2lix/translation-form-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
+        "knplabs/knp-paginator-bundle": 20,
         "phpunit/phpunit": 20,
         "squizlabs/php_codesniffer": 20,
         "sebastian/phpcpd": 20,

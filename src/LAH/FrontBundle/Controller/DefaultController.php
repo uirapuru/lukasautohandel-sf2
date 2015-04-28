@@ -85,7 +85,8 @@ class DefaultController extends Controller
         return $this->forward("LAHSearchBundle:Default:list", [
             'request' => $request,
             'template' => 'LAHFrontBundle:Default:list.html.twig',
-            'action' => $this->generateUrl('list')
+            'action' => $this->generateUrl('list'),
+            'showHidden' => false
         ]);
     }
 
