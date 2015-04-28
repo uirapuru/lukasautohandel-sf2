@@ -34,6 +34,7 @@ parameters:
     sentry_backend_dsn:         ~
     sentry_backend_dsn_dev:     ~
 
-    company_address:    "Piłsudskiego 1<br />Wrocław"
+    company_name:       "XTBS Łukasz Sobański"
+    company_address:    "Bystrzycka 67 A<br />54-215 Wrocław, Dolnośląskie"
     company_email:      "lukas.l.sobanski@gmail.com"
-    company_phone:      "+48 604 000 000"
+    company_phone:      "+48 793 698 171"

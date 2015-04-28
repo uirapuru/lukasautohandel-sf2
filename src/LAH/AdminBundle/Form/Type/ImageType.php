@@ -21,7 +21,7 @@ class ImageType extends AbstractType
                     'error_bubbling' => false,
                     'constraints'    => [
                         new Image([
-                            'maxSize'                    => 2000000,
+                            'maxSize'                    => 10000000,
                             'maxSizeMessage'             => 'validator.maximum_file_size_reached',
                             'uploadFormSizeErrorMessage' => 'validator.file_is_too_large',
                         ]),

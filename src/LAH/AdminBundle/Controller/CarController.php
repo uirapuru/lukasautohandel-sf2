@@ -98,7 +98,8 @@ class CarController extends Controller
         return $this->forward("LAHSearchBundle:Default:list", [
             'request' => $request,
             'template' => 'LAHAdminBundle:Car:list.html.twig',
-            'action' => $this->generateUrl('car')
+            'action' => $this->generateUrl('car'),
+            'showHidden' => true
         ]);
     }
 

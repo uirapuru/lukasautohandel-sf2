@@ -10,7 +10,7 @@
 
         <ul>
         {% for error in form.vars.errors  %}
-            <li>{{ error }}</li>
+            <li>{{ error.getMessage() }}</li>
         {% endfor %}
         </ul>
     </div>

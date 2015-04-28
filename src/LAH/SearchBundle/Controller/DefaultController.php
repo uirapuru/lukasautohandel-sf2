@@ -24,7 +24,7 @@ class DefaultController extends Controller
         return ['form' => $form->createView()];
     }
 
-    public function listAction(Request $request, $template, $action = null)
+    public function listAction(Request $request, $template, $action = null, $showHidden = false)
     {
         $searchQuery = new SearchQuery();
         $form = $this->createForm('search', $searchQuery, [
@@ -56,9 +56,9 @@ class DefaultController extends Controller
             ]);
         }
 
-        /*
-         * @var PersistentCollection $cars
-         */
+        if (!$showHidden) {
+            $queryBuilder->andWhere('c.hidden = 0');
+        }
 
         $query = $queryBuilder->getQuery();
         $query->useResultCache(true, 3600, md5(implode('/', $cacheId)));

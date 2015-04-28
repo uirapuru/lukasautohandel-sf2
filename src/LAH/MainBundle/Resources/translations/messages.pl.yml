@@ -69,20 +69,25 @@ validator.you_have_to_choose_car_registration_country: "Musisz wybrać kraj reje
 validator.title_cannot_be_empty: "Tytuł nie może być pusty"
 validator.description_cannot_be_empty: "Opis nie może być pusty"
 
-country.poland: "Polska"
-country.germany: "Niemcy"
+country:
+  poland: "Polska"
+  germany: "Niemcy"
 
-transmission.automatic: "Automatyczna"
-transmission.manual: "Manualna"
-transmission.semiautomatic: "Półautomat"
+transmission:
+  automatic: "Automatyczna"
+  manual: "Manualna"
+  semiautomatic: "Półautomat"
+  semi: "Półautomat"
 
-fuel.lpg: "LPG"
-fuel.biodiesel: "Biodiesel"
-fuel.diesel: "Diesel"
-fuel.petrol: "Benzyna"
+fuel:
+  lpg: "LPG"
+  biodiesel: "Biodiesel"
+  diesel: "Diesel"
+  petrol: "Benzyna"
 
-engine.diesel: "Diesel"
-engine.petrol: "Benzyna"
+engine:
+  diesel: "Diesel"
+  petrol: "Benzyna"
 
 crud:
     action:
