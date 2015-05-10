@@ -71,6 +71,13 @@ set :opt, {
 	:verbose => true
 }
 
+
+task :testing, :except => { :no_release => true }, :roles => :app do
+    set :deploy_to,   "/home/lukas/test.lukasautohandel.de"
+    set :clear_controllers,     false
+    set :composer_options,      "--verbose --prefer-dist --optimize-autoloader --no-progress"
+end
+
 task :assets, :except => { :no_release => true }, :roles => :app do
     capifony_pretty_print "--> Copying web/js"
 	upload("web/js",		current_path + "/web/js", opt)
