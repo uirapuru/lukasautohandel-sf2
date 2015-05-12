@@ -71,7 +71,6 @@ set :opt, {
 	:verbose => true
 }
 
-
 task :testing, :except => { :no_release => true }, :roles => :app do
     set :deploy_to,   "/home/lukas/test.lukasautohandel.de"
     set :clear_controllers,     false

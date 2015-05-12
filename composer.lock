@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e4d116db543733d735c564e5b61cca01",
+    "hash": "487e961b80345fb5f3caa0b1453ee6e9",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -3627,12 +3627,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Smart-Core/AcceleratorCacheBundle.git",
-                "reference": "d62150309c9f3f45fcb7801ca4e6f98cf739fe4a"
+                "reference": "83f2e34be2d521cca5bd72ac31be1df01233750a"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/Smart-Core/AcceleratorCacheBundle/zipball/d62150309c9f3f45fcb7801ca4e6f98cf739fe4a",
-                "reference": "d62150309c9f3f45fcb7801ca4e6f98cf739fe4a",
+                "reference": "83f2e34be2d521cca5bd72ac31be1df01233750a",
                 "shasum": ""
             },
             "require": {
@@ -3673,7 +3673,7 @@
                 "task",
                 "wincache"
             ],
-            "time": "2015-05-10 19:11:14"
+            "time": "2015-02-17 12:15:39"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
