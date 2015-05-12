@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e1e749ba2780e22f44df42389089ad50",
+    "hash": "e4d116db543733d735c564e5b61cca01",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -1215,16 +1215,16 @@
         },
         {
             "name": "erusev/parsedown",
-            "version": "1.5.2",
+            "version": "1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "468d1e3da8bde049debee7f484a4f9c4b26b41ba"
+                "reference": "b9e5228e92e5f5c17d7774cfb2de8e5e8362de1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/468d1e3da8bde049debee7f484a4f9c4b26b41ba",
-                "reference": "468d1e3da8bde049debee7f484a4f9c4b26b41ba",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/b9e5228e92e5f5c17d7774cfb2de8e5e8362de1a",
+                "reference": "b9e5228e92e5f5c17d7774cfb2de8e5e8362de1a",
                 "shasum": ""
             },
             "type": "library",
@@ -1250,7 +1250,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-03-18 18:44:57"
+            "time": "2015-04-29 20:22:24"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -1316,12 +1316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "192c53916942847aee687722af54f431aead0b70"
+                "reference": "92d5624f2a29e74d8fd9d2a94d7ed7998a8c2809"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/192c53916942847aee687722af54f431aead0b70",
-                "reference": "192c53916942847aee687722af54f431aead0b70",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/92d5624f2a29e74d8fd9d2a94d7ed7998a8c2809",
+                "reference": "92d5624f2a29e74d8fd9d2a94d7ed7998a8c2809",
                 "shasum": ""
             },
             "require": {
@@ -1375,7 +1375,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2015-04-16 23:14:14"
+            "time": "2015-05-05 15:08:24"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -3368,19 +3368,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/raven-php.git",
-                "reference": "247c4e5faf0b2b8cd9de7ad30ddf7b044bdc89a6"
+                "reference": "f42c83f60728206bb3bb53c4bce0e7a0ec5083cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/raven-php/zipball/247c4e5faf0b2b8cd9de7ad30ddf7b044bdc89a6",
-                "reference": "247c4e5faf0b2b8cd9de7ad30ddf7b044bdc89a6",
+                "url": "https://api.github.com/repos/getsentry/raven-php/zipball/f42c83f60728206bb3bb53c4bce0e7a0ec5083cf",
+                "reference": "f42c83f60728206bb3bb53c4bce0e7a0ec5083cf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "fabpot/php-cs-fixer": "^1.8.0",
+                "phpunit/phpunit": "^4.6.6"
             },
             "bin": [
                 "bin/raven"
@@ -3412,7 +3413,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2015-04-05 07:45:44"
+            "time": "2015-05-11 07:19:46"
         },
         {
             "name": "seld/jsonlint",
@@ -3462,17 +3463,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v3.0.21",
+            "version": "v3.0.22",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "da23c78093676a823a1ff43a214987ea3fbf83c8"
+                "reference": "0fe4ec86db57c232becb694e01cdabe3c4d9af7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/da23c78093676a823a1ff43a214987ea3fbf83c8",
-                "reference": "da23c78093676a823a1ff43a214987ea3fbf83c8",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/0fe4ec86db57c232becb694e01cdabe3c4d9af7c",
+                "reference": "0fe4ec86db57c232becb694e01cdabe3c4d9af7c",
                 "shasum": ""
             },
             "require": {
@@ -3518,7 +3519,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-04-10 06:20:46"
+            "time": "2015-05-02 16:23:08"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3622,16 +3623,16 @@
         },
         {
             "name": "smart-core/accelerator-cache-bundle",
-            "version": "1.0.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Smart-Core/AcceleratorCacheBundle.git",
-                "reference": "8664ac12da10faab76a3b3cdd861997f88530f01"
+                "reference": "d62150309c9f3f45fcb7801ca4e6f98cf739fe4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Smart-Core/AcceleratorCacheBundle/zipball/8664ac12da10faab76a3b3cdd861997f88530f01",
-                "reference": "8664ac12da10faab76a3b3cdd861997f88530f01",
+                "url": "https://api.github.com/repos/Smart-Core/AcceleratorCacheBundle/zipball/d62150309c9f3f45fcb7801ca4e6f98cf739fe4a",
+                "reference": "d62150309c9f3f45fcb7801ca4e6f98cf739fe4a",
                 "shasum": ""
             },
             "require": {
@@ -3672,7 +3673,7 @@
                 "task",
                 "wincache"
             ],
-            "time": "2015-01-21 15:47:44"
+            "time": "2015-05-10 19:11:14"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -3909,12 +3910,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "dc86ff71e2b06fb9f110beab4c5d76e1fb1b3e83"
+                "reference": "52ba8054675ea1f5278c95ef9355f039feeb6418"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/dc86ff71e2b06fb9f110beab4c5d76e1fb1b3e83",
-                "reference": "dc86ff71e2b06fb9f110beab4c5d76e1fb1b3e83",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/52ba8054675ea1f5278c95ef9355f039feeb6418",
+                "reference": "52ba8054675ea1f5278c95ef9355f039feeb6418",
                 "shasum": ""
             },
             "require": {
@@ -4018,7 +4019,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-04-24 15:35:34"
+            "time": "2015-05-12 14:25:36"
         },
         {
             "name": "twig/extensions",
@@ -5335,12 +5336,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/evert/phpdoc-md.git",
-                "reference": "44682e54b26a496795ea02b7eeec75f4236e519e"
+                "reference": "9ce35b6bdabe56f29395daaa6afbb5de435ca98d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/evert/phpdoc-md/zipball/44682e54b26a496795ea02b7eeec75f4236e519e",
-                "reference": "44682e54b26a496795ea02b7eeec75f4236e519e",
+                "url": "https://api.github.com/repos/evert/phpdoc-md/zipball/9ce35b6bdabe56f29395daaa6afbb5de435ca98d",
+                "reference": "9ce35b6bdabe56f29395daaa6afbb5de435ca98d",
                 "shasum": ""
             },
             "require": {
@@ -5378,7 +5379,7 @@
                 "php",
                 "phpdoc"
             ],
-            "time": "2015-04-10 19:15:35"
+            "time": "2015-05-12 08:26:01"
         },
         {
             "name": "fabpot/php-cs-fixer",
@@ -5386,12 +5387,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "9e212ed7f598929d491563d01d221155e358a2a3"
+                "reference": "53eaa0d6ce59b0ed94f568d119ed88e2c4b5cdb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/9e212ed7f598929d491563d01d221155e358a2a3",
-                "reference": "9e212ed7f598929d491563d01d221155e358a2a3",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/53eaa0d6ce59b0ed94f568d119ed88e2c4b5cdb1",
+                "reference": "53eaa0d6ce59b0ed94f568d119ed88e2c4b5cdb1",
                 "shasum": ""
             },
             "require": {
@@ -5436,21 +5437,21 @@
                     "email": "fabien@symfony.com"
                 }
             ],
-            "description": "A script to automatically fix Symfony Coding Standard",
-            "time": "2015-04-22 08:14:17"
+            "description": "A tool to automatically fix PHP code style",
+            "time": "2015-05-10 17:05:30"
         },
         {
             "name": "hamcrest/hamcrest-php",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hamcrest/hamcrest-php.git",
-                "reference": "ac50c470531243944f977b8de75be0b684a9cb51"
+                "reference": "b37020aa976fa52d3de9aa904aa2522dc518f79c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/ac50c470531243944f977b8de75be0b684a9cb51",
-                "reference": "ac50c470531243944f977b8de75be0b684a9cb51",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/b37020aa976fa52d3de9aa904aa2522dc518f79c",
+                "reference": "b37020aa976fa52d3de9aa904aa2522dc518f79c",
                 "shasum": ""
             },
             "require": {
@@ -5482,7 +5483,7 @@
             "keywords": [
                 "test"
             ],
-            "time": "2015-01-20 19:34:09"
+            "time": "2015-05-11 14:41:42"
         },
         {
             "name": "hasbridge/json-schema-validator",
@@ -5585,16 +5586,16 @@
         },
         {
             "name": "liip/functional-test-bundle",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipFunctionalTestBundle.git",
-                "reference": "09f5e2008c54299a29b89ae55556d3baeeaabe49"
+                "reference": "57ef24d843d8e3133b201f7bfe722dcea115a546"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipFunctionalTestBundle/zipball/09f5e2008c54299a29b89ae55556d3baeeaabe49",
-                "reference": "09f5e2008c54299a29b89ae55556d3baeeaabe49",
+                "url": "https://api.github.com/repos/liip/LiipFunctionalTestBundle/zipball/57ef24d843d8e3133b201f7bfe722dcea115a546",
+                "reference": "57ef24d843d8e3133b201f7bfe722dcea115a546",
                 "shasum": ""
             },
             "require": {
@@ -5638,7 +5639,7 @@
             "keywords": [
                 "Symfony2"
             ],
-            "time": "2015-04-01 14:31:44"
+            "time": "2015-05-09 08:22:16"
         },
         {
             "name": "mayflower/php-codebrowser",
@@ -5853,12 +5854,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmd/phpmd.git",
-                "reference": "7dc4a6b5c07b119ab5da7960b56303fa6855eb84"
+                "reference": "ced7faac0cb7edf2d2de5533f73d3cbb5084fd2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/7dc4a6b5c07b119ab5da7960b56303fa6855eb84",
-                "reference": "7dc4a6b5c07b119ab5da7960b56303fa6855eb84",
+                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/ced7faac0cb7edf2d2de5533f73d3cbb5084fd2c",
+                "reference": "ced7faac0cb7edf2d2de5533f73d3cbb5084fd2c",
                 "shasum": ""
             },
             "require": {
@@ -5907,20 +5908,20 @@
                 "phpmd",
                 "pmd"
             ],
-            "time": "2015-03-26 07:47:05"
+            "time": "2015-05-11 10:26:11"
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.4.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "8724cd239f8ef4c046f55a3b18b4d91cc7f3e4c5"
+                "reference": "3132b1f44c7bf2ec4c7eb2d3cb78fdeca760d373"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/8724cd239f8ef4c046f55a3b18b4d91cc7f3e4c5",
-                "reference": "8724cd239f8ef4c046f55a3b18b4d91cc7f3e4c5",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/3132b1f44c7bf2ec4c7eb2d3cb78fdeca760d373",
+                "reference": "3132b1f44c7bf2ec4c7eb2d3cb78fdeca760d373",
                 "shasum": ""
             },
             "require": {
@@ -5967,7 +5968,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2015-03-27 19:31:25"
+            "time": "2015-04-27 22:15:08"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -6221,12 +6222,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "43e4df74b8b1b05efac8f9c447f2fb15462a6a41"
+                "reference": "13a957b45df0b04f2e3b1fabd4a83eb4e5e5046a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/43e4df74b8b1b05efac8f9c447f2fb15462a6a41",
-                "reference": "43e4df74b8b1b05efac8f9c447f2fb15462a6a41",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/13a957b45df0b04f2e3b1fabd4a83eb4e5e5046a",
+                "reference": "13a957b45df0b04f2e3b1fabd4a83eb4e5e5046a",
                 "shasum": ""
             },
             "require": {
@@ -6285,7 +6286,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-18 08:00:12"
+            "time": "2015-04-29 13:03:58"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -6902,12 +6903,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "3760f15cad52fb272959957b141f2dacaa9af7de"
+                "reference": "b2050fab7affad74fca0cb7e01193bb4d36aa147"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/3760f15cad52fb272959957b141f2dacaa9af7de",
-                "reference": "3760f15cad52fb272959957b141f2dacaa9af7de",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/b2050fab7affad74fca0cb7e01193bb4d36aa147",
+                "reference": "b2050fab7affad74fca0cb7e01193bb4d36aa147",
                 "shasum": ""
             },
             "require": {
@@ -6968,7 +6969,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-04-24 05:53:54"
+            "time": "2015-05-05 05:37:28"
         },
         {
             "name": "theseer/fdomdocument",
@@ -7127,6 +7128,7 @@
         "a2lix/translation-form-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
         "knplabs/knp-paginator-bundle": 20,
+        "smart-core/accelerator-cache-bundle": 20,
         "phpunit/phpunit": 20,
         "squizlabs/php_codesniffer": 20,
         "sebastian/phpcpd": 20,

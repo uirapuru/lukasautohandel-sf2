@@ -191,4 +191,4 @@ accelerator_cache:
     web_dir: %kernel.root_dir%/../web
     mode: curl
     curl_opts:
-      CURLOPT_USERPWD: "%accelerator_cache_user%:%accelerator_cache_pass%"
+      CURLOPT_USERPWD: %accelerator_cache_auth%

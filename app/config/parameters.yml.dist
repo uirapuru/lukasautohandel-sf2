@@ -41,5 +41,4 @@ parameters:
 
     google_verification_code:    ~
 
-    accelerator_cache_user: ~
-    accelerator_cache_pass: ~
+    accelerator_cache_auth: ~
