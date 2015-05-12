@@ -40,3 +40,5 @@ parameters:
     company_phone:      "+48 793 698 171"
 
     google_verification_code:    ~
+
+    accelerator_cache_auth: ~

@@ -189,3 +189,6 @@ knp_paginator:
 accelerator_cache:
     host: %base_url%
     web_dir: %kernel.root_dir%/../web
+    mode: curl
+    curl_opts:
+      CURLOPT_USERPWD: %accelerator_cache_auth%
