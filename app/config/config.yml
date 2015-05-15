@@ -41,6 +41,11 @@ twig:
       base_url:       %base_url%
       google_site_verification_code: %google_verification_code%
 
+      piwik_auth_token: %piwik_auth_token%
+      piwik_site_url: %piwik_site_url%
+      piwik_website_id: %piwik_website_id%
+
+
 # Doctrine Configuration
 doctrine:
     dbal:
