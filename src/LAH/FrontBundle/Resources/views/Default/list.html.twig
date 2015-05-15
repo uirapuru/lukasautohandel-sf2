@@ -36,6 +36,8 @@
                             <a class="button" href="{{ link }}">{{ 'list.car_details'|trans }}</a>
                         </div>
                     </li>
+                    {% else %}
+                    <li><h1>{{ "search.no_results"|trans }}</h1></li>
                 {% endfor %}
             </ul>
 

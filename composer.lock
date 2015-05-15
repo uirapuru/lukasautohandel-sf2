@@ -3910,12 +3910,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "52ba8054675ea1f5278c95ef9355f039feeb6418"
+                "reference": "a7019ced63f43efc6228ffef131d191eb095766c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/52ba8054675ea1f5278c95ef9355f039feeb6418",
-                "reference": "52ba8054675ea1f5278c95ef9355f039feeb6418",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/a7019ced63f43efc6228ffef131d191eb095766c",
+                "reference": "a7019ced63f43efc6228ffef131d191eb095766c",
                 "shasum": ""
             },
             "require": {
@@ -4006,20 +4006,20 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "The Symfony PHP framework",
-            "homepage": "http://symfony.com",
+            "homepage": "https://symfony.com",
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-12 14:25:36"
+            "time": "2015-05-14 17:42:48"
         },
         {
             "name": "twig/extensions",
@@ -5528,16 +5528,16 @@
         },
         {
             "name": "instaclick/php-webdriver",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/instaclick/php-webdriver.git",
-                "reference": "a57b2bcd9467e217134a2248b261b8b3a90ccea0"
+                "reference": "6aa16bbc02a5897200ab70316e0d2a01664afc51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/a57b2bcd9467e217134a2248b261b8b3a90ccea0",
-                "reference": "a57b2bcd9467e217134a2248b261b8b3a90ccea0",
+                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/6aa16bbc02a5897200ab70316e0d2a01664afc51",
+                "reference": "6aa16bbc02a5897200ab70316e0d2a01664afc51",
                 "shasum": ""
             },
             "require": {
@@ -5582,7 +5582,7 @@
                 "webdriver",
                 "webtest"
             ],
-            "time": "2014-05-12 21:03:05"
+            "time": "2015-04-05 19:52:55"
         },
         {
             "name": "liip/functional-test-bundle",
@@ -6903,12 +6903,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "b2050fab7affad74fca0cb7e01193bb4d36aa147"
+                "reference": "22b8abbb745e04df783f87a3063abee148af10e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/b2050fab7affad74fca0cb7e01193bb4d36aa147",
-                "reference": "b2050fab7affad74fca0cb7e01193bb4d36aa147",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/22b8abbb745e04df783f87a3063abee148af10e8",
+                "reference": "22b8abbb745e04df783f87a3063abee148af10e8",
                 "shasum": ""
             },
             "require": {
@@ -6969,7 +6969,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-05-05 05:37:28"
+            "time": "2015-05-14 03:58:09"
         },
         {
             "name": "theseer/fdomdocument",
