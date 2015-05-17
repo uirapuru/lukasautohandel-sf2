@@ -52,11 +52,14 @@
         "behat/mink-selenium2-driver": "~1.2",
         "vipsoft/doctrine-data-fixtures-extension": "3.0.*@dev",
         "behat/common-formatters": "~1.2",
+        "emuse/behat-html-formatter": "dev-master",
         "webignition/json-pretty-print": "dev-master",
         "hasbridge/json-schema-validator": "dev-master",
         "liip/functional-test-bundle": "~1.2",
         "behat/mink-browserkit-driver": "~1.2",
-        "mockery/mockery": "0.9.*"
+        "mockery/mockery": "0.9.*",
+        "doctrine/migrations": "1.0.*@dev",
+        "doctrine/doctrine-migrations-bundle": "1.0.*"
     },
     "scripts": {
         "post-root-package-install": [

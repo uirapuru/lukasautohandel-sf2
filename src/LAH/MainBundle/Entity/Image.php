@@ -7,7 +7,7 @@ use Gedmo\Uploadable\Uploadable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Gedmo\Sortable\Entity\Repository\SortableRepository")
  * @ORM\Table(name="images")
  * @Gedmo\Uploadable(
  *  allowOverwrite=false,
@@ -26,8 +26,9 @@ class Image implements Uploadable
     protected $id;
 
     /**
+     * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="LAH\MainBundle\Entity\Car", inversedBy="images", cascade={"remove","persist"})
-     * @ORM\JoinColumn(name="car_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="car_id", referencedColumnName="id", onDelete="SET NULL")
      *
      * @var Car
      */
@@ -91,6 +92,13 @@ class Image implements Uploadable
      * @var UploadedFile
      */
     protected $file;
+
+    /**
+     * @var integer
+     * @Gedmo\SortablePosition
+     * @ORM\Column(name="position", type="integer", nullable=true)
+     */
+    protected $position;
 
     /**
      * @return mixed
@@ -271,5 +279,21 @@ class Image implements Uploadable
     public function generatePath($path)
     {
         return $path.'/'.date('Ymd');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param mixed $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
     }
 }

@@ -71,6 +71,11 @@ doctrine:
         metadata_cache_driver: apc
         result_cache_driver: apc
         query_cache_driver: apc
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/../src/LAH/MainBundle/DoctrineMigrations
+    namespace: LAH\MainBundle\DoctrineMigrations
+    table_name: doctrine_migrations
+    name: Lukas Autohandel DB Migrations
 
 # Swiftmailer Configuration
 swiftmailer:
