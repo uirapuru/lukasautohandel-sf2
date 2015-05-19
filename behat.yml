@@ -7,6 +7,11 @@ default:
             contexts:
                 - LAH\MainBundle\Features\FeatureContext: ~
     extensions:
+        emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
+            name: html
+            renderer: Twig,Behat2
+            file_name: Index
+#            print_table: true
         Behat\Symfony2Extension: ~
         Behat\MinkExtension:
             sessions:
@@ -18,8 +23,10 @@ default:
             selenium2:
                 wd_host: "http://localhost:8643/wd/hub"
 
-#    formatters:
-#        progress: true
+    formatters:
+      progress: true
+      html:
+        output_path: %paths.base%/build/behat
 
 firefox:
     suites:

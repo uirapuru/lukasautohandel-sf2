@@ -111,14 +111,13 @@ class Car implements Translatable
     /**
      * @ORM\OneToOne(targetEntity="LAH\MainBundle\Entity\Image")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id", onDelete="CASCADE")
-     *
      * @var Image
      */
     protected $image;
 
     /**
      * @ORM\OneToMany(targetEntity="LAH\MainBundle\Entity\Image", mappedBy="car", cascade={"remove", "persist"})
-     *
+     * @ORM\OrderBy({"position" = "ASC"})
      * @var ArrayCollection<Image>
      *
      * @Assert\Count(

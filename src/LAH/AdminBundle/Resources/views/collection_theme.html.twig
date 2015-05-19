@@ -128,7 +128,7 @@
             </div>
         {% endif %}
         <div {{ block('widget_container_attributes') }}>
-            <ul class="collection-container">
+            <ul class="collection-container{%  if form.vars.name == 'images' %} sortable{% endif %}">
                 {% for row in form %}
                     {% if row.vars.attr.collection_type is defined %}
                         {% if row.vars.attr.collection_type == 'image' %}

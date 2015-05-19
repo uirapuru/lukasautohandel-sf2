@@ -26,6 +26,10 @@ class ImageType extends AbstractType
                             'uploadFormSizeErrorMessage' => 'validator.file_is_too_large',
                         ]),
                     ],
+            ])
+            ->add('position', 'hidden', [
+                'required'       => true,
+                'error_bubbling' => false,
             ]);
     }
 

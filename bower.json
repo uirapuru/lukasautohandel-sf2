@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "jquery": "~2.1.1",
+    "jquery-ui": "*",
     "angular": "~1.2.21",
     "bootstrap": "twbs/bootstrap#~3.2.0",
     "angular-animate": "~1.2.21",
