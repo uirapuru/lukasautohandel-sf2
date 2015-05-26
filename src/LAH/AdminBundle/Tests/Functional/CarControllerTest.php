@@ -92,15 +92,16 @@ class CarControllerTest extends BaseFunctionalTest
         $this->assertEquals(1, $forms->count());
 
         $form = $forms->first();
-        $this->assertCount(46, $form->filter('input, textarea, button, select'));
+        $this->assertCount(50, $form->filter('input, textarea, button, select'));
 
         $this->assertCount(4, $form->filter('textarea'));
         $this->assertCount(11, $form->filter('select'));
         $this->assertCount(9, $form->filter('button'));
-        $this->assertCount(22, $form->filter('input'));
+        $this->assertCount(26, $form->filter('input'));
         $this->assertCount(9, $form->filter('input[type=text]'));
         $this->assertCount(6, $form->filter('input[type=number]'));
         $this->assertCount(3, $form->filter('input[type=checkbox]'));
+        $this->assertCount(4, $form->filter('input[type=hidden]'));
         $this->assertCount($carEntity->getImages()->count(), $form->filter('input[type=file]'));
 
         $this->assertCount(count($carTypes) + 1, $crawler->filter('select#lah_car_type option'));
@@ -158,9 +159,9 @@ class CarControllerTest extends BaseFunctionalTest
         $files = [
             'lah_car' => [
                 'images' => [
-                    ['file' => clone($uploadedFile)],
-                    ['file' => clone($uploadedFile)],
-                    ['file' => clone($uploadedFile)],
+                    ['file' => clone($uploadedFile), "position" => 0],
+                    ['file' => clone($uploadedFile), "position" => 0],
+                    ['file' => clone($uploadedFile), "position" => 0],
                 ],
             ],
         ];
@@ -258,7 +259,7 @@ class CarControllerTest extends BaseFunctionalTest
 
         $this->assertNotNull($carEntity, "Car entity can't be found");
         $this->assertEquals($title, $titleTranslationEntity->getContent(), "Entity haven't been updated in db");
-        $this->assertCount(2, $carEntity->getImages());
+        $this->assertCount(4, $carEntity->getImages());
         $this->assertCount(2, $carEntity->getPrices());
         $this->assertEquals($carEntity->getModel()->getName(), $newModelName, "Entity Model haven't been created in db");
         $this->assertEquals($carEntity->getModel()->getBrand()->getName(), $newModelName, "Entity Brand haven't been created in db");
@@ -300,8 +301,10 @@ class CarControllerTest extends BaseFunctionalTest
 
         $form = $forms->first()->form($formData);
 
-        $values                             = $form->getPhpValues();
+        $values = $form->getPhpValues();
         $values['lah_car']['prices'] = $collections['prices'];
+
+        unset($values['lah_car']['images']);
 
         $crawler = $this->client->request('POST', $form->getUri(), $values, ['lah_car' => ['images' => $collections['images']]]);
 
@@ -334,8 +337,8 @@ class CarControllerTest extends BaseFunctionalTest
 
         $newTypeName = md5('some title'.microtime());
 
-        $form                                         = $forms->first()->form();
-        $values                                       = $form->getPhpValues();
+        $form  = $forms->first()->form();
+        $values = $form->getPhpValues();
         $values['lah_car']['add_type']['name'] = $newTypeName;
         $values['lah_car']['prices']           = $this->getPrices(1);
 
@@ -832,7 +835,7 @@ class CarControllerTest extends BaseFunctionalTest
         $array = [];
 
         for ($a = 0; $a < $int; $a++) {
-            $array[] = ['file' => clone($uploadedFile)];
+            $array[] = ['file' => clone($uploadedFile), "position" => 0];
         }
 
         return $array;

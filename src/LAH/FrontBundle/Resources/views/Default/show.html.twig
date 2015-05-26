@@ -23,7 +23,7 @@
                     <ul id="details-thumbnails" class="thumbnails row-fluid">
                         {% for image in car.images %}
                         <li class="span3">
-                            <a href="{{ asset("/uploads/" ~ image.name) }}" class="thumbnail" rel="prettyPhoto">
+                            <a href="{{ asset("/uploads/" ~ image.name) }}" class="thumbnail" rel="prettyPhoto[car]">
                                 <img src="{{ asset("/uploads/thumbnails/" ~ image.name) }}" />
                             </a>
                         </li>

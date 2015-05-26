@@ -71,7 +71,15 @@ class SearchFormTest extends BaseFunctionalTest
         $pages    = (int) $crawler->filter('div.pagination:first-child span')->count();
 
         $this->assertEquals($resultsCountExpected, $resultsCount);
-        $this->assertEquals($countExpected, $carsCount);
+
+        if ($countExpected === 0) {
+            $this->assertEquals(1, $carsCount);
+            $this->assertContains("search.no_results", $crawler->filter('ul.search-results li')->text());
+        } else {
+            $this->assertEquals($countExpected, $carsCount);
+        }
+
+
         $this->assertEquals($pagesExpected, $pages == 0 ? 1 : $pages - 2);
     }
 
@@ -186,8 +194,9 @@ class SearchFormTest extends BaseFunctionalTest
         $carsCount    = (int) $crawler->filter('ul.search-results li')->count();
 
         $this->assertEquals(0, $resultsCount);
-        $this->assertEquals(0, $carsCount);
+        $this->assertEquals(1, $carsCount);
 
         $this->assertContains('This value is not valid.', $crawler->text());
+        $this->assertContains("search.no_results", $crawler->filter('ul.search-results li')->text());
     }
 }

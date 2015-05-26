@@ -8,7 +8,7 @@ return Symfony\CS\Config\Config::create()
         'no_blank_lines_before_namespace',
         'newline_after_open_tag',
         'multiline_spaces_before_semicolon',
-        'align_equals',
+//        'align_equals',
         'align_double_arrow',
     ])
     ->setUsingCache(true)

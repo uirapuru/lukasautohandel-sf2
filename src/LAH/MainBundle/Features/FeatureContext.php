@@ -2,6 +2,7 @@
 namespace LAH\MainBundle\Features;
 
 use Behat\Behat\Context\Context;
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Mink\Element\NodeElement;
 use Behat\MinkExtension\Context\MinkContext;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -78,7 +79,7 @@ final class FeatureContext extends MinkContext implements Context
      */
     public function iHaveImages($arg1)
     {
-        $this->assertNumElements(2, 'div#lah_car_images > ul > li');
+        $this->assertNumElements($arg1, 'div#lah_car_images > ul > li');
     }
 
     /**
@@ -476,8 +477,8 @@ final class FeatureContext extends MinkContext implements Context
         $backtrace = debug_backtrace();
 
         throw new Exception(
-            'Timeout thrown by '.$backtrace[1]['class'].'::'.$backtrace[1]['function']."()\n".
-            $backtrace[1]['file'].', line '.$backtrace[1]['line']
+            'Timeout thrown by ' . $backtrace[1]['class'] . '::' . $backtrace[1]['function'] . "()\n" .
+            $backtrace[1]['file'] . ', line ' . $backtrace[1]['line']
         );
     }
 }

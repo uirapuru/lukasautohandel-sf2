@@ -70,3 +70,26 @@ table#carsTable {
 form[id^='delete_'] {
   display: inline-block;
 }
+
+ul.sortable {
+  text-indent: 0;
+  margin: 0;
+  padding: 0;
+
+  li {
+    padding: 5px;
+
+    input[type='file'] {
+      margin-left: 20px;
+    }
+
+    &:hover {
+      background-color: lightgrey;
+    }
+
+    div.form-group {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}

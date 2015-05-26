@@ -43,3 +43,12 @@ $ ->
 
     if confirm $form.data 'confirm-text'
       $form.submit()
+
+  $("ul.sortable").sortable
+    update: (event, ui) ->
+      inputs = ui.item.parents("ul.collection-container").find("input:hidden[name$='[position]']")
+      $.each inputs, (i, el) =>
+        element = "##{$(el).attr('id')}"
+        $(element).val(i)
+
+  $("ul.sortable").disableSelection()

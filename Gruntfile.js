@@ -14,6 +14,7 @@ module.exports = function (grunt) {
     var jsVendors = [
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/jquery-migrate/jquery-migrate.js',
+        'bower_components/jquery-ui/jquery-ui.js',
         'bower_components/prettyPhoto/js/jquery.prettyPhoto.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
     ];

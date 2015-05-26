@@ -41,6 +41,11 @@ twig:
       base_url:       %base_url%
       google_site_verification_code: %google_verification_code%
 
+      piwik_auth_token: %piwik_auth_token%
+      piwik_site_url: %piwik_site_url%
+      piwik_website_id: %piwik_website_id%
+
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -66,6 +71,11 @@ doctrine:
         metadata_cache_driver: apc
         result_cache_driver: apc
         query_cache_driver: apc
+doctrine_migrations:
+    dir_name: %kernel.root_dir%/../src/LAH/MainBundle/DoctrineMigrations
+    namespace: LAH\MainBundle\DoctrineMigrations
+    table_name: doctrine_migrations
+    name: Lukas Autohandel DB Migrations
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -189,3 +199,6 @@ knp_paginator:
 accelerator_cache:
     host: %base_url%
     web_dir: %kernel.root_dir%/../web
+    mode: curl
+    curl_opts:
+      CURLOPT_USERPWD: %accelerator_cache_auth%

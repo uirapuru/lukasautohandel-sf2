@@ -40,3 +40,9 @@ parameters:
     company_phone:      "+48 793 698 171"
 
     google_verification_code:    ~
+
+    accelerator_cache_auth: ~
+
+    piwik_site_url:    ~
+    piwik_auth_token:  ~
+    piwik_website_id:  ~
