@@ -74,7 +74,9 @@ set :opt, {
 task :testing, :except => { :no_release => true }, :roles => :app do
     set :deploy_to,   "/home/lukas/test.lukasautohandel.de"
     set :clear_controllers,     false
-    set :composer_options,      "--verbose --prefer-dist --optimize-autoloader --no-progress"
+    set :composer_options,      "--dev --verbose --prefer-dist --optimize-autoloader --no-progress"
+    set :symfony_env_prod,  "dev"
+    set  :keep_releases,  2
 end
 
 task :assets, :except => { :no_release => true }, :roles => :app do
