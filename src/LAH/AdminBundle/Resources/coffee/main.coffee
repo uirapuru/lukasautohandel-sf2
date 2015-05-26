@@ -44,11 +44,23 @@ $ ->
     if confirm $form.data 'confirm-text'
       $form.submit()
 
-  $("ul.sortable").sortable
+  $("ol.sortable").sortable
+    forcePlaceholderSize: true
+    placeholder: "ui-state-highlight"
     update: (event, ui) ->
-      inputs = ui.item.parents("ul.collection-container").find("input:hidden[name$='[position]']")
+      inputs = ui.item.parents("ol").find("input:hidden[name$='[position]']")
       $.each inputs, (i, el) =>
         element = "##{$(el).attr('id')}"
         $(element).val(i)
 
-  $("ul.sortable").disableSelection()
+  $("ol.sortable").disableSelection()
+
+  $("ol.sortable").off('change.upload_file').on 'change.upload_file', "input:file", (e) ->
+    file = e.target.files[0]
+    reader = new FileReader();
+    $targetImg = $(e.target).parents('li').find('img.image-collection-item.img-thumbnail')
+
+    reader.onload = (e) =>
+      $targetImg.attr('src', e.target.result)
+
+    reader.readAsDataURL(file);

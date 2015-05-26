@@ -27,9 +27,10 @@
         $(event.target).parents("li").remove()
 
     addNewItem: () =>
-      index = @$container.find("ul.collection-container").children().length
+      index = @$container.find(".collection-container").children().length
       $proto = $("<div/>").html(@prototype.replace @options.regex, index).text()
-      $("ul.collection-container", @$container).append $proto
+      $(".collection-container", @$container).append $proto
+      $(".collection-container > li:last-child input:hidden[id$='_position']", @$container).val(index + 1)
 
   $.fn.extend collection: (option, args...) ->
     @each ->
