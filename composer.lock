@@ -228,17 +228,17 @@
         },
         {
             "name": "dende/common-bundle",
-            "version": "0.0.6",
+            "version": "0.0.7",
             "target-dir": "Dende/CommonBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UirapuruDende/CommonBundle.git",
-                "reference": "d9a1cae114ce7348207d15868ef18f94c1e4f57b"
+                "reference": "e80a4c532d4ff7ed561a6c80a575f2181a6e4319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UirapuruDende/CommonBundle/zipball/d9a1cae114ce7348207d15868ef18f94c1e4f57b",
-                "reference": "d9a1cae114ce7348207d15868ef18f94c1e4f57b",
+                "url": "https://api.github.com/repos/UirapuruDende/CommonBundle/zipball/e80a4c532d4ff7ed561a6c80a575f2181a6e4319",
+                "reference": "e80a4c532d4ff7ed561a6c80a575f2181a6e4319",
                 "shasum": ""
             },
             "require": {
@@ -292,7 +292,7 @@
                 "bundle",
                 "public"
             ],
-            "time": "2015-04-25 09:24:11"
+            "time": "2015-05-20 22:13:02"
         },
         {
             "name": "doctrine/annotations",
@@ -2263,12 +2263,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle.git",
-                "reference": "5990419ed9cfb54fac4a4b63056c3cd2ceb2f14a"
+                "reference": "800eb12f225573869b6f04d77a6e329a6da9110f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/5990419ed9cfb54fac4a4b63056c3cd2ceb2f14a",
-                "reference": "5990419ed9cfb54fac4a4b63056c3cd2ceb2f14a",
+                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/800eb12f225573869b6f04d77a6e329a6da9110f",
+                "reference": "800eb12f225573869b6f04d77a6e329a6da9110f",
                 "shasum": ""
             },
             "require": {
@@ -2316,7 +2316,7 @@
                 "pagination",
                 "paginator"
             ],
-            "time": "2015-02-03 02:04:01"
+            "time": "2015-05-20 15:09:02"
         },
         {
             "name": "monolog/monolog",
@@ -2472,16 +2472,16 @@
         },
         {
             "name": "phing/phing",
-            "version": "2.10.1",
+            "version": "2.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "f6c25373cbce5e042dddd9b951a3d5638bb78f67"
+                "reference": "a185fef6df7241e540466b67486a4c4b552260e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/f6c25373cbce5e042dddd9b951a3d5638bb78f67",
-                "reference": "f6c25373cbce5e042dddd9b951a3d5638bb78f67",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/a185fef6df7241e540466b67486a4c4b552260e1",
+                "reference": "a185fef6df7241e540466b67486a4c4b552260e1",
                 "shasum": ""
             },
             "require": {
@@ -2525,7 +2525,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.10.x-dev"
+                    "dev-master": "2.11.x-dev"
                 }
             },
             "autoload": {
@@ -2542,23 +2542,23 @@
             ],
             "authors": [
                 {
-                    "name": "Phing Community",
-                    "homepage": "http://www.phing.info/trac/wiki/Development/Contributors"
-                },
-                {
                     "name": "Michiel Rook",
                     "email": "mrook@php.net"
+                },
+                {
+                    "name": "Phing Community",
+                    "homepage": "https://www.phing.info/trac/wiki/Development/Contributors"
                 }
             ],
             "description": "PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant.",
-            "homepage": "http://www.phing.info/",
+            "homepage": "https://www.phing.info/",
             "keywords": [
                 "build",
                 "phing",
                 "task",
                 "tool"
             ],
-            "time": "2015-02-19 15:49:46"
+            "time": "2015-05-20 13:04:38"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -3579,16 +3579,16 @@
         },
         {
             "name": "sensiolabs/security-checker",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/security-checker.git",
-                "reference": "cecb1397087dc9c733796eda6e9d121336039cdc"
+                "reference": "cde03c48d490d805ef1349e5108f8b3085981ead"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/cecb1397087dc9c733796eda6e9d121336039cdc",
-                "reference": "cecb1397087dc9c733796eda6e9d121336039cdc",
+                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/cde03c48d490d805ef1349e5108f8b3085981ead",
+                "reference": "cde03c48d490d805ef1349e5108f8b3085981ead",
                 "shasum": ""
             },
             "require": {
@@ -3620,7 +3620,7 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
-            "time": "2015-04-21 07:52:05"
+            "time": "2015-05-22 14:21:04"
         },
         {
             "name": "smart-core/accelerator-cache-bundle",
@@ -3632,12 +3632,12 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Smart-Core/AcceleratorCacheBundle/zipball/d62150309c9f3f45fcb7801ca4e6f98cf739fe4a",
+                "url": "https://api.github.com/repos/Smart-Core/AcceleratorCacheBundle/zipball/bf314652ce2944ff26e5562d31e8150c02f5a497",
                 "reference": "83f2e34be2d521cca5bd72ac31be1df01233750a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.1",
+                "symfony/console": ">=2.1",
                 "symfony/framework-bundle": ">=2.1"
             },
             "type": "symfony-bundle",
@@ -3911,12 +3911,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "991eec1e1ebe0032d30dff166a51388f2ac78e09"
+                "reference": "504548ec6c5ec8cc13eb95e80b8f145deb2ef8e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/991eec1e1ebe0032d30dff166a51388f2ac78e09",
-                "reference": "991eec1e1ebe0032d30dff166a51388f2ac78e09",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/504548ec6c5ec8cc13eb95e80b8f145deb2ef8e8",
+                "reference": "504548ec6c5ec8cc13eb95e80b8f145deb2ef8e8",
                 "shasum": ""
             },
             "require": {
@@ -4020,7 +4020,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-16 13:28:59"
+            "time": "2015-05-25 07:38:05"
         },
         {
             "name": "twig/extensions",
@@ -5576,12 +5576,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "53eaa0d6ce59b0ed94f568d119ed88e2c4b5cdb1"
+                "reference": "3640cf6a43976edd3e508e00588b19680e9c50bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/70efba814cde08eddbcf9c8a8e3f34b2c309c9f2",
-                "reference": "53eaa0d6ce59b0ed94f568d119ed88e2c4b5cdb1",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/3640cf6a43976edd3e508e00588b19680e9c50bd",
+                "reference": "3640cf6a43976edd3e508e00588b19680e9c50bd",
                 "shasum": ""
             },
             "require": {
@@ -5627,7 +5627,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2015-05-10 17:05:30"
+            "time": "2015-05-19 06:43:29"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -5990,12 +5990,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phploc.git",
-                "reference": "3aa8c80eae0aaf88ca60553eac34b82cd856396a"
+                "reference": "b07a7d91f305dd8d0722d62c7e048e0c2d2bf4e6"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/b07a7d91f305dd8d0722d62c7e048e0c2d2bf4e6",
-                "reference": "3aa8c80eae0aaf88ca60553eac34b82cd856396a",
+                "reference": "b07a7d91f305dd8d0722d62c7e048e0c2d2bf4e6",
                 "shasum": ""
             },
             "require": {
@@ -6035,7 +6035,7 @@
             ],
             "description": "A tool for quickly measuring the size of a PHP project.",
             "homepage": "https://github.com/sebastianbergmann/phploc",
-            "time": "2015-04-14 14:51:43"
+            "time": "2015-05-17 05:23:26"
         },
         {
             "name": "phpmd/phpmd",
@@ -6043,12 +6043,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmd/phpmd.git",
-                "reference": "ced7faac0cb7edf2d2de5533f73d3cbb5084fd2c"
+                "reference": "20a0142614b260be7a45884db0d48dea5da0e234"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/ced7faac0cb7edf2d2de5533f73d3cbb5084fd2c",
-                "reference": "ced7faac0cb7edf2d2de5533f73d3cbb5084fd2c",
+                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/20a0142614b260be7a45884db0d48dea5da0e234",
+                "reference": "20a0142614b260be7a45884db0d48dea5da0e234",
                 "shasum": ""
             },
             "require": {
@@ -6097,7 +6097,7 @@
                 "phpmd",
                 "pmd"
             ],
-            "time": "2015-05-11 10:26:11"
+            "time": "2015-05-21 13:13:56"
         },
         {
             "name": "phpspec/prophecy",
@@ -6161,16 +6161,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.16",
+            "version": "2.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "934fd03eb6840508231a7f73eb8940cf32c3b66c"
+                "reference": "c4e8e7725e351184a76544634855b8a9c405a6e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/934fd03eb6840508231a7f73eb8940cf32c3b66c",
-                "reference": "934fd03eb6840508231a7f73eb8940cf32c3b66c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c4e8e7725e351184a76544634855b8a9c405a6e3",
+                "reference": "c4e8e7725e351184a76544634855b8a9c405a6e3",
                 "shasum": ""
             },
             "require": {
@@ -6219,7 +6219,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-11 04:35:00"
+            "time": "2015-05-25 05:11:59"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -6411,12 +6411,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "13a957b45df0b04f2e3b1fabd4a83eb4e5e5046a"
+                "reference": "49c2007b90b8a619e2057785e8fbc331b7b760ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/13a957b45df0b04f2e3b1fabd4a83eb4e5e5046a",
-                "reference": "13a957b45df0b04f2e3b1fabd4a83eb4e5e5046a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/49c2007b90b8a619e2057785e8fbc331b7b760ff",
+                "reference": "49c2007b90b8a619e2057785e8fbc331b7b760ff",
                 "shasum": ""
             },
             "require": {
@@ -6475,7 +6475,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-29 13:03:58"
+            "time": "2015-05-25 03:53:30"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -7092,12 +7092,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "9d4b31143ff1164c9bdc77255e6934ad7516532d"
+                "reference": "9dd0ada629d115e6ac9fbea7cac944f2775539ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/9de93e09d1320d9d1e0e21baba5ad5906a398247",
-                "reference": "9d4b31143ff1164c9bdc77255e6934ad7516532d",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/9dd0ada629d115e6ac9fbea7cac944f2775539ec",
+                "reference": "9dd0ada629d115e6ac9fbea7cac944f2775539ec",
                 "shasum": ""
             },
             "require": {
@@ -7158,7 +7158,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-05-16 00:12:12"
+            "time": "2015-05-25 23:18:12"
         },
         {
             "name": "theseer/fdomdocument",

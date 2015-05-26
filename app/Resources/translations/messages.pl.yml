@@ -180,7 +180,16 @@ menu:
     logout: "Wyloguj się"
 promoted: 
   car_details_button: szczegóły
-search: 
+search:
+  form:
+    caption_search: 'Szukaj'
+    caption_search_small: 'wśród ofert'
+    label:
+      type: 'rodzaj'
+      brand: 'marka'
+      model: 'model'
+      search: 'szukaj'
+      empty: 'wszystkie modele'
   no_results: "Brak wyników"
 toggle_widgets_close: zamknij
 transmission: 
