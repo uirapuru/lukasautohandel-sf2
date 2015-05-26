@@ -71,20 +71,36 @@ form[id^='delete_'] {
   display: inline-block;
 }
 
-ul.sortable {
+ol.sortable {
   text-indent: 0;
   margin: 0;
   padding: 0;
+  list-style-position: inside;
 
   li {
     padding: 5px;
+    padding-left: 25px;
+    position: relative;
 
     input[type='file'] {
       margin-left: 20px;
     }
 
     &:hover {
-      background-color: lightgrey;
+      background-color: #DDDDDD;
+      cursor: move;
+    }
+
+    &.ui-sortable-helper {
+      list-style-type: none;
+      border: 1px solid #666666;
+      opacity: 0.5;
+    }
+
+    &.ui-state-highlight {
+      height: 120px;
+      border: 1px dashed #111111;
+      background-color: #BBBBBB;
     }
 
     div.form-group {

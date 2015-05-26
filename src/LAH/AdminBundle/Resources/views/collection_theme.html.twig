@@ -128,7 +128,11 @@
             </div>
         {% endif %}
         <div {{ block('widget_container_attributes') }}>
-            <ul class="collection-container{%  if form.vars.name == 'images' %} sortable{% endif %}">
+            {%  if form.vars.name == 'images' %}
+            <ol class="collection-container sortable">
+            {% else %}
+            <ul class="collection-container">
+            {% endif %}
                 {% for row in form %}
                     {% if row.vars.attr.collection_type is defined %}
                         {% if row.vars.attr.collection_type == 'image' %}
@@ -142,7 +146,11 @@
                         {{ _self.item_remove() }}
                     {%  endif %}
                 {% endfor %}
+            {%  if form.vars.name == 'images' %}
+            </ol>
+            {% else %}
             </ul>
+            {% endif %}
         </div>
         {{ _self.item_add() }}
     </div>
@@ -176,6 +184,8 @@
                 <a href="/uploads/{{ form.vars.value.name }}" rel="prettyPhoto[car]" title="{{ form.vars.value.name }}">
                     <img src="{{ asset("/uploads/thumbnails/"~ form.vars.value.name) }}" width="200" class="image-collection-item img-thumbnail col-xs-2" />
                 </a>
+            {% else %}
+                <img src="{{ asset("/bundles/lahadmin/images/noimage.gif") }}" width="200" class="image-collection-item img-thumbnail col-xs-2" />
             {% endif %}
             {{ form_widget(form) }}
         </div>
