@@ -701,16 +701,16 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "1986ff3a945b584c6505d07eae92d77e41131078"
+                "reference": "0b9e27037c4fdbad515ee5ec89842e9091a6480f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/1986ff3a945b584c6505d07eae92d77e41131078",
-                "reference": "1986ff3a945b584c6505d07eae92d77e41131078",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/0b9e27037c4fdbad515ee5ec89842e9091a6480f",
+                "reference": "0b9e27037c4fdbad515ee5ec89842e9091a6480f",
                 "shasum": ""
             },
             "require": {
@@ -718,6 +718,7 @@
                 "doctrine/doctrine-cache-bundle": "~1.0",
                 "jdorn/sql-formatter": "~1.1",
                 "php": ">=5.3.2",
+                "symfony/console": "~2.3",
                 "symfony/doctrine-bridge": "~2.2",
                 "symfony/framework-bundle": "~2.3"
             },
@@ -736,7 +737,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.5.x-dev"
                 }
             },
             "autoload": {
@@ -774,7 +775,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2015-02-28 11:04:45"
+            "time": "2015-05-28 12:27:15"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -3579,16 +3580,16 @@
         },
         {
             "name": "sensiolabs/security-checker",
-            "version": "v2.0.3",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/security-checker.git",
-                "reference": "cde03c48d490d805ef1349e5108f8b3085981ead"
+                "reference": "2c2a71f1c77d9765c12638c4724d9ca23658a810"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/cde03c48d490d805ef1349e5108f8b3085981ead",
-                "reference": "cde03c48d490d805ef1349e5108f8b3085981ead",
+                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/2c2a71f1c77d9765c12638c4724d9ca23658a810",
+                "reference": "2c2a71f1c77d9765c12638c4724d9ca23658a810",
                 "shasum": ""
             },
             "require": {
@@ -3620,7 +3621,7 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
-            "time": "2015-05-22 14:21:04"
+            "time": "2015-05-28 14:22:40"
         },
         {
             "name": "smart-core/accelerator-cache-bundle",
@@ -3632,12 +3633,11 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Smart-Core/AcceleratorCacheBundle/zipball/bf314652ce2944ff26e5562d31e8150c02f5a497",
+                "url": "https://api.github.com/repos/Smart-Core/AcceleratorCacheBundle/zipball/b51ab75cb1c920606af54ec1597da4ada772f93b",
                 "reference": "83f2e34be2d521cca5bd72ac31be1df01233750a",
                 "shasum": ""
             },
             "require": {
-                "symfony/console": ">=2.1",
                 "symfony/framework-bundle": ">=2.1"
             },
             "type": "symfony-bundle",
@@ -3911,12 +3911,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "504548ec6c5ec8cc13eb95e80b8f145deb2ef8e8"
+                "reference": "31b5e5c5b1c9ad492a68d8e42df53f52cdecb4f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/504548ec6c5ec8cc13eb95e80b8f145deb2ef8e8",
-                "reference": "504548ec6c5ec8cc13eb95e80b8f145deb2ef8e8",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/31b5e5c5b1c9ad492a68d8e42df53f52cdecb4f3",
+                "reference": "31b5e5c5b1c9ad492a68d8e42df53f52cdecb4f3",
                 "shasum": ""
             },
             "require": {
@@ -4020,7 +4020,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-25 07:38:05"
+            "time": "2015-05-27 18:30:26"
         },
         {
             "name": "twig/extensions",
@@ -5490,12 +5490,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dutchiexl/BehatHtmlFormatterPlugin.git",
-                "reference": "05974121253dda30360e8edce1aa0a4beb86f1eb"
+                "reference": "6aec6465cc4d2cf2490176e9504ed7772c44aca0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dutchiexl/BehatHtmlFormatterPlugin/zipball/05974121253dda30360e8edce1aa0a4beb86f1eb",
-                "reference": "05974121253dda30360e8edce1aa0a4beb86f1eb",
+                "url": "https://api.github.com/repos/dutchiexl/BehatHtmlFormatterPlugin/zipball/6aec6465cc4d2cf2490176e9504ed7772c44aca0",
+                "reference": "6aec6465cc4d2cf2490176e9504ed7772c44aca0",
                 "shasum": ""
             },
             "require": {
@@ -5517,7 +5517,7 @@
                 }
             ],
             "description": "This will create a html formatter for Behat.",
-            "time": "2015-05-06 07:24:00"
+            "time": "2015-05-28 08:34:57"
         },
         {
             "name": "evert/phpdoc-md",
@@ -5576,12 +5576,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "3640cf6a43976edd3e508e00588b19680e9c50bd"
+                "reference": "376ae43573a621cd7cba3baaab6d60142d12c61c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/3640cf6a43976edd3e508e00588b19680e9c50bd",
-                "reference": "3640cf6a43976edd3e508e00588b19680e9c50bd",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/376ae43573a621cd7cba3baaab6d60142d12c61c",
+                "reference": "376ae43573a621cd7cba3baaab6d60142d12c61c",
                 "shasum": ""
             },
             "require": {
@@ -5627,7 +5627,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2015-05-19 06:43:29"
+            "time": "2015-05-27 18:58:22"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -5990,12 +5990,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phploc.git",
-                "reference": "b07a7d91f305dd8d0722d62c7e048e0c2d2bf4e6"
+                "reference": "d6b05c9072ed7ec3e365722d129f220c24aa90f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/b07a7d91f305dd8d0722d62c7e048e0c2d2bf4e6",
-                "reference": "b07a7d91f305dd8d0722d62c7e048e0c2d2bf4e6",
+                "url": "https://api.github.com/repos/sebastianbergmann/phploc/zipball/d6b05c9072ed7ec3e365722d129f220c24aa90f1",
+                "reference": "d6b05c9072ed7ec3e365722d129f220c24aa90f1",
                 "shasum": ""
             },
             "require": {
@@ -6035,7 +6035,7 @@
             ],
             "description": "A tool for quickly measuring the size of a PHP project.",
             "homepage": "https://github.com/sebastianbergmann/phploc",
-            "time": "2015-05-17 05:23:26"
+            "time": "2015-05-26 14:03:47"
         },
         {
             "name": "phpmd/phpmd",
@@ -6043,16 +6043,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmd/phpmd.git",
-                "reference": "20a0142614b260be7a45884db0d48dea5da0e234"
+                "reference": "5eeb5a4d39c8304910b33ae49f8813905346cc35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/20a0142614b260be7a45884db0d48dea5da0e234",
-                "reference": "20a0142614b260be7a45884db0d48dea5da0e234",
+                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/5eeb5a4d39c8304910b33ae49f8813905346cc35",
+                "reference": "5eeb5a4d39c8304910b33ae49f8813905346cc35",
                 "shasum": ""
             },
             "require": {
-                "pdepend/pdepend": "2.0.*",
+                "pdepend/pdepend": "~2.0",
                 "php": ">=5.3.0",
                 "symfony/config": ">=2.4",
                 "symfony/dependency-injection": ">=2.4",
@@ -6097,7 +6097,7 @@
                 "phpmd",
                 "pmd"
             ],
-            "time": "2015-05-21 13:13:56"
+            "time": "2015-05-27 18:16:57"
         },
         {
             "name": "phpspec/prophecy",
@@ -6411,12 +6411,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "49c2007b90b8a619e2057785e8fbc331b7b760ff"
+                "reference": "a2c4c437c1519925014f0bb71a264c884fea13c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/49c2007b90b8a619e2057785e8fbc331b7b760ff",
-                "reference": "49c2007b90b8a619e2057785e8fbc331b7b760ff",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a2c4c437c1519925014f0bb71a264c884fea13c5",
+                "reference": "a2c4c437c1519925014f0bb71a264c884fea13c5",
                 "shasum": ""
             },
             "require": {
@@ -6475,20 +6475,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-05-25 03:53:30"
+            "time": "2015-05-28 13:16:49"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.1",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "74ffb87f527f24616f72460e54b595f508dccb5c"
+                "reference": "787e06820578ca103b21e323e27f0e2eb0712ae5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/74ffb87f527f24616f72460e54b595f508dccb5c",
-                "reference": "74ffb87f527f24616f72460e54b595f508dccb5c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/787e06820578ca103b21e323e27f0e2eb0712ae5",
+                "reference": "787e06820578ca103b21e323e27f0e2eb0712ae5",
                 "shasum": ""
             },
             "require": {
@@ -6530,7 +6530,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-04-02 05:36:41"
+            "time": "2015-05-28 09:50:37"
         },
         {
             "name": "sebastian/comparator",
@@ -7162,16 +7162,16 @@
         },
         {
             "name": "theseer/fdomdocument",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/fDOMDocument.git",
-                "reference": "d08cf070350f884c63fc9078d27893c2ab6c7cef"
+                "reference": "d9ad139d6c2e8edf5e313ffbe37ff13344cf0684"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/fDOMDocument/zipball/d08cf070350f884c63fc9078d27893c2ab6c7cef",
-                "reference": "d08cf070350f884c63fc9078d27893c2ab6c7cef",
+                "url": "https://api.github.com/repos/theseer/fDOMDocument/zipball/d9ad139d6c2e8edf5e313ffbe37ff13344cf0684",
+                "reference": "d9ad139d6c2e8edf5e313ffbe37ff13344cf0684",
                 "shasum": ""
             },
             "require": {
@@ -7198,7 +7198,7 @@
             ],
             "description": "The classes contained within this repository extend the standard DOM to use exceptions at all occasions of errors instead of PHP warnings or notices. They also add various custom methods and shortcuts for convenience and to simplify the usage of DOM.",
             "homepage": "https://github.com/theseer/fDOMDocument",
-            "time": "2014-09-13 10:57:19"
+            "time": "2015-05-27 22:58:02"
         },
         {
             "name": "vipsoft/doctrine-data-fixtures-extension",
