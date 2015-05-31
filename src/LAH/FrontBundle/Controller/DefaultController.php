@@ -1,6 +1,7 @@
 <?php
 namespace LAH\FrontBundle\Controller;
 
+use Doctrine\ORM\Query;
 use LAH\MainBundle\Entity\Brand;
 use LAH\MainBundle\Entity\Car;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -32,21 +33,31 @@ class DefaultController extends Controller
     public function promotedAction()
     {
         $queryBuilder = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->createQueryBuilder('c');
+        $queryBuilder->select([
+            "c.id",
+            "c.slug",
+            "ct.content title",
+            "CONCAT(b.name, ' ', m.name) brand_name",
+            "i.name image",
+        ]);
+
         $queryBuilder->leftJoin("c.model", "m");
         $queryBuilder->leftJoin("c.translations", "ct");
-        $queryBuilder->leftJoin("c.images", "i");
         $queryBuilder->leftJoin("m.brand", "b");
-        $queryBuilder->leftJoin("c.prices", "p");
-        $queryBuilder->leftJoin("c.color", "cl");
-        $queryBuilder->leftJoin("c.type", "t");
-        $queryBuilder->leftJoin("cl.translations", "clt");
+        $queryBuilder->leftJoin("c.images", "i");
 
         $queryBuilder->andwhere('c.promoteFrontpage = true');
+        $queryBuilder->andwhere('ct.locale = :locale');
+        $queryBuilder->andwhere("ct.field = 'title'");
+        $queryBuilder->andwhere("i.position = 0 OR i.position is null");
+        $queryBuilder->setParameter("locale", $this->get("request")->getLocale());
 
         $query = $queryBuilder->getQuery();
         $query->useResultCache(true, 3600, "cars-frontpage");
 
-        return ['cars' => $query->execute()];
+        $result = $query->getResult(Query::HYDRATE_ARRAY);
+
+        return ['cars' => $result];
     }
 
     /**
@@ -57,21 +68,32 @@ class DefaultController extends Controller
     public function carouselAction()
     {
         $queryBuilder = $this->getDoctrine()->getRepository('LAHMainBundle:Car')->createQueryBuilder('c');
+        $queryBuilder->select([
+            "c.id",
+            "c.slug",
+            "ct.content title",
+            "CONCAT(b.name, ' ', m.name) brand_name",
+            "i.name image",
+        ]);
+
         $queryBuilder->leftJoin("c.model", "m");
         $queryBuilder->leftJoin("c.translations", "ct");
-        $queryBuilder->leftJoin("c.images", "i");
         $queryBuilder->leftJoin("m.brand", "b");
-        $queryBuilder->leftJoin("c.prices", "p");
-        $queryBuilder->leftJoin("c.color", "cl");
-        $queryBuilder->leftJoin("c.type", "t");
-        $queryBuilder->leftJoin("cl.translations", "clt");
+        $queryBuilder->leftJoin("c.images", "i");
 
-        $queryBuilder->where('c.promoteCarousel = true');
+        $queryBuilder->andwhere('c.promoteCarousel = true');
+        $queryBuilder->andwhere('ct.locale = :locale');
+        $queryBuilder->andwhere("ct.field = 'title'");
+        $queryBuilder->andwhere("i.position = 0 OR i.position is null");
+        $queryBuilder->setParameter("locale", $this->get("request")->getLocale());
+
 
         $query = $queryBuilder->getQuery();
         $query->useResultCache(true, 3600, "cars-carousel");
 
-        return ['cars' => $query->execute()];
+        $result = $query->getResult(Query::HYDRATE_ARRAY);
+
+        return ['cars' => $result];
     }
 
     /**

@@ -1,30 +1,25 @@
 {% macro carItem(car) %}
     {% set link = path("show", {id: car.id, slug: car.slug}) %}
-    {% set title = car.getTranslated("title", app.request.locale) %}
+    {% set title = car.title %}
 
     <li>
         <a href="{{ link }}">
-            <img src="{{ asset("/uploads/thumbnails/" ~ car.firstImage) }}" alt="{{ title }}">
+            <img src="{{ asset("/uploads/thumbnails/" ~ car.image) }}" alt="{{ title }}">
         </a>
-        <h3><a href="{{ link }}">{{ car.model.brand.name }} {{ car.model.name }}</a></h3>
+        <h3><a href="{{ link }}">{{ car.brand_name }}</a></h3>
         <p><a href="{{ link }}">{{ title }}</a></p>
-        <p class="price">
-            {% for price in car.prices %}
-                {{ price.amount }} {{ price.currency.symbol }}{% if not loop.last %}, {% endif %}
-            {% endfor %}
-            {#<span>other info</span></p>#}
         <a href="{{ link }}" class="button">{{ 'promoted.car_details_button'|trans }}</a>
     </li>
 {% endmacro %}
 
 <ul>
-    {% for car in cars|slice(0, cars|length/2) if car.images|length > 0 %}
+    {% for car in cars|slice(0, cars|length/2) %}
         {{ _self.carItem(car) }}
     {% endfor %}
 </ul>
 
 <ul class="last">
-    {% for car in cars|slice(cars|length/2) if car.images|length > 0 %}
+    {% for car in cars|slice(cars|length/2) %}
         {{ _self.carItem(car) }}
     {% endfor %}
 </ul>
