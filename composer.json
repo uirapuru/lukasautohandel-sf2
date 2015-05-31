@@ -33,6 +33,8 @@
         "phpdocumentor/phpdocumentor": "2.*",
         "knplabs/knp-paginator-bundle": "2.4.*@dev",
         "smart-core/accelerator-cache-bundle": "dev-master#83f2e34be2d521cca5bd72ac31be1df01233750a"
+        "doctrine/migrations": "1.0.*@dev",
+        "doctrine/doctrine-migrations-bundle": "1.0.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
@@ -58,8 +60,6 @@
         "liip/functional-test-bundle": "~1.2",
         "behat/mink-browserkit-driver": "~1.2",
         "mockery/mockery": "0.9.*",
-        "doctrine/migrations": "1.0.*@dev",
-        "doctrine/doctrine-migrations-bundle": "1.0.*"
     },
     "scripts": {
         "post-root-package-install": [
