@@ -1,9 +1,10 @@
 <div id="slide" class="camera_wrap camera_azure_skin">
-    {% for car in cars if car.images|length > 0 %}
-    <div data-src="/uploads/{{ car.firstImage }}">
+    {% for car in cars %}
+    <div data-src="/uploads/{{ car.image }}">
         <div class="banner camera_caption fadeFromBottom">
-            <p><strong>{{ car.model.brand.name }} {{ car.model.name }}</strong>
-                <a href="{{ url("show", {id: car.id, slug: car.slug}) }}">{{ car.getTranslated("title", app.request.locale) }}</a>
+            <p>
+                <strong>{{ car.brand_name }}</strong>
+                <a href="{{ url("show", {id: car.id, slug: car.slug}) }}">{{ car.title }}</a>
             </p>
         </div>
     </div>
