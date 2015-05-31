@@ -79,7 +79,7 @@ final class FeatureContext extends MinkContext implements Context
      */
     public function iHaveImages($arg1)
     {
-        $this->assertNumElements($arg1, 'div#lah_car_images > ul > li');
+        $this->assertNumElements($arg1, 'div#lah_car_images > ol > li');
     }
 
     /**
@@ -87,7 +87,7 @@ final class FeatureContext extends MinkContext implements Context
      */
     public function imagesListIsEmpty()
     {
-        $this->assertNumElements(0, 'div#lah_car_images > ul > li');
+        $this->assertNumElements(0, 'div#lah_car_images > ol > li');
     }
 
     /**
